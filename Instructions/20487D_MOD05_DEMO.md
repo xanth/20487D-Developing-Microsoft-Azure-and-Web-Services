@@ -5,14 +5,14 @@
 
 # Lesson 1: Hosting Services on-premises
 
-### Demonstration: Hosting Services on-premises by using Windows Services with Kestrel(RunAsService)
+### Demonstration: Hosting Services on-premises by using Windows Services with Kestrel (RunAsService)
 
 #### Demonstration Steps
 
 1. Open **Command Line** as an administrator.
 2. Paste the following command and then press **Enter**:
    ```bash
-      cd [Repository Root]\Allfiles\Mod05\Demos\Demo1\BlueYonder.Hotels.Service
+      cd [Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service
    ```
 3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
    ```bash
@@ -30,6 +30,7 @@
    ```bash
       sc stop HotelsService
    ```
+7. Close **Command Line**.
 
 
 
