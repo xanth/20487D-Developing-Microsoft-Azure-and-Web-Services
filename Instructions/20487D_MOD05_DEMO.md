@@ -16,21 +16,22 @@
    ```
 3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
    ```bash
-      dotnet publish --configuration Release --output C:\svc
+      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service
    ```
 4. Paste the following command in order to create your **Windows Service** and then press **Enter**:
    ```bash
-      sc create HotelsService binPath= "C:\svc\BlueYonder.Hotels.Service.exe"
+      sc create HotelsService binPath= "[Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.exe"
    ```
 5. Paste the following command in order to start your **Windows Service** and then press **Enter**:
    ```bash
       sc start HotelsService
    ```
-6. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
+6. Verify that the service is working by open a browser and browse to **http://localhost:5000/api/values**.
+7. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
    ```bash
       sc stop HotelsService
    ```
-7. Close **Command Line**.
+8. Close **Command Line**.
 
 
 
