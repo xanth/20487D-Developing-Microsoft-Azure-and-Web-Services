@@ -29,6 +29,10 @@
    ```bash
       sc start HotelsService
    ```
+9. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
+   ```bash
+      sc stop HotelsService
+   ```
 
 
 
