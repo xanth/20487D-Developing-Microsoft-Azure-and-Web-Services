@@ -19,7 +19,11 @@
    ```
 6. Paste the following command and then press **Enter**:
    ```bash
-      dotnet publish --configuration Release --output c:\svc
+      dotnet publish --configuration Release --output C:\svc
+   ```
+7. Paste the following command and then press **Enter**:
+   ```bash
+      sc create HotelsService binPath= "C:\svc\BlueYonder.Hotels.Service.exe"
    ```
 
 
