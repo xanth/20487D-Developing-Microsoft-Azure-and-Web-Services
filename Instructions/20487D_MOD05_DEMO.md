@@ -1,35 +1,32 @@
-# Module 5: Hosting services
+# Module 5: Hosting Services On-Premises and in Azure
 
  Wherever you see a path to file starting at [repository root], replace it with the absolute path to the directory in which the 20487 repository resides. 
  e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [repository root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
 
-# Lesson 4: Hosting Services on-premises
+# Lesson 1: Hosting Services on-premises
 
-### Demonstration: Hosting Services on-premises by using Windows Services
+### Demonstration: Hosting Services on-premises by using Windows Services with Kestrel(RunAsService)
 
 #### Demonstration Steps
 
-1. Open **Visual Studio 2017**.
-2. In **Visual Studio**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
-3. In the **Open Project** dialog box, browse to **[Repository Root]\Allfiles\Mod05\Demos\Demo1**, click **BlueYonder.Hotels.Service.sln**, and then click Open.
-4. Open **Command Prompt** as an administrator.
-5. Paste the following command and then press **Enter**:
+1. Open **Command Line** as an administrator.
+2. Paste the following command and then press **Enter**:
    ```bash
       cd [Repository Root]\Allfiles\Mod05\Demos\Demo1\BlueYonder.Hotels.Service
    ```
-6. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
+3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
    ```bash
       dotnet publish --configuration Release --output C:\svc
    ```
-7. Paste the following command in order to create your **Windows Service** and then press **Enter**:
+4. Paste the following command in order to create your **Windows Service** and then press **Enter**:
    ```bash
       sc create HotelsService binPath= "C:\svc\BlueYonder.Hotels.Service.exe"
    ```
-8. Paste the following command in order to start your **Windows Service** and then press **Enter**:
+5. Paste the following command in order to start your **Windows Service** and then press **Enter**:
    ```bash
       sc start HotelsService
    ```
-9. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
+6. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
    ```bash
       sc stop HotelsService
    ```
