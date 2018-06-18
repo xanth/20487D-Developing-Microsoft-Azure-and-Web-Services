@@ -17,13 +17,17 @@
    ```bash
       cd [Repository Root]\Allfiles\Mod05\Demos\Demo1\BlueYonder.Hotels.Service
    ```
-6. Paste the following command and then press **Enter**:
+6. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
    ```bash
       dotnet publish --configuration Release --output C:\svc
    ```
-7. Paste the following command and then press **Enter**:
+7. Paste the following command in order to create your **Windows Service** and then press **Enter**:
    ```bash
       sc create HotelsService binPath= "C:\svc\BlueYonder.Hotels.Service.exe"
+   ```
+8. Paste the following command in order to start your **Windows Service** and then press **Enter**:
+   ```bash
+      sc start HotelsService
    ```
 
 
