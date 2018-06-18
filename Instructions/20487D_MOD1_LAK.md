@@ -75,6 +75,55 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
         services.AddDbContext<FlightsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("FlightsDB")));
     ```    
 
+### Exercise 3: Create a web API class
+
+#### Task 1: Create a new class for the web API
+
+1. Expand **Controllers** folder and rename the **ValuesControllers.cs** to **FlightsControllers.cs**.
+2. Open **FlightsControllers.cs** file and rename the class name from **ValuesControllers** to **FlightsControllers**.
+3. Add the following using:
+    ```cs
+        using Exercise1.Models;
+    ```
+4. Add the following field to the class in order to hold the **FlightContext**:
+    ```cs
+      private readonly FlightsContext _context;
+    ```
+5. Add the following Constructor to the class for inject the context to the controller:
+    ```cs
+        public FlightsController(FlightsContext context)
+        {
+            _context = context;
+        }
+    ```
+
+#### Task 2: Create an action and use the Entity Framework context
+
+1. For getting the list of all flights replace the first **Get** method with the following code:
+    ```cs
+        // GET api/flights
+        [HttpGet]
+        public IEnumerable<Flight> Get()
+        {
+            return _context.Flights.ToList();
+        }
+    ```    
+2. For adding a new flight to db, replace the **Post** method with the following code:
+    ```cs
+        // POST api/flights
+        [HttpPost]
+        public IActionResult Post([FromBody]Flight flight)
+        {
+            _context.Flights.Add(flight);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(Get), flight.Id);
+        }
+    ```    
+
+
+
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
