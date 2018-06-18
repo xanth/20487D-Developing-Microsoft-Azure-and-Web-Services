@@ -10,6 +10,7 @@
 #### Demonstration Steps
 
 1. Open **Visual Studio 2017**.
+2. In **Visual Studio**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
 
 
 ©2018 Microsoft Corporation. All rights reserved.
