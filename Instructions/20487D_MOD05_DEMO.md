@@ -13,6 +13,13 @@
 2. In **Visual Studio**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
 3. In the **Open Project** dialog box, browse to **[Repository Root]\Allfiles\Mod05\Demos\Demo1**, click **BlueYonder.Hotels.Service**, and then click Open.
 4. Open **Command Prompt** as an administrator.
+5. Paste the following command and then press **Enter**:
+   ```bash
+      cd [Repository Root]\Allfiles\Mod05\Demos\Demo1
+   ```
+
+
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
