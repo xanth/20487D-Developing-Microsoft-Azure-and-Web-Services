@@ -12,11 +12,11 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 1. Open **Command Line**.
 2. For creating a new **ASP.NET Core Web API** project, At the **Command Line** paste the following command and press enter:
     ```bash
-        dotnet new webapi -name BlueYonder.Flights -output [Repository Root]\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod01\Labfiles\Exercise1
+        dotnet new webapi --name BlueYonder.Flights --output [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
     ```  
 3. Now that the project was created, change directory in the **Command Line** by running the following command:
     ```bash
-        cd [Repository Root]\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod01\Labfiles\Exercise1
+        cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
     ```
 4. To open the project in **Visual Studio Code** paste the following command and press enter: 
     ```bash
@@ -38,6 +38,7 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
     ```
 5. Locate the class **Flight** and paste the following code between the brackets:
     ```cs
+        public int Id { get; set; }
         public string Origin { get; set; }
         public string Destination { get; set; }
         public string FlightNumber { get; set; }
@@ -62,11 +63,11 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
         {
         }
 
-        public DbSet<FlightsContext> Flights { get; set; }
+        public DbSet<Flight> Flights { get; set; }
     ```
 5. Go to **Startup.cs** and paste the following using statement:
     ```cs
-        using Exercise1.Models;
+        using BlueYonder.Flights.Models;
         using Microsoft.EntityFrameworkCore;
     ```
 6. In the **ConfigureServices** method paste the following code: 
@@ -82,7 +83,7 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 2. Open **FlightsControllers.cs** file and rename the class name from **ValuesControllers** to **FlightsControllers**.
 3. Add the following using:
     ```cs
-        using Exercise1.Models;
+        using BlueYonder.Flights.Models;
     ```
 4. Add the following field to the class in order to hold the **FlightContext**:
     ```cs
