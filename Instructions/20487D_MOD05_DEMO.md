@@ -60,9 +60,10 @@
 18. Choose **win-x64** in the **Target Runtime** combo-bx and then click **Save**.
 19. In the **Publish** blade , click **Publish**.
 20. Wait until the process will finish.
-21. Open the browser and browse to **localhost:8080/api/Values**. Check that you are getting a good response.
-22. Close the Browser.
-23. Close **Visual Studio**.
+21. Open the browser and browse to **localhost:8080/api/Values**. Check that you are getting a good response like the following:
+	```json
+		["value1", "value2"]
+	```
 
 
 
