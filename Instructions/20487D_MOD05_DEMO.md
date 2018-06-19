@@ -34,6 +34,37 @@
 8. Close **Command Line**.
 
 
+# Lesson 1: Hosting Services on-premises
+
+### Demonstration 2: Hosting ASP.NET Core services in IIS
+
+#### Demonstration Steps
+
+1. Open **Visual Studio 2017** as an administrator.
+2. Paste the following command and then press **Enter**:
+   ```bash
+      cd [Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service
+   ```
+3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
+   ```bash
+      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service
+   ```
+4. Paste the following command in order to create your **Windows Service** and then press **Enter**:
+   ```bash
+      sc create HotelsService binPath= "[Repository Root]\Allfiles\Mod05\DemoFiles\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.exe"
+   ```
+5. Paste the following command in order to start your **Windows Service** and then press **Enter**:
+   ```bash
+      sc start HotelsService
+   ```
+6. Verify that the service is working by open a browser and browse to **http://localhost:5000/api/values**.
+7. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
+   ```bash
+      sc stop HotelsService
+   ```
+8. Close **Command Line**.
+
+
 
 
 ©2018 Microsoft Corporation. All rights reserved.
