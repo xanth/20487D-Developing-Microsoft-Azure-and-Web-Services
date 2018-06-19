@@ -12,15 +12,15 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 1. Open **Command Line**.
 2. For creating a new **ASP.NET Core Web API** project, At the **Command Line** paste the following command and press enter:
     ```bash
-        dotnet new webapi --name BlueYonder.Flights --output [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
+    dotnet new webapi --name BlueYonder.Flights --output [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
     ```  
 3. Now that the project was created, change directory in the **Command Line** by running the following command:
     ```bash
-        cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
+    cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
     ```
 4. To open the project in **Visual Studio Code** paste the following command and press enter: 
     ```bash
-        code .
+    code .
     ```
 
 ### Exercise 2: Create a simple Entity Framework model
@@ -34,15 +34,15 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 3. Right click on **Models** folder, select **New C# Class**, then type **Flight** in the textbox on the top, and press **Enter**.
 4. In the **Flight.cs** Copy the using statement below to the begin of the file:
     ```cs
-        using System;
+    using System;
     ```
 5. Locate the class **Flight** and paste the following code between the brackets:
     ```cs
-        public int Id { get; set; }
-        public string Origin { get; set; }
-        public string Destination { get; set; }
-        public string FlightNumber { get; set; }
-        public DateTime DepartureTime { get; set; }
+    public int Id { get; set; }
+    public string Origin { get; set; }
+    public string Destination { get; set; }
+    public string FlightNumber { get; set; }
+    public DateTime DepartureTime { get; set; }
     ```
 
 #### Task 2: Create a new DbContext class
@@ -50,29 +50,29 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 1. Right click on **Models** folder, select **New C# Class**, then type **FilghtsContext** in the textbox on the top, and press **Enter**.
 2. Paste the following using statement in the top of the file **FilghtsContext**:
     ```cs
-        using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
     ```
 3. Inherite the class **FlightContext** from **DbContext**,your code should look like:
     ```cs
-        public class FlightsContext : DbContext
+    public class FlightsContext : DbContext
     ```
 4. Inside the class paste the following code: 
     ```cs
-        public FlightsContext(DbContextOptions<FlightsContext> options)
-            : base(options)
-        {
-        }
+    public FlightsContext(DbContextOptions<FlightsContext> options)
+        : base(options)
+    {
+    }
 
-        public DbSet<Flight> Flights { get; set; }
+    public DbSet<Flight> Flights { get; set; }
     ```
 5. Go to **Startup.cs** and paste the following using statement:
     ```cs
-        using BlueYonder.Flights.Models;
-        using Microsoft.EntityFrameworkCore;
+    using BlueYonder.Flights.Models;
+    using Microsoft.EntityFrameworkCore;
     ```
 6. In the **ConfigureServices** method paste the following code: 
     ```cs
-        services.AddDbContext<FlightsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("FlightsDB")));
+    services.AddDbContext<FlightsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("FlightsDB")));
     ```    
 
 ### Exercise 3: Create a web API class
@@ -83,42 +83,41 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 2. Open **FlightsControllers.cs** file and rename the class name from **ValuesControllers** to **FlightsControllers**.
 3. Add the following using:
     ```cs
-        using BlueYonder.Flights.Models;
+    using BlueYonder.Flights.Models;
     ```
 4. Add the following field to the class in order to hold the **FlightContext**:
     ```cs
-      private readonly FlightsContext _context;
+    private readonly FlightsContext _context;
     ```
 5. Add the following Constructor to the class for inject the context to the controller:
     ```cs
-        public FlightsController(FlightsContext context)
-        {
-            _context = context;
-        }
+    public FlightsController(FlightsContext context)
+    {
+        _context = context;
+    }
     ```
 
 #### Task 2: Create an action and use the Entity Framework context
 
 1. For getting the list of all flights replace the first **Get** method with the following code:
     ```cs
-        // GET api/flights
-        [HttpGet]
-        public IEnumerable<Flight> Get()
-        {
-            return _context.Flights.ToList();
-        }
+    // GET api/flights
+    [HttpGet]
+    public IEnumerable<Flight> Get()
+    {
+        return _context.Flights.ToList();
+    }
     ```    
 2. For adding a new flight to db, replace the **Post** method with the following code:
     ```cs
-        // POST api/flights
-        [HttpPost]
-        public IActionResult Post([FromBody]Flight flight)
-        {
-            _context.Flights.Add(flight);
-            _context.SaveChanges();
-
-            return CreatedAtAction(nameof(Get), flight.Id);
-        }
+    // POST api/flights
+    [HttpPost]
+    public IActionResult Post([FromBody]Flight flight)
+    {
+        _context.Flights.Add(flight);
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(Get), flight.Id);
+    }
     ```    
 ### Exercise 4: Deploy the web application to Azure
 
@@ -136,14 +135,14 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
     - Click on **Web App + SQL** in the **Web** blade.
     - Click on **Create** button in the **Web App + SQL** blade.
 6. Add the following information to create the **WebApp**:
-    - In the **App Name** text box, type the following web app name: **flightsmod1lab**_YourInitials_ (Replace _YourInitials_ with your initials).
+    - In the **App Name** text box, type the following web app name: **flightsmod1lab**{YourInitials} (Replace {YourInitials} with your initials).
         >**Note:** The **App Name** will be part of the URL.
     - In the **Resource Group**  select **Create new**, and type in the text box below **Mod1Resource**.
     - Click on **SQL Database** and then click on **Create a new database**, then open **SQL Database** blade, add the following information:
         - In the **Name** text box type: **Mod1DB**.
         - Click on **Target server**, then click on **Create a new server**.
         - In the **New server** blade, enter the following information:
-            - In the **Server name** text box type: **serverdbmod1**_YourInitials_ (Replace _YourInitials_ with your initials).
+            - In the **Server name** text box type: **serverdbmod1**{YourInitials} (Replace {YourInitials} with your initials).
             - In the **Server admin login** text box type: **Admin123**.
             - In the **Password** and **Confirm password** text box type: **Password99**.
             - Click on **Select**.
@@ -155,26 +154,47 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 9. Click on **Login**, then type the following password: **Password99**.
 10. To create a new table in our **SQL Database**, inside the **Query 1** tab, paste the following script and the click on **Run**:
     ```sql
-        CREATE TABLE [dbo].[Flight](
-        [Id] [int] IDENTITY(1,1) NOT NULL,
-        [Origin] [varchar](50) NOT NULL,
-        [Destination] [varchar](50) NOT NULL,
-        [FlightNumber] [varchar](50) NOT NULL,
-        [DepartureTime] [date] NOT NULL,
-        
-        PRIMARY KEY CLUSTERED 
-        (
-            [Id] ASC
-        ))
+    CREATE TABLE [dbo].[Flight](
+    [Id] [int] IDENTITY(1,1) NOT NULL,
+    [Origin] [varchar](50) NOT NULL,
+    [Destination] [varchar](50) NOT NULL,
+    [FlightNumber] [varchar](50) NOT NULL,
+    [DepartureTime] [date] NOT NULL,
+    
+    PRIMARY KEY CLUSTERED 
+    (
+        [Id] ASC
+    ))
     ```
 
 #### Task 2: Deploy the web application to the Azure Web App
 
-1. 
-
-
-
-
+1. Go back to **Azure Protal**.
+2. Click on **App Services** in the left menu.
+3. Click on **filghtsmod1lab**{YourInitials} (Replace {YourInitials} with your initials) in **App Services** blade.
+4. Click on **Deployment credentials** under **DEPLOYMENT** section inside **filghtsmod1lab**_YourInitials_ blade, add the following information:
+    - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials} (Replace {YourInitials} with your initials).
+    - In the **Password** and **Confirm password** text box type: **Password99**.
+    - Click on **Save**.
+5. Go back to the project in **Visual Studio Code**.
+6. Add a new folder **Properties** by right click on the **Explorer Pane** on the left, and select **New Folder**.
+7. Right click on **Properties** folder and select **New Folder** and give the folder name **PublishProfiles**.
+8. In the **PublishProfiles** add the file **Azure.pubxml** and double-click on the file.
+9. Paste the following code:
+    ```xml
+    <Project>
+        <PropertyGroup>
+          <PublishProtocol>Kudu</PublishProtocol>
+          <PublishSiteName>flightsmod1lab{YourInitials}</PublishSiteName>
+          <UserName>FTPMod1Lab{YourInitials}</UserName>
+          <Password>Password99</Password>
+        </PropertyGroup>
+    </Project>
+    ```
+10. Go back **Command Line**, and paste the following command:
+    ```bash
+    dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
+    ```
 
 ©2018 Microsoft Corporation. All rights reserved.
 
