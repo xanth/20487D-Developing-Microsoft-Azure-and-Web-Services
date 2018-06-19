@@ -42,7 +42,6 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
         public string Destination { get; set; }
         public string FlightNumber { get; set; }
         public DateTime DepartureTime { get; set; }
-        public TimeSpan Duration { get; set; }
     ```
 
 #### Task 2: Create a new DbContext class
@@ -120,6 +119,57 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
             return CreatedAtAction(nameof(Get), flight.Id);
         }
     ```    
+### Exercise 4: Deploy the web application to Azure
+
+#### Task 1: Create an Azure Web App and an SQL database
+
+1. Open Microsoft Edge.
+2. Navigate to **https://portal.azure.com**.
+3. If a page appears prompting for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog appears, click **Yes**.
+
+   >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+
+5. Click **App Services** on the left menu panel.
+    - Click on **Add** in the **App Services** blade.
+    - Click on **Web App + SQL** in the **Web** blade.
+    - Click on **Create** button in the **Web App + SQL** blade.
+6. Add the following information to create the **WebApp**:
+    - In the **App Name** text box, type the following web app name: **flightsmod1lab**_YourInitials_ (Replace _YourInitials_ with your initials).
+        >**Note:** The **App Name** will be part of the URL.
+    - In the **Resource Group**  select **Create new**, and type in the text box below **Mod1Resource**.
+    - Click on **SQL Database** and then click on **Create a new database**, then open **SQL Database** blade, add the following information:
+        - In the **Name** text box type: **Mod1DB**.
+        - Click on **Target server**, then click on **Create a new server**.
+        - In the **New server** blade, enter the following information:
+            - In the **Server name** text box type: **serverdbmod1**_YourInitials_ (Replace _YourInitials_ with your initials).
+            - In the **Server admin login** text box type: **Admin123**.
+            - In the **Password** and **Confirm password** text box type: **Password99**.
+            - Click on **Select**.
+        - Click on **Pricing tier**, then select **Free** and click on **Apply**.
+        - Click on **Select**.
+    - Click on **Create**.
+7. Click on **SQL Databases** on the left menu panel.
+8. Click on **Mod1DB**, then click on **Query editor**.
+9. Click on **Login**, then type the following password: **Password99**.
+10. To create a new table in our **SQL Database**, inside the **Query 1** tab, paste the following script and the click on **Run**:
+    ```sql
+        CREATE TABLE [dbo].[Flight](
+        [Id] [int] IDENTITY(1,1) NOT NULL,
+        [Origin] [varchar](50) NOT NULL,
+        [Destination] [varchar](50) NOT NULL,
+        [FlightNumber] [varchar](50) NOT NULL,
+        [DepartureTime] [date] NOT NULL,
+        
+        PRIMARY KEY CLUSTERED 
+        (
+            [Id] ASC
+        ))
+    ```
+
+#### Task 2: Deploy the web application to the Azure Web App
+
+1. 
 
 
 
