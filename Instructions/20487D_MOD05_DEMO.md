@@ -68,6 +68,77 @@
 
 
 
+# Lesson 2: Hosting Services in Azure Web Apps
+
+### Demonstration: Hosting ASP.NET Core Web APIs in Azure Web Apps
+
+1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
+2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+
+    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+
+3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+4. In the navigation blade, click **App Services**. 
+5. In the top menu, click **Add** in order to create a new **App Service**.
+6. Choose **Web App** from the **Web Apps** section inside the **Web** blade, and then click **Create**.
+7. In the **App name** text box, enter a unique name.
+8. Copy the **App name** value to any code editor.
+9. Click **App service plan/Location**, and then click **Create new**.
+10. From the **Location** drop-down list, select the region that is closest to your location.
+11. In the **App Service plan** input, enter **MyAppService**, and then click **OK**.
+12. Click **Create**. Wait for the web app to be created. Click the newly created web app.
+13. In the newly created web app blade, in the **Deployment** section, click **Deployment Credentials**.
+14. In the **FTP/deployment username** type a globally unique name.
+15. In the **Password** and **Confirm password** inputs, type a new password.
+
+    >**NOTE:** You will need the credentials for the next steps. Copy them to any code editor.
+    
+16. Click on the **Overview** button in your newly created web app.
+17. Open a **Command Line**.
+18. Paste the following command in order to create a new **Web App** and then press **Enter**:
+   ```bash
+      dotnet new webapi --name BlueYonder.Hotels.Service -output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure"
+   ```
+19. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure**.
+20. In the **Properties** folder, create a new folder called **PublishProfiles**.
+21. In the **PublishProfiles** create a new file called **Azure** with an extension of **.pubxml**..
+22. Open the file with any code editor and paste the following **XML** content in order to define the publish settings:
+
+    ```xml
+    <Project>
+        <PropertyGroup>
+        <PublishProtocol>Kudu</PublishProtocol>
+        <PublishSiteName>{Your App name}</PublishSiteName>
+        <UserName>{Your FTP/deployment username}</UserName>
+        <Password>{Your FTP/deployment password}</Password>
+        </PropertyGroup>
+    </Project>
+    ```
+23. Replace the **PublishSiteName**, **UserName** and **Password** values with the values that you have copied earlier.
+24. Save the file.
+25. In the **Command Line**, paste the following command to point to your newly web app folder:
+    ```bash
+        cd [RepostiroryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure
+    ```
+26. Paste the following command in order to host your web app in the **App Service** that you have created in **Azure**:
+
+    ```bash
+        dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
+    ```
+27. Open a browser and browse to **https://{Your App Name}.azurewebsites.net/api/values**.
+
+    >**NOTE:** Replace **{Your App Name}** with your actual app name that you have copied earlier.
+28. Check that you are getting a good response like the following:
+	```json
+		["value1", "value2"]
+	```
+
+
+
+
+
+
+
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
