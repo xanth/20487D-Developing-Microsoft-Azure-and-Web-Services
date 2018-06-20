@@ -11,15 +11,15 @@
 #### Task 1: Create a new ASP.NET Core project
 
 1. Open **Command Line**.
-2. For creating a new **ASP.NET Core Web API** project, At the **Command Line** paste the following command and press enter:
+2. Create a new **ASP.NET Core Web API** project, At the **Command Line** paste the following command and press enter:
     ```bash
-    dotnet new webapi --name BlueYonder.Flights --output [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
+    dotnet new webapi --name BlueYonder.Flights --output [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1\Starter\BlueYonder.Flights
     ```  
-3. Now that the project was created, change directory in the **Command Line** by running the following command:
+3. After the project was created, change directory in the **Command Line** by running the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1
+    cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1\Starter\BlueYonder.Flights
     ```
-4. To open the project in **Visual Studio Code** paste the following command and press enter: 
+4. Open the project in **VSCode** and paste the following command and press enter: 
     ```bash
     code .
     ```
@@ -28,16 +28,16 @@
 
 #### Task 1: Create a new POCO entity
 
-1. The **Exercise1** folder opens in **Visual Studio Code (VS Code)**. Select the **Startup.cs** file.
-    - Select **Yes** to the Warn message **"Required assets to build and debug are missing from 'Exercise1'. Add them?"**.
+1. The **BlueYonder.Flights** folder opens in **VSCode**. Select the **Startup.cs** file.
+    - Select **Yes** to the Warn message **"Required assets to build and debug are missing from 'BlueYonder.Flights'. Add them?"**.
     - Select **Restore** to the Info message **"There are unresolved dependencies"**.
 2. Add a new folder **Models** by right click on the **Explorer Pane** on the left, and select **New Folder**.
 3. Right click on **Models** folder, select **New C# Class**, then type **Flight** in the textbox on the top, and press **Enter**.
-4. In the **Flight.cs** Copy the using statement below to the begin of the file:
+4. In the **Flight.cs** paste the using statement below to the begin of the file:
     ```cs
     using System;
     ```
-5. Locate the class **Flight** and paste the following code between the brackets:
+5. In the **Flight.cs** paste the following propeties:
     ```cs
     public int Id { get; set; }
     public string Origin { get; set; }
@@ -73,7 +73,7 @@
     ```
 6. In the **ConfigureServices** method paste the following code: 
     ```cs
-    services.AddDbContext<FlightsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("FlightsDB")));
+    services.AddDbContext<FlightsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
     ```    
 
 ### Exercise 3: Create a web API class
@@ -100,7 +100,7 @@
 
 #### Task 2: Create an action and use the Entity Framework context
 
-1. For getting the list of all flights replace the first **Get** method with the following code:
+1. To retrieve the list of all flights replace the first **Get** method with the following code:
     ```cs
     // GET api/flights
     [HttpGet]
@@ -109,7 +109,7 @@
         return _context.Flights.ToList();
     }
     ```    
-2. For adding a new flight to db, replace the **Post** method with the following code:
+2. To create a new flight to db, replace the **Post** method with the following code:
     ```cs
     // POST api/flights
     [HttpPost]
@@ -126,20 +126,18 @@
 
 1. Open **Microsoft Edge**.
 2. Navigate to **https://portal.azure.com**.
-3. If a page appears prompting for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
+3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
 4. If the **Stay signed in?** dialog appears, click **Yes**.
-
    >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
-
-5. Click **App Services** on the left menu panel.
-    - Click on **Add** in the **App Services** blade.
-    - Click on **Web App + SQL** in the **Web** blade.
+5. Click **App Services** on the left menu panel, to display all the **App Services**.
+    - Click on **Add** in the **App Services** blade, letting you select app service template.
+    - Click on **Web App + SQL** in the **Web** blade, overview of the template will be shown.
     - Click on **Create** button in the **Web App + SQL** blade.
-6. Add the following information to create the **WebApp**:
+6. To create the **WebApp** fill-in the following fields:
     - In the **App Name** text box, type the following web app name: **flightsmod1lab**{YourInitials}.
         >**Note:** The **App Name** will be part of the URL.
     - In the **Resource Group**  select **Create new**, and type in the text box below **Mod1Resource**.
-    - Click on **SQL Database** and then click on **Create a new database**, then open **SQL Database** blade, add the following information:
+    - Click on **SQL Database** and then click on **Create a new database**, then open **SQL Database** blade, fill-in the following information:
         - In the **Name** text box type: **Mod1DB**.
         - Click on **Target server**, then click on **Create a new server**.
         - In the **New server** blade, enter the following information:
@@ -150,8 +148,8 @@
         - Click on **Pricing tier**, then select **Free** and click on **Apply**.
         - Click on **Select**.
     - Click on **Create**.
-7. Click on **SQL Databases** on the left menu panel.
-8. Click on **Mod1DB**, then click on **Query editor**.
+7. Click on **SQL Databases** on the left menu panel, to display all the **SQL databases**.
+8. Click on **Mod1DB**, then click on **Query editor**, for running scripts on the database.
 9. Click on **Login**, then type the following password: **Password99**.
 10. To create a new table in our **SQL Database**, inside the **Query 1** tab, paste the following script and the click on **Run**:
     ```sql
@@ -170,15 +168,15 @@
 
 #### Task 2: Deploy the web application to the Azure Web App
 
-1. Go back to **Azure Protal**.
-2. Click on **App Services** in the left menu.
-3. Click on **filghtsmod1lab**{YourInitials} in **App Services** blade.
-4. Click on **Deployment credentials** under **DEPLOYMENT** section, and add the following information:
+1. Switch to **Azure Protal**.
+2. Click on **App Services** in the left menu, to display all the **App Services**.
+3. Click on **filghtsmod1lab**{YourInitials} in **App Services** blade, to view app service configurations.
+4. Click on **Deployment credentials** under **DEPLOYMENT** section, to add credentials to our app service, and fill-in the following information:
     - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials}.
     - In the **Password** and **Confirm password** text box type: **Password99**.
     - Click on **Save**.
     >**Note :** The **Deployment credentials** give the options to deploy the app from the **Command Line**.
-5. Go back to the project in **Visual Studio Code**.
+5. Switch to the project in **VSCode**.
 6. Add a new folder **Properties** by right click on the **Explorer Pane** on the left, and select **New Folder**.
 7. Right click on **Properties** folder and select **New Folder** and give the folder name **PublishProfiles**.
 8. In the **PublishProfiles** add the file **Azure.pubxml** and double-click on the file.
@@ -194,7 +192,7 @@
     </Project>
     ```
     >**Note :** This file have the information to deploy to Azure, with the **Deployment credentials** that we added in point 4.
-10. Go back **Command Line**, and paste the following command:
+10. Switch to **Command Line**, and paste the following command:
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
@@ -230,7 +228,7 @@
     ```
 #### Task 4: View result in the Database
 
-1. Go back to **Azure Protal**.
+1. Switch to **Azure Protal**.
 2. Click on **SQL Databases** on the left menu panel.
 3. Click on **Mod1DB**, then click on **Query editor**.
 4. Click on **Login**, then type the following password: **Password99**.
