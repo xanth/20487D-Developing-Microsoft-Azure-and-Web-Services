@@ -173,10 +173,11 @@
 1. Go back to **Azure Protal**.
 2. Click on **App Services** in the left menu.
 3. Click on **filghtsmod1lab**{YourInitials} in **App Services** blade.
-4. Click on **Deployment credentials** under **DEPLOYMENT** section inside **filghtsmod1lab**{YourInitials} blade, add the following information:
+4. Click on **Deployment credentials** under **DEPLOYMENT** section, and add the following information:
     - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials}.
     - In the **Password** and **Confirm password** text box type: **Password99**.
     - Click on **Save**.
+    >**Note :** The **Deployment credentials** give the options to deploy the app from the **Command Line**.
 5. Go back to the project in **Visual Studio Code**.
 6. Add a new folder **Properties** by right click on the **Explorer Pane** on the left, and select **New Folder**.
 7. Right click on **Properties** folder and select **New Folder** and give the folder name **PublishProfiles**.
@@ -192,6 +193,7 @@
         </PropertyGroup>
     </Project>
     ```
+    >**Note :** This file have the information to deploy to Azure, with the **Deployment credentials** that we added in point 4.
 10. Go back **Command Line**, and paste the following command:
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
@@ -226,6 +228,18 @@
         }
     ]
     ```
+#### Task 4: View result in the Database
+
+1. Go back to **Azure Protal**.
+2. Click on **SQL Databases** on the left menu panel.
+3. Click on **Mod1DB**, then click on **Query editor**.
+4. Click on **Login**, then type the following password: **Password99**.
+5. To get all the flights in the Database, paste the following script inside the **Query 1** tab, then click on **Run**:
+    ```sql
+    select * from Flight
+    ```
+6. Check that you got the flight in the **Reults** tab.
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
