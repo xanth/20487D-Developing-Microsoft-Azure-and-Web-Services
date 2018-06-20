@@ -123,7 +123,7 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 
 #### Task 1: Create an Azure Web App and an SQL database
 
-1. Open Microsoft Edge.
+1. Open **Microsoft Edge**.
 2. Navigate to **https://portal.azure.com**.
 3. If a page appears prompting for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
 4. If the **Stay signed in?** dialog appears, click **Yes**.
@@ -154,7 +154,7 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 9. Click on **Login**, then type the following password: **Password99**.
 10. To create a new table in our **SQL Database**, inside the **Query 1** tab, paste the following script and the click on **Run**:
     ```sql
-    CREATE TABLE [dbo].[Flight](
+    CREATE TABLE [dbo].[Flights](
     [Id] [int] IDENTITY(1,1) NOT NULL,
     [Origin] [varchar](50) NOT NULL,
     [Destination] [varchar](50) NOT NULL,
@@ -172,7 +172,7 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 1. Go back to **Azure Protal**.
 2. Click on **App Services** in the left menu.
 3. Click on **filghtsmod1lab**{YourInitials} (Replace {YourInitials} with your initials) in **App Services** blade.
-4. Click on **Deployment credentials** under **DEPLOYMENT** section inside **filghtsmod1lab**_YourInitials_ blade, add the following information:
+4. Click on **Deployment credentials** under **DEPLOYMENT** section inside **filghtsmod1lab**{YourInitials} blade, add the following information:
     - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials} (Replace {YourInitials} with your initials).
     - In the **Password** and **Confirm password** text box type: **Password99**.
     - Click on **Save**.
@@ -195,6 +195,38 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
+    > **Note :** If the there was an error in the publish process, restart the  flightsmod1lab{YourInitials} app services.
+
+#### Task 3: Test the web API
+
+1. Open **PowerShell**.
+2. To Add a flight to the Database paste the following command:
+    ```bash
+    $postParams = "{'origin': 'Germany',
+        'destination': 'France',
+        'flightNumber': 'GF7625',
+        'departureTime': '0001-01-01T00:00:00'}"
+    Invoke-WebRequest -Uri https://flightsmod1lab{YourInitials}.azurewebsites.net/api/flights -ContentType "application/json" -Method POST -Body $postParams
+    ```
+3. Open **Microsoft Edge**.
+4. Browse to the following url:
+    ```
+    https://flightsmod1lab{YourInitials}.azurewebsites.net/api/flights
+    ```
+5. Check that you got the following result:
+    ```json
+    [
+        {
+            id: 1,
+            origin: "Germany",
+            destination: "France",
+            flightNumber: "GF7625",
+            departureTime: "0001-01-01T00:00:00"
+        }
+    ]
+    ```
+
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
