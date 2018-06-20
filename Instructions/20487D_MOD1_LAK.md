@@ -2,8 +2,9 @@
 
 # Lab: Exploring the Work Environment
 
-Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
+1. Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
  e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [Repository Root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
+ 2. Wherever you see {YourInitials}, replace it with your actual initials.(for example, the initials for John Do will be jd).
 
 ### Exercise 1: Creating an ASP.NET Core project
 
@@ -135,14 +136,14 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
     - Click on **Web App + SQL** in the **Web** blade.
     - Click on **Create** button in the **Web App + SQL** blade.
 6. Add the following information to create the **WebApp**:
-    - In the **App Name** text box, type the following web app name: **flightsmod1lab**{YourInitials} (Replace {YourInitials} with your initials).
+    - In the **App Name** text box, type the following web app name: **flightsmod1lab**{YourInitials}.
         >**Note:** The **App Name** will be part of the URL.
     - In the **Resource Group**  select **Create new**, and type in the text box below **Mod1Resource**.
     - Click on **SQL Database** and then click on **Create a new database**, then open **SQL Database** blade, add the following information:
         - In the **Name** text box type: **Mod1DB**.
         - Click on **Target server**, then click on **Create a new server**.
         - In the **New server** blade, enter the following information:
-            - In the **Server name** text box type: **serverdbmod1**{YourInitials} (Replace {YourInitials} with your initials).
+            - In the **Server name** text box type: **serverdbmod1**{YourInitials}.
             - In the **Server admin login** text box type: **Admin123**.
             - In the **Password** and **Confirm password** text box type: **Password99**.
             - Click on **Select**.
@@ -171,9 +172,9 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
 
 1. Go back to **Azure Protal**.
 2. Click on **App Services** in the left menu.
-3. Click on **filghtsmod1lab**{YourInitials} (Replace {YourInitials} with your initials) in **App Services** blade.
+3. Click on **filghtsmod1lab**{YourInitials} in **App Services** blade.
 4. Click on **Deployment credentials** under **DEPLOYMENT** section inside **filghtsmod1lab**{YourInitials} blade, add the following information:
-    - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials} (Replace {YourInitials} with your initials).
+    - In the **FTP/deployment username** type **FTPMod1Lab**{YourInitials}.
     - In the **Password** and **Confirm password** text box type: **Password99**.
     - Click on **Save**.
 5. Go back to the project in **Visual Studio Code**.
@@ -225,8 +226,6 @@ Wherever you see a path to file starting at [Repository Root], replace it with t
         }
     ]
     ```
-
-
 
 ©2018 Microsoft Corporation. All rights reserved.
 
