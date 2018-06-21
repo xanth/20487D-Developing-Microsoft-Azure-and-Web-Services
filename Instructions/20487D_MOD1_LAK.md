@@ -19,25 +19,31 @@
     ```bash
     cd [Repository Root]\Allfiles\Mod01\Labfiles\Exercise1\Starter\BlueYonder.Flights
     ```
-4. Open the project in **VSCode** and paste the following command and press enter: 
-    ```bash
-    code .
-    ```
+
 
 ### Exercise 2: Create a simple Entity Framework model
 
 #### Task 1: Create a new POCO entity
 
-1. The **BlueYonder.Flights** folder opens in **VSCode**. Select the **Startup.cs** file.
+1. To use **Entity Framework Core** you need to install the following package using the **Command Line**:
+    ```base
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version=2.1.1
+    dotnet restore
+    ```
+2. Open the project in **VSCode** and paste the following command and press enter: 
+    ```bash
+    code .
+    ```
+3. The **BlueYonder.Flights** folder opens in **VSCode**. Select the **Startup.cs** file.
     - Select **Yes** to the Warn message **"Required assets to build and debug are missing from 'BlueYonder.Flights'. Add them?"**.
     - Select **Restore** to the Info message **"There are unresolved dependencies"**.
-2. Add a new folder **Models** by right click on the **Explorer Pane** on the left, and select **New Folder**.
-3. Right click on **Models** folder, select **New C# Class**, then type **Flight** in the textbox on the top, and press **Enter**.
-4. In the **Flight.cs** paste the using statement below to the begin of the file:
+4. Add a new folder **Models** by right click on the **Explorer Pane** on the left, and select **New Folder**.
+5. Right click on **Models** folder, select **New C# Class**, then type **Flight** in the textbox on the top, and press **Enter**.
+6. In the **Flight.cs** paste the using statement below to the begin of the file:
     ```cs
     using System;
     ```
-5. In the **Flight.cs** paste the following propeties:
+7. In the **Flight.cs** paste the following propeties:
     ```cs
     public int Id { get; set; }
     public string Origin { get; set; }
