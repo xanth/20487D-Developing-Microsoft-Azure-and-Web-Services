@@ -139,6 +139,24 @@
 
 
 
+# Lesson 3: Packaging services in containers
+
+
+### Demonstration: Creating an empty ASP.NET Core Docker container
+
+1. Open a **Coomand Line**.
+2. Paste the following command in order to launch a default **ASP.NET Core** container, which listens on a default port:
+
+```bash
+    docker run --name aspnetcore_sample --rm -it -p 8000:80 microsoft/dotnet-samples:aspnetapp​
+```
+3. Open a browser and nevigate to **localhost:8000**.
+4. Verify that you are getting the default **ASP.NET Core** starter page.
+
+
+
+
+
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
