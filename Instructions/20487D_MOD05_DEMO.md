@@ -155,6 +155,98 @@
 
 
 
+### Demonstration: Publishing into a container
+
+
+1. Open a **Command Line**.
+2. Paste the following command in order to create a new **Web App** and then press **Enter**:
+   ```bash
+      dotnet new webapi --name BlueYonder.Hotels.Service --output [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
+   ```
+3. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker**.
+4. Add a new file called **DockerFile** (without extension) in **Host_In_Docker** folder.
+5. Open the newly **DockerFile** with any code editor and paste the following docker commands in order to download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project. Then - save the file:
+    ```
+        FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+        WORKDIR /app
+
+        EXPOSE 55419
+        EXPOSE 44398
+
+        FROM microsoft/dotnet:2.1-sdk AS build
+        WORKDIR /src
+        COPY Host_In_Docker/BlueYonder.Hotels.Service.csproj Host_In_Docker/
+        RUN dotnet restore Host_In_Docker/BlueYonder.Hotels.Service.csproj
+        COPY . .
+        WORKDIR /src/Host_In_Docker
+        RUN dotnet build BlueYonder.Hotels.Service.csproj -c Release -o /app
+
+        FROM build AS publish
+        RUN dotnet publish BlueYonder.Hotels.Service.csproj -c Release -o /app
+
+        FROM base AS final
+        WORKDIR /app
+        COPY --from=publish /app .
+        ENTRYPOINT ["dotnet", "BlueYonder.Hotels.Service.dll"]
+    ```
+6. Paste the following command in the **Command Line** to locate your parent project folder and then press **Enter**:
+    ```bash
+        cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\
+    ```
+7. Paste the following command to build your project using the **DockerFile** that you have created earlier and then press **Enter**:
+    ```bash
+        docker build -t hotels_service -f Host_In_Docker\DockerFile .
+    ```
+8. Paste the following command in order to run the docker container which listening on a default port and then press **Enter**:
+    ```bash
+        docker run --rm -it -p 8080:80 hotels_service
+    ```
+9. Open a browser and nevigate to **localhost:8080/api/values**.
+10. Check that you are getting a good response like the following:
+	```json
+		["value1", "value2"]
+	```
+11. Run **Docker Client** on your machine and login using your **Docker Hub** credentials.
+12. Paste the following command in order to login to **Docker Hub** using a command line:
+    ```bash
+        docker login
+    ```
+    >**NOTE :** Enter your **Docker Hub** user name and password and then press **Enter**.
+
+13. Paste the following into a command line in order to create a tag name for your docker image in **Docker Hub** and then press **Enter**:
+     >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+    ```bash
+        docker tag hotels_service {Your Docker Hub Username}/hotels_service
+    ```
+14. Paste the following command in order to push your container image into **Docker Hub** and then press **Enter**:
+
+    >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+    ```bash
+        docker push {Your Docker Hub Username}/hotels_service
+    ```
+15. Open a browser and nevigate to **https://hub.docker.com**. Then **Sign In** with your credentials.
+16. On the **Repositories** page, verify that you are seeing the last push as **{Your Docker Hub UserName}/hotels_service**.
+17. Paste the following command in order to pull your docker image from **Docker Hub** and then press **Enter**:
+
+    >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+    ```bash
+        docker pull {Your Docker Hub Username}/hotels_service
+    ```
+18. Paste the following command in order to see all your local and remote images which exists on your machine and then press **Enter**:
+    ```bash
+        docker images
+    ```
+19. Verify that you are seeing both locally and remotely **hotels_service** images.
+20. Paste the following command in order to run the remotely docker image on your machine and then press **Enter**:
+    ```bash
+        docker run -p 4000:80 {Your Docker Hub Username}/hotels_service        
+    ```
+21. Open a browser and nevigate to **localhost:4000/api/values**.
+22. Check that you are getting a good response like the following:
+	```json
+		["value1", "value2"]
+	```    
+
 
 
 ©2018 Microsoft Corporation. All rights reserved.
