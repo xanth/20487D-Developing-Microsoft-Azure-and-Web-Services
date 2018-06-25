@@ -270,12 +270,12 @@
 13. In your new function blade, click **</> Get function URL** at the top right, select **default (Function key)**, and then click **Copy**.
 14. Paste the function URL into your browser's address bar and add the following query string value to the end of this URL and press the Enter to execute the request:
     ```cs
-    &name=<yourname>
+        &name=<yourname>
     ```
     >**NOTE:** Replace **<yourname>** variable with your actual name.
  15. Check that you are getting a good response like the following:
 	 ```cs
-	   "Hello {Your Name}"
+        "Hello {Your Name}"
      ```
 
      >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.
