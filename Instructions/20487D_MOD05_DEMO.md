@@ -248,6 +248,38 @@
 	```    
 
 
+# Lesson 4: Implementing serverless services
+
+### Demonstration: HTTP-triggered Azure Function
+
+1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
+2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+
+    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+
+3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+4. In the navigation blade, click **Create a resource**. 
+5. In the **New** window, select **Compute** and then choose **Function App**.
+6. In the **Function App - Create** blade, enter a globally unique name in the **App name** box.
+7. From the **Location** drop-down list, select the region that is closest to your location.
+8. On the **Application Insights** buttons, choose **Off**.
+9. Click **Create**. Wait for the function app to be created. Click the newly created **Function App**.
+10. In the newly created **Function App** blade, click on the **+** sign near the **Functions** section.
+11. In the new function blade, verify that **Webhook + API** is selected for the scenario and **CSharp** is selected for the language.
+12. Click **Create this function** button.
+13. In your new function blade, click **</> Get function URL** at the top right, select **default (Function key)**, and then click **Copy**.
+14. Paste the function URL into your browser's address bar and add the following query string value to the end of this URL and press the Enter to execute the request:
+    ```cs
+        &name=<yourname>
+    ```
+    >**NOTE:** Replace **<yourname>** variable with your actual name.
+ 15. Check that you are getting a good response like the following:
+	 ```cs
+        "Hello {Your Name}"
+     ```
+
+     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.
+16. To see the trace output from the previous execution, return to your function in the portal and click the arrow at the bottom of the screen to expand the **Logs**.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
