@@ -53,8 +53,8 @@
         }
     }
     ```
-11. Add a new folder **Data** by right click on the **Explorer Pane** on the left, and select **New Folder**.
-12. Right click on **Data** folder, select **New File**, then type **MyDbContext.cs** in the textbox on the top, and press **Enter**.
+11. Add a new folder **Database** by right click on the **Explorer Pane** on the left, and select **New Folder**.
+12. Right click on **Database** folder, select **New File**, then type **MyDbContext.cs** in the textbox on the top, and press **Enter**.
 13. In the **MyDbContext.cs** add the following using statements:
     ```cs
     using Microsoft.EntityFrameworkCore;
@@ -62,7 +62,7 @@
     ```
 14. In the **MyDbContext.cs** add the following code:
     ```cs
-    namespace MyFirstEF.Data
+    namespace MyFirstEF.Database
     {
         public class MyDbContext : DbContext
         {
@@ -79,7 +79,7 @@
 15. Right click on **Data** folder, select **New File**, then type **DbInitializer.cs** in the textbox on the top, and press **Enter**.
 16. In the **DbInitializer.cs** add the following code:
     ```cs
-    namespace MyFirstEF.Data
+    namespace MyFirstEF.Database
     {
         public static class  DbInitializer
         {
@@ -93,7 +93,7 @@
     ```
 17. Navigate to **Program.cs** and add the following using statement"
     ```cs
-    using MyFirstEF.Data;
+    using MyFirstEF.Database;
     ```
 18. In the **Program.cs** and replace the **main** methond with the following code:
     ```cs

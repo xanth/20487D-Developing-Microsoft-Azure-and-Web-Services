@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyFirstEF.Models;
 
-namespace MyFirstEF.Data
+namespace MyFirstEF.Database
 {
     public class MyDbContext : DbContext
     {

@@ -1,6 +1,6 @@
 
 
-namespace MyFirstEF.Data
+namespace MyFirstEF.Database
 {
     public static class  DbInitializer
     {
