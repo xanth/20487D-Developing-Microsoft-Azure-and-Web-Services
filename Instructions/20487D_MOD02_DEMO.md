@@ -118,3 +118,55 @@
 27. Expand the **dbo.Products** and **dbo.Stores** tables, and then expand the **Columns** node in each of them to see that both tables have **Id** and **Name** columns, similar to their corresponding class properties.
 28. Close **SQL Operations Studio**.
 29. Close all open windows.
+
+# Lesson 3: Querying Data
+
+### Demonstration: Using LINQ to Entities
+
+1. Open **Command Line**.
+2. Change directory to the starter project, run the following command in the **Command Line**:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod02\DemoFiles\UsingLINQtoEntities\Starter
+    ```
+3. To  restore all dependencies and tools of a project use the following command in the **Command Line**:
+    ```base
+    dotnet restore
+    ```
+4. Open the project in **VSCode** and paste the following command and press enter: 
+    ```bash
+    code .
+    ```
+5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
+6. Create a new **SchoolContext** object by appending the following code to the **Main** method:
+    ```cs
+	using (var context = new SchoolContext())
+    {
+    }
+    ```
+    You use the **using** statement to control the release of unmanaged resources used by the context, such as a database connection.
+7. To create the database, add the following code in the **using** block:
+    ```cs
+	DbInitializer.Initialize(context);
+    ```
+8. To select all courses from the database, add the following LINQ to Entities code in the **using** block under the **DBInitializer**:
+    ```cs
+	var courses = from c in context.Courses
+      			select c;
+    ```
+9. To print courses and students list to the console window, add the following code in the **using** block after the LINQ to Entities code:
+    ```cs
+	foreach (var course in courses)
+        {
+            Console.WriteLine($"Course: {course.Name}");
+            foreach (var student in course.Students)
+            {
+                Console.WriteLine($"\t Student name: {student.Name}");
+            }
+        }
+    Console.ReadLine();
+    ```
+10. To save the changes, press **Ctrl+S**.
+11. To run the application, press **F5**.
+12. In the console window, review the course and student lists printed to the console window.  
+13. To stop the debugger, press **Shift+F5**.
+14. Close all open windows.
