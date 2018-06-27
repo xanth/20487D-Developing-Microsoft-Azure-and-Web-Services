@@ -189,7 +189,7 @@
     code .
     ```
 5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
-6. Go to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
+6. Navigate to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
 7. Review the query that is being assigned to the **averageGradeInCourse** variable and notice that the average grade of the **ASP.NET Core** course is calculated, and then printed to the console.
 8. The **ExecuteSqlCommand** statement calls the **spUpdateGrades** stored procedure with two parameters, **CourseName** and **GradeChange**.
 9. To run the console application, press Ctrl+F5. Notice that the updated average grade is printed to the console before and after the change.

@@ -47,13 +47,16 @@ namespace UsingLINQtoEntity.Database
             string cmdCreateProcedure = @"CREATE PROCEDURE spUpdateGrades @CourseName nvarchar(30), @GradeChange int
                                         AS
                                         BEGIN
-	                                        declare @CourseId int
-                                            select @CourseId = CourseId from Courses where  Name = 'ASP.NET Core' 
-                                            update Persons set Grade = (case when (Grade + 10) <= 100 Then (Grade + 10)
-                                            								else 100
-                                            								end )
-                                            where PersonType = 'Student' and CourseId = @CourseId
-                                        END";
+	                                        DECLARE @CourseId int
+                                            SELECT @CourseId = CourseId 
+                                            FROM Courses 
+                                            WHERE  Name = 'ASP.NET Core' 
+                                            UPDATE Persons SET Grade = (CASE WHEN (Grade + 10) <= 100 THEN (Grade + 10)
+                                            								ELSE 100
+                                            								END )
+                                            WHERE PersonType = 'Student' 
+                                                  AND CourseId = @CourseId
+                                            END";
             
             // Creating the stored procedure in database
             context.Database.ExecuteSqlCommand(cmdCreateProcedure);
