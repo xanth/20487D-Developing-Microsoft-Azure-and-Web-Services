@@ -281,6 +281,77 @@
      >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.
 16. To see the trace output from the previous execution, return to your function in the portal and click the arrow at the bottom of the screen to expand the **Logs**.
 
+
+
+### Demonstration: Developing, testing, and publishing an Azure Function from CLI
+
+1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
+2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+
+    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+
+3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+4. In the navigation blade, click **Create a resource**. 
+5. In the **New** window, select **Compute** and then choose **Function App**.
+6. In the **Function App - Create** blade, enter a globally unique name in the **App name** box.
+    >**NOTE:** Save the **App name** in any code editor. You will need it when publishing a new **Azure Function** to **Azure**.
+7. From the **Location** drop-down list, select the region that is closest to your location.
+8. On the **Application Insights** buttons, choose **Off**.
+9. Click **Create**. Wait for the function app to be created.
+10. Open a **Command Line**.
+11. Change directory in the command line by pasting the following command and then press **Enter**:
+    ```bash
+        cd [RepositoryRoot]\AllFiles\Mod05\DemoFiles\Azure Functions
+    ```
+12. Paste the following command in order to create a **local Functions Project**:
+    ```bash
+        func init MyAzureFunctionProj -n --worker-runtime dotnet
+    ```
+13. Change directory to the newly created function project folder by pasting the following command and then press **Enter**:
+    ```bash
+        cd MyAzureFunctionProj
+    ```
+14. Paste the following command in order to create a new **Azure Function** for your newly **Function** project and then press **Enter**:
+    ```bash
+        func new --language C# --template "Http Trigger" --name MyAzureFunc
+    ```
+15. Paste the following command in order to test the newly **Azure Function** locally and then press **Enter**:
+    ```bash
+        func host start
+    ```
+16. Open a browser and nevigate to **http://localhost:7071/api/MyAzureFunc**.
+17. Add the following query string value to the end of this URL and press the Enter to execute the request:
+    ```cs
+        ?name=<yourname>
+    ```
+    >**NOTE:** Replace **<yourname>** variable with your actual name.
+18. Check that you are getting a good response like the following:
+	 ```cs
+        "Hello {Your Name}"
+     ```
+
+     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.       
+19. Paste the following command in order to login to **Azure** with your credentials before publishing the newly **Azure Function** to **Azure** and then press **Enter**:
+    ```bash
+        func azure login
+    ```
+    >**NOTE:** You will get the following message: "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code **{some code}** to authenticate​". Follow the instructions to login with your user name and password.
+20. Paste the following command in order to publish your new **Azure Function** into **Azure** and then press **Enter**:
+    ```bash
+        func azure functionapp publish {Your App name}
+    ```            
+    >**NOTE:** Replace **{Your App name}** with your actual app name in azure that you wrote in point number 6.
+21. Open a browser and nevigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}**.
+    >**NOTE:** Replace **{Your App name}** with your actual app name and replace **<yourname>** variable with your actual name.
+22. Check that you are getting a good response like the following:
+	 ```cs
+        "Hello {Your Name}"
+     ```
+
+     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.  
+
+
+     
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
