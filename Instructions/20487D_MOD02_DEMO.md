@@ -132,37 +132,37 @@
     ```base
     dotnet restore
     ```
-4. Open the project in **VSCode** and paste the following command and press enter: 
+4. Open the project in **VSCode** and paste the following command and press enter:
     ```bash
     code .
     ```
 5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
 6. Create a new **SchoolContext** object by appending the following code to the **Main** method:
     ```cs
-	using (var context = new SchoolContext())
+    using (var context = new SchoolContext())
     {
     }
     ```
     You use the **using** statement to control the release of unmanaged resources used by the context, such as a database connection.
 7. To create the database, add the following code in the **using** block:
     ```cs
-	DbInitializer.Initialize(context);
+    DbInitializer.Initialize(context);
     ```
 8. To select all courses from the database, add the following LINQ to Entities code in the **using** block under the **DBInitializer**:
     ```cs
-	var courses = from c in context.Courses
-      			select c;
+    var courses = from c in context.Courses 
+                  select c;
     ```
 9. To print courses and students list to the console window, add the following code in the **using** block after the LINQ to Entities code:
     ```cs
-	foreach (var course in courses)
+    foreach (var course in courses)
+    {
+        Console.WriteLine($"Course: {course.Name}");
+        foreach (var student in course.Students)
         {
-            Console.WriteLine($"Course: {course.Name}");
-            foreach (var student in course.Students)
-            {
-                Console.WriteLine($"\t Student name: {student.Name}");
-            }
+            Console.WriteLine($"\t Student name: {student.Name}");
         }
+    }
     Console.ReadLine();
     ```
 10. To save the changes, press **Ctrl+S**.
@@ -189,7 +189,7 @@
     code .
     ```
 5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
-6. Go to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
+6. Navigate to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
 7. Review the query that is being assigned to the **averageGradeInCourse** variable and notice that the average grade of the **ASP.NET Core** course is calculated, and then printed to the console.
 8. The **ExecuteSqlCommand** statement calls the **spUpdateGrades** stored procedure with two parameters, **CourseName** and **GradeChange**.
 9. To run the console application, press Ctrl+F5. Notice that the updated average grade is printed to the console before and after the change.
