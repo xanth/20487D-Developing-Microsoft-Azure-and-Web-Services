@@ -91,7 +91,7 @@
         }
     }
     ```
-17. Navigate to **Program.cs** and add the following using statement"
+17. Navigate to **Program.cs** and add the following using statement
     ```cs
     using MyFirstEF.Database;
     ```
@@ -170,3 +170,28 @@
 12. In the console window, review the course and student lists printed to the console window.  
 13. To stop the debugger, press **Shift+F5**.
 14. Close all open windows.
+
+### Demonstration 2: Running Stored Procedures with Entity Framework
+
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Change directory to the starter project, run the following command in the **Command Line**:
+    ```bash
+    cd [Repository Root]\AllFiles\Mod02\DemoFiles\StoredProcedure
+    ```
+3. To  restore all dependencies and tools of a project use the following command in the **Command Line**:
+    ```base
+    dotnet restore
+    ```
+4. Open the project in **VSCode** and paste the following command and press enter:
+    ```bash
+    code .
+    ```
+5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
+6. Navigate to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
+7. Review the query that is being assigned to the **averageGradeInCourse** variable and notice that the average grade of the **ASP.NET Core** course is calculated, and then printed to the console.
+8. The **ExecuteSqlCommand** statement calls the **spUpdateGrades** stored procedure with two parameters, **CourseName** and **GradeChange**.
+9. To run the console application, press Ctrl+F5. Notice that the updated average grade is printed to the console before and after the change.
+10. To stop the debugger, press **Shift+F5**.
+11. Close all open windows.
