@@ -22,7 +22,7 @@ namespace CRUD.Models
             foreach (var item in Students)
             {
                 sb.AppendLine($"\tStudent name: {item.Name}");
-	        }
+	    }
             
             return sb.ToString();
         }
