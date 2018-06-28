@@ -39,7 +39,7 @@ The main tasks for this exercise are as follows:
 
 1. Add the newly created entity to the context
 
-#### Task 1: Create a new ASP.NET Core project
+#### Task 1: Create a new POCO entity
 
 1. Open the project in **VSCode**.
 2. Install the **Microsoft.EntityFrameworkCore.SqlServer** with **dotnet** tool.
