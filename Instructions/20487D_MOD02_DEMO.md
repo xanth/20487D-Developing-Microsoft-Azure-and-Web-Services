@@ -207,7 +207,7 @@
     ```bash
     cd [Repository Root]\AllFiles\Mod02\DemoFiles\CRUD\Starter
     ```
-3. To  restore all dependencies and tools of a project use the following command in the **Command Line**:
+3. Restore all dependencies and tools of a project use the following command in the **Command Line**:
     ```base
     dotnet restore
     ```
@@ -226,34 +226,34 @@
     Student firstStudent = new Student() { Name = "Thomas Anderson" };
     Student secondStudent = new Student() { Name = "Terry Adams" };
     ```
-8. To add the two newly created students to the **ASP** course, append the following code to the **using** block.
+8. Add the two newly created students to the **ASP** course, append the following code to the **using** block.
 
     ```cs
     ASPCourse.Students.Add(firstStudent);
     ASPCourse.Students.Add(secondStudent);
     ```
-9. To give the teacher of the **ASP** course a $1000 salary raise, append the following code to the **using** block.
+9. Give the teacher of the **ASP** course a $1000 salary raise, append the following code to the **using** block.
     ```cs
     ASPCourse.CourseTeacher.Salary += 1000;
     ```
-10. To select a student named **Student_1** from the **ASP** course, append the following code to the **using** block.
+10. Select a student named **Student_1** from the **ASP** course, append the following code to the **using** block.
 
     ```cs
     Student studentToRemove = ASPCourse.Students.FirstOrDefault((student) => student.Name == "Student_1");
     ```
-11. To remove the student from the **ASP** course, append the following code to the **using** block.
+11. Remove the student from the **ASP** course, append the following code to the **using** block.
     ```cs
     ASPCourse.Students.Remove(studentToRemove);
     ```
-12. To save the changes and print the result, append the following code to the **using** block.
+12. Save the changes and print the result, append the following code to the **using** block.
     ```cs
     context.SaveChanges();
     Console.WriteLine(ASPCourse);
     Console.ReadLine();
     ```
-13. To save the changes, press **Ctrl+S**.
-14. To run the application, press **F5**. 
+13. Press **Ctrl+S** to save the changes. 
+14. Press **F5** in order to run the application.
 15. After a few seconds the list of students appears in the console window. Notice that there are two new students at the bottom of the list, and student 1 is missing from the list. Also notice that the salary of the teacher is now 101000.
 16. Notice the SQL update, delete, and insert statements that correspond to the salary update, student deletion, and the addition of the two new students.
-17. To stop the debugger, press **Shift+F5**.
+17. Press **Shift+F5** to stop the debugger. 
 18. Close all open windows.
