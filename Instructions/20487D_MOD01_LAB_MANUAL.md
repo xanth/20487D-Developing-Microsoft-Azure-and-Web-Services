@@ -55,11 +55,10 @@ The main tasks for this exercise are as follows:
 #### Task 2: Create a new DbContext class
 
 1. Create a new class **FlightsContext**, this class will inherite from **DbContext**.
-2. Add relevant **using** statements to the class. 
-3. Add a **Constructor** to the class, with a parameter type of **DbContextOptions<FlightsContext>**.
-4. Call the base constructor and pass the option parameters.
-5. Add a new **DbSet\<T\>** property for the **Flight** entity. Name the property Flights.
-6. Locate **ConfigureServices** in **Startup.cs**, and register **FlightsContext** as service and configure it to use SQL server with **defaultConnection**.
+2. Add a **Constructor** to the class, with a parameter type of **DbContextOptions<FlightsContext>**.
+3. Call the base constructor and pass the option parameters.
+4. Add a new **DbSet\<T\>** property for the **Flight** entity. Name the property Flights.
+5. Locate **ConfigureServices** in **Startup.cs**, and register **FlightsContext** as service and configure it to use SQL server with **defaultConnection**.
     >**Note:** In exercise 4 we will create **Web App** and **SQL Database** in azure, it will generate a connection string. For access the database we need to use **defaultConnection** key.
 
     >**Results** : After completing this exercise, you should have created Entity Framework wrappers for the **BlueYonder** database
