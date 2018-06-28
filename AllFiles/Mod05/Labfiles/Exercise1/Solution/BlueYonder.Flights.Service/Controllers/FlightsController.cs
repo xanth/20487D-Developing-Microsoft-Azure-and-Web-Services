@@ -8,7 +8,7 @@ using BlueYonder.Flights.Service.Models;
 namespace BlueYonder.Flights.Service.Controllers
 {
     [Route("api/[controller]")]
-	[ApiController]
+    [ApiController]
     public class FlightsController : ControllerBase
     {
         [HttpGet]
