@@ -278,7 +278,7 @@
         "Hello {Your Name}"
      ```
 
-     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.
+     >**NOTE:** This is the response from **Microsoft Edge**. Other browsers may include displayed XML.
 16. To see the trace output from the previous execution, return to your function in the portal and click the arrow at the bottom of the screen to expand the **Logs**.
 
 
