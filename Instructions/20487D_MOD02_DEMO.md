@@ -200,7 +200,6 @@
 
 ### Demonstration: CRUD Operations in Entity Framework
 
-
 #### Demonstration Steps
 
 1. Open **Command Line**.
@@ -217,14 +216,12 @@
     code .
     ```
 5. In **Explorer** blade, under the **STARTER**, double-click **Program.cs**.
-
-6. Query the **ASP** course by appending the following code inside the **using** block under the **DBInitializer**:.
-
+6. Retrieve the **ASP** course from the **Courses** table by appending the following code inside the **using** block under the **DBInitializer**:
     ```cs
     Course ASPCourse = (from course in context.Courses 
     where course.Name == "ASP.NET Core" select course).Single();
     ```
-7. To create two new students named **Thomas Anderson** and **Terry Adams**, append the following code to the **using** block.
+7. Create two new students named **Thomas Anderson** and **Terry Adams**, append the following code to the **using** block.
     ```cs
     Student firstStudent = new Student() { Name = "Thomas Anderson" };
     Student secondStudent = new Student() { Name = "Terry Adams" };

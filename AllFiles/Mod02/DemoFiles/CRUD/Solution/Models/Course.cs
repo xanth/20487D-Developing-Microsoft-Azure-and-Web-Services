@@ -20,9 +20,9 @@ namespace CRUD.Models
             sb.AppendLine("Students:");
 
             foreach (var item in Students)
-	        {
+            {
                 sb.AppendLine($"\tStudent name: {item.Name}");
-	        }
+            }
             
             return sb.ToString();
         }

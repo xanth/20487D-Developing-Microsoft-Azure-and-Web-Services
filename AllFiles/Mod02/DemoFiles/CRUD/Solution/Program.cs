@@ -11,7 +11,7 @@ namespace CRUD
         {
             using (var context = new SchoolContext())
             {
-				// Initializing the database and populating seed data
+                // Initializing the database and populating seed data
                 DbInitializer.Initialize(context);
 
                 // Getting the ASP Course from the courses repository
