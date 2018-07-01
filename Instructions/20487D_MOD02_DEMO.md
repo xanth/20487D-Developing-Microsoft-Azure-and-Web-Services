@@ -341,3 +341,47 @@
     dotnet test
     ```
 15. Close all open windows.
+
+### Demonstration: Using Entity Framework with SQLite
+
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Change directory to the starter project, run the following command in the **Command Line**:
+    ```bash
+    cd [Repository Root]\AllFiles\Mod02\DemoFiles\Sqlite\Starter\Sqlite.Dal.Test
+    ```
+3. To use **Entity Framework Core Sqlite** you need to install the following package using the **Command Line**:
+    ```base
+    dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version=2.1.1
+    ```
+4. Restore all dependencies and tools of a project use the following command in the **Command Line**:
+    ```base
+    dotnet restore
+    ```
+5. Move to the solution folder, paste the following command and press enter:
+    ```bash
+    cd ..
+    ```
+6. Open the solution in **VSCode** and paste the following command and press enter:
+    ```bash
+    code .
+    ```
+7. Expand **Sqlite.Dal.Test** and click on **SqliteTest**.
+8. Add the following code to the start of the method:
+    ```cs
+     var options = new DbContextOptionsBuilder<SchoolContext>()
+            .UseSqlite(@"Data Source = [Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database\SqliteSchool.db")
+                  .Options;
+    ```
+9. Switch to **Command Line** and paste the following command in order to run the all the test methods and then press enter:
+    ```bash
+    dotnet test
+    ```
+10. Open **DB Browser for SQLite**.
+11. Top menu click on **File** and select **Open Database**.
+12. In **Choose a database file** window browse to **[Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database** and double-click on **SqliteSchool.db**.
+13. In **Database Structure** tab, expand **Tables**.
+14. Right click on **Persons** table and select **Browse Table**.
+15. In **Browse Data** tab, verfid that **Kari Hensien** is in the Database.
+16. Close all open windows.
