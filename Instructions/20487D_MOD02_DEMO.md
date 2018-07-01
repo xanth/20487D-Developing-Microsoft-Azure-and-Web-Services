@@ -309,7 +309,7 @@
 11. Expand **InMemory.Dal.Test** and click on **DBInMemoryTest**.
 12. Add the following property to the class:
     ```cs
-    private DbContextOptions<SchoolContext> options = new DbContextOptionsBuilder<SchoolContext>()
+    private DbContextOptions<SchoolContext> _options = new DbContextOptionsBuilder<SchoolContext>()
                                                                 .UseInMemoryDatabase(databaseName: "TestDatabase")
                                                                 .Options;
     ```
@@ -336,7 +336,7 @@
         }
     }
     ```
-14. Swich to **Command Line** and pash the following command to run the tests
+14. Switch to **Command Line** and paste the following command in order to run the all the test methods and then press enter:
     ```bash
     dotnet test
     ```

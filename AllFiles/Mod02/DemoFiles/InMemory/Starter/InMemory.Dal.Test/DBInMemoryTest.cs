@@ -17,14 +17,14 @@ namespace InMemory.Dal.Test
         public void AddStudentTest()
         {
             Student student = new Student {Name = "Kari Hensien"};
-            using (var context = new SchoolContext(options))
+            using (var context = new SchoolContext(_options))
             {
                 DbInitializer.Initialize(context);
                 student = context.Students.Add(student).Entity;
                 context.SaveChanges();
             }
 
-            using(var context = new SchoolContext(options))
+            using(var context = new SchoolContext(_options))
             {
                 var result = context.Students.FirstOrDefault((s)=> s.PersonId == student.PersonId);                
                 Assert.IsNotNull(result);

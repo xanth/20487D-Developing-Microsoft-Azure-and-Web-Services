@@ -11,7 +11,7 @@ namespace InMemory.Dal.Test
     [TestClass]
     public class DBInMemoryTest
     {
-        private DbContextOptions<SchoolContext> options = new DbContextOptionsBuilder<SchoolContext>()
+        private DbContextOptions<SchoolContext> _options = new DbContextOptionsBuilder<SchoolContext>()
                                                               .UseInMemoryDatabase(databaseName: "TestDatabase")
                                                               .Options;
 
@@ -19,14 +19,14 @@ namespace InMemory.Dal.Test
         public void AddStudentTest()
         {
             Student student = new Student {Name = "Kari Hensien"};
-            using (var context = new SchoolContext(options))
+            using (var context = new SchoolContext(_options))
             {
                 DbInitializer.Initialize(context);
                 student = context.Students.Add(student).Entity;
                 context.SaveChanges();
             }
 
-            using(var context = new SchoolContext(options))
+            using(var context = new SchoolContext(_options))
             {
                 var result = context.Students.FirstOrDefault((s)=> s.PersonId == student.PersonId);                
                 Assert.IsNotNull(result);
@@ -37,7 +37,7 @@ namespace InMemory.Dal.Test
         public void UpdateTeacherSalaryTest()
         {
             Teacher teacher = new Teacher {Name = "Terry Adams" , Salary = 10000};
-            using (var context = new SchoolContext(options))
+            using (var context = new SchoolContext(_options))
             {
                 DbInitializer.Initialize(context);
                 teacher = context.Teachers.Add(teacher).Entity;
@@ -47,7 +47,7 @@ namespace InMemory.Dal.Test
                 context.SaveChanges();
             }
 
-            using(var context = new SchoolContext(options))
+            using(var context = new SchoolContext(_options))
             {
                 var result = context.Teachers.FirstOrDefault((s)=> s.PersonId == teacher.PersonId);
                 
