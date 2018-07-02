@@ -24,10 +24,10 @@ namespace InMemory.Dal.Database
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
-            if(!optionsBuilder.IsConfigured)
+        {
+            if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
             }
         }
 

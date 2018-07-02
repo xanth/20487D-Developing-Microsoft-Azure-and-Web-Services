@@ -309,30 +309,25 @@
 11. Expand **InMemory.Dal.Test** and click on **DBInMemoryTest**.
 12. Add the following property to the class:
     ```cs
-    private DbContextOptions<SchoolContext> _options = new DbContextOptionsBuilder<SchoolContext>()
-                                                                .UseInMemoryDatabase(databaseName: "TestDatabase")
-                                                                .Options;
+    private DbContextOptions<SchoolContext> _options =
+                new DbContextOptionsBuilder<SchoolContext>()
+                    .UseInMemoryDatabase(databaseName: "TestDatabase")
+                    .Options;
     ```
 13. Add the following **Test Method** to the class:
     ```cs
     [TestMethod]
     public void UpdateTeacherSalaryTest()
     {
-        Teacher teacher = new Teacher {Name = "Terry Adams" , Salary = 10000};
-        using (var context = new SchoolContext(options))
+        Teacher teacher = new Teacher { Name = "Terry Adams", Salary = 10000 };
+        teacher = _teacherRepository.Add(teacher);
+        teacher.Salary += 10000;
+        teacher = _teacherRepository.Update(teacher);
+
+        using (var context = new SchoolContext(_options))
         {
-            DbInitializer.Initialize(context);
-            teacher = context.Teachers.Add(teacher).Entity;
-            context.SaveChanges();
-            teacher.Salary += 10000;
-            context.Teachers.Update(teacher);
-            context.SaveChanges();
-      
-        using(var context = new SchoolContext(options))
-        {
-            var result = context.Teachers.FirstOrDefault((s)=> s.PersonId == teacher.PersonId);
-            
-            Assert.AreEqual(result.Salary,20000);
+            var result = context.Teachers.FirstOrDefault((s) => s.PersonId == teacher.PersonId);
+            Assert.AreEqual(result.Salary, 20000);
         }
     }
     ```
