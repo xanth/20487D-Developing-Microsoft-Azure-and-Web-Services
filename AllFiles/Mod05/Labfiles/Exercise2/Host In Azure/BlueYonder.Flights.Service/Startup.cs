@@ -40,7 +40,7 @@ namespace BlueYonder.Flights.Service
                 app.UseHsts();
             }
 
-	    var tenant = Environment.GetEnvironmentVariable("APPSETTING_BLUEYONDER_TENANT");
+	     var tenant = Environment.GetEnvironmentVariable("APPSETTING_BLUEYONDER_TENANT");
 
 	     app.Use(async (context, next) => 
             {
