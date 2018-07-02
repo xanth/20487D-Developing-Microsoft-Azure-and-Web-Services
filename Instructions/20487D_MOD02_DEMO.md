@@ -379,5 +379,5 @@
 12. In **Choose a database file** window browse to **[Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database** and double-click on **SqliteSchool.db**.
 13. In **Database Structure** tab, expand **Tables**.
 14. Right click on **Persons** table and select **Browse Table**.
-15. In **Browse Data** tab, verfid that **Kari Hensien** is in the Database.
+15. In **Browse Data** tab, verified  that **Kari Hensien** is in the Database.
 16. Close all open windows.
