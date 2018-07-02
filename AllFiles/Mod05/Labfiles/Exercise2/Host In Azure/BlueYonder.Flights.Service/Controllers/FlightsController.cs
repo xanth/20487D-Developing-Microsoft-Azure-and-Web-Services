@@ -12,7 +12,7 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-		[HttpGet]
+	[HttpGet]
         public IEnumerable<Flight>> GetAllFlights()
         {
             using (var flightContext = new FlightContext())
