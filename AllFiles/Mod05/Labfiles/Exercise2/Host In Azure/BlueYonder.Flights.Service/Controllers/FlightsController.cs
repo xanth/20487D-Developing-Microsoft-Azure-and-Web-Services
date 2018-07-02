@@ -18,7 +18,7 @@ namespace BlueYonder.Flights.Service.Controllers
             using (var flightContext = new FlightContext())
             {
                 var flights = flightContext.Flights.ToList();
-                return flightContext;
+                return flights;
             }
         }
     }
