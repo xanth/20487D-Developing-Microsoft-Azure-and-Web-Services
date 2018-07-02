@@ -11,10 +11,8 @@ namespace InMemory.Dal.Database
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
 
-       
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             
         }
 
