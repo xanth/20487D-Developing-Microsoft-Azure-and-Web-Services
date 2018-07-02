@@ -8,13 +8,11 @@ namespace BlueYonder.Flights.Service.Database
     {
         public FlightContext()
         {
-
         }
 		
         public FlightContext(DbContextOptions<FlightContext> options)
         : base(options)
         {
-
         }
 		
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
