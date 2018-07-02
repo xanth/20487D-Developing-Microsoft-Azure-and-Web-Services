@@ -5,32 +5,31 @@ using Sqlite.Dal.Models;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Sqlite.Dal.Repository;
 
 namespace Sqlite.Dal.Test
 {
     [TestClass]
     public class DBSqliteTest
     {
+        private StudentRepository _studentRepository;
+        private TeacherRepository _teacherRepository;
 
+        public DBSqliteTest()
+        {
+            _studentRepository = new StudentRepository(_options);
+            _teacherRepository = new TeacherRepository(_options);
+        }
 
         [TestMethod]
         public void AddStudentTest()
         {
-             var options = new DbContextOptionsBuilder<SchoolContext>()
-                  .UseSqlite(@"Data Source = D:\MicrosoftLearning\20487D-Developing-Microsoft-Azure-and-Web-Services\AllFiles\Mod02\DemoFiles\SQLite\Database\SqliteSchool.db")
-                  .Options;
+            Student student = new Student { Name = "Kari Hensien" };
+            student = _studentRepository.Add(student);
 
-            Student student = new Student {Name = "Kari Hensien"};
-            using (var context = new SchoolContext(options))
+            using (var context = new SchoolContext(_options))
             {
-                DbInitializer.Initialize(context);
-                student = context.Students.Add(student).Entity;
-                context.SaveChanges();
-            }
-
-            using(var context = new SchoolContext(options))
-            {
-                var result = context.Students.FirstOrDefault((s)=> s.PersonId == student.PersonId);                
+                var result = context.Students.FirstOrDefault((s) => s.PersonId == student.PersonId);
                 Assert.IsNotNull(result);
             }
         }

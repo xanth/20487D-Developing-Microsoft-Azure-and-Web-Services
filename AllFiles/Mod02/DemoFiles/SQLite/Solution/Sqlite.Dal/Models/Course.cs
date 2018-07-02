@@ -7,9 +7,9 @@ namespace Sqlite.Dal.Models
     public class Course
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public virtual int CourseId { get; set; }
-        public virtual string Name { get; set; }
-        public virtual Teacher CourseTeacher { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
+        public int CourseId { get; set; }
+        public string Name { get; set; }
+        public Teacher CourseTeacher { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

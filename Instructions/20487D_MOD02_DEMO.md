@@ -363,11 +363,12 @@
     code .
     ```
 7. Expand **Sqlite.Dal.Test** and click on **SqliteTest**.
-8. Add the following code to the start of the method:
+8. Add the following property to the class:
     ```cs
-     var options = new DbContextOptionsBuilder<SchoolContext>()
-            .UseSqlite(@"Data Source = [Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database\SqliteSchool.db")
-                  .Options;
+     private DbContextOptions<SchoolContext> _options =
+                new DbContextOptionsBuilder<SchoolContext>()
+                    .UseSqlite(@"Data Source = [Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database\SqliteSchool.db")
+                    .Options;
     ```
 9. Switch to **Command Line** and paste the following command in order to run the all the test methods and then press enter:
     ```bash
