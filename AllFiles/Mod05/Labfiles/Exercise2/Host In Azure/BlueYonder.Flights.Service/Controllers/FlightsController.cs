@@ -12,8 +12,8 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-	[HttpGet]
-        public IEnumerable<Flight>> GetAllFlights()
+        [HttpGet]
+        public IEnumerable<Flight> GetAllFlights()
         {
             using (var flightContext = new FlightContext())
             {
@@ -21,6 +21,21 @@ namespace BlueYonder.Flights.Service.Controllers
                 return flights;
             }
         }
+
+        [HttpPost]
+        [Route("BookFlight")]
+        public void BookFlight(int flightId, [FromBody]IEnumerable<Traveler> travelers)
+        {
+            using (var flightContext = new FlightContext())
+            {
+                var flight = flightContext.Flights.FirstOrDefault(f => f.Id == flightId);
+                if (flight != null)
+                {
+                    flight.Travelers = travelers.ToList();
+                    flightContext.SaveChanges();
+                }
+            }
+        }
     }
 }
-		
+

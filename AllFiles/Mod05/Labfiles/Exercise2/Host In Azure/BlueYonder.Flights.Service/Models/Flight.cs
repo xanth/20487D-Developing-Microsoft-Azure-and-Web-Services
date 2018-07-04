@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace BlueYonder.Flights.Service.Models
 {
@@ -9,5 +10,6 @@ namespace BlueYonder.Flights.Service.Models
      public string Destination { get; set; }
      public string FlightNumber { get; set; }
      public DateTime DepartureTime { get; set; }
+	 public ICollection<Traveler> Travelers { get; set; }
    }
 }

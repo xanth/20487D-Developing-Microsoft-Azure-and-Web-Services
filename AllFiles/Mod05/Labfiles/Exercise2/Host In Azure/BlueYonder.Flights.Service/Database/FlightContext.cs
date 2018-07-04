@@ -26,5 +26,6 @@ namespace BlueYonder.Flights.Service.Database
         }
 		
         public DbSet<Flight> Flights { get; set; }
+		public DbSet<Traveler> Travelers { get; set; }
     }
 }
