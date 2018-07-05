@@ -25,6 +25,11 @@ namespace BlueYonder.Flights.Service.Database
             }
         }
 		
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Flight>().HasMany(flight => flight.Travelers);
+        }
+		
         public DbSet<Flight> Flights { get; set; }
 		public DbSet<Traveler> Travelers { get; set; }
     }

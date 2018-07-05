@@ -17,7 +17,7 @@ namespace BlueYonder.Flights.Service.Controllers
         {
             using (var flightContext = new FlightContext())
             {
-                var flights = flightContext.Flights.ToList();
+                var flights = flightContext.Flights.Include(f => f.Travelers).ToList();
                 return flights;
             }
         }
@@ -28,7 +28,7 @@ namespace BlueYonder.Flights.Service.Controllers
         {
             using (var flightContext = new FlightContext())
             {
-                var flight = flightContext.Flights.FirstOrDefault(f => f.Id == flightId);
+                var flight = flightContext.Flights.FirstOrDefault(f => f.FlightId == flightId);
                 if (flight != null)
                 {
                     flight.Travelers = travelers.ToList();
