@@ -76,7 +76,7 @@
         }
     }
     ```
-15. Right click on **Data** folder, select **New File**, then type **DbInitializer.cs** in the textbox on the top, and press **Enter**.
+15. Right click on **Database** folder, select **New File**, then type **DbInitializer.cs** in the textbox on the top, and press **Enter**.
 16. In the **DbInitializer.cs** add the following code:
     ```cs
     namespace MyFirstEF.Database
