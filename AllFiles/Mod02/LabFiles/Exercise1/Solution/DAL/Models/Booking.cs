@@ -12,6 +12,6 @@
             public int Guests { get; set; }
             public decimal TotalFee { get; set; }
             public bool Paid { get; set; }
-            public User User { get; set; }
+            public Traveler Traveler { get; set; }
         }
     }

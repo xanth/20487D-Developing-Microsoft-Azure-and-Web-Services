@@ -1,8 +1,8 @@
 namespace DAL.Models
 {
-    public class User
+    public class Traveler
     {
-        public int UserId { get; set; }
+        public int TravelerId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
     }

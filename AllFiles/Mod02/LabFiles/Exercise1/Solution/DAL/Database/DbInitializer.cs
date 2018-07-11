@@ -15,20 +15,20 @@ namespace DAL.Database
 
             private static void Seed(MyDbContext context)
             {
-                 // Create list with dummy users 
-                 List<User> userList = new List<User>
+                 // Create list with dummy travelers 
+                 List<Traveler> travelerList = new List<Traveler>
                  {
-                     new User(){ Name = "Jon Due", Email = "jond@outlook.com"},
-                     new User(){ Name = "Jon Due2", Email = "jond2@outlook.com"},
-                     new User(){ Name = "Jon Due3", Email = "jond3@outlook.com"}
+                     new Traveler(){ Name = "Jon Due", Email = "jond@outlook.com"},
+                     new Traveler(){ Name = "Jon Due2", Email = "jond2@outlook.com"},
+                     new Traveler(){ Name = "Jon Due3", Email = "jond3@outlook.com"}
                  };
      
                  // Create list with dummy bookings 
                  List<Booking> bookingList = new List<Booking>
                  {
-                     new Booking(){ DateCreated = DateTime.Now, CheckIn = DateTime.Now,CheckOut = DateTime.Now.AddDays(2), Guests = 2, Paid = true, User = userList[0]},
-                     new Booking(){ DateCreated = DateTime.Now.AddDays(3), CheckIn = DateTime.Now.AddDays(5),CheckOut = DateTime.Now.AddDays(8), Guests = 3, Paid = true, User = userList[1]},
-                     new Booking(){ DateCreated = DateTime.Now.AddDays(-10), CheckIn = DateTime.Now.AddDays(10),CheckOut = DateTime.Now.AddDays(11), Guests = 1, Paid = false, User = userList[2]}
+                     new Booking(){ DateCreated = DateTime.Now, CheckIn = DateTime.Now,CheckOut = DateTime.Now.AddDays(2), Guests = 2, Paid = true, Traveler = travelerList[0]},
+                     new Booking(){ DateCreated = DateTime.Now.AddDays(3), CheckIn = DateTime.Now.AddDays(5),CheckOut = DateTime.Now.AddDays(8), Guests = 3, Paid = true, Traveler = travelerList[1]},
+                     new Booking(){ DateCreated = DateTime.Now.AddDays(-10), CheckIn = DateTime.Now.AddDays(10),CheckOut = DateTime.Now.AddDays(11), Guests = 1, Paid = false, Traveler = travelerList[2]}
                  };
                  
                  // Create list with dummy rooms
@@ -53,7 +53,7 @@ namespace DAL.Database
                  };
                  
                  // Insert the dummy data to the database
-                 context.Users.AddRange(userList);
+                 context.Travelers.AddRange(travelerList);
                  context.Bookings.AddRange(bookingList);
                  context.Rooms.AddRange(roomList);
                  context.Hotels.Add(hotel);

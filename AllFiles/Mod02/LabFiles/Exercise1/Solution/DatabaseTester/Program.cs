@@ -17,13 +17,13 @@ namespace DatabaseTester
                 Hotel hotel = context.Hotels.FirstOrDefault();
                 Console.WriteLine($"hotel name: {hotel.Name}");
 
-                System.Console.WriteLine("Rooms:");
+                Console.WriteLine("Rooms:");
                 foreach (Room room in context.Rooms.ToList())
                     Console.WriteLine($"room number: {room.Number}, Price: {room.Price}");
 
-                System.Console.WriteLine("Users:");
-                foreach (User user in context.Users.ToList())
-                    Console.WriteLine($"user name: {user.Name}, email: {user.Email} ");
+                Console.WriteLine("Travelers:");
+                foreach (Traveler traveler in context.Travelers.ToList())
+                    Console.WriteLine($"traveler name: {traveler.Name}, email: {traveler.Email} ");
             }
         }
     }
