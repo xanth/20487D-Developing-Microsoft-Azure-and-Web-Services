@@ -1,0 +1,14 @@
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DatabaseTester.deps.json
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DatabaseTester.runtimeconfig.json
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DatabaseTester.runtimeconfig.dev.json
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DatabaseTester.dll
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DatabaseTester.pdb
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DAL.dll
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\bin\Debug\netcoreapp2.0\DAL.pdb
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.csprojAssemblyReference.cache
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.csproj.CoreCompileInputs.cache
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.AssemblyInfoInputs.cache
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.AssemblyInfo.cs
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.csproj.CopyComplete
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.dll
+C:\sela\Azure-20487D\20487D-Developing-Microsoft-Azure-and-Web-Services\Allfiles\Mod02\LabFiles\Exercise1\Starter\DatabaseTester\obj\Debug\netcoreapp2.0\DatabaseTester.pdb
