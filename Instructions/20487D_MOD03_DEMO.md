@@ -109,7 +109,7 @@
     ```bash
     cd [Repository Root]\Allfiles\Mod03\DemoFiles\HttpClientApplication\Starter\HttpClientApplication.Client
     ```
-3. To use **Microsoft AspNet WebApi Client** needed to install the following package using the **Command Line**:
+3. Install the following package **Microsoft AspNet WebApi Client** using the **Command Line**:
     ```base
     dotnet add package Microsoft.AspNet.WebApi.Client --version=5.2.6
     dotnet restore
