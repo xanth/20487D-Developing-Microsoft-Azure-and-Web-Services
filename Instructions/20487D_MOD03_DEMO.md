@@ -133,14 +133,14 @@
 8. Paste the following code under the **HttpResponseMessage** to read the respone as a string:
     ```cs
     Console.WriteLine("Respone data as string");
-    var resultAsString = await message.Content.ReadAsStringAsync();
+    string resultAsString = await message.Content.ReadAsStringAsync();
     Console.WriteLine(resultAsString);
     ```
 9. Paste the following code to read the respone and deserialize the **JSON** to a **List\<Destination\>** instance:
     ```cs
-    var destinationsResult = await message.Content.ReadAsAsync<List<Destination>>();
+    List<Destination> destinationsResult = await message.Content.ReadAsAsync<List<Destination>>();
     Console.WriteLine("\nAll Destination");
-    foreach (var destination in destinationsResult)
+    foreach (Destination destination in destinationsResult)
     {
         Console.WriteLine($"{destination.CityName} - {destination.Airport}");
     }

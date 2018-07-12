@@ -15,12 +15,12 @@ namespace HttpClientApplication.Client
             {
                 Console.WriteLine("Respone data as JSON");
                 HttpResponseMessage message = await client.GetAsync("http://localhost:5000/api/destinations");
-                var resultAsString = await message.Content.ReadAsStringAsync();
+                string resultAsString = await message.Content.ReadAsStringAsync();
                 Console.WriteLine(resultAsString);
 
-                var destinationsResult = await message.Content.ReadAsAsync<List<Destination>>();
+                List<Destination> destinationsResult = await message.Content.ReadAsAsync<List<Destination>>();
                 Console.WriteLine("\nAll Destination");
-                foreach (var destination in destinationsResult)
+                foreach (Destination destination in destinationsResult)
                 {
                     Console.WriteLine($"{destination.CityName} - {destination.Airport}");
                 }
