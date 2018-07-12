@@ -98,3 +98,74 @@
 13. Click on **Get All Destination** button to view the list of all destinations from the server.
 14. Switch to **Command Line** and press **Ctrl+C** to stop the process.
 15. Close all open windows.
+
+
+### Demonstration: Consuming Services Using HttpClient
+     
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Change directory to the **Client** starter project, by running the following command in the **Command Line**:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\HttpClientApplication\Starter\HttpClientApplication.Client
+    ```
+3. Install the following package **Microsoft AspNet WebApi Client** using the **Command Line**:
+    ```base
+    dotnet add package Microsoft.AspNet.WebApi.Client --version=5.2.6
+    dotnet restore
+    ```
+4. Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+5. Double click on **Program.cs**.
+6. Paste the following code in the **Main** method for creating a new **HttpClient** instance:
+    ```cs
+    using (var client = new HttpClient())
+    {
+
+    }
+    ```
+7. Paste the following code inside the **HttpClient** bracket to create a **GET** request:
+    ```cs
+    HttpResponseMessage message = await client.GetAsync("http://localhost:5000/api/destinations");
+    ```
+8. Paste the following code under the **HttpResponseMessage** to read the respone as a string:
+    ```cs
+    Console.WriteLine("Respone data as string");
+    string resultAsString = await message.Content.ReadAsStringAsync();
+    Console.WriteLine(resultAsString);
+    ```
+9. Paste the following code to read the respone and deserialize the **JSON** to a **List\<Destination\>** instance:
+    ```cs
+    List<Destination> destinationsResult = await message.Content.ReadAsAsync<List<Destination>>();
+    Console.WriteLine("\nAll Destination");
+    foreach (Destination destination in destinationsResult)
+    {
+        Console.WriteLine($"{destination.CityName} - {destination.Airport}");
+    }
+
+    // ReadKey used that the console will not close when the code end to run.
+    Console.ReadKey();
+    ```
+10. Switch to **Command Line** and paste the following command in order to change dirctory to the **Host** folder:
+    ```bash
+    cd ..\HttpClientApplication.Host
+    ```
+11. Paste the following command to run the **Host** application:
+    ```bash
+    dotnet run
+    ```
+12. Paste the following command in order to change directory to the **Client** folder:
+    ```bash
+    cd ..\HttpClientApplication.Client
+    ```
+13. Paste the following command to run the **Client** application:
+    ```bash
+    dotnet run
+    ```
+    >**Note** If there is an error in the **Console** after running the application run the following command: **dotnet dev-certs https --trust** , then try again the steps from **step 11**.
+    
+14. In the **Console**, Check that all the destinations came from the server.
+   
+15. Close all open windows.
