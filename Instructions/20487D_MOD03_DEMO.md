@@ -169,3 +169,49 @@
 14. In the **Console**, Check that all the destinations came from the server.
    
 15. Close all open windows.
+
+# Lesson 4: Handling HTTP Requests and Responses
+
+### Demonstration: Throwing Exceptions
+     
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the startup project:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\ThrowHttpResponseException\Starter
+    ```
+3. Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+4. In **Explorer** blade, under the **STARTER**, expand **Controllers** and double-click on **DestinationsController**.
+5. Paste the following code to return **destination** by **id**:
+    ```cs
+     // GET api/destinations/id
+    [HttpGet("{id}")]
+    public ActionResult<Destination> Get(int id)
+    {
+        Destination result = _destinations.FirstOrDefault(x => x.Id == id);
+        if (result == null)
+            return NotFound();
+        return result;
+    }
+    ```
+6. Switch to **Command Line**.
+7. Paste the following command to run the application:
+    ```bash
+    dotnet run
+    ```
+8. Open browser, and navigate to the following **URL**:
+    ```url
+    https://localhost:5001/destinations/1
+    ```
+9.  Check that destination: **Seattle** came from the server.
+10. Change to the following **URL**: 
+    ```url
+    https://localhost:5001/destinations/10
+    ```
+11. Check there is error code **HTTP ERROR 404** (Not Found).
+12. Close all open windows.
+
