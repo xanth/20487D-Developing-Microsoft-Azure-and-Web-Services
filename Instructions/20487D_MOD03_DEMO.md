@@ -215,3 +215,59 @@
 11. Check there is error code **HTTP ERROR 404** (Not Found).
 12. Close all open windows.
 
+# Lesson 5: Automatically Generating HTTP Requests and Responses
+
+### Demonstration: Testing HTTP requests with Swagger
+     
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the startup project:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\TestingHttpWithSwagger\Starter
+    ```
+3. Install the **Swagger** package, using the **Command Line**:
+    ```base
+    dotnet add package Swashbuckle.AspNetCore --version=3.0.0
+    dotnet restore
+    ```
+4. Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+5. In **Explorer** blade, under the **STARTER**, double-click on **Startup.cs**.
+6. Paste the following **using**:
+    ```cs
+    using Swashbuckle.AspNetCore.Swagger;
+    ```
+7. Paste the following code in the **ConfigureServices** method to add the **Swagger** generator to the services collection:
+    ```cs
+    services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+    });
+    ```
+8. Paste the following code in the **Configure** method to add **Swagger** middleware:
+    ```cs
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
+    ```
+9. Switch to **Command Line**.
+10. Paste the following command to run the application:
+    ```bash
+    dotnet run
+    ```
+11. Open browser, and navigate to the following **URL**:
+    ```url
+    https://localhost:5001
+    ```
+12. Check in browser that all the **Api** are shown.
+13. Click on **GET /api/Destinations**,
+    - Click on **Try it out** in the top right corner.
+    - Click on **Execute**. 
+    - Locate **Response body** and check that all the **Destinations** came from the server.
+14. Close all open windows.
