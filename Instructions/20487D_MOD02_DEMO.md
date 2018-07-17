@@ -110,7 +110,7 @@
 20. Open **SQL Operations Studio**.
 21. Click on **New Connection**, Connetion window will appear.
 22. In **Server** textbox type **.\SQLEXPRESS** and then click on **Connect**.
-23. In **Server** blead expand **.\sqlexpress** and then expand **Database**.
+23. In **Server** blade expand **.\sqlexpress** and then expand **Database**.
 24. Make sure you see a database named **MyFirstEF**.
 25. In **Server**, expand the **MyFirstEF** node, and then expand the **Tables** node.
 26. Notice that both classes defined in the **MyFirstEF** project appear as tables, **dbo.Stores** and **dbo.Products**.
