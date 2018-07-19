@@ -271,3 +271,66 @@
     - Click on **Execute**. 
     - Locate **Response body** and check that all the **Destinations** came from the server.
 14. Close all open windows.
+
+### Demonstration: Generating C# HTTP clients using AutoRest
+     
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the **AutoRest.Host** project:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\AutoRest\Starter\AutoRest.Host
+    ```
+3. Run the following command to install **AutoRest** package in **npm**:
+    ```bash
+    npm install -g autorest@2.0.4280
+    ```
+4. Run the following command to run the application:
+    ```bash
+    dotnet run
+    ```
+5. Run the following command to change directory to the **AutoRest.Sdk** project:
+    ```bash
+    cd ..\AutoRest.Sdk
+    ```
+6. Run the following command to **Generate** the **swagger** code:
+    ```bash
+    autorest -Input http://localhost:5000/swagger/v1/swagger.json -CodeGenerator CSharp -Namespace AutoRest.Sdk
+    ```
+7. Run the following command to change directory to the **AutoRest.Client** project:
+    ```bash
+    cd ..\AutoRest.Sdk
+    ```
+8. Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+9. In **Explorer** blade, under the **STARTER**, double-click on **Program.cs**.
+10. Paste the following **using** statements:
+    ```cs
+    using AutoRest.Sdk;
+    using AutoRest.Sdk.Models;
+    ```
+11. Paste the following code in the **Main** method to get **destinations** form the server:
+    ```cs
+    MyAPI client = new MyAPI(new Uri("http://localhost:5000"));
+    IList<Destination> destinationList = client.ApiDestinationsGet();
+    ```
+12. Paste the following code to show all the **destinations** in the **Console**:
+    ```cs
+    Console.WriteLine("All Destination");
+    foreach (Destination destination in destinationList)
+    {
+        Console.WriteLine($"{destination.CityName} - {destination.Airport}");
+    }
+    // ReadKey used that the console will not close when the code end to run.
+    Console.ReadKey();
+    ```
+13. Switch to **Command Line**.
+14. Run the following command to run the **AutoRest.Client** application:
+    ```bash
+    dotnet run
+    ```
+15. In the **Console**, Check that all the destinations came from the server.
+16. Close all open windows.
+
