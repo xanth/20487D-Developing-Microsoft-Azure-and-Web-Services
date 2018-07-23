@@ -334,3 +334,38 @@
 15. In the **Console**, Check that all the destinations came from the server.
 16. Close all open windows.
 
+### Demonstration: Hosting web API in IIS and IIS Express
+     
+#### Demonstration Steps
+
+1. Open **Visual Studio 2017** as an administrator.
+2. In **Visual Studio**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
+3. In the **Open Project** dialog box, browse to **[Repository Root]\Allfiles\Mod03\DemoFiles\HostingISSAndISSExpress**, click **HostingISSAndISSExpress.sln**, and then click **Open**.
+4. Click on **Debug** toolbar on the top and then press **Start Without Debugging** to run the application with **IIS Express** (or press **Ctrl + F5**).
+5. A new browser window will open. Check that you are getting the following response:
+	```json
+		["value1", "value2"]
+	```
+6. Now that you learnd how to hosting the website on **ISSExpress** you will learnd how you host the website on **IIS**. 
+7. Open the **Start** menu, open **Internet Information Services(IIS) Manager**.
+8. Right-click on the **Sites** folder in the left menu and click **Add Website..**.
+9. In the **Add Website** dialog box, type **HotelsSite** in the **Site name** box.
+10. In the **Content Directory** section, in the **Physical path** box, type **[Repository Root]\Allfiles\Mod03\DemoFiles\HostingISSAndISSExpress**.
+11. In the **Binding** section, change the **Port** to be **8080** instead of **80**.
+12. Click **OK** to create your new website.
+13. Click on **Application Pools** in the left menu and then double-click on your website that you just created.
+14. In the **.NET CLR version** combo-box, choose **No Managed Code** and then press **OK**.
+15. Close **Internet Information Services(IIS) Manager**.
+16. Swich back to **Visual Studio**.
+17. Right-click on **HostingISSAndISSExpress** and then click **Publish**.
+18. In the **Publish** blade, choose **IIS, FTP, etc** and then click **Create Profile**.
+19. In the **Publish** window, type **localhost** in the **Server** box.
+20. Type **HotelsSite** in the **Site name** box and then press **Next**.
+21. In the **Settings** pane, choose **Self-Contained** in the **Deployment Mode** combo-box.
+22. Choose **win-x64** in the **Target Runtime** combo-bx and then click **Save**.
+23. In the **Publish** blade , click **Publish**.
+24. Wait until the process will finish.
+25. Open the browser and browse to **localhost:8080/api/Values**. Check that you are getting a good response like the following:
+	```json
+		["value1", "value2"]
+	```
