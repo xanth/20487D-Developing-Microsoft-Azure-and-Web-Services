@@ -5,7 +5,7 @@
 
 #### Scenario
 
-In this lab you will work with the Entity Framework Core to create work with SQL Database 
+In this lab you will use the Entity Framework Core to connect to an SQL Database. 
 
 #### Objectives
 
@@ -13,17 +13,13 @@ After completing this lab, you will be able to:
 
 - Create DAL layer.
 - Create an entity data model by using Entity Framework Core.
-- Connect to SQL Express database by using Entity Framework Core.
-- Create a client layer in a Console Application.
-- Combine the DAL layer and the client layer in a solution.
-- Display the data from the database by using LINQ query
 
 ### Exercise 1: Creating a data model
 
 #### Scenario
 
-In this exercise you will create the DAL layer and connect to the database by using Entity Framework Core
-to run on the SQL Express database.
+In this exercise you will create the data access layer and connect to the database by using Entity Framework Core
+to perform CRUD operations on the SQL Express database.
 
 #### Task 1: Create a class library for the data model
 
@@ -74,9 +70,27 @@ to run on the SQL Express database.
 1. Create a new folder and name it **Database**.
 2. Create a new class and name it **MyDbContext** that inherits from **DbContext**.
 3. Add **DbSet** property to every one of the models that you made in the previous task.
-4. **override** the **OnConfiguring** method to use **SqlExpress**. 
+4. Peste the following code to add two constructies:
+    ```cs
+    private void InitialDBContext()
+    {
+        DbInitializer.Initialize(this);
+    }
+    // Default Constructor
+    public MyDbContext()
+    {
+        InitialDBContext();
+    }
+    // Constructor with options
+    public MyDbContext(DbContextOptions<MyDbContext> options)
+            : base(options)
+    {
+        InitialDBContext();
+    }
+    ```
+5. **override** the **OnConfiguring** method to use **SqlExpress**. 
 
-   >**Results** After completing this exercise, you will have finished the DAL layer. 
+   >**Results** Your application now has a functioning data access layer. 
 
 ### Exercise 2: Query your database
 
@@ -139,7 +153,7 @@ to display all the data from the database.
         roomList[0].Bookings.Add(bookingList[0]);
         roomList[1].Bookings.Add(bookingList[1]);
         roomList[1].Bookings.Add(bookingList[2])
-            
+
         Hotel hotel = new Hotel()
         {
             Name = "Azure Hotel",
@@ -162,7 +176,7 @@ to display all the data from the database.
 
 1. Close **VSCode** window.
 2. Create a new **ASP.NET Core Console Application** project via the **Command Line**.
-3. Switch back to the **Command Line**.
+3. Switch to **Command Line**.
 4. Create a new **ASP.NET Core Console Application** and name it **DatabaseTester** in the following path [Repository Root]\Allfiles\Mod02\LabFiles\Lab1\Starter\DatabaseTester
 5. Create a new **Solution** and name it **Mod2Lab1**.
 6. Add **DAL** and **DatabaseTester** projects to **Mod2Lab1** solution.
@@ -177,7 +191,145 @@ to display all the data from the database.
     - All **Users** name and email.
 13. Run the **DatabaseTester** application via **Command Line**
 
-   >**Results** After completing this exercise, you should be able to display all of the data from the database by using LINQ query
+   >**Results** Your application can now display all of the data from the database by using LINQ queries.
+
+# Lab: Manipulating Data
+
+#### Scenario
+In this lab you will create a repository with CRUD methods and inject two kinds of database configurations in order to work with SQL Express and SQLite.
+
+#### Objectives
+
+After completing this lab, you will be able to:
+
+- Create a HotelBooking repository and populate it with CRUD methods
+- Test the queries with SQL Express and SQLite databases
+
+### Exercise 1: Create repository methods
+
+#### Task 1: Create a method to add entities
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the startup project:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Starter
+    ```
+3. Open the folder in **VSCode**.
+4. In **VSCode** expand **DAL** folder then expand **Repository** folder and double-click on **HotelBookingRepository.cs**.
+5. Add a **DbContextOptions** **field** and name it **_options**.
+6. Add a **constructor** with **DbContextOptions** as an optional parameter to initialize **_options** field.
+7. Paste the following method to **Add** new booking:
+    ```cs
+    public async Task<Booking> Add(int travelerId, int roomId, DateTime checkIn, int guest = 1)
+    {
+        using (MyDbContext context = new MyDbContext(_options))
+        {
+            Traveler traveler = context.Travelers.FirstOrDefault(t => t.TravelerId == travelerId);
+            Room room = context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+            if (traveler != null && room != null)
+            {
+                Booking newBooking = new Booking()
+                {
+                    DateCreated = DateTime.Now,
+                    CheckIn = checkIn,
+                    CheckOut = checkIn.AddDays(1),
+                    Guests = guest,
+                    Paid = false,
+                    Traveler = traveler,
+                    Room = room
+                };
+                Booking booking = (await context.Bookings.AddAsync(newBooking))?.Entity;
+                await context.SaveChangesAsync();
+                return booking;
+            }
+            return null;
+        }
+    }
+    ```
+
+#### Task 2: Create a method to update entities
+
+1. Add new method and name it **Update** that get class **Booking** as a parameter and update the database.
+
+#### Task 3: Create a method to delete entities
+
+1. Add new method and name it **Delete** that get int **BookingId** as a parameter and delete the database.
+
+    >**Results** After completing this exercise, created repository with Add, Update, Delete methods.
+
+#### Exercise 2: Test the model using SQL Server and SQLite
+
+#### Task 1: Create test code with transactions
+
+1. Open **Command Line**.
+2. Run the following command to change directory to **Starter** folder:
+   ```bash
+    cd [Repository Root]\Allfiles\Mod02\LabFiles\Lab1\Starter
+   ```
+3. Create new **Unit Test Project** and name it **DAL.Test**.
+4. Add the new testing project to the **solution**.
+5. Open **VSCode** via **Command Line**.
+6. Add reference to **DAL.Test** from **DAL** project.
+7. Locate **UnitTest1.cs** file, and rename to **BookingRepositoryTests**.
+8. Change **public void TestMethod1()** to **public async void AddTwoBookingsTest()**.
+9. Paste the following code in **AddTwoBookingsTest** method, to test the **Transaction Scope** with two bookings:
+    ```cs
+    Booking fristBooking;
+    Booking secondBooking
+    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required,
+            new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }, TransactionScopeAsyncFlowOption.Enabled))
+    {
+        HotelBookingRepository repository = new HotelBookingRepository();
+        fristBooking = await repository.Add(1, 1, DateTime.Now.AddDays(6), 4);
+        secondBooking = await repository.Add(1, 2, DateTime.Now.AddDays(8), 3)
+        scope.Complete();
+    }
+    
+    using (MyDbContext context = new MyDbContext())
+    {
+        int bookingsCounter = context.Bookings.Where(booking => booking.BookingId == fristBooking.BookingId ||
+                                                                booking.BookingId == secondBooking.BookingId).ToList().Count
+        Assert.AreEqual(2, bookingsCounter);
+    }
+    ```
+
+#### Task 2: Test code against a local SQL Server database
+
+1. Switch to **Command Line**.
+2. Change directory to **DAL.Test** folder. 
+3. Run the following command to test **AddTwoBookingsTest** method:
+   ```bash
+   dotnet test
+   ```
+4. Open **SQL Operations Studio**:
+    - Check that **database** name **Mod2Lab2DB** was created.
+    - And that the two **booking** saved in the database.
+
+#### Task 3: Replace SQL Server provider with SQLite
+
+1. Navigate to **DAL** folder with **Command Line**.
+2. Install **Entity Framework Core Sqlite** package version 2.1.1.
+3. Open the solution in **VSCode**.
+4. Expand **DAL.Test** folder, then double-click on **BookingRepositoryTests.cs**.
+5. Paste the following **field**:
+    ```cs
+     private DbContextOptions<MyDbContext> _options =
+               new DbContextOptionsBuilder<MyDbContext>()
+                   .UseSqlite(@"Data Source = [Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Database\SqliteHotel.db")
+                   .Options;
+    ```
+6. Add testing method and name it **AddTwoBookingsSQLiteTest** that test insertion of two book to **SQL Lite**.
+
+#### Task 4: Test code against SQLite
+
+1. In the **Command Line** run the testing projcet.
+2. Check the **SqliteHotel.db** file was created in the folder **[Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Database**.
+3. Open **DB Browser for SQLite**. 
+4. Verify that the two bookings exist is in the Database. 
+
+    >**Results** After completing this exercise, test the database with SQL Server and SQLite.
+
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
