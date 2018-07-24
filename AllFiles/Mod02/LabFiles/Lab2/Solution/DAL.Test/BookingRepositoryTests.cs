@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DAL.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class BookingRepositoryTests
     {
         private DbContextOptions<MyDbContext> _options =
                new DbContextOptionsBuilder<MyDbContext>()
