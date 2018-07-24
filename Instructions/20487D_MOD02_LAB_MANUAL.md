@@ -11,18 +11,18 @@ In this lab you will work with the Entity Framework Core to create work with SQL
 
 After completing this lab, you will be able to:
 
-- Create Dal layer.
+- Create DAL layer.
 - Create an entity data model by using Entity Framework Core.
 - Connect to SQL Express database by using Entity Framework Core.
 - Create a client layer in a Console Application.
-- Combine the Dal layer and the client layer in a solution.
+- Combine the DAL layer and the client layer in a solution.
 - Display the data from the database by using LINQ query
 
 ### Exercise 1: Creating a data model
 
 #### Scenario
 
-In this exercise you will create the Dal layer and connect to the database by using Entity Framework Core
+In this exercise you will create the DAL layer and connect to the database by using Entity Framework Core
 to run on the SQL Express database.
 
 #### Task 1: Create a class library for the data model
@@ -76,13 +76,13 @@ to run on the SQL Express database.
 3. Add **DbSet** property to every one of the models that you made in the previous task.
 4. **override** the **OnConfiguring** method to use **SqlExpress**. 
 
-   >**Results** After completing this exercise, you will have finished the Dal layer 
+   >**Results** After completing this exercise, you will have finished the DAL layer. 
 
 ### Exercise 2: Query your database
 
 #### Scenario
 
-In this exercise you will use the Dal class libary to create a new Console Application
+In this exercise you will use the DAL class libary to create a new Console Application
 to display all the data from the database.
 
 
@@ -103,9 +103,31 @@ to display all the data from the database.
         // Create list with dummy bookings 
         List<Booking> bookingList = new List<Booking>
         {
-            new Booking(){ DateCreated = DateTime.Now, CheckIn = DateTime.Now,CheckOu   DateTime.Now.AddDays(2), Guests = 2, Paid = true, User = userList[0]},
-            new Booking(){ DateCreated = DateTime.Now.AddDays(3), CheckIn = DateTime.Now.AddDays    CheckOut = DateTime.Now.AddDays(8), Guests = 3, Paid = true, User = userList[1]},
-            new Booking(){ DateCreated = DateTime.Now.AddDays(-10), CheckIn = DateTime.Now.AddDays( CheckOut = DateTime.Now.AddDays(11), Guests = 1, Paid = false, User = userList[2]}
+            new Booking()
+            { 
+                DateCreated = DateTime.Now, 
+                CheckIn = DateTime.Now,
+                CheckOut = DateTime.Now.AddDays(2),
+                Guests = 2, 
+                Paid = true, 
+                User = userList[0]
+            },
+            new Booking()
+            { 
+                DateCreated = DateTime.Now.AddDays(3),
+                CheckIn = DateTime.Now.AddDays,
+                CheckOut = DateTime.Now.AddDays(8), 
+                Guests = 3, Paid = true, 
+                User = userList[1]
+            },
+            new Booking()  
+            { 
+                DateCreated = DateTime.Now.AddDays(-10), 
+                CheckIn = DateTime.Now.AddDays( CheckOut = DateTime.Now.AddDays(11),
+                Guests = 1, 
+                Paid = false, 
+                User = userList[2]
+            }
         };
         // Create list with dummy rooms
         List<Room> roomList = new List<Room>
@@ -116,7 +138,8 @@ to display all the data from the database.
         }   
         roomList[0].Bookings.Add(bookingList[0]);
         roomList[1].Bookings.Add(bookingList[1]);
-        roomList[1].Bookings.Add(bookingList[2])    
+        roomList[1].Bookings.Add(bookingList[2])
+            
         Hotel hotel = new Hotel()
         {
             Name = "Azure Hotel",
@@ -142,9 +165,9 @@ to display all the data from the database.
 3. Switch back to the **Command Line**.
 4. Create a new **ASP.NET Core Console Application** and name it **DatabaseTester** in the following path [Repository Root]\Allfiles\Mod02\LabFiles\Lab1\Starter\DatabaseTester
 5. Create a new **Solution** and name it **Mod2Lab1**.
-6. Add **Dal** and **DatabaseTester** projects to **Mod2Lab1** solution.
+6. Add **DAL** and **DatabaseTester** projects to **Mod2Lab1** solution.
 7. Open **VSCode** in the folder.
-8. In **DatabaseTester.csproj** add a reference to the **Dal** project.
+8. In **DatabaseTester.csproj** add a reference to the **DAL** project.
 9. Navigate to **Program.cs** in the **DatabaseTester** folder and locate the **main** method.
 10. Create a new **MyDbContext** instance.
 11. Use **Initialize** method in **DbInitializer** class with the new **MyDbContext** instance.
