@@ -235,7 +235,7 @@ In this exercise you will create the HotelBookingRepository.
 
 1. Add new method and name it **Delete** that get int **BookingId** as a parameter and delete the database.
 
-    >**Results** You finish creating a repository with Add, Update, Delete methods.
+    >**Results** You finished creating a repository with Add, Update, Delete methods.
 
 #### Exercise 2: Test the model using SQL Server and SQLite
 
@@ -312,7 +312,7 @@ and you will create testing and run then on SQL Lite and SQL Server.
 3. Open **DB Browser for SQLite**. 
 4. Verify that the two bookings exist is in the Database. 
 
-    >**Results** You now just finish testing your database with SQL Lite and SQL Server.
+    >**Results** You finished testing your database with SQL Lite and SQL Server.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
