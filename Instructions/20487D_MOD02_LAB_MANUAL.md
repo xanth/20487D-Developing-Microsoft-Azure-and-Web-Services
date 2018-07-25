@@ -196,6 +196,7 @@ to display all the data from the database.
 # Lab: Manipulating Data
 
 #### Scenario
+
 In this lab you will create a repository with CRUD methods and inject two kinds of database configurations in order to work with SQL Express and SQLite.
 
 #### Objectives
@@ -206,6 +207,10 @@ After completing this lab, you will be able to:
 - Test the queries with SQL Express and SQLite databases
 
 ### Exercise 1: Create repository methods
+
+#### Scenario
+
+In this exercise you will create the HotelBookingRepository.
 
 #### Task 1: Create a method to add entities
 
@@ -218,35 +223,10 @@ After completing this lab, you will be able to:
 4. In **VSCode** expand **DAL** folder then expand **Repository** folder and double-click on **HotelBookingRepository.cs**.
 5. Add a **DbContextOptions** **field** and name it **_options**.
 6. Add a **constructor** with **DbContextOptions** as an optional parameter to initialize **_options** field.
-7. Paste the following method to **Add** new booking:
-    ```cs
-    public async Task<Booking> Add(int travelerId, int roomId, DateTime checkIn, int guest = 1)
-    {
-        using (MyDbContext context = new MyDbContext(_options))
-        {
-            Traveler traveler = context.Travelers.FirstOrDefault(t => t.TravelerId == travelerId);
-            Room room = context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
-            if (traveler != null && room != null)
-            {
-                Booking newBooking = new Booking()
-                {
-                    DateCreated = DateTime.Now,
-                    CheckIn = checkIn,
-                    CheckOut = checkIn.AddDays(1),
-                    Guests = guest,
-                    Paid = false,
-                    Traveler = traveler,
-                    Room = room
-                };
-                Booking booking = (await context.Bookings.AddAsync(newBooking))?.Entity;
-                await context.SaveChangesAsync();
-                return booking;
-            }
-            return null;
-        }
-    }
-    ```
-
+7. Create and implement a new method and name it **Add** that get those parameters:
+   ```cs
+   int travelerId, int roomId, DateTime checkIn, int guest = 1
+   ```
 #### Task 2: Create a method to update entities
 
 1. Add new method and name it **Update** that get class **Booking** as a parameter and update the database.
@@ -255,9 +235,14 @@ After completing this lab, you will be able to:
 
 1. Add new method and name it **Delete** that get int **BookingId** as a parameter and delete the database.
 
-    >**Results** After completing this exercise, created repository with Add, Update, Delete methods.
+    >**Results** You finish creating a repository with Add, Update, Delete methods.
 
 #### Exercise 2: Test the model using SQL Server and SQLite
+
+#### Scenario
+
+In this exercise you will inject SQL Lite DB to the repository,
+and you will create testing and run then on SQL Lite and SQL Server. 
 
 #### Task 1: Create test code with transactions
 
@@ -313,7 +298,7 @@ After completing this lab, you will be able to:
 4. Expand **DAL.Test** folder, then double-click on **BookingRepositoryTests.cs**.
 5. Paste the following **field**:
     ```cs
-     private DbContextOptions<MyDbContext> _options =
+    private DbContextOptions<MyDbContext> _options =
                new DbContextOptionsBuilder<MyDbContext>()
                    .UseSqlite(@"Data Source = [Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Database\SqliteHotel.db")
                    .Options;
@@ -327,9 +312,7 @@ After completing this lab, you will be able to:
 3. Open **DB Browser for SQLite**. 
 4. Verify that the two bookings exist is in the Database. 
 
-    >**Results** After completing this exercise, test the database with SQL Server and SQLite.
-
-
+    >**Results** You now just finish testing your database with SQL Lite and SQL Server.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
