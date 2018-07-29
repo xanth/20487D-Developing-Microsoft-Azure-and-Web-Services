@@ -26,11 +26,6 @@ namespace BlueYonderHotels.Service.Attirbutes
             _headerMessage = message;
         }
 
-        private void Init()
-        {
-
-        }
-
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (CacheValid(context))

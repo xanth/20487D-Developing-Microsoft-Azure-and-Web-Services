@@ -14,8 +14,8 @@ namespace BlueYonderHotels.Service.Middleware
         {
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("X-Server-Name", "Roi");
-                context.Response.Headers.Add("X-OS-Version", "1");
+                context.Response.Headers.Add("X-Server-Name", Environment.MachineName);
+                context.Response.Headers.Add("X-OS-Version", Environment.OSVersion.VersionString);
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();

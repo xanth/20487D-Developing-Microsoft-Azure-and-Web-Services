@@ -21,18 +21,15 @@ namespace BlueYonder.Hotels.DAL.Repository
         {
             using (HotelsContext context = new HotelsContext(_options))
             {
-                //var avaliableRooms = context.Rooms.Where(room => room.Reservations.Where(resservation => CheckDateBetweenTwoDates(date, resservation.CheckIn, resservation.CheckOut)));               
-                //return avaliableRooms?.ToList();
-                return null;
+                var getAllReservationsByDate = (from reservation in context.Reservations
+                                               where  reservation.CheckIn >= date && date <= reservation.CheckIn
+                                               select reservation.Room).ToList();
+
+                var roomsWithoutReservation = context.Rooms.Where(room => !getAllReservationsByDate.Any(p => p.RoomId == room.RoomId)).ToList();
+                return roomsWithoutReservation;
             }
          }
-
-        public bool CheckDateBetweenTwoDates(DateTime target,DateTime startDate,DateTime endDate)
-        {
-            return target.Ticks > startDate.Ticks && target.Ticks < endDate.Ticks;
-        }
-
-
+        
         public IEnumerable<Reservation> GetAllReservation()
         {
             using (HotelsContext context = new HotelsContext(_options))

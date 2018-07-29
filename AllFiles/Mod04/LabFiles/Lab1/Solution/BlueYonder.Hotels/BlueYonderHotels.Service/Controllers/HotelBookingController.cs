@@ -21,21 +21,21 @@ namespace BlueYonderHotels.Service.Controllers
         }
 
 
-        [HttpGet]
         [Cache("X-No-Cache")]
-        public IEnumerable<Room> GetAvailability(DateTime dateTime)
+        [HttpGet("Availability/{date}")]
+        public IEnumerable<Room> GetAvailability(DateTime date)
         {
-            return _hotelBookingRepository.GetAvaliabileByDate(dateTime);
+            return _hotelBookingRepository.GetAvaliabileByDate(date);
         }
         
-        [HttpGet]
+        [HttpGet("Reservation")]
         public IEnumerable<Reservation> GetReservation()
         {
             return _hotelBookingRepository.GetAllReservation();
         }
 
         
-        [HttpDelete]
+        [HttpDelete("Reservation/{reservationId}")]
         public async Task DeleteReservation(int reservationId)
         {
             await _hotelBookingRepository.DeleteReservation(reservationId);
