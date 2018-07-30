@@ -21,15 +21,16 @@ namespace BlueYonder.Hotels.DAL.Repository
         {
             using (HotelsContext context = new HotelsContext(_options))
             {
-                var getAllReservationsByDate = from reservation in context.Reservations
-                                               where reservation.CheckIn <= date && date >= reservation.CheckOut
-                                               select reservation.Room;
+                var roomsWithoutReservation =
+                    (from reservation in context.Reservations
+                     where !(reservation.CheckIn <= date && date <= reservation.CheckOut)
+                     select reservation.Room)
+                    .ToList();
 
-                var roomsWithoutReservation = context.Rooms.Where(room => !getAllReservationsByDate.Any(p => p.RoomId == room.RoomId)).ToList();
                 return roomsWithoutReservation;
             }
-         }
-        
+        }
+
         public IEnumerable<Reservation> GetAllReservation()
         {
             using (HotelsContext context = new HotelsContext(_options))
