@@ -23,7 +23,7 @@ namespace BlueYonder.Hotels.DAL.Repository
             {
                 var roomsWithoutReservation =
                     (from reservation in context.Reservations
-                     where !(reservation.CheckIn <= date && date <= reservation.CheckOut)
+                     where date < reservation.CheckIn || date > reservation.CheckOut
                      select reservation.Room)
                     .ToList();
 
