@@ -13,11 +13,11 @@ namespace BlueYonderHotels.Service.Controllers
     [ApiController]
     public class HotelBookingController : ControllerBase
     {
-        private readonly HotelBookingRepository _hotelBookingRepository;
+        private readonly IHotelBookingRepository _hotelBookingRepository;
 
-        public HotelBookingController()
+        public HotelBookingController(IHotelBookingRepository hotelBookingRepository)
         {
-            _hotelBookingRepository = new HotelBookingRepository();
+            _hotelBookingRepository = hotelBookingRepository;
         }
 
 

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BlueYonder.Hotels.DAL.Repository
 {
-    public class HotelBookingRepository
+    public class HotelBookingRepository :  IHotelBookingRepository
     {
         private DbContextOptions<HotelsContext> _options;
 
