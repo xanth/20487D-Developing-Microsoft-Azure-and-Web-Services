@@ -18,7 +18,7 @@ namespace BlueYonder.Flights.DAL.Database
             
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS01;Database=Mod4Demo1DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Mod4Demo1DB;Trusted_Connection=True;");
             }
         }
     }
