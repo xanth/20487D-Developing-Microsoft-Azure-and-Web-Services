@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BlueYonder.Flights.DAL.Models;
 using BlueYonder.Flights.DAL.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -13,11 +16,13 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class PassengerController : ControllerBase
     {
-        private readonly PassengerRepository _passengerRepository;
+        private readonly IPassengerRepository _passengerRepository;
+        private readonly IHostingEnvironment _environment;
 
-        public PassengerController()
+        public PassengerController(IPassengerRepository passengerRepository, IHostingEnvironment environment)
         {
-            _passengerRepository = new PassengerRepository();
+            _passengerRepository = passengerRepository;
+            _environment = environment;
         }
 
         // GET api/passenger
@@ -58,5 +63,23 @@ namespace BlueYonder.Flights.Service.Controllers
         {
             _passengerRepository.Delete(id);
         }
+
+        [HttpPut("UpdatePhoto")]
+        public async Task<IActionResult> UpdatePhoto(IFormFile file)
+        {
+            if (file == null || !file.ContentType.Contains("image"))
+                return BadRequest();
+
+            string filePath = Path.Combine(_environment.WebRootPath, "Images");
+            if (file.Length > 0)
+            {
+                using (var fileStream = new FileStream(Path.Combine(filePath, file.FileName), FileMode.CreateNew))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+            }
+            return Ok();
+        }
+
     }
 }
