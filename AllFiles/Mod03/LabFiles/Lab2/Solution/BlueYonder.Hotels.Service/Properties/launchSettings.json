@@ -19,7 +19,7 @@
     },
     "BlueYonder.Hotels.Service": {
       "commandName": "Project",
-      "commandLineArgs": "--mode=weblistener",
+      "commandLineArgs": "--mode=iisexpress",
       "launchBrowser": true,
       "launchUrl": "api/HotelBooking",
       "environmentVariables": {

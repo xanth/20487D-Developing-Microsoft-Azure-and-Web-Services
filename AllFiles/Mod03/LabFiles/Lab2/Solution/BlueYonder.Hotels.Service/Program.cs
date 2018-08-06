@@ -22,20 +22,20 @@ namespace BlueYonder.Hotels.Service
 
             IWebHostBuilder builder = CreateWebHostBuilder(args);
 
-            if (string.Equals(userServicePreference, "weblistener", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(userServicePreference, "HttpSys", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Running with WebListener.");
+                Console.WriteLine("Running with HttpSys.");
                 builder.UseHttpSys();
             }
             else if (string.Equals(userServicePreference, "Kestrel", StringComparison.OrdinalIgnoreCase))
             {
-                // Kestrel does not support windows authentication: use WebListener or host on IIS or IIS Express
+                // Kestrel does not support windows authentication: use HttpSys or host on IIS or IIS Express
                 Console.WriteLine("Running with Kestrel.");
                 builder.UseKestrel();
             }
             else
             {
-                // IIS does not support WebListener: must run with Kestrel when hosting with IIS or IIS Express
+                // IIS does not support HttpSys: must run with Kestrel when hosting with IIS or IIS Express
                 Console.WriteLine("Running with IIS Express.");
                 builder.UseIISIntegration();
 
