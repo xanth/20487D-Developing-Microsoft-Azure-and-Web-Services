@@ -106,11 +106,16 @@
     ```cs
     app.UseExceptionHandlingMiddleware();
     ```
-19. Open **Microsoft Edge** browser.
-20. Open **Develpper Tools** by click on the three dot on the top bar and then select **Develpper Tools** or by pressing **F12**.
-21. In the **Develpper Tools** navigate to **Network**.
-22. Navigate to the following url:
+19. Switch to **Command Line**.
+20. Run the following command to run the server:
+    ```bash
+    dotnet run
+    ```
+21. Open **Microsoft Edge** browser.
+22. Open **Develpper Tools** by click on the three dot on the top bar and then select **Develpper Tools** or by pressing **F12**.
+23. In the **Develpper Tools** navigate to **Network**.
+24. Navigate to the following url:
     ```url
     https://localhost:5001/api/passenger/5
     ```
-23. In **Network** tab locate the url and check the result column that you get **404**
+25. In **Network** tab locate the url and check the result column that you get **404**

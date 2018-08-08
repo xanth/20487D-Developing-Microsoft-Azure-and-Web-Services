@@ -25,7 +25,7 @@ namespace BlueYonder.Hotels.DAL.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLExpress01;Database=Mod4Lab1DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.\SQLExpress;Database=Mod4Lab1DB;Trusted_Connection=True;");
             }
         }
     }

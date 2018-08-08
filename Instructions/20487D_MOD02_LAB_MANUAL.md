@@ -43,7 +43,7 @@ to perform CRUD operations on the SQL Express database.
     public int Number { get; set; }
     public decimal Price { get; set; }
     public bool Available { get; set; }
-    public IEnumerable<Booking> Bookings { get; set; } = new List<Booking>();
+    public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     ```
 3. Create a new class and name it **Hotel** and add the following properties:
     ```cs 

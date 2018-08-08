@@ -7,6 +7,6 @@ using System.Collections.Generic;
             public int HotelId { get; set; }
             public string Name { get; set; }
             public string Address { get; set; }
-            public IEnumerable<Room> Rooms { get; set; }
+            public ICollection<Room> Rooms { get; set; }
         }
     }

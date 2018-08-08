@@ -295,7 +295,7 @@
    ```cs
    public SchoolContext(DbContextOptions<SchoolContext> options)
         : base(options)
-   }
+   {
    }
    ```
 10. Located the method **OnConfiguring** add the following code:

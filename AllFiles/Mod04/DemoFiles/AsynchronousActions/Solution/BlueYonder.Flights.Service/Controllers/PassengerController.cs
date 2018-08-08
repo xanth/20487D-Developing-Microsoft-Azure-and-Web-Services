@@ -70,10 +70,9 @@ namespace BlueYonder.Flights.Service.Controllers
             if (file == null || !file.ContentType.Contains("image"))
                 return BadRequest();
                 
-            string filePath = Path.Combine(_environment.WebRootPath, "Images");
             if (file.Length > 0)
             {
-                using (var fileStream = new FileStream(Path.Combine(filePath, file.FileName), FileMode.CreateNew))
+                using (var fileStream = new FileStream(Path.Combine(_environment.WebRootPath, file.FileName), FileMode.CreateNew))
                 {
                     await file.CopyToAsync(fileStream);
                 }

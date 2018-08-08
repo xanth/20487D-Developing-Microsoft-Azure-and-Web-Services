@@ -35,6 +35,7 @@
     ```url
     https://localhost:5001/api/values
     ```
+    >**Note** If there is an error in the **Console** after running the application run the following command: **dotnet dev-certs https --trust** , then try again the steps from **step 8**.
 10. You should see the following result:
     ```json
     ["value1","value2"]
@@ -205,12 +206,12 @@
     ```
 8. Open browser, and navigate to the following **URL**:
     ```url
-    https://localhost:5001/destinations/1
+    https://localhost:5001/api/destinations/1
     ```
 9.  Check that destination: **Seattle** came from the server.
 10. Change to the following **URL**: 
     ```url
-    https://localhost:5001/destinations/10
+    https://localhost:5001/api/destinations/10
     ```
 11. Check there is error code **HTTP ERROR 404** (Not Found).
 12. Close all open windows.
@@ -299,7 +300,7 @@
     ```
 7. Run the following command to change directory to the **AutoRest.Client** project:
     ```bash
-    cd ..\AutoRest.Sdk
+    cd ..\AutoRest.Client
     ```
 8. Run the following command to open the project in **VSCode**:
     ```bash
