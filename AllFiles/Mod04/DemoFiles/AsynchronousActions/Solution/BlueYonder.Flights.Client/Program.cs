@@ -14,7 +14,7 @@ namespace BlueYonder.Flights.Client
         static async Task Main(string[] args)
         {
             Console.WriteLine("Run Client Application");
-            var directoryPath = @"..\..\..\Image\orderedList7.png";
+            var directoryPath = Environment.CurrentDirectory + @"\Image\orderedList7.png";
             string url = "http://localhost:5000/api/passenger/updatephoto";
 
             using (FileStream imageFile = File.OpenRead(directoryPath))

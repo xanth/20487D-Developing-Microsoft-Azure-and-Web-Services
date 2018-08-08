@@ -63,23 +63,6 @@ namespace BlueYonder.Flights.Service.Controllers
         {
             _passengerRepository.Delete(id);
         }
-
-        [HttpPut("UpdatePhoto")]
-        public async Task<IActionResult> UpdatePhoto(IFormFile file)
-        {
-            if (file == null || !file.ContentType.Contains("image"))
-                return BadRequest();
-
-            string filePath = Path.Combine(_environment.WebRootPath, "Images");
-            if (file.Length > 0)
-            {
-                using (var fileStream = new FileStream(Path.Combine(filePath, file.FileName), FileMode.CreateNew))
-                {
-                    await file.CopyToAsync(fileStream);
-                }
-            }
-            return Ok();
-        }
-
+        
     }
 }
