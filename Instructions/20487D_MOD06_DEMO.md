@@ -50,6 +50,105 @@
 25. Verify that the response is: **["value1","value2"]**.
 25. Close all open windows.
 
+# Lesson 4: Deploying to Staging and Production Environments 
+
+### Demonstration: Using deployment slots with Azure Web Apps
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com**.
+3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog appears, click **Yes**.
+   >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+5. Click **App Services** on the left menu panel, to display all the **App Services**.
+    - Click on **Add** in the **App Services** blade, letting you select app service template.
+    - Click on **Web App** in the **Web** blade, overview of the template will be shown.
+    - Click on **Create** button in the **Web App** blade.
+6. To create the **Web App** fill-in the following fields:
+    - In the **App Name** text box, type the following web app name: **mod6demo4**{YourInitials}.
+        >**Note:** The **App Name** will be part of the URL.
+    - In the **Resource Group**  select **Create new**, and type in the text box below **mod6demo4**.
+    - Click on **App Service plan/Location** and then click on **Create new**, then open **New App Service Plan** blade, fill-in the following information:
+        - In the **App Service plan** text box type: **Mod6Demo4ServicePlan**.
+        - Click on **Pricing tier**.
+            - Select **Production** tab.
+            - In **Recommended pricing tiers** select **S1**.
+            - Click on **Apply**. 
+        - Click on **OK**.
+    - Click on **Create** and wait that **App Services** is created.
+7. Click on **App Services** on the left menu panel, to display all the **App Services**.
+8. Click on **mod6demo4**{YourInitials} app service. 
+9. Click on **Deployment credentials** under **DEPLOYMENT** section, to add credentials to our app service, and fill-in the following information:
+    - In the **FTP/deployment username** type **FTPMod6Demo4**{YourInitials}.
+    - In the **Password** and **Confirm password** text box type: **Password99**.
+    - Click on **Save**.
+10. Click on **Deployment slots** on the left blade menu under **DEPLOYMENT** section.
+    - Click on **Add Slot**:
+        - In **Name** type **Staging**
+        - In **Configuration Source** select **mod6demo4**{YourInitials}.
+        - Click on **OK**.
+11. Open **Command Line**.
+12. Change directory to the starter project, run the following command in the **Command Line**:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
+    ```
+13. Open the project in **VSCode** and paste the following command and press enter:
+    ```bash
+    code .
+    ```
+14. Expand **Properties** folder then **PublishProfiles** folder and double-click on **Azure.pubxml**.
+15. Replace {YourInitials} with your initials from the **Azure web App**.
+16. In **PublishProfiles** double-click on **Staging.pubxml**.
+17. Replace {YourInitials} with your initials from the **Azure web App**.
+18. Switch to **Command Line**, and paste the following command:
+    ```bash
+    dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
+    ```
+    > **Note :** If the there was an error in the publish process, restart the **mod6demo4**{YourInitials} app services.
+19. Open **Microsoft Edge** browser. 
+22. Navigate to the following url:
+    ```url
+    https://Mod6Demo4-{YourInitials}.azurewebsites.net/api/values
+    ```
+23. The response shoulde be a **JSON** with the following values:
+    ```json
+    ["value1", "value2"]
+    ```
+24. Switch to **VSCode**.
+25. Expand **Controllers** and double click on **ValuesController**.
+26. Locate **Get** method and add to the array **value3**.
+27. Switch to **Command Line**.
+28. Paste the following command to publish in the staging slot:
+    ```bash
+    dotnet publish /p:PublishProfile=Staging /p:Configuration=Release
+    ```
+    > **Note :** If the there was an error in the publish process, restart the  Mod6Demo4-{YourInitials}-staging app services.
+29. Open new **Microsoft Edge**  browser. 
+30. Navigate to the following url:
+    ```url
+    https://mod6demo4-{YourInitials}-staging.azurewebsites.net/api/values
+    ```
+31. The response shoulde be a **JSON** with the following values:
+    ```json
+    ["value1", "value2", "value3"]
+    ```
+32. Switch to **Azure Portal**.
+33. Click on **App Services** on the left menu panel, to display all the **App Services**.
+34. Click on **mod6demo4**{YourInitials} app service.
+35. In **Overview** blade click on **Swap** on the top bar.
+36. In **Swap** blade added the following steps:
+    - In **Swap type** select **Swap**.
+    - In **Source** select **production**.
+    - In **Destination** select **Staging**.
+    - Click **OK**. 
+37. Switch to **Microsoft Edge** browser with the production url.
+38. Refresh the page (prass **F5**).
+39. The response shoulde be a **JSON** with the following values:
+    ```json
+    ["value1", "value2", "value3"]
+    ```
+
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
