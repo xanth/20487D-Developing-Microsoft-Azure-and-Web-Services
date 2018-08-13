@@ -244,6 +244,8 @@
     ```
 12. In the browser you should see an image.
 
+#Lesson 3: Injecting Dependencies into Controllers
+
 ### Demonstration: Using dependency injection with controllers
 
 1. Open **Command Line**.
