@@ -45,10 +45,123 @@
     >**Note:** Visual Studio publishes the application according to the settings that are provided in the profile file. After deployment finishes, Visual Studio opens Internet Explorer and displays the web app. The deployment process is quick, because the process only copies the content of the application to an existing virtual machine and does not need to wait for a new virtual machine to be created.
 24. In the browser navigate to the following **URL**:
     ```url
-    http://mo6demo1[YourInitials].azurewebsites.net/api/values
+    http://mod6demo1[YourInitials].azurewebsites.net/api/values
     ```
 25. Verify that the response is: **["value1","value2"]**.
-25. Close all open windows.
+26. Close all open windows.
+
+# Lesson 3: Continuous Delivery with Visual Studio Team Services
+
+### Demonstration: Continuous delivery to websites with Git and VSTS
+
+#### Preparation Steps
+  
+To present this demonstration, you must have a **Microsoft account**. If you have not created a Microsoft account before, create one before you start the demonstration.
+
+> **Important!** Make sure you are connected to your Microsoft account in Visual Studio 2017 before starting this demonstration!
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com**.
+3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog appears, click **Yes**.
+   >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+5. Click **App Services** on the left menu panel, to display all the **App Services**.
+    - Click on **Add** in the **App Services** blade, letting you select app service template.
+    - Click on **Web App** in the **Web** blade, overview of the template will be shown.
+    - Click on **Create** button in the **Web App** blade.
+6. To create the **Web App** fill-in the following fields:
+    - In the **App Name** text box, type the following web app name: **mod6demo3**{YourInitials}.
+        >**Note:** The **App Name** will be part of the URL.
+    - In the **Resource Group**  select **Create new**, and type in the text box below **mod6demo3**.
+    - Click on **App Service plan/Location** and then click on **Create new**, then open **New App Service Plan** blade, fill-in the following information:
+        - In the **App Service plan** text box type: **Mod6Demo3ServicePlan**.
+        - Click on **OK**.
+    - Click on **Create** and wait that **App Services** is created.
+7. Open new tab in the browser and navigate to **https://www.visualstudio.com/team-services/** and click **Get started for free**.
+8. On the **Sign in** page, enter your **Microsoft account** email address,and then click **Next**.
+    >**Note:** If instead of a **Sign in** page, you see a **Pick an account** page, pick your account and click **Next**.
+    - On the **Enter password** page, enter your password, and then click **Sign in**.
+    >**Note:** If this is the first time you logged in with your account to VSTS, follow the next steps, else skip to step 14.
+9.  In the **Host my projects at** page, enter a unique name. (We will relate to that unique name as _youraccount_ from now on.)
+10. Under **Manage code using**, select **Team Foundation Version Control** then click on **Continue**.
+    >**Note:** Wait until the account creation is done and you will redirect to the **MyFirstProject** page.
+12. If you already have projects in your account, click **New Project**, else skip to the next step.
+13. In the **Create new project** page, enter the following details:
+    - Project name: **MyApp**
+    - Version control: **Git**
+    - Click on **Create**. 
+    > **Note:** Wait for the project to be created.
+14. In **MyApp** page, click on **Generate Git credentials** and enter the following details:
+    - Alias: **mod6demo3**
+    - Password: **Password123**
+    - Confirm Password: **Password123**
+    - Click on **Save Git Credentials**
+15. Click on **Build and release** on the top blade.
+16. Click on **New pipeline**.
+17. In **Select a source** choose **VSTS Git**, then click on **Continue**.
+18. Select **Azure Web App for ASP.NET**, then click on **Apply**.
+19. In **Azure subscription**, enter the following details:
+    - Select your azure subscription.
+    - Click on **Authorize**.
+    - In the popup window login with your azure credentials.
+20. In **App service name** select **mod6demo3**{YourInitials}.
+21. Click on **Triggers** tab, then click on **Add** under **Branch filters**.
+22. Click on **Save $ queue** tab and select **Save**, then click **Save** again in the popup window. 
+23. Open **Command Line**.
+24. Run the following command to Switch directory:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod06\Demofiles
+    ```
+25. Run the following command to clone repository to local repository:
+    ```bash
+    git clone  https://_youraccount_.visualstudio.com/MyApp/_git/MyApp
+    ```
+    > **Note:** Replace **_youraccount_** with the name that was provided in point 5.
+    - Enter UserName: **mod6demo3**
+    - Enter Password: **Password123**
+26. Run the following command to switch directory to **MyApp**:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
+    ```
+27. Run the following command to create a new **WeaApi** project:
+    ```bash
+    dotnet new webapi -n MyProject
+    ```
+28. Run the following command to create a new **Solution**:
+    ```bash
+    dotnet new sln -n Mod6Demo3
+    ```
+29. Run the following command to add **MyApp** project to **Mod6Demo3** solution:
+    ```bash
+    dotnet sln Mod6Demo3 add MyApp\MyApp.csproj
+    ```
+30. Run the following command to add the new files for the next commit:
+    ```bash
+    git add .
+    ``` 
+31. Run the following command to **commit** the changes:
+    ```bash
+    git commit -m "my first commit"
+    ```
+32. Run the following command to **push** the changes to our repository:
+    ```bash
+    git push
+    ```
+33. Return to **Visual studio team services** and click on **Build and Release**, 
+34. Locate the pipeline that was created and then click on the **build id** (starts with hash tag).
+    > **Note:** Wait until the build is finished. 
+35. Navigate to the **Web App** url that was created in azure:
+    ```url
+    https://Mod6Demo3{YourInitials}.azurewebsites.net/api/values
+    ```
+36. The response shoulde be a **JSON** with the following values:
+    ```json
+    ["value1", "value2"]
+    ```
+37. Close all windows.
+
 
 # Lesson 4: Deploying to Staging and Production Environments 
 
@@ -107,44 +220,44 @@
     ```
     > **Note :** If the there was an error in the publish process, restart the **mod6demo4**{YourInitials} app services.
 19. Open **Microsoft Edge** browser. 
-22. Navigate to the following url:
+20. Navigate to the following url:
     ```url
-    https://Mod6Demo4-{YourInitials}.azurewebsites.net/api/values
+    https://Mod6Demo4{YourInitials}.azurewebsites.net/api/values
     ```
-23. The response shoulde be a **JSON** with the following values:
+21. The response shoulde be a **JSON** with the following values:
     ```json
     ["value1", "value2"]
     ```
-24. Switch to **VSCode**.
-25. Expand **Controllers** and double click on **ValuesController**.
-26. Locate **Get** method and add to the array **value3**.
-27. Switch to **Command Line**.
-28. Paste the following command to publish in the staging slot:
+22. Switch to **VSCode**.
+23. Expand **Controllers** and double click on **ValuesController**.
+24. Locate **Get** method and add to the array **value3**.
+25. Switch to **Command Line**.
+26. Paste the following command to publish in the staging slot:
     ```bash
     dotnet publish /p:PublishProfile=Staging /p:Configuration=Release
     ```
     > **Note :** If the there was an error in the publish process, restart the  Mod6Demo4-{YourInitials}-staging app services.
-29. Open new **Microsoft Edge**  browser. 
-30. Navigate to the following url:
+27. Open new **Microsoft Edge**  browser. 
+28. Navigate to the following url:
     ```url
     https://mod6demo4-{YourInitials}-staging.azurewebsites.net/api/values
     ```
-31. The response shoulde be a **JSON** with the following values:
+29. The response shoulde be a **JSON** with the following values:
     ```json
     ["value1", "value2", "value3"]
     ```
-32. Switch to **Azure Portal**.
-33. Click on **App Services** on the left menu panel, to display all the **App Services**.
-34. Click on **mod6demo4**{YourInitials} app service.
-35. In **Overview** blade click on **Swap** on the top bar.
-36. In **Swap** blade added the following steps:
+30. Switch to **Azure Portal**.
+31. Click on **App Services** on the left menu panel, to display all the **App Services**.
+32. Click on **mod6demo4**{YourInitials} app service.
+33. In **Overview** blade click on **Swap** on the top bar.
+34. In **Swap** blade added the following steps:
     - In **Swap type** select **Swap**.
     - In **Source** select **production**.
     - In **Destination** select **Staging**.
     - Click **OK**. 
-37. Switch to **Microsoft Edge** browser with the production url.
-38. Refresh the page (prass **F5**).
-39. The response shoulde be a **JSON** with the following values:
+35. Switch to **Microsoft Edge** browser with the production url.
+36. Refresh the page (prass **F5**).
+37. The response shoulde be a **JSON** with the following values:
     ```json
     ["value1", "value2", "value3"]
     ```
