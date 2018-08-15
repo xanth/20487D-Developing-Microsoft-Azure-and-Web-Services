@@ -28,8 +28,8 @@ After completing this lab, you will be able to:
 #### Task 2: Add action methods to the controller for GET, POST, and PUT
 
 1. Add new **GET** action with **id** param and return **Booking** entity.
-1. Add new **POST** action with **Booking** param and return **Booking** entity.
-2. Add new **PUT** action with  **id** and **Booking** param and return **Booking** entity.
+2. Add new **POST** action with **Booking** param and return **Booking** entity.
+3. Add new **PUT** action with  **id** and **Booking** param and return **Booking** entity.
 
 ### Exercise 2: Use the API from a browser
 
