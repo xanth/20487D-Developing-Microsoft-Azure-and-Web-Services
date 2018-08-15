@@ -262,7 +262,7 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
     ["value1", "value2", "value3"]
     ```
 
-# Lesson 4: Defining Service Interfaces with Azure API Management 
+# Lesson 5: Defining Service Interfaces with Azure API Management 
 
 ### Demonstration: Importing and testing an OpenAPI specification
 
@@ -295,7 +295,37 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
 14. Click on **Send**, and check that the response is **200** with collection of sessions.
 15. Click on **GetSession**, then inside **value** textbox type **100**;
 16. Click on **Send**, and check that the response is **200** with session data.
-17. Close all windows.
+    >**Note:** The next demo will continue from this point.
+
+# Lesson 5: Defining Service Interfaces with Azure API Management 
+
+### Demonstration: Limiting call rates using API Management
+
+#### Preparation Steps
+
+This demo we will continue the steps from previous demo.
+
+#### Demonstration Steps
+
+1. Click on **All resources** and then click on the **API Management service** from the previous demo.
+2. Click on **APIs** under **API MANAGEMENT** section.
+3. Click on **Demo Conference API** under **All APIs** section.
+4. Select **All operations**.
+5. In the Inbound processing window, click the triangle (next to the pencil) and select **Code editor**.
+6. Position the cursor inside the **\<inbound\>** element.
+7. In the right window, under **Access restriction policies**, click **+ Limit call rate per key**.
+8. Modify your **rate-limit-by-key** code (in the **\<inbound\>** element) to the following code:
+   ```xml
+    <rate-limit-by-key calls="2" renewal-period="60" counter-key="@(context.Subscription.Id)" />
+   ```
+9. Select **Demo Conference API**.
+10. Click the **GetSessions** operation.
+11. Select the **Test** tab.
+12. Press **Send** two times in a row.
+13. After sending the request 2 times, you get **429 Too many requests** response.
+14. Wait 60 seconds and press **Send** again. This time you should get a **200 OK** response.
+15. Close all windows.
+
 
 ©2018 Microsoft Corporation. All rights reserved.
 
