@@ -262,6 +262,41 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
     ["value1", "value2", "value3"]
     ```
 
+# Lesson 4: Defining Service Interfaces with Azure API Management 
+
+### Demonstration: Importing and testing an OpenAPI specification
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com**.
+3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog appears, click **Yes**.
+   >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+5. Click on **Create a resource** on the left menu panel.
+6. In the **Search** textbox type **API management** and click **Enter**, then click on **Create**.
+7. In the **API Management service** page, enter the following details:
+   - Name: **Mod6demo5**{YourInitials}
+   - Resorce group:
+        - Select **Create new**
+        - Type in the textbox **Mod6Demo5ResourceGroup**
+   - Organization name: Your organization
+   - Click on **Create**
+8. Wait until the **API Management** creation is done.
+9. Click on **All resources** and then click on the new **API Management** that was created.
+10. Click on **APIs** under **API MANAGEMENT** section.
+11. Click on **OpenAPI Specification**, then enter the following details:
+    - In OpenAPI specification text box paste the following url: **http://conferenceapi.azurewebsites.net/?format=json**
+    > **Note:** The following URL is a **Swagger JSON API** that provided by Microsoft and hosted on Azure.
+    - In Products select **Unlimited**.
+    - Click on **Create**.
+12. Click on **Demo Conference API** under **All APIs** section.
+13. Click on **Test** tab, then click on **GetSessions**.
+14. Click on **Send**, and check that the response is **200** with collection of sessions.
+15. Click on **GetSession**, then inside **value** textbox type **100**;
+16. Click on **Send**, and check that the response is **200** with session data.
+17. Close all windows.
+
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
