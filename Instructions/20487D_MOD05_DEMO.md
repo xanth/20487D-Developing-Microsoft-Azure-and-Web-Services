@@ -148,10 +148,10 @@
 2. Paste the following command in order to launch a default **ASP.NET Core** container, which listens on a default port:
 
 ```bash
-    docker run --name aspnetcore_sample --rm -it -p 8000:80 microsoft/dotnet-samples:aspnetapp​
+    docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
 ```
-3. Open a browser and nevigate to **localhost:8000**.
-4. Verify that you are getting the default **ASP.NET Core** starter page.
+1. Open a browser and nevigate to **localhost:8000**.
+2. Verify that you are getting the default **ASP.NET Core** starter page.
 
 
 
@@ -313,7 +313,7 @@
     ```
 14. Paste the following command in order to create a new **Azure Function** for your newly **Function** project and then press **Enter**:
     ```bash
-        func new --language C# --template "Http Trigger" --name MyAzureFunc
+        func new --language C# --template "HttpTrigger" --name MyAzureFunc
     ```
 15. Paste the following command in order to test the newly **Azure Function** locally and then press **Enter**:
     ```bash
