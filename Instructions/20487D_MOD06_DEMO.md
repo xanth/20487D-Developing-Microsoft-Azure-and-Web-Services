@@ -83,7 +83,7 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
 8. On the **Sign in** page, enter your **Microsoft account** email address,and then click **Next**.
     >**Note:** If instead of a **Sign in** page, you see a **Pick an account** page, pick your account and click **Next**.
     - On the **Enter password** page, enter your password, and then click **Sign in**.
-    >**Note:** If this is the first time you logged in with your account to VSTS, follow the next steps, else skip to step 14.
+    >**Note:** If this is the first time you logged in with your account to VSTS, follow the next steps, else skip to step 11.
 9.  In the **Host my projects at** page, enter a unique name. (We will relate to that unique name as _youraccount_ from now on.)
 10. Under **Manage code using**, select **Team Foundation Version Control** then click on **Continue**.
     >**Note:** Wait until the account creation is done and you will redirect to the **MyFirstProject** page.
@@ -125,7 +125,7 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
     ```bash
     cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
     ```
-27. Run the following command to create a new **WeaApi** project:
+27. Run the following command to create a new **WebApi** project:
     ```bash
     dotnet new webapi -n MyProject
     ```
@@ -135,7 +135,7 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
     ```
 29. Run the following command to add **MyApp** project to **Mod6Demo3** solution:
     ```bash
-    dotnet sln Mod6Demo3 add MyApp\MyApp.csproj
+    dotnet sln Mod6Demo3.sln add MyProject\MyProject.csproj
     ```
 30. Run the following command to add the new files for the next commit:
     ```bash
@@ -318,13 +318,14 @@ This demo we will continue the steps from previous demo.
    ```xml
     <rate-limit-by-key calls="2" renewal-period="60" counter-key="@(context.Subscription.Id)" />
    ```
-9. Select **Demo Conference API**.
-10. Click the **GetSessions** operation.
-11. Select the **Test** tab.
-12. Press **Send** two times in a row.
-13. After sending the request 2 times, you get **429 Too many requests** response.
-14. Wait 60 seconds and press **Send** again. This time you should get a **200 OK** response.
-15. Close all windows.
+9. Click **Save**.
+10. Select **Demo Conference API**.
+11. Click the **GetSessions** operation.
+12. Select the **Test** tab.
+13. Press **Send** two times in a row.
+14. After sending the request 2 times, you get **429 Too many requests** response.
+15. Wait 60 seconds and press **Send** again. This time you should get a **200 OK** response.
+16. Close all windows.
 
 
 ©2018 Microsoft Corporation. All rights reserved.
