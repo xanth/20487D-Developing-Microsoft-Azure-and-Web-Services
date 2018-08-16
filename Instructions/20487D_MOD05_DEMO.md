@@ -12,11 +12,11 @@
 1. Open **Command Line** as an administrator.
 2. Paste the following command and then press **Enter**:
    ```bash
-      cd [Repository Root]\Allfiles\Mod05\DemoFiles\Host In Windows Service
+      cd [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindows Service
    ```
 3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
    ```bash
-      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\Host In Windows Service
+      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindows Service
    ```
 4. Paste the following command in order to create your **Windows Service** and then press **Enter**:
    ```bash
@@ -97,9 +97,9 @@
 17. Open a **Command Line**.
 18. Paste the following command in order to create a new **Web App** and then press **Enter**:
    ```bash
-      dotnet new webapi --name BlueYonder.Hotels.Service -output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure"
+      dotnet new webapi --name BlueYonder.Hotels.Service -output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure"
    ```
-19. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure**.
+19. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure**.
 20. In the **Properties** folder, create a new folder called **PublishProfiles**.
 21. In the **PublishProfiles** create a new file called **Azure** with an extension of **.pubxml**..
 22. Open the file with any code editor and paste the following **XML** content in order to define the publish settings:
@@ -118,7 +118,7 @@
 24. Save the file.
 25. In the **Command Line**, paste the following command to point to your newly web app folder:
     ```bash
-        cd [RepostiroryRoot]\Allfiles\Mod05\DemoFiles\Host In Azure
+        cd [RepostiroryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure
     ```
 26. Paste the following command in order to host your web app in the **App Service** that you have created in **Azure**:
 
@@ -317,7 +317,7 @@
     ```
 15. Paste the following command in order to test the newly **Azure Function** locally and then press **Enter**:
     ```bash
-        func host start
+        func host start -- build
     ```
 16. Open a browser and nevigate to **http://localhost:7071/api/MyAzureFunc**.
 17. Add the following query string value to the end of this URL and press the Enter to execute the request:
