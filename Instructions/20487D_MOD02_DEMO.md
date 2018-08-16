@@ -76,7 +76,7 @@
         }
     }
     ```
-15. Right click on **Data** folder, select **New File**, then type **DbInitializer.cs** in the textbox on the top, and press **Enter**.
+15. Right click on **Database** folder, select **New File**, then type **DbInitializer.cs** in the textbox on the top, and press **Enter**.
 16. In the **DbInitializer.cs** add the following code:
     ```cs
     namespace MyFirstEF.Database
@@ -110,7 +110,7 @@
 20. Open **SQL Operations Studio**.
 21. Click on **New Connection**, Connetion window will appear.
 22. In **Server** textbox type **.\SQLEXPRESS** and then click on **Connect**.
-23. In **Server** blead expand **.\sqlexpress** and then expand **Database**.
+23. In **Server** blade expand **.\sqlexpress** and then expand **Database**.
 24. Make sure you see a database named **MyFirstEF**.
 25. In **Server**, expand the **MyFirstEF** node, and then expand the **Tables** node.
 26. Notice that both classes defined in the **MyFirstEF** project appear as tables, **dbo.Stores** and **dbo.Products**.
@@ -295,7 +295,7 @@
    ```cs
    public SchoolContext(DbContextOptions<SchoolContext> options)
         : base(options)
-   }
+   {
    }
    ```
 10. Located the method **OnConfiguring** add the following code:

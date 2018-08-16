@@ -26,7 +26,7 @@ namespace Sqlite.Dal.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDBMod2DemoSQLite;Trusted_Connection=True;");
             }
         }
 
