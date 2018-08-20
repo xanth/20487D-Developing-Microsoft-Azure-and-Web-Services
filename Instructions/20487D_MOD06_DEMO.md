@@ -50,6 +50,153 @@
 25. Verify that the response is: **["value1","value2"]**.
 26. Close all open windows.
 
+# Lesson 3: Web Deployment on Linux
+
+### Demonstration: Deploying an ASP.NET Core web service with Nginx
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com**.
+3. Click **Virtual machines** on the left menu panel.
+4. Click on **Add**, choose **Ubuntu Server**, select the latest version and then click on **Create**.
+5. Fill in the following details for creating **Virtual Machine** in **Basics** view:
+   - In **Name** type: **myvm**
+   - In **VM disk type** select **Standard HDD**
+   - In **Username** type: **myadmin**
+   - In **Authentication type** select **Password** then enter **Password123!** in **Password** and **Confirm Password**
+   - In **Resource group** type: **Mod6Demo2ResourceGroup**
+   - Click **OK**
+6. Fill in the following details in **Size** view:
+   - Select **D2s_v3** 
+   - Click **Select**
+7. Fill in the following details in **Settings** view:
+    - In **Select public inbound ports** select the following: **HTTP**, **HTTPS**, **SSH**
+    - Click **OK**
+8.  In **Summary** view click on **Create**.
+9.  Open **Command Line**.
+10. Run the following command to change directory to **Demo2Project**:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project
+    ```
+11. Run the following command to open the Project in **VSCode**:
+    ```bash
+    code .
+    ```
+12. In **VSCode** on the left menu double-click on **Demo2Project.csproj** file.
+13. In **Demo2Project.csproj** file locate **\<PropertyGroup\>** element and paste inside the following code:
+    ```xml
+    <RuntimeIdentifiers>win10-x64;osx.10.11-x64;ubuntu.16.10-x64</RuntimeIdentifiers>
+    ```
+14. Switch to **Command Line**.
+15. Run the following command to publish the app as **Self-contained**:
+    ```bash
+    dotnet publish -c release -r ubuntu.16.10-x64
+    ```
+16. Switch back to the **Azure Portal**.
+17. Click on **Virtual machines** and select **myvm**.
+18. Click on **Connect** in the top panel and copy **Login using VM local account** value.
+19. Switch to **Command Line**.
+20. Paste the **Login using VM local account** value and Press **Enter**.
+21. Type **yes** in the **Command Line**.
+22. Type the Password: **Password123!**.
+23. Paste the following command to switch directory to **var** folder:
+    ```bash
+    cd /var
+    ```
+24. Paste the following command to create a new folder named **demo**:
+    ```bash
+    sudo mkdir demo
+    ```
+25. Paste the following command to change ownership in the directory:
+    ```bash
+    sudo chown myadmin demo
+    ```
+26. Open new **Command Line** instance.
+27. Paste the following command to change directory to the published folder:
+    ```bash
+    [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
+    ```
+28. Paste the following command to publish the package to the **VM**:
+    ```bash
+    scp -r .\ubuntu.16.10-x64\ myadmin@<server_IP_address>:/var/demo
+    ```
+    >**Note:** Change **\<server_IP_address\>** with your **VM** ip.
+29. Enter **Password**: **Password123!** and press **Enter**.
+30. Switch to the **Command Line** that connected to the **VM**.
+31. Run the following command to switch directory to **Root** folder:
+    ```bash
+    cd /
+    ```
+32. Run the following commands to install **Nginx**:
+    ```bash
+    sudo -s
+    nginx=stable
+    add-apt-repository ppa:nginx/$nginx
+    apt-get update
+    apt-get install nginx
+    ```
+33. When finished press **Enter** again.
+34. When there is question: **Do you want to continue?** type **y** and press **Enter**.
+35. Run the following command to start the **Nginx** service:
+    ```bash
+    sudo service nginx start
+    ```
+36. Verify that the browser displays the default landing page for **Nginx**. The landing page is reachable at:
+    ```url
+    http://<server_IP_address>/index.nginx-debian.html
+    ```
+37. Run the following command to change directory to **Nginx** configuration folder:
+    ```bash
+    cd /etc/nginx/sites-available/
+    ```
+38. Run the following command to open the configuration file in **Vim** text editor:
+    ```bash
+    vi default
+    ```
+39. Press on **ESC** + **I** to change to edit mode.
+40. Replace the **Location** content with the following code:
+    ```bash
+        proxy_pass         http://localhost:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection keep-alive;
+        proxy_set_header   Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+    ``` 
+41. Press on **ESC** + **:** + **x** + **Enter** to save the file and exit.
+42. Run the following command to verify the syntax of the configuration file is correct:
+    ```bash
+    sudo nginx -t
+    ```
+43. Run the following command to force **Nginx** to pick up the the changes:
+    ```bash
+    sudo nginx -s reload
+    ```
+44. Run the following command to switch directory to the publish folder:
+    ```bash
+    cd /var/demo/ubuntu.16.10-x64/publish/
+    ```  
+45. Run the following command to execute premissions to the binary:
+    ```bash
+    chmod a+x ./Demo2Project
+    ```
+46. Run the following command to run the app:
+    ```bash
+    ./Demo2Project
+    ```
+47. Open **Microsoft Edge** browser.
+48. Navigate to the following **URL**:
+    ```url
+    <server_IP_address>/api/values
+    ```
+49. Verify the response is:
+    ```json
+    ["value1","value2"]
+    ```
+
 # Lesson 3: Continuous Delivery with Visual Studio Team Services
 
 ### Demonstration: Continuous delivery to websites with Git and VSTS
@@ -87,80 +234,80 @@ To present this demonstration, you must have a **Microsoft account**. If you hav
 9.  In the **Host my projects at** page, enter a unique name. (We will relate to that unique name as _youraccount_ from now on.)
 10. Under **Manage code using**, select **Team Foundation Version Control** then click on **Continue**.
     >**Note:** Wait until the account creation is done and you will redirect to the **MyFirstProject** page.
-12. If you already have projects in your account, click **New Project**, else skip to the next step.
-13. In the **Create new project** page, enter the following details:
+11. If you already have projects in your account, click **New Project**, else skip to the next step.
+12. In the **Create new project** page, enter the following details:
     - Project name: **MyApp**
     - Version control: **Git**
     - Click on **Create**. 
     > **Note:** Wait for the project to be created.
-14. In **MyApp** page, click on **Generate Git credentials** and enter the following details:
+13. In **MyApp** page, click on **Generate Git credentials** and enter the following details:
     - Alias: **mod6demo3**
     - Password: **Password123**
     - Confirm Password: **Password123**
     - Click on **Save Git Credentials**
-15. Click on **Build and release** on the top blade.
-16. Click on **New pipeline**.
-17. In **Select a source** choose **VSTS Git**, then click on **Continue**.
-18. Select **Azure Web App for ASP.NET**, then click on **Apply**.
-19. In **Azure subscription**, enter the following details:
+14. Click on **Build and release** on the top blade.
+15. Click on **New pipeline**.
+16. In **Select a source** choose **VSTS Git**, then click on **Continue**.
+17. Select **Azure Web App for ASP.NET**, then click on **Apply**.
+18. In **Azure subscription**, enter the following details:
     - Select your azure subscription.
     - Click on **Authorize**.
     - In the popup window login with your azure credentials.
-20. In **App service name** select **mod6demo3**{YourInitials}.
-21. Click on **Triggers** tab, then click on **Add** under **Branch filters**.
-22. Click on **Save $ queue** tab and select **Save**, then click **Save** again in the popup window. 
-23. Open **Command Line**.
-24. Run the following command to Switch directory:
+19. In **App service name** select **mod6demo3**{YourInitials}.
+20. Click on **Triggers** tab, then click on **Add** under **Branch filters**.
+21. Click on **Save $ queue** tab and select **Save**, then click **Save** again in the popup window. 
+22. Open **Command Line**.
+23. Run the following command to Switch directory:
     ```bash
     cd [Repository Root]\Allfiles\Mod06\Demofiles
     ```
-25. Run the following command to clone repository to local repository:
+24. Run the following command to clone repository to local repository:
     ```bash
     git clone  https://_youraccount_.visualstudio.com/MyApp/_git/MyApp
     ```
     > **Note:** Replace **_youraccount_** with the name that was provided in point 5.
     - Enter UserName: **mod6demo3**
     - Enter Password: **Password123**
-26. Run the following command to switch directory to **MyApp**:
+25. Run the following command to switch directory to **MyApp**:
     ```bash
     cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
     ```
-27. Run the following command to create a new **WebApi** project:
+26. Run the following command to create a new **WebApi** project:
     ```bash
     dotnet new webapi -n MyProject
     ```
-28. Run the following command to create a new **Solution**:
+27. Run the following command to create a new **Solution**:
     ```bash
     dotnet new sln -n Mod6Demo3
     ```
-29. Run the following command to add **MyApp** project to **Mod6Demo3** solution:
+28. Run the following command to add **MyApp** project to **Mod6Demo3** solution:
     ```bash
     dotnet sln Mod6Demo3.sln add MyProject\MyProject.csproj
     ```
-30. Run the following command to add the new files for the next commit:
+29. Run the following command to add the new files for the next commit:
     ```bash
     git add .
     ``` 
-31. Run the following command to **commit** the changes:
+30. Run the following command to **commit** the changes:
     ```bash
     git commit -m "my first commit"
     ```
-32. Run the following command to **push** the changes to our repository:
+31. Run the following command to **push** the changes to our repository:
     ```bash
     git push
     ```
-33. Return to **Visual studio team services** and click on **Build and Release**, 
-34. Locate the pipeline that was created and then click on the **build id** (starts with hash tag).
+32. Return to **Visual studio team services** and click on **Build and Release**, 
+33. Locate the pipeline that was created and then click on the **build id** (starts with hash tag).
     > **Note:** Wait until the build is finished. 
-35. Navigate to the **Web App** url that was created in azure:
+34. Navigate to the **Web App** url that was created in azure:
     ```url
     https://Mod6Demo3{YourInitials}.azurewebsites.net/api/values
     ```
-36. The response shoulde be a **JSON** with the following values:
+35. The response shoulde be a **JSON** with the following values:
     ```json
     ["value1", "value2"]
     ```
-37. Close all windows.
+36. Close all windows.
 
 
 # Lesson 4: Deploying to Staging and Production Environments 
