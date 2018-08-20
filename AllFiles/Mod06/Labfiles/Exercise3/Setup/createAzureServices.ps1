@@ -1,7 +1,7 @@
 ﻿### Login to the account
 Login-AzureRmAccount
 
-Write-Host "Please enter your subscription id" -NoNewline
+Write-Host "Please enter your subscription id: " -NoNewline
 $SubscriptionId = Read-Host
 
 Select-AzureRmSubscription -SubscriptionId $SubscriptionId
@@ -10,8 +10,10 @@ Select-AzureRmSubscription -SubscriptionId $SubscriptionId
 Write-Host "Please enter your name" -NoNewline
 Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
 $yourName = Read-Host
-$yourName = $yourName.ToLower()
 
+$yourName = $yourName.ToLower()
+$websiteName = "blueyonder" + $yourName
+$resourcesGroupName = "mod06lab3-RG"
 
 Function GetLocation {
 $Title = "Please choose customer location"
@@ -32,14 +34,14 @@ $location
 
 $location = GetLocation
 ### Create Resource group
-$RG = New-AzureRmResourceGroup -Name "$yourName-RG" -Location $location 
+$RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location 
 
 ### Deploy the webapp
-New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $yourName -hostingPlanName "plan$yourName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
+New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $websiteName -hostingPlanName "plan$websiteName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
 
 ### Deploy the code to the webapp
 cd "$PSScriptRoot\Code\"
-$profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $yourName -Format WebDeploy -OutputFile "$PSScriptRoot\Code\Properties\PublishProfiles\Azureprofile.xml"
+$profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $websiteName -Format WebDeploy -OutputFile "$PSScriptRoot\Code\Properties\PublishProfiles\Azureprofile.xml"
 
 $azureProfilePath = "$PSScriptRoot\Code\Properties\PublishProfiles\Azureprofile.xml"
 $publishProfilePath = "$PSScriptRoot\Code\Properties\PublishProfiles\Azure.pubxml"
@@ -47,7 +49,7 @@ $publishProfilePath = "$PSScriptRoot\Code\Properties\PublishProfiles\Azure.pubxm
 $azureProfileXml = [xml](Get-Content $azureProfilePath)
 $publishProfileXml = [xml](Get-Content $publishProfilePath)
 
-$publishProfileXml.Project.PropertyGroup.PublishSiteName = $yourName
+$publishProfileXml.Project.PropertyGroup.PublishSiteName = $websiteName
 $MSDeployPublishProfile = $azureProfileXml.publishData.publishProfile | where {$_.publishMethod -eq 'MSDeploy'}
 $publishProfileXml.Project.PropertyGroup.UserName = $MSDeployPublishProfile.userName
 $publishProfileXml.Project.PropertyGroup.Password = $MSDeployPublishProfile.userPWD
@@ -57,7 +59,7 @@ $publishProfileXml.Save($publishProfilePath)
 &dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
 
 ### Get the webapp site url
-$webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $yourName 
+$webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $resourcesGroupName 
 $urlname = $webapp.DefaultHostName
 $siteurl = "https://$urlname"
 Write-Host "The WebApp URL is: $siteurl"
