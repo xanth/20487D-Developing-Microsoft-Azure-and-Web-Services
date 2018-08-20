@@ -13,7 +13,7 @@ $yourName = Read-Host
 
 $yourName = $yourName.ToLower()
 $websiteName = "blueyonder" + $yourName
-$resourcesGroupName = "mod06lab3-RG"
+$resourcesGroupName = "Mod06Lab3-RG"
 
 Function GetLocation {
 $Title = "Please choose customer location"
@@ -59,7 +59,7 @@ $publishProfileXml.Save($publishProfilePath)
 &dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
 
 ### Get the webapp site url
-$webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $resourcesGroupName 
+$webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $websiteName 
 $urlname = $webapp.DefaultHostName
 $siteurl = "https://$urlname"
 Write-Host "The WebApp URL is: $siteurl"
