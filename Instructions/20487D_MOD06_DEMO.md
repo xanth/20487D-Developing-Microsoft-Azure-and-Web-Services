@@ -138,16 +138,24 @@
     ```
 33. When finished press **Enter** again.
 34. When there is question: **Do you want to continue?** type **y** and press **Enter**.
-35. Run the following command to change directory to **Nginx** configuration folder:
+35. Run the following command to start the **Nginx** service:
+    ```bash
+    sudo service nginx start
+    ```
+36. Verify that the browser displays the default landing page for **Nginx**. The landing page is reachable at:
+    ```url
+    http://<server_IP_address>/index.nginx-debian.html
+    ```
+37. Run the following command to change directory to **Nginx** configuration folder:
     ```bash
     cd /etc/nginx/sites-available/
     ```
-36. Run the following command to open the configuration file in **Vim** text editor:
+38. Run the following command to open the configuration file in **Vim** text editor:
     ```bash
     vi default
     ```
-37. Press on **ESC** + **I** to change to edit mode.
-38. Replace the **Location** content with the following code:
+39. Press on **ESC** + **I** to change to edit mode.
+40. Replace the **Location** content with the following code:
     ```bash
         proxy_pass         http://localhost:5000;
         proxy_http_version 1.1;
@@ -158,33 +166,33 @@
         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Proto $scheme;
     ``` 
-39. Press on **ESC** + **:** + **x** + **Enter** to save the file and exit.
-40. Run the following command to verify the syntax of the configuration file is correct:
+41. Press on **ESC** + **:** + **x** + **Enter** to save the file and exit.
+42. Run the following command to verify the syntax of the configuration file is correct:
     ```bash
     sudo nginx -t
     ```
-41. Run the following command to force **Nginx** to pick up the the changes:
+43. Run the following command to force **Nginx** to pick up the the changes:
     ```bash
     sudo nginx -s reload
     ```
-42. Run the following command to switch directory to the publish folder:
+44. Run the following command to switch directory to the publish folder:
     ```bash
     cd /var/demo/ubuntu.16.10-x64/publish/
     ```  
-43. Run the following command to execute premissions to the binary:
+45. Run the following command to execute premissions to the binary:
     ```bash
     chmod a+x ./Demo2Project
     ```
-44. Run the following command to run the app:
+46. Run the following command to run the app:
     ```bash
     ./Demo2Project
     ```
-45. Open **Microsoft Edge** browser.
-46. Navigate to the following **URL**:
+47. Open **Microsoft Edge** browser.
+48. Navigate to the following **URL**:
     ```url
     <server_IP_address>/api/values
     ```
-47. Verify the response is:
+49. Verify the response is:
     ```json
     ["value1","value2"]
     ```
