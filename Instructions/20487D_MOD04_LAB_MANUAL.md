@@ -14,7 +14,7 @@ After completing this lab, you will be able to:
 - Add inversion of control by using Dependency Injection to the project.
 - Create cache mechanism and action filters.
 - Add middleware to inform the client via header response.
-- 
+  
 
 ### Exercise 1: Use Dependency Injection to get a Repository object
 

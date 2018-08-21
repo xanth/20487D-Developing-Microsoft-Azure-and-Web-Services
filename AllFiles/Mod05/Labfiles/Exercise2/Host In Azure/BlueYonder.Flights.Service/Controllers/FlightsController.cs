@@ -12,15 +12,30 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-	[HttpGet]
-        public IEnumerable<Flight>> GetAllFlights()
+        [HttpGet]
+        public IEnumerable<Flight> GetAllFlights()
         {
             using (var flightContext = new FlightContext())
             {
-                var flights = flightContext.Flights.ToList();
+                var flights = flightContext.Flights.Include(f => f.Travelers).ToList();
                 return flights;
+            }
+        }
+
+        [HttpPost]
+        [Route("BookFlight")]
+        public void BookFlight(int flightId, [FromBody]IEnumerable<Traveler> travelers)
+        {
+            using (var flightContext = new FlightContext())
+            {
+                var flight = flightContext.Flights.FirstOrDefault(f => f.FlightId == flightId);
+                if (flight != null)
+                {
+                    flight.Travelers = travelers.ToList();
+                    flightContext.SaveChanges();
+                }
             }
         }
     }
 }
-		
+

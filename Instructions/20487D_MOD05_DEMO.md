@@ -342,13 +342,13 @@
     ```            
     >**NOTE:** Replace **{Your App name}** with your actual app name in azure that you wrote in point number 6.
 21. Open a browser and nevigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}**.
-    >**NOTE:** Replace **{Your App name}** with your actual app name and replace **<yourname>** variable with your actual name.
+    >**NOTE:** Replace **{Your App name}** with your actual app name and replace **{Your Name}** variable with your actual name.
 22. Check that you are getting a good response like the following:
 	 ```cs
         "Hello {Your Name}"
      ```
 
-     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.  
+     >**NOTE:** This is the response from **Microsoft Edge**. Other browsers may include displayed XML.  
 
 
      
