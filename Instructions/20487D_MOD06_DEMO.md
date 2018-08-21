@@ -1,4 +1,4 @@
-# Module 2: Querying and Manipulating Data Using Entity Framework
+# Module 6: Deploying and managing services
 
  Wherever you see a path to file starting at [repository root], replace it with the absolute path to the directory in which the 20487 repository resides. 
  e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [repository root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
