@@ -189,31 +189,12 @@ In this exercise, you will create a new Windows Service, start and stop it using
 
 #### Task 1: Create a new Function App project in Visual Studio
 
-
-1. Open **Command Prompt**.
-2. Change directory in the command line by pasting the following command and then press **Enter**:
+1. Open **Command Prompt** directory in the command line by pasting the following command and then press **Enter**:
     ```bash
     cd [RepositoryRoot]\AllFiles\Mod05\Labfiles\Exercise4
     ```
-3.  install the following package:
-      ```bash
-        npm i -g azure-functions-core-tools@core --unsafe-perm true
-    ```  
-4.  Paste the following command in order to create a **local Functions Project**:
-    ```bash
-        func init BlueYonder.Flights.GroupProxy -n --worker-runtime dotnet
-    ```
-5.  Change directory to the newly created function project folder by pasting the following command and then press **Enter**:
-    ```bash
-        cd BlueYonder.Flights.GroupProxy
-    ```
-6.  Paste the following command in order to open the project in **VSCode** and then press **Enter**: 
-    ```bash
-    code .
-    ```
-7. Right-click on **BlueYonder.Flights.GroupProxy** folder, point to **Add** and then click **New File**
-8.   In the **File name** box, type **Traveler.cs** and then click on the **Enter** button.
-9.  in the **Traveler.cs** paste the following code:
+2.  Create a **local Functions Project** named **BlueYonder.Flights.GroupProxy**.
+3.  Open the project in **VSCode** and add new **Traveler.cs** file with the following code:  
     ```bash
     using System;
 
@@ -230,12 +211,7 @@ In this exercise, you will create a new Windows Service, start and stop it using
        }
     }
     ```
-10. Paste the following command in order to create a new Azure Function for your newly Function project and then press Enter:
-    ```bash
-    func new --name BookFlightFunc
-     ```
-11.  In the **Select a template** Choose **Http Triger**.
-
+4.  Create a new Azure Function for your newly Function project with **template** of **Http Triger**.
 
 #### Task 2: Implement an HTTP trigger that invokes the flights booking Azure Web App
 
@@ -278,25 +254,16 @@ In this exercise, you will create a new Windows Service, start and stop it using
 
 #### Task 3: Test the Function App locally in a browser
 
-1.  Paste the following command in order to test the newly **Azure Function** locally and then press **Enter**:
-    ```bash
-        func host start --build
-    ```
+1.  Test the newly **Azure Function** locally.
 2. Open a browser and navigate to **http://localhost:7071/api/BookFlightFunc?flightId=1**.
-3. Check that you are getting a good response like the following:
-    ```
-    Request to book flight was sent successfully
-    ```
-1. Check that the travelers were actually booked to flight number 1 by opening a browser and navigate to the following address:<br/>
+3. Check that you are getting a good response.
+4. Check that the travelers were actually booked to flight number 1 by opening a browser and navigate to the following address:<br/>
 
    **http://blueyonder-flights-{Your Initials}.azurewebsites.net/api/flights**
 
     >**NOTE:** Replace **{Your Initials}** with your actual initials.
 
-2. Check that you are getting a good response like the following:
-    ```json
-    [{"flightId":1,"origin":"New York","destination":"Paris","flightNumber":"204837D","departureTime":"2018-10-10T00:00:00","travelers":[{"travelerId":1,"firstName":"Jonathan","lastName":"James","mobilePhone":"+61 0658748","passport":"204837DCBA","email":"204837Dazure@gmail.com"},{"travelerId":2,"firstName":"James","lastName":"Barkal","mobilePhone":"+61 0658355","passport":"204837DCBABC","email":"204837Dfunction@gmail.com"}]},{"flightId":2,"origin":"Paris","destination":"Rome","flightNumber":"204837C","departureTime":"2017-10-10T00:00:00","travelers":[]}]
-    ```    
+5. Check that you are getting a good response in **JSON** format.
 
 ### Exercise 2: Deploy the service to Azure Functions
 
