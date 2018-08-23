@@ -107,3 +107,38 @@
     { customerId: "1" }
     ```
 18. close all windows.
+
+# Lesson 3: Working with Structured Data in Azure
+
+### Demonstration: Using CosmosDB with a graph database API
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com** and login with your credentials.
+3. Click **Azure Cosmos DB** on the left menu panel.
+4. Click **Add** on the top panel.
+5. In **Azure Cosmos DB** view fill the following details:
+   - In **ID** textbox type **mod7demo4**{YourInitials}.
+   - In **API** select **Gremlin (graph)**.
+   - In **Resource group** select **Create new** and type **Mod7Demo4ResourceGroup**
+   - click on **Create**.
+6. Wait to the database to be created.
+7. Click **Azure Cosmos DB** on the left menu panel, then click on **mod7demo4**{YourInitials}.
+8. Click on **+ Add Graph** in the top menu bar then add the following details:
+    - In **Database id** check **Create new** and type **mygraphgdb**.
+    - In **Graph Id** type **taskManager**.
+    - Click on **OK**.
+9. Expand **mygraphdb** and click on **taskManager**.
+10. Click on **Upload** in the top menu bar to upload all the data with **JSON** file.
+    - Click on the **folder** icon and select **GraphData.json** file in the path **[Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo4Assets**.
+    - Click on **Upload**.
+11. Expand **taskManager** and click on **Graph**.
+12. Click on **Execute Gremlin Query** to get all the vertex in the graph.
+13. Explore all the graph connections.
+14. Click on **JSON** tab to view the **gremlin query** result in **JSON** format.
+15. Type **g.V('Lab 1').outE('assigned-to')** in the textbox to get all the edges from **Lab 1** vertex and click on **Execute Gremlin Query**.
+16. View the **JSON** result that show all the users that assigned to **Lab 1** task. 
+17. Type **g.V('Sean Stewart').inE('managed-by')** in the textbox to get all the edges from **Sean Stewart** vertex and click on **Execute Gremlin Query**.
+18. View the **JSON** result that show all the users that managed by **Sean Stewart**.
+19. Close all windows. 
