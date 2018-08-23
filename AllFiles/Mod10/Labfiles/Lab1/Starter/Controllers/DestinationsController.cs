@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TestingHttpWithSwagger.Host.Models;
 using Microsoft.AspNetCore.Mvc;
+using  BlueYonder.Flights.Service.Models;
 
 namespace BlueYonder.Flights.Service.Controllers
 {
