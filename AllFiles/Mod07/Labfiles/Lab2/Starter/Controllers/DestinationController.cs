@@ -21,7 +21,7 @@ namespace BlueYonder.Itineraries.Service.Controllers
         }
 
         [HttpGet("StopOvers/{source}/{destination}/{maxDurationHours}")]
-        public async Task<ActionResult<string>> GetStopOvers(string source,string destination, int maxDurationHours)
+        public async Task<ActionResult<List<List<string>>>> GetStopOvers(string source,string destination, int maxDurationHours)
         {
             
         }

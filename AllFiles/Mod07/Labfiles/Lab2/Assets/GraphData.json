@@ -32,7 +32,7 @@
   },
   {
     "label": "flight",
-    "duration": 7.5,
+    "duration": 7,
     "frequency": 14,
     "id": "83b653e4-c5b8-401a-8c67-5b49591f9c64",
     "_sink": "New York",
@@ -54,7 +54,7 @@
   },
   {
     "label": "flight",
-    "duration": 1.5,
+    "duration": 1,
     "frequency": 18,
     "id": "0da50e4c-f42e-4a35-83d2-ba87d99d0eab",
     "_sink": "London",

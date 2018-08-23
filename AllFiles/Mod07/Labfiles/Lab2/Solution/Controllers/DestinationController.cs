@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Gremlin.Net.Driver;
 using Gremlin.Net.Structure.IO.GraphSON;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace BlueYonder.Itineraries.Service.Controllers
 {
@@ -41,13 +42,27 @@ namespace BlueYonder.Itineraries.Service.Controllers
         }
 
         [HttpGet("StopOvers/{source}/{destination}/{maxDurationHours}")]
-        public async Task<ActionResult<string>> GetStopOvers(string source,string destination, int maxDurationHours)
+        public async Task<ActionResult<List<List<string>>>> GetStopOvers(string source,string destination, int maxDurationHours)
         {
-            string gremlinQuary = "";//$"g.V('{destination}').inE('located-in').has('distance', lt({distanceKm})).outV()";
+            string gremlinQuary = $"g.V('{source}').repeat(outE().inV().simplePath()).until(hasId('{destination}')).path().by('id').by('duration')";
+
             using (var client = new GremlinClient(_gremlinServer, new GraphSON2Reader(), new GraphSON2Writer(), GremlinClient.GraphSON2MimeType))
             {
                 var result = await client.SubmitAsync<dynamic>(gremlinQuary);
-                return JsonConvert.SerializeObject(result);
+
+                var obj = result.Select(i => i["objects"]).ToList();
+                var flights = new List<List<string>>();
+                foreach (IEnumerable<dynamic> item in obj)
+                {
+                    var cities = item.OfType<string>().ToList();
+                    var distance = item.OfType<long>().Sum();
+                    if(distance < maxDurationHours)
+                    {
+                        flights.Add(cities);
+                    }
+                }
+
+                return flights;
             }
         }
 
