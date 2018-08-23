@@ -57,3 +57,50 @@
     - In **Password** type **Password123!**
     - Click on **Connect**.
 19. Now you can query the database locally.
+
+# Lesson 3: Working with Structured Data in Azure
+
+### Demonstration: Using CosmosDB with the MongoDB API
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com** and login with your credentials.
+3. Click **Azure Cosmos DB** on the left menu panel.
+4. Click **Add** on the top panel.
+5. In **Azure Cosmos DB** view fill the following details:
+   - In **ID** textbox type **mod7demo3**{YourInitials}.
+   - In **API** select **MongoDB**.
+   - In **Resource group** select **Create new** and type **Mod7Demo3ResourceGroup**
+   - click on **Create**.
+6. Wait to the database to be created.
+7. Click **Azure Cosmos DB** on the left menu panel, then click on **mod7demo3**{YourInitials}.
+8. Click on **Data Explorer** on the left blade menu in **mod7demo3**{YourInitials} view.
+9. Click on **New Collection** on the top panel and fill the following details:
+   - In **Database id** select **Create new** and type **mydb**.
+   - In **Collection id** type **customers**.
+   - Click on **Add unique key**, then type **customerId**.
+   - Click on **Create**.
+10. Click on **New Collection** on the top panel and fill the following details:
+   - In **Database id** select **Use existing** then select **mydb**.
+   - In **Collection id** type **orders**.
+   - Click on **Create**.
+11. Right click on **customers** collection, then select **New Shell**.
+12. Copy all the content from **CustomersCollectionData.json** file in [Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo3Assets.
+13. In **shell 1** console paste the content from **CustomersCollectionData.json** and Press **Enter**, to add **customers** data.
+12. Copy all the content from **OrdersCollectionData.json** file in [Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo3Assets.
+13. In **shell 1** console paste the content from **OrdersCollectionData.json** and Press **Enter**, to add **orders** data.
+14. Right click on **orders** collection and select **New Query**
+15. Paste the following query and click on **Execute Query** to get all the orders:
+    ```json
+    {}
+    ```
+16. Paste the following query and click on **Execute Query** to get all the orders **price** greater than 20:
+    ```json
+    { price: {$gt: 20} }
+    ```
+17. Paste the following query and click on **Execute Query** to get all the orders of customer 1:
+    ```json
+    { customerId: "1" }
+    ```
+18. close all windows.
