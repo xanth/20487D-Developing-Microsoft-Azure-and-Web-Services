@@ -19,7 +19,7 @@ namespace BlueYonder.Flights.DAL.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLExpress01;Database=Mod7Lab3DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Mod7Lab3DB;Trusted_Connection=True;");
             }
         }
 

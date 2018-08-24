@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using BlueYonder.Flights.DAL.Repository;
 using BlueYonder.Flights.DAL.Models;
 using StackExchange.Redis;
+using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
 
 namespace BlueYonder.Flights.Service.Controllers
@@ -14,13 +15,13 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private IFlightsRepository _flightsRepository;
+        private readonly IFlightsRepository _flightsRepository;
+        private readonly string _redisConnectionString;
         
-
-        public FlightsController(IFlightsRepository flightsRepository)
+        public FlightsController(IConfiguration configuration,IFlightsRepository flightsRepository)
         {
-           
             _flightsRepository = flightsRepository;
+            _redisConnectionString = configuration["RedisConnectionString"];
         }
 
         // GET api/values
@@ -34,29 +35,27 @@ namespace BlueYonder.Flights.Service.Controllers
         [HttpGet("{source}/{destination}/{date}")]
         public ActionResult<string> Get(string source,string destination,DateTime date)
         {
+            var key = source + destination + date.Date.ToShortDateString();
 
-            var result = _flightsRepository.GetFlightByDate(source,destination,date);
-            if (result == null)
-                return NotFound();
-            return Ok(result);
-            
+            ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(_redisConnectionString);
+            IDatabase redisDB = connection.GetDatabase();
+
+            var cacheResult = redisDB.StringGet(key);
+            if (!cacheResult.HasValue)
+            {
+                var result = _flightsRepository.GetFlightByDate(source, destination, date);
+                if (result == null)
+                    return NotFound();
+                redisDB.StringSet(key,JsonConvert.SerializeObject(result));
+                return Ok(result);
+            }
+            Request.HttpContext.Response.Headers.Add("X-Cache","true");
+            return Ok(cacheResult.ToString());
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }
