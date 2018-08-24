@@ -15,12 +15,12 @@
 1. Open **Microsoft Edge** browser.
 2. Navigate to **https://portal.azure.com** and login with your credentials.
 3. Click **Storage accounts** on the left menu panel.
-4. Click on **Add** on the top panel.
+4. Click on **Add** on the top bar.
 5. In **Create storage account** view fill in the following details:
    - In **Name** textbox type **mod7demo2**{YourInitials}.
    - In **Resource group** select **Create new** and type **Mod7demo2ResourceGroup**.
    - Click on **Create**.
-6. Wait to the **Storage Account** to create and then click on **Refresh** button on the top panel in **Storage accounts** view.
+6. Wait to the **Storage Account** to create and then click on **Refresh** button on the top bar in **Storage accounts** view.
 7. Click on **mod7demo2**{YourInitials} storage account.
 8. Click on **Blobs** on the left blade menu under **BLOB SERVICE** section.
    - Click on **+ Container** and type **bacpaccontainer**.
@@ -39,7 +39,7 @@
     - In **Resource group** select **Use existing** and select **Mod7demo2ResourceGroup** resource group.
     - Click **Create**.
 10. Click on **All resources**, then click on **mod7demo2sqlserver**{YourInitials}.
-11. In **mod7demo2sqlserver**{YourInitials} view click on  **Import database** on the top panel.
+11. In **mod7demo2sqlserver**{YourInitials} view click on  **Import database** on the top bar.
 12. In **Import database** view fill the following details:
     - Click on **Storage**,
     - Click on **mod7demo2**{YourInitials}.
@@ -70,7 +70,7 @@
 1. Open **Microsoft Edge** browser.
 2. Navigate to **https://portal.azure.com** and login with your credentials.
 3. Click **Azure Cosmos DB** on the left menu panel.
-4. Click **Add** on the top panel.
+4. Click **Add** on the top bar.
 5. In **Azure Cosmos DB** view fill the following details:
    - In **ID** textbox type **mod7demo3**{YourInitials}.
    - In **API** select **MongoDB**.
@@ -79,12 +79,12 @@
 6. Wait to the database to be created.
 7. Click **Azure Cosmos DB** on the left menu panel, then click on **mod7demo3**{YourInitials}.
 8. Click on **Data Explorer** on the left blade menu in **mod7demo3**{YourInitials} view.
-9. Click on **New Collection** on the top panel and fill the following details:
+9. Click on **New Collection** on the top bar and fill the following details:
    - In **Database id** select **Create new** and type **mydb**.
    - In **Collection id** type **customers**.
    - Click on **Add unique key**, then type **customerId**.
    - Click on **Create**.
-10. Click on **New Collection** on the top panel and fill the following details:
+10. Click on **New Collection** on the top bar and fill the following details:
    - In **Database id** select **Use existing** then select **mydb**.
    - In **Collection id** type **orders**.
    - Click on **Create**.
@@ -117,7 +117,7 @@
 1. Open **Microsoft Edge** browser.
 2. Navigate to **https://portal.azure.com** and login with your credentials.
 3. Click **Azure Cosmos DB** on the left menu panel.
-4. Click **Add** on the top panel.
+4. Click **Add** on the top bar.
 5. In **Azure Cosmos DB** view fill the following details:
    - In **ID** textbox type **mod7demo4**{YourInitials}.
    - In **API** select **Gremlin (graph)**.
@@ -142,3 +142,58 @@
 17. Type **g.V('Sean Stewart').inE('managed-by')** in the textbox to get all the edges from **Sean Stewart** vertex and click on **Execute Gremlin Query**.
 18. View the **JSON** result that show all the users that managed by **Sean Stewart**.
 19. Close all windows. 
+
+# Lesson 4: Geographically Distributing Data with Azure CDN
+
+### Demonstration: Configuring a CDN endpoint for a static website
+
+#### Demonstration Steps
+
+1. Open **Microsoft Edge** browser.
+2. Navigate to **https://portal.azure.com** and login with your credentials.
+3. Click **Storage accounts** on the left menu panel.
+4. Click **Add** on the top bar.
+5. In **Create storage account** view fill the following details:
+   - In **Name** textbox type **mod7demo5**{YourInitials}.
+   - In **Account kind** select **StorageV2(general purpose v2)**.
+   - In **Resource group** select **Create new** and type **Mod7Demo5ResourceGroup**
+   - click on **Create**.
+6. Wait for to the storage account to be created.
+7. Click **Storage accounts** on the left menu panel then click on **mod7demo5**{YourInitials}.
+8. In **mod7demo5**{YourInitials} view click on **Static website** under **SETTINGS** section on the left navigation bar.
+9. Click on **Enabled**.
+10. Click on **Save** on the top bar.
+11. Click on **$web** container that was created as a part of **static website** enablement.
+12. Click on **Upload** on the top bar.
+    - Click on **folder** icon and navigate to **[Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo5Assets**.
+    - Upload all files in the repository.
+    - Click on **Upload**.
+13. Return to **mod7demo5{YourInitials} - Static website (preview)**.
+14. In **Index document name** type **index.html**.
+15. Click on **Save** on the top bar.
+16. Copy **Primary endpoint** value for later use.
+    >**Note:** You can browse now to the **Primary endopint** to **index.hml** or **airplane1.jpg**.
+17. Click on **+ Create a resource** on the left menu panel.
+18. In the search box type **CDN** and select **CDN**, then click **Create**.
+19. In **CDN profile** view fill in the following details:
+    - In **Name** type **MyCDNProfile**{YourInitials}.
+    - In **Resource group** select **Use existing**, then select **Mod7Demo5ResourceGroup**.
+    - In **Pricing tier** select **Premium Verizon**.
+    - Check in **Create a new CDN endpoint now**.
+    - In **CDN endpoint name** type **mod7demo5endpoint**{YourInitials}.
+    - In **Origin type** select **Custom origin**.
+    - In **Origin hostname** type paste **Primary endpoint** value from point 16 with the following format **<account-name>.<zone-name>.web.core.windows.net**.
+    - Click on **Create**.
+20. wait for the **CDN profile** and **Endpoint** to be created.
+    > **Note:** It can take up to one hour the sync between the **storage static website** and the **endpoint**.
+21. Click on **All resources**, then click on the endpoint **mod7demo5endpoint**{YourInitials}.
+22. Click on **Endpoint hostname** link.
+    >**Note:** You should see **My Static Website**, if not wait a litle more.
+23. In the browser press on **F12** and click on **Network** tab.
+24. In the **URL** add **/airplane1.jpg** and press **Enter**.
+25. In the **Network** tab click on **airplane1.jpg** and check that in the **Response Headers** there is not **x-cache: HIT**.
+26. Refresh 5 time the page in a row.
+27. Check again in the **Response Headers** and locate **x-cache: HIT**.
+28. Close all windows.
+
+ 
