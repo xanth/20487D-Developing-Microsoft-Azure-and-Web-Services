@@ -16,37 +16,32 @@ namespace BlueYonder.Flights.Service.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly IFlightsRepository _flightsRepository;
-        private readonly string _redisConnectionString;
+        private readonly IDatabase _redisDB;
         
-        public FlightsController(IConfiguration configuration,IFlightsRepository flightsRepository)
+        public FlightsController(IConnectionMultiplexer connectionMultiplexer, IFlightsRepository flightsRepository)
         {
             _flightsRepository = flightsRepository;
-            _redisConnectionString = configuration["RedisConnectionString"];
+             _redisDB = connectionMultiplexer.GetDatabase();
         }
 
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Flight>> Get()
         {
             return Ok(_flightsRepository.GetAllFlights());
         }
 
-        // GET api/values/5
         [HttpGet("{source}/{destination}/{date}")]
         public ActionResult<string> Get(string source,string destination,DateTime date)
         {
             var key = source + destination + date.Date.ToShortDateString();
-
-            ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(_redisConnectionString);
-            IDatabase redisDB = connection.GetDatabase();
-
-            var cacheResult = redisDB.StringGet(key);
+            
+            var cacheResult = _redisDB.StringGet(key);
             if (!cacheResult.HasValue)
             {
                 var result = _flightsRepository.GetFlightByDate(source, destination, date);
                 if (result == null)
                     return NotFound();
-                redisDB.StringSet(key,JsonConvert.SerializeObject(result));
+                _redisDB.StringSet(key,JsonConvert.SerializeObject(result));
                 return Ok(result);
             }
             Request.HttpContext.Response.Headers.Add("X-Cache","true");

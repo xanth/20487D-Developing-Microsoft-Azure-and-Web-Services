@@ -8,9 +8,9 @@ namespace BlueYonder.Flights.DAL.Database
 {
     public class FlightsContext : DbContext
     {
-        public DbSet<Flight> Flight { get; set; }
+        public DbSet<Flight> Flights { get; set; }
 
-        public FlightsContext() //: base(options)
+        public FlightsContext(DbContextOptions options) : base(options)
         {
             DbInitializer.Initialize(this);
         }
@@ -19,7 +19,7 @@ namespace BlueYonder.Flights.DAL.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Mod7Lab3DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.\sqlexpress;Database=Mod7Lab3DB;Trusted_Connection=True;");
             }
         }
 

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using BlueYonder.Flights.DAL.Repository;
+using BlueYonder.Flights.Service.Middleware;
+using StackExchange.Redis;
 
 namespace BlueYonder.Flights.Service
 {
@@ -28,6 +23,7 @@ namespace BlueYonder.Flights.Service
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IFlightsRepository, FlightsRepository>();
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(Configuration["RedisConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +37,7 @@ namespace BlueYonder.Flights.Service
             {
                 app.UseHsts();
             }
-
+            app.UseMachineNameMiddleware();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
