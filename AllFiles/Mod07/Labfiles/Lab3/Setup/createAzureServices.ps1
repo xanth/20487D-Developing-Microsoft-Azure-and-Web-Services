@@ -21,7 +21,6 @@ $Info = "Select location"
 $options = [System.Management.Automation.Host.ChoiceDescription[]] @("&WestEurope", "&WestUS", "&EastUS", "&SoutheastAsia")
 [int]$defaultchoice = 0
 $opt =  $host.UI.PromptForChoice($Title , $Info , $Options,$defaultchoice)
-$path = (get-item $PSScriptRoot).parent.FullName+"\Starter\BlueYonder.Flights\BlueYonder.Flights.Service"
 
 switch($opt)
     {
@@ -42,6 +41,8 @@ $RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $websiteName -hostingPlanName "plan$websiteName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
 
 ### Deploy the code to the webapp
+$path = (get-item $PSScriptRoot).parent.FullName+"\Starter\BlueYonder.Flights\BlueYonder.Flights.Service"
+Write-Host $path
 cd $path
 $profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $websiteName -Format WebDeploy -OutputFile "$path\Properties\PublishProfiles\Azureprofile.xml"
 
