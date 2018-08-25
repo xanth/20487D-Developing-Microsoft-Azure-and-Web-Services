@@ -21,7 +21,7 @@ $Info = "Select location"
 $options = [System.Management.Automation.Host.ChoiceDescription[]] @("&WestEurope", "&WestUS", "&EastUS", "&SoutheastAsia")
 [int]$defaultchoice = 0
 $opt =  $host.UI.PromptForChoice($Title , $Info , $Options,$defaultchoice)
-$path = (get-item $PSScriptRoot).parent.FullName+"\Solution\BlueYonder.Flights\BlueYonder.Flights.Service"
+$path = (get-item $PSScriptRoot).parent.FullName+"\Starter\BlueYonder.Flights\BlueYonder.Flights.Service"
 
 switch($opt)
     {
