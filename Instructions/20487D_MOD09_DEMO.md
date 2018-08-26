@@ -22,7 +22,7 @@
 10. Click on **Groups** in the **Manage** section.
 11. Click on **New group** in the top menu.
     - In the **Group type** list box, select **security**.
-    - In the **Group name** text box, enter **Mod11Group**.
+    - In the **Group name** text box, enter **Mod9Group**.
     - In the **Membership type** list box, select **Assigned**.
     - Click **Members**, select the guest user, and then click **Select**.
     - Click **Create**.
