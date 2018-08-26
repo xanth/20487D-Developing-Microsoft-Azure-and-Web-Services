@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using BlueYonder.Flights.Service.Repository;
 
 namespace BlueYonder.Flights.Service.Controllers
 {
@@ -13,6 +14,12 @@ namespace BlueYonder.Flights.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
+        private IPassangerRepository _passangerRepository;
+
+        public FlightsController(IPassangerRepository passangerRepository)
+        {
+            _passangerRepository = passangerRepository;
+        }
 
         [HttpGet("FinalizeFlight")]
         public async Task<ActionResult> FinalizeFlight()
@@ -27,14 +34,16 @@ namespace BlueYonder.Flights.Service.Controllers
             System.IO.MemoryStream stream = new MemoryStream();
             StreamWriter writer = new StreamWriter(stream);
             Random random = new Random();
-
-            for (byte i = 0; i < 100; i++)
+            writer.Write("All Passenger" + Environment.NewLine);
+            foreach (var passanger in _passangerRepository.GetPassangerList())
             {
-                writer.Write(random.Next(10));
+                writer.Write(passanger + Environment.NewLine);
             }
             writer.Flush();
             stream.Position = 0;
             return stream;
         }
+
+        
     }
 }

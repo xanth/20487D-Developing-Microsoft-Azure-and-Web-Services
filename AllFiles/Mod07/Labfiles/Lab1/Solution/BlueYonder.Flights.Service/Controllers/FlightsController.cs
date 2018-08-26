@@ -9,6 +9,7 @@ using System.IO;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.Extensions.Configuration;
+using BlueYonder.Flights.Service.Repository;
 
 namespace BlueYonder.Flights.Service.Controllers
 {
@@ -19,12 +20,16 @@ namespace BlueYonder.Flights.Service.Controllers
         private CloudBlobContainer _container;
         private CloudStorageAccount _storageAccount;
         private const string _manifests = "manifests";
+        private IPassangerRepository _passangerRepository;
 
-        public FlightsController(IConfiguration configuration)
+        public FlightsController(IConfiguration configuration, IPassangerRepository passangerRepository)
         {
+            _passangerRepository = passangerRepository;
             _storageAccount = CloudStorageAccount.Parse(configuration.GetConnectionString("BloggingDatabase"));
             CloudBlobClient blogClient = _storageAccount.CreateCloudBlobClient();
             _container = blogClient.GetContainerReference(_manifests);
+
+
         }
 
         [HttpGet("FinalizeFlight")]
@@ -65,14 +70,16 @@ namespace BlueYonder.Flights.Service.Controllers
             System.IO.MemoryStream stream = new MemoryStream();
             StreamWriter writer = new StreamWriter(stream);
             Random random = new Random();
-
-            for (byte i = 0; i < 100; i++)
+            writer.Write("All Passenger" + Environment.NewLine);
+            foreach (var passanger in _passangerRepository.GetPassangerList())
             {
-                writer.Write(random.Next(10));
+                writer.Write(passanger + Environment.NewLine);
             }
             writer.Flush();
             stream.Position = 0;
             return stream;
         }
+
+        
     }
 }
