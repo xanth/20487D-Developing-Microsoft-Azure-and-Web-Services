@@ -5,6 +5,62 @@
 2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
 3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
 
+# Lesson 2: Accessing Data in Azure Storage
+
+### Demonstration: Accessing blob storage from an ASP.NET Core application
+
+#### Demonstration Steps
+
+1. Open **Azure Portal**.
+2. Click **Storage account** on the left menu panel, to display all the **Storage account**.
+3. Click on **Add** in the **Storage account** blade and add the following information:
+    - In the **Name** textbox type: **blueyonder{YourInitials}**.
+    - In the **Account kind** combobox select **StorageV2 (general purpose v2)**.
+    - In the **Replication** combobox select **Locally-redundant storage (LRS)**.
+    - In the **Resource group** section check **Create new** and in the textbox type **Mod7Demo1**.
+    - Click on **Create**.
+4. Click on **blueyonder{YourInitials}** stroage account.
+5. Click on **Blobs** in **BLOB SERVICE** section on the left menu.
+6. Click on **Container** on the top bar to create new container. then add the following information:
+    - In the **Name** textbox type **vouchers**.
+    - In the **Public access level** combobox select **Private (no anonymous access)**.
+    - Click on **OK**.
+7. Click on **Access keys** in **SETTINGS** section on the left menu.
+8. Copy the **Connection string** value.
+9. Open **Command Line**.
+10. Run the following command to change directory to the **BlueYonder.Hotels.Service** project:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod07\Demofiles\Mod7Demo1Blob
+    ```
+11. Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+12. Click on **appsettings** file and replace the **connection string**.
+13. Expand **Controllers** and click on **ReservationController** and explore the following method:
+    - Explore the constructor that connected to **blob container**.
+    - Explore the **CreateVoucher** method that create and upload **voucher** file to the storage.
+    - Explore  the **GetVoucher** method that get the file by id from the storage.
+    >**Note:** Connection to **Storage** via **WindowsAzure.Storage** nuget.
+14. Switch to **Command Line** and run the following command to run the application:
+    ```bash
+    dotnet run
+    ```
+15. Open **Powershell**.
+16. Run the following command to invoke **CreateVoucher** action:
+    ```bash
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+    Invoke-WebRequest -Uri https://localhost:5001/api/reservation/createvoucher -ContentType "application/json" -Method POST -Body "'{Your Name}'"
+    ```
+17. Copy the **Guid** key form the **Content**.
+18. Switch **Azure Portal** locate **vouchers** container and verify that new file was added.
+19. Switch **Powershell** and run the following command to invoke **GetVoucher** action to receive the new file from the blob continar:
+    ```bash
+    $request = Invoke-WebRequest -Uri https://localhost:5001/api/reservation/Voucher/{Guid voucher}  -Method Get
+    $request.Content
+    ```
+20. View **voucher** file contnet from the blob continar. 
+
 
 # Lesson 3: Working with Structured Data in Azure
 
@@ -61,8 +117,6 @@
     - Click on **Connect**.
 19. Now you can query the database locally.
 
-# Lesson 3: Working with Structured Data in Azure
-
 ### Demonstration: Using CosmosDB with the MongoDB API
 
 #### Demonstration Steps
@@ -107,8 +161,6 @@
     { customerId: "1" }
     ```
 18. close all windows.
-
-# Lesson 3: Working with Structured Data in Azure
 
 ### Demonstration: Using CosmosDB with a graph database API
 
