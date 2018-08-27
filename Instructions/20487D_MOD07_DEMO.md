@@ -196,4 +196,56 @@
 27. Check again in the **Response Headers** and locate **x-cache: HIT**.
 28. Close all windows.
 
+# Lesson 5: Scaling with Out-of-Process Cache
+
+### Demonstration: Using Azure Redis cache for caching data
+
+#### Demonstration Steps
+
+1. Open **Azure Portal**.
+2. Click **+ Create a resource** on the left menu panel.
+3. Type in the search box **Redis Cache**, click on **Create** and add the following information:
+    - In **DNS name** type **mod7demo6redis**{YourInitials}
+    - In **Resource Group** select **Create new** and type **Mod07Demo6ResourceGroup**.
+    - Click on **Create**.
+4. Wait that the **Service** will create.
+5. Click on **All resource** on the left menu panel, to display all the **Resources**.
+6. Click on **mod7demo6redis**{YourInitials}.
+7. Click on **Access keys** in the **SETTINGS** section.
+8. Copy the **Primary connection string (StackExchange.Redis)** for later use.
+9.  Open **Command Line**.
+10. Run the following command to change directory to the **BlueYonder.Hotels.Service** service:
+    ```bash
+    cd [Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo6Redis\BlueYonder.Hotels.Service
+    ```  
+11.  Run the following command to open the project in **VSCode**:
+    ```bash
+    code .
+    ```
+12. Click on **appsettings.json** file and paste the **connection string** from point 8.
+13. Click on **HotelsController** file in the **Controllers** folder and explore the following code: 
+    - **Constructor injection** of **Redis** connection.
+    - **Get** method, which get data from cache as long as it`s available otherwise getting the data from the repository and cached it for 1 minute.
+    - **Post** method, adding new hotel to the repository.  
+14. Switch to **Command Line** and run the following command to run the service:
+    ```bash
+    dotnet run
+    ```
+15. Open **Microsoft Edge** browser and navigate the following **URL**:
+    ```url
+    https://localhost:5001/api/hotels
+    ```
+16. Verify that there is a response with array **Hotels**.
+17. Press on **F12** and select **Network** tab.
+18. Refresh the page and check that the response header has **X-cache: true**.
+19. Open **PowerShell**.
+20. Paste the following command to add a new hotel to the repository:
+    ```bash
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $hotelName = Read-Host -Prompt 'Enter hotel name' 
+    Invoke-WebRequest -Uri https://localhost:5001/api/hotels -ContentType "application/json" -Method POST -Body "'$hotelName'"
+    ```
+21. Refresh the browser page again and check if the new hotel was added to the list.
+    > **Note:** The cache is expires after 1 minute.
+
  
