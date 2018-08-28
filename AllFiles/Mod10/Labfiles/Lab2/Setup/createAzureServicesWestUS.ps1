@@ -49,3 +49,5 @@ $webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $webs
 $urlname = $webapp.DefaultHostName
 $siteurl = "https://$urlname"
 Write-Host "The WebApp URL is: $siteurl"
+
+cd ..

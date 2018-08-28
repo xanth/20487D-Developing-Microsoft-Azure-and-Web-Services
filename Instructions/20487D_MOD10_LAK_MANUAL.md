@@ -9,7 +9,7 @@
 1. Create **WebApp** in **http://portal.azure.com**.
 2. Open **[Repository Root]\AllFiles\Mod10\Labfiles\Lab1\Starter** project in **VSCode**
 3. Add **Middleware** folder, and inside it, new file **ExceptionHandlingMiddleware.cs**.
-4. Add **RequestDelegate** instance to **ExceptionHandlingMiddleware.cs**, and init iy is the **constructor**.
+4. Add **RequestDelegate** instance to **ExceptionHandlingMiddleware.cs**, and init it is the **constructor**.
 5. Add **Invoke** method that add **X-BlueYonder-Server** header with the **MachineName** as value.
 6. Add **extension method** for **IApplicationBuilder**.
 7. Use **Exception Handling Middleware** in the **Configure** method, inside **Startup** class.
@@ -76,7 +76,7 @@
     .\createAzureServicesWestEurope.ps1
    ```
 3. Sign in with your **Subscription ID** and follow the on-screen instructions.
-
+p
 #### Task 2: Deploy an Azure Web App to the West US region
 
 1.  1. Open **PowerShell** as **Administrator**.
