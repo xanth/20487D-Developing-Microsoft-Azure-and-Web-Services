@@ -1,0 +1,135 @@
+# Module 8: Monitoring and Diagnostics
+
+1. Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
+ e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [Repository Root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
+2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
+3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
+
+# Lesson 2: Diagnostic Tools
+
+### Demonstration: Collecting ASP.NET Core LTTng events on Linux
+
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the **DemoFiles**:
+   ```bash
+    cd [Repository Root]\Allfiles\Mod08\Demofiles
+   ```
+3. Run the following command to create a new **WebApi** project:
+   ```bash
+    dotnet new webapi -MonitorLTTng    
+   ```
+4. Run the following command to change directory to **MonitorLTTng** project:
+   ```bash
+    cd MonitorLTTng
+   ```
+5. Run the following command to open the project in **VSCode**:
+   ```bash
+    code .
+   ```
+6. In **VSCode** add new file **Dockerfile** (without file extension) to the root directory.
+7. In the **Dockerfile** paste the following commands:
+    ```sh
+    FROM microsoft/dotnet:sdk AS build-env
+	WORKDIR /app
+
+	# Copy csproj and restore as distinct layers
+	COPY *.csproj ./
+	RUN dotnet restore
+
+	# Copy everything else and build
+	COPY . ./
+	RUN dotnet publish -c Release -o out
+
+	# Build runtime image
+	FROM microsoft/dotnet:aspnetcore-runtime
+	WORKDIR /app
+	COPY --from=build-env /app/out .
+    # Enviroment variable
+	ENV COMPlus_EventLogEnabled 1
+	ENTRYPOINT ["dotnet", "MonitorLTTng.dll"]
+    ```
+8. Switch to **Command Line**.
+9. Run the following command to build the docker image:
+    ```bash
+    docker build -t monitor .
+    ```
+10. Run the following command to run new container with **monitor** image:
+    ```
+    docker run -d -p 8080:80 --name myapp monitor
+    ```
+11. Run the following command to get a shell in the container:
+    ```
+    docker exec -it myapp bash
+    ```
+12. Run the following command to update packages in the container:
+    ```bash
+    apt update
+    ```
+13. Run the following command to install software-properties-common:
+    ```bash
+    apt-get install software-properties-common
+    ``` 
+14. Run the following command to add **PPA repository**:
+    ```bash
+    apt-add-repository ppa:lttng/ppa
+    ```
+15. Run the following command to update the list of packages:
+    ```bash
+    apt-get update
+    ```
+16. Run the following command to install the main **LTTng** packages:
+    ```bash
+    apt-get install lttng-tools lttng-modules-dkms liblttng-ust0
+    ```
+17. Run the following command to create a new **LTTng** session:
+    ```bash
+    lttng create exceptions-trace
+    ```
+18. Run the following command to add context data (process id, thread id, process name) to each event:
+    ```bash
+    lttng add-context --userspace --type vpid
+    lttng add-context --userspace --type vtid
+    lttng add-context --userspace --type procname
+    ```
+19. Run the following command to create an event rule to record all the events starting with **DotNETRuntime**:
+    ```bash
+    lttng enable-event --userspace --tracepoint DotNETRuntime:*
+    ```
+20. Run the following command to start recording events:
+    ```bash
+    lttng start
+    ```
+21. Open browser and navigate to the following **URL**:
+    ```url
+    http://localhost:8080/api/values
+    ```
+22. Refresh the page a few times.
+23. Switch to **Command Line**.
+24. Run the following command to **stop** the recording:
+    ```bash
+    lttng stop
+    ```
+25. Run the following command to **destroy** the session:
+    ```bash
+    lttng destroy
+    ```
+26. Paste the following command and press **Tab** then press **Enter** to see all the recorded events:
+    ```bash
+    babeltrace /root/lttng-traces/exceptions-trace
+    ```
+27. Explore all the events.
+28. Run the following command to exit from **bash**:
+    ```bash
+    exit
+    ```
+29. Run the following command to kill the running container:
+    ```bash
+    docker kill myapp
+    ```
+30. Run the following command to remove the container:
+    ```bash
+    docker rm myapp
+    ```
+31. Close all windows.
