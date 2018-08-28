@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blueyonder.Service.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blueyonder.Service.Controllers
@@ -10,17 +11,17 @@ namespace Blueyonder.Service.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly IFlightsRepository _flightsRepository;
 
+        public FlightsController(IFlightsRepository flightsRepository)
+        {
+            _flightsRepository = flightsRepository;
+        }
        
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            throw new Exception($"Blueyonder don't have a flight with this id = {id}");
+            return _flightsRepository.GetFlightCode(id);
         }
      
     }
