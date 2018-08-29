@@ -41,7 +41,7 @@
    ```cs
     using Microsoft.Extensions.Logging;
    ```
-9. Add the following **logger** object:
+9. Add the following **logger** field:
     ```cs
     private readonly ILogger _logger;
     ```
