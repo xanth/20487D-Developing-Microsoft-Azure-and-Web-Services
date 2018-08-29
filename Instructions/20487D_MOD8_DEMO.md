@@ -5,6 +5,78 @@
 2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
 3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
 
+# Lesson 1: Logging in ASP.NET Core
+
+### Demonstration: Recording logs to the Console and EventSource providers
+
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the **DemoFiles**:
+   ```bash
+    cd [Repository Root]\Allfiles\Mod08\Demofiles\Mod8Demo1Logger
+   ```
+3. Run the following command to create a new **WebApi** project:
+   ```bash
+    dotnet new webapi -n Mod8Demo1LoggerStarter    
+   ```
+4. Run the following command to change directory to **Mod8Demo1LoggerStarter** project:
+   ```bash
+    cd Mod8Demo1LoggerStarter
+   ```
+5. Run the following command to open the project in **VSCode**:
+   ```bash
+    code .
+   ``` 
+6. Click on **Program.cs** and paste the following code in **CreateWebHostBuilder** method after **WebHost.CreateDefaultBuilder(args)**:
+   ```cs
+    .ConfigureLogging((hostingContext, logging) => 
+    {
+        logging.AddConsole();
+        logging.AddEventSourceLogger();
+    })
+   ```
+7. Expand **Controllers** folder and select **ValuesController** file.
+8. Add the following **using**:
+   ```cs
+    using Microsoft.Extensions.Logging;
+   ```
+9. Add the following **logger** object:
+    ```cs
+    private readonly ILogger _logger;
+    ```
+10. Add a new **Constructor** that will inject the **loger**:
+    ```cs
+    public ValuesController(ILogger<ValuesController> logger)
+    {
+        _logger = logger;
+    }
+    ```   
+11. Add the following log information to the first **Get** method before the **return**:
+    ```cs
+    _logger.LogInformation("Getting all values");
+    ```
+12. Add the following log information to the second **Get** method before the **return**:
+    ```cs
+    _logger.LogInformation($"Getting value {id}");
+    ```
+13. Switch to **Command Line**.
+14. Run the following command to run the project:
+    ```bash
+    dotnet run    
+    ```
+15. Open browser and navigate to the following **URL**:
+    ```url
+    https://localhost:5001/api/values
+    ```
+16. In the **Command Line** verify that the log **Getting all the values** is shown.
+17. Navigate to the following **URL**:
+    ```url
+    https://localhost:5001/api/values/1
+    ```
+18. In the **Command Line** verify that the log **Getting value 1** is shown.
+19. Close all windows.
+
 # Lesson 2: Diagnostic Tools
 
 ### Demonstration: Collecting ASP.NET Core LTTng events on Linux
