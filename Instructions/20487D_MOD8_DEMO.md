@@ -77,6 +77,65 @@
 18. In the **Command Line** verify that the log **Getting value 1** is shown.
 19. Close all windows.
 
+### Demonstration: Using Serilog
+
+#### Demonstration Steps
+
+1. Open **Command Line**.
+2. Run the following command to change directory to the **DemoFiles**:
+   ```bash
+    cd [Repository Root]\Allfiles\Mod08\Demofiles\Mod8Demo2Serilog
+   ```
+3. Run the following command to create a new **WebApi** project:
+   ```bash
+    dotnet new webapi -n Mod8Demo2SerilogStarter    
+   ```
+4. Run the following command to change directory to **Mod8Demo2SerilogStarter** project:
+   ```bash
+    cd Mod8Demo2SerilogStarter
+   ```
+5. Run the following cammand to install **Serilog** package:
+   ```bash
+    dotnet add package Serilog.AspNetCore --version 2.1.1
+   ```
+6. Run the following cammand to install **Serilog Configuration** package:
+   ```bash
+    dotnet add package Serilog.Settings.Configuration --version 2.6.1
+   ```
+7. Run the following cammand to install **Serilog Colored Console** package:
+   ```bash
+    dotnet add package Serilog.Sinks.ColoredConsole --version 3.0.1
+   ```
+8. Run the following cammand to restore all packages:
+   ```bash
+    dotnet restore
+   ```
+9. Run the following command to open the project in **VSCode**:
+   ```bash
+    code .
+   ``` 
+10. Add the following **using** to use **Serilog**:
+    ```cs
+    using Serilog;
+    ```
+10. Click on **Program.cs** and paste the following code in **CreateWebHostBuilder** method after **UseStartup<Startup>()** to use **Serilog** and write the logs to the console:
+    ```cs
+    .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+	    .ReadFrom.Configuration(hostingContext.Configuration)
+	    .Enrich.FromLogContext()
+	    .WriteTo.Console())
+    ```
+12. switch to **Command Line** and run the following command to run the project:
+    ```bash
+    dotnet run
+    ```
+14. Open browser and navigate to the following **URL**:
+    ```url
+    https://localhost:5001/api/values
+    ```
+15. Explore the logs in the **Command Line** from the **Serilog**.
+16. Close all windows.
+
 # Lesson 2: Diagnostic Tools
 
 ### Demonstration: Collecting ASP.NET Core LTTng events on Linux
