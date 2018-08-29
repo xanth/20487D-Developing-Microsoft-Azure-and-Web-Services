@@ -5,7 +5,7 @@
 
 #### Scenario
 
-In this exercise you will create and consume ASP.NET Core Web APIs 
+In this lab you will create and consume ASP.NET Core Web APIs 
 
 #### Objectives
 
