@@ -1,5 +1,4 @@
-﻿﻿### Login to the account
-Login-AzureRmAccount
+﻿Login-AzureRmAccount
 
 Write-Host "Please enter your subscription id: " -NoNewline
 $SubscriptionId = Read-Host
@@ -12,8 +11,8 @@ Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
 $yourName = Read-Host
 
 $yourName = $yourName.ToLower()
-$websiteName = "blueyondermod10lab2t1" + $yourName
-$resourcesGroupName = "Mod10Lab2t1-RG"
+$websiteName = "blueyondermod10demo4Europe" + $yourName
+$resourcesGroupName = "Mod10demo4Europe-RG"
 
 
 $location = "WestEurope"
@@ -24,7 +23,7 @@ $RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $websiteName -hostingPlanName "plan$websiteName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
 
 ### Deploy the code to the webapp
-$path = $PSScriptRoot+"\Code"
+$path = (get-item $PSScriptRoot).parent.FullName+"\Code\BlueYonder.Hotels.Service"
 Write-Host $path
 cd $path
 $profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $websiteName -Format WebDeploy -OutputFile "$path\Properties\PublishProfiles\Azureprofile.xml"
@@ -50,4 +49,5 @@ $urlname = $webapp.DefaultHostName
 $siteurl = "https://$urlname"
 Write-Host "The WebApp URL is: $siteurl"
 
+cd ..
 cd ..
