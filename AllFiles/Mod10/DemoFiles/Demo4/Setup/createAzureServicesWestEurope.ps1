@@ -12,28 +12,11 @@ Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
 $yourName = Read-Host
 
 $yourName = $yourName.ToLower()
-$websiteName = "blueyonderMod10Demo1" + $yourName
-$resourcesGroupName = "Mod10Demo1-RG"
+$websiteName = "blueyondermod10lab2t1" + $yourName
+$resourcesGroupName = "Mod10Lab2t1-RG"
 
-Function GetLocation {
-$Title = "Please choose customer location"
-$Info = "Select location"
-$options = [System.Management.Automation.Host.ChoiceDescription[]] @("&WestEurope", "&WestUS", "&EastUS", "&SoutheastAsia")
-[int]$defaultchoice = 0
-$opt =  $host.UI.PromptForChoice($Title , $Info , $Options,$defaultchoice)
 
-switch($opt)
-    {
-        0 {$location = "WestEurope"}
-        1 {$location = "WestUS"}
-        2 {$location = "EastUS"}
-        3 {$location = "SoutheastAsia"}
-    }
-
-$location
-} #prompts to choose a location for resources
-
-$location = GetLocation
+$location = "WestEurope"
 ### Create Resource group
 $RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location 
 
@@ -41,7 +24,7 @@ $RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $websiteName -hostingPlanName "plan$websiteName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
 
 ### Deploy the code to the webapp
-$path = (get-item $PSScriptRoot).parent.FullName+"\Code\BlueYonder.Hotels.Service"
+$path = $PSScriptRoot+"\Code"
 Write-Host $path
 cd $path
 $profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $websiteName -Format WebDeploy -OutputFile "$path\Properties\PublishProfiles\Azureprofile.xml"

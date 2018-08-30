@@ -12,8 +12,8 @@ Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
 $yourName = Read-Host
 
 $yourName = $yourName.ToLower()
-$websiteName = "blueyonderMod10Demo1" + $yourName
-$resourcesGroupName = "Mod10Demo1-RG"
+$websiteName = "blueyonderMod10Demo3GW" + $yourName
+$resourcesGroupName = "Mod10Demo3GW-RG"
 
 Function GetLocation {
 $Title = "Please choose customer location"
