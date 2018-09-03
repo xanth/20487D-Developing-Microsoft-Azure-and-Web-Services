@@ -91,7 +91,7 @@
     - Click on **Create**.
     - In **Server name** type **mod7demo2sqlserver**{YourInitials}.
     - In **Server admin login** type **MyAdmin**.
-    - In **Password** and **Confirm Password** type **Passowrd123!**.
+    - In **Password** and **Confirm Password** type **Password123!**.
     - In **Resource group** select **Use existing** and select **Mod7demo2ResourceGroup** resource group.
     - Click **Create**.
 10. Click on **All resources**, then click on **mod7demo2sqlserver**{YourInitials}.
@@ -137,11 +137,11 @@
    - In **Database id** select **Create new** and type **mydb**.
    - In **Collection id** type **customers**.
    - Click on **Add unique key**, then type **customerId**.
-   - Click on **Create**.
+   - Click on **Ok**.
 10. Click on **New Collection** on the top bar and fill the following details:
    - In **Database id** select **Use existing** then select **mydb**.
    - In **Collection id** type **orders**.
-   - Click on **Create**.
+   - Click on **Ok**.
 11. Right click on **customers** collection, then select **New Shell**.
 12. Copy all the content from **CustomersCollectionData.json** file in [Repository Root]\Allfiles\Mod07\DemoFiles\Mod7Demo3Assets.
 13. In **shell 1** console paste the content from **CustomersCollectionData.json** and Press **Enter**, to add **customers** data.
