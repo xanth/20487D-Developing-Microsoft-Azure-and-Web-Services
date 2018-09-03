@@ -29,7 +29,7 @@
     code .
     ```
 6. On the **Explorer** blade, under **STARTER**, expand **Controllers**, and then double-click **ValuesController**.
-7. Locate the **Get** method and overview the return content of the method.
+7. Locate the **Get** method and review the return content of the method.
 8. To run the application, run the following command:
     ```bash
     dotnet run
