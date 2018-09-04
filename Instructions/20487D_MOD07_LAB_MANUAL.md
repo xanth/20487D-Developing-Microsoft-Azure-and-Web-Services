@@ -2,13 +2,18 @@
 
 #### Scenario
 
-In this exercise you will deploy an ASP.NET Core web service on Linux
+In this exercise you will be able to store files in Azure Storage, Querying Graph Data with CosmosDB, Caching out-of-process with Azure Redis cache.
 
 #### Objectives
 
 After completing this lab, you will be able to:
 
-- C
+- Store publicly accessible files in Azure Blobs
+- Generate and store private files in Azure Blobs
+- Create the CosmosDB graph database
+- Query the CosmosDB database
+- Create the Azure Redis Cache service
+- Access the cache service from code
 
 # Lab: Storing Files in Azure Storage
 
