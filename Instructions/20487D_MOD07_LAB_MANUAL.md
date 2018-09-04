@@ -22,30 +22,25 @@ After completing this lab, you will be able to:
 #### Task 1: Store publicly accessible files in Azure Blobs
 
 1. Open **Azure Portal**.
-2. Add a **Storage account** with **Account kind** of **StorageV2**, and **Replication** of **Locally-redundant storage (LRS)**.
-3. Create new container with **Name** of **aircraft-images** and **Public access level** of **Container (anonymous read access for containers and blobs)**.
+2. Create  **Storage account** with the name **blueyonder{YourInitials}**.
+3. Create new **Blob** container with **Name** of **aircraft-images** and **Public access level** of **Container (anonymous read access for containers and blobs)**.
 
 #### Task 2: Upload a file to the Azure Blob container from the Azure CLI
 
-1. Login with your credentials to **Azure Portal** via **Command Line**.
-2. Get the **connection string** of **Azure Blob container** and copy it.
-3. Set the **connection string** as environment variable.
-4. Upload image from **Assets** to container.
+1. Use the **Azure CLI** in the **Command Line** to upload **france** image to the **Blob** container from the following path:
+    ```url
+    [Repository Root]\AllFiles\Mod07\Labfiles\Lab1\Assets\france.jpg
+    ```
 
 #### Task 3: Run a script to upload multiple aircraft images
 
-1. Get the storage account keys list via the **Command Line**.
-2. Copy the **key** from **value property** in the first object in the array.
-3. Open **Powershell** and change directory to **Assets** folder.
-4. Run the following command to run **uploadPhotos** script to upload images folder to the **Storage account** and fill the following details:
-   ```bash
-   .\uploadPhotos.ps1
-   ```
-   Follow the instructions and in **Plase enter storage account key** paste the value from **step 2**.
+1. Open **PowerShell** and run the following **uploadPhotos** script in **Assets** folder.
+2. To run the script is needed **key** from the **Storage account**.
+    >**Note:** The script is to upload images folder to the **Blob** container.
 
 #### Task 4: Modify the flight reservations service to return aircraft images from the container
 
-1. Open the **Starter** project in **VSCode**.
+1. Open the **Starter** project.
 2. In **AircraftController** Locate **\_baseUrl** field and replace **YourInitials** with your actual initials.
 
 #### Task 5: Test the service from a browser
@@ -64,21 +59,14 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create an Azure Blob container
 
-1. Switch to **Azure Portal** and click on **blueyonder{YourInitials}** stroage account
-2. In **Blobs** click on **Container**, to Create new container with the following information:
-   - In the **Name** textbox type **manifests**.
-   - In the **Public access level** combobox select **Private (no anonymous access)**.
+1. Create a new **Container** and name it **manifests** with **Private** accessibility.
 
 #### Task 2: Generate a passenger manifest and store it in the container
 
-1. Switch to **VSCode**.
-2. Add **connection string** to the **appsettings.json** file, in **BlueYonder.Flights.Service**.
-3. Add the following private fields inside the **FlightsController**:
-   - CloudBlobContainer
-   - CloudStorageAccount
-   - string \_manifests
-4. Add **IConfiguration** injection as a parameter to the constructor.
-5. Upload a file to the container in the **FinalizeFlight** method.
+1. Switch to **Starter** project.
+2. Locate **FinalizeFlight** method inside the **FlightsController**.
+3. Refactor  the method to upload **manifests.txt** file to **manifests** container by using **GeneratedManifests** method this method create new manifests file.
+   >**Note:** use **WindowsAzure.Storage** package.
 
 #### Task 3: Generate a shared access signature to the passenger manifest and return it from the service
 
@@ -89,16 +77,15 @@ After completing this lab, you will be able to:
    ```url
    https://localhost:5001/api/flights/finalizeflight
    ```
-5. Switch to **Azure Portal** and navigate to **manifests** container in the **blueyonder{YourInitials}** blade.
-6. Refresh the page and verify **manifests.txt** file was uploaded to the container.
-7. Navigate to the following url:
+5. Verify **manifests.txt** file was upload to the container.
+6. Navigate to the following url:
    ```url
    https://localhost:5001/api/flights/passengermanifest
    ```
-8. Copy the **URL** from the response and open a new tab in the browser and paste the copied **URL**.
-9. Verify that the image is shown.
-10. Wait one minute and then refresh the page, to access the storage account with expired **SAS** token.
-11. Verify that the response is **Error**.
+7. Copy the **URL** from the response and open a new tab in the browser and paste the copied **URL**.
+8. Verify that the image is shown.
+9.  Wait one minute and then refresh the page, to access the storage account with expired **SAS** token.
+10. Verify that the response is **Error**.
 
 # Lab: Querying Graph Data with CosmosDB
 
@@ -106,7 +93,7 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create a new CosmosDB graph database in the Azure Portal
 
-1. Open **Microsoft Edge** browser and navigate to **https://portal.azure.com**.
+1. Open **Azrue Portal**.
 2. Create **Azure Cosmos DB** with the following information:
    - In **ID** type **blueyonder-destinations**{YourInitials}.
    - In **API** select **Gremlin (graph)**.
@@ -117,61 +104,24 @@ After completing this lab, you will be able to:
 
 #### Task 2: Run a script to import itinerary data (flights and destinations) to the database
 
-1. Upload all the data with **JSON** file.
-   - Select **GraphData.json** file in the path **[Repository Root]\Allfiles\Mod07\LabFiles\Lab2\Assets** and click on **Upload**.
-2. Click on **Data Explorer** and expand **blueyonder**.
-3. Click on **Graph** under **traveler**.
-4. In textbox type **g.V()** and click on **Execute Gremlin Query** to execute the gremalin query to return all the **vertex**.
+1. Upload data to the graph by uploading **GraphData.json** file from the **Assets** folder.
+2. Explor all **vertex** and **edges** in the **traveler** graph collection.
 
 #### Task 3: Explore the generated database
 
-1. Click on **Paris** vertex to see all the edges that connected from **Paris**.
-2. Double click on the small vertex under **Paris** to see all the attractions in **Paris**.
-3. Click on **JSON** tab to view the result in **JSON** format.
-4. In textbox type **g.V('Moscow')** then click on **Execute Gremlin Query**.
-5. View the **Moscow** vertex data.
-6. In textbox type **g.V('Moscow').outE('flight')** then click on **Execute Gremlin Query**.
-7. View all the flight from **Moscow**.
+1. View all the attractions **Paris**.
+2. Write a **Gremlin Query** to view the **Moscow** vertex data.
+3. Write a **Gremlin Query** to get all the flight from **Moscow**.
 
 ### Exercise 2: Query the CosmosDB database
 
 #### Task 1: Add a query to return related attractions from the itinerary service
 
-1. Click on **Keys** under **SETTINGS** section.
-2. Copy the **PRIMARY KEY** for the next step.
-3. Open **Command Line** and change directory to the **starter** project.
-4. Install the package **Gremlin.Net**.
-5. Open the project in **VSCode**.
-6. Click on **appsettings.json** under **BlueYonder.Itineraries.Service** project.
-7. Replace **{YourInitials}** in **HostName**
-8. Paste the **PRIMARY KEY** from the previous step, in **Authkey**
-9. Add **GremlinServer** field to **DestinationController**.
-10. Add a **Constructor**:
-    ```cs
-    public DestinationController(IConfiguration configuration)
-    {
-        string authKey =  configuration["Authkey"];
-        string hostname = configuration["HostName"];
-        string database = "blueyonder";
-        string collection = "traveler";
-        int port = 443;
-        _gremlinServer = new GremlinServer(hostname, port, enableSsl: true,
-                                             username: "/dbs/" + database + "/colls/" + collection,
-                                             password: authKey);
-    }
-    ```
-11. Query all the attractions in the destination flitered by distance, in **GetAttractions** method:
-    ```cs
-    string gremlinQuary = $"g.V('{destination}').inE('located-in').has('distance', lt({distanceKm})).outV()";
-    ```
-12. Execute the query with:
-    ```cs
-    using (var client = new GremlinClient(_gremlinServer, new GraphSON2Reader(), new GraphSON2Writer(), GremlinClient.GraphSON2MimeType))
-    {
-        var result = await client.SubmitAsync<dynamic>(gremlinQuary);
-        return JsonConvert.SerializeObject(result); ;
-    }
-    ```
+1. Open the **Starter** project.
+2. Install the package **Gremlin.Net**.
+3. Update the **HostName** and **Authkey** in **appsettings.json** file.
+4. Open **DestinationController** file.
+5. Refactor **GetAttractions** method retrun all the attraction a giving **destination** paramter and filter by **distanceKm** paramter.
 
 #### Task 2: Add a query to return possible interesting stop-overs to a destination
 
@@ -179,7 +129,7 @@ After completing this lab, you will be able to:
    ```cs
    string gremlinQuary = $"g.V('{source}').repeat(outE().inV().simplePath()).until(hasId('{destination}')).path().by('id').by('duration')";
    ```
-2. Execute the query witch get the flights that are less duration then maxDurationHours.
+2. Execute the query witch get the flights that are less duration then maxDurationHours and modify the data to sum each path duration.
 
 #### Task 3: Test the new service operations from a browser
 
@@ -189,16 +139,15 @@ After completing this lab, you will be able to:
    ```url
    https://localhost:5001/api/destination/attractions/Paris/4
    ```
-4.
-5. Navigate to the following url and verify that **JSON** respone with attractions are displayid with **Eiffel Tower**:
+4. Navigate to the following url and verify that **JSON** respone with attractions are displayid with **Eiffel Tower**:
    ```url
    https://localhost:5001/api/destination/attractions/Paris/6
    ```
-6. Navigate to the following url and verify that **JSON** respone is only flight that are from Paris:
+5. Navigate to the following url and verify that **JSON** respone is only flight that are from Paris:
    ```url
    https://localhost:44355/api/Destination/StopOvers/Moscow/New York/14
    ```
-7. Navigate to the following url and verify that **JSON** respone is only flight that are from Paris and Rome:
+6. Navigate to the following url and verify that **JSON** respone is only flight that are from Paris and Rome:
    ```url
    https://localhost:44355/api/Destination/StopOvers/Moscow/New York/20
    ```
@@ -220,75 +169,34 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create the Azure Redis Cache service
 
-2. Navigate to **https://portal.azure.com** in **Microsoft Edge** browser.
-3. Sign In and click **+ Create a resource**.
-4. Create **Redis Cache** with the following information:
-   - In **DNS name** type **blueyonder-cache**{YourInitials}
-   - In **Resource Group** select **Create new** and type **Mod07Lab3**.
+1. Open **Azure Portal**.
+2. Create **Redis Cache** with the following information:
+   - In **DNS name** type **blueyonder-cache**{YourInitials}.
 
 #### Task 2: Locate the service key
 
-1. Display all the **Resources**.
-2. Click on **blueyonder-cache**{YourInitials}.
-3. Click on **Access keys** in the **SETTINGS** section.
-4. Copy the **Primary connection string (StackExchange.Redis)** to the next exercise.
+1. Copy **Primary connection string** from the new instace **Redis Cache**
 
 ### Exercise 2: Access the cache service from code
 
 #### Task 1: Install the StackExchange.Redis NuGet package
 
-1. Change directory to the **BlueYonder.Flights.Service** service in the **Command Line**:
-   ```bash
-   cd [Repository Root]\Allfiles\Mod07\LabFiles\Lab3\Starter\BlueYonder.Flights\BlueYonder.Flights.Service
-   ```
-2. Install the following package **StackExchange.Redis**:
-   ```bash
-    dotnet add package StackExchange.Redis --version=1.2.6
-   ```
+1. Add **StackExchange.Redis** package to the **BlueYonder.Flights.Service** project in **Starter** folder
 
 #### Task 2: Configure the cache credentials
 
 1. Open the project in **VSCode**.
-2. Expand **BlueYonder.Flights.Service** folder then click on **appsettings.json** file.
-3. Paste the following code to add redis connection string:
-   ```json
-   "RedisConnectionString": "[RedisConnectionString]"
-   ```
-   replace the value with connection string from the previous exercise
+2. Add the **Redis Connection String** to the **appsettings.json** file.
 
 #### Task 3: Add code to use the cache service
 
-1. Click on **Startup** file.
-2. Locate the **ConfigureServices** method and paste the following code:
-   ```cs
-   services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(Configuration["RedisConnectionString"]));
-   ```
-   **IConnectionMultiplexer** is injected with a connection to the Redis in Azure
-3. Add **IDatabase** field in **FlightsController** controller:
-4. Inject **IConnectionMultiplexer** in the constructor.
-5. Add key to check in the **redis** cache in the **Get** method with **source** and **destination** paramters
-   ```cs
-   var key = source + destination + date.Date.ToShortDateString();
-   ```
-6. Check if the key is exist in the **redis** cache.
-7. Add the following code if the key dont exist:
-   ```cs
-   if (!cacheResult.HasValue)
-   {
-       var result = _flightsRepository.GetFlightByDate(sourcedestination, date);
-       if (result == null)
-           return NotFound();
-       _redisDB.StringSet(key,JsonConvert.SerializeObject(result));
-       return Ok(result);
-   }
-   ```
-   if the key dont exist in the **redis** cache then get the data from the database and add new key and data to **redis** cache
-8. Paste the following code if the key is exist
-   ```cs
-   Request.HttpContext.Response.Headers.Add("X-Cache","true");
-   return Ok(cacheResult.ToString());
-   ```
-   Then add **header** that the data is cached and return the data
+1. Registered **IConnectionMultiplexer** interface as a **Singleton** in the **Startup** file.
+2. Inject **IConnectionMultiplexer** in the **FlightsController** constructor class.
+3. Refactor the **Get** action to chack if the data is cached or not
+    - if the data is cached return the chach object and add a header that the data is cached.
+    - else use the **FlightsRepository** to get the data and then add the new data to the redis.
+    - The key to the redis cache is build by **source** and **destination** and the current date. 
+
 
 #### Task 4: Configure the web application to disable instance affinity
 
@@ -300,3 +208,34 @@ After completing this lab, you will be able to:
 6. Change the **Instance count** to **2** in the **Configure** tab.
 7. Click on **Application settings** in the **SETTING** section.
 8. Turn the **ARR affinity** to **Off**.
+
+#### Task 5: Deploy the application to a scaled Azure Web App
+
+1. Publish the service.
+
+### Exercise 3: Test the application
+
+#### Task 1: Run the application multiple times
+
+1. Open **Microsoft Edge**  browser and navigate to the following url:
+    ```url
+    https://blueyondermod07lab3{YourInitials}.azurewebsites.net/api/flights
+    ``` 
+2. Check the **X-BlueYonder-Server** header and view the server name.
+
+#### Task 2: Verify you are accessing multiple instances
+
+1. Refresh the page couple of times and check that **X-BlueYonder-Server** header is change 
+
+#### Task 3: Verify you are getting the cached data
+
+1. Navigate to the following url:
+    ```url
+    https://blueyondermod07lab3{YourInitials}.azurewebsites.net/api/flights/New York/Paris/MM-DD-YYYY
+    ```
+    replace the end of the url with the current date
+2. In **Network** tab locate the url and check the following info:
+    - Try to locate the **X-Cache** header in **Response Headers** section.
+    - If you dont see the header the mean that the result is not cached
+3. Refresh the page and get the **X-Cache** header.
+4. Refresh the page couple of times and check that **X-BlueYonder-Server** is change and that the result are **cached**.
