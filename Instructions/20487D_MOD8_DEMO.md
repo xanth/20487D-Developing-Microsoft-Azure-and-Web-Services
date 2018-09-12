@@ -123,7 +123,7 @@
     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
 	    .ReadFrom.Configuration(hostingContext.Configuration)
 	    .Enrich.FromLogContext()
-	    .WriteTo.Console())
+	    .WriteTo.Console());
     ```
 12. switch to **Command Line** and run the following command to run the project:
     ```bash
@@ -149,7 +149,7 @@
    ```
 3. Run the following command to create a new **WebApi** project:
    ```bash
-    dotnet new webapi -MonitorLTTng    
+    dotnet new webapi -n MonitorLTTng    
    ```
 4. Run the following command to change directory to **MonitorLTTng** project:
    ```bash
