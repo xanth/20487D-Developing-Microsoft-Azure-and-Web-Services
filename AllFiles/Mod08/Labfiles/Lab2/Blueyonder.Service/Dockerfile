@@ -1,4 +1,3 @@
-
 FROM microsoft/dotnet:sdk AS build-env
 WORKDIR /app
 
@@ -8,11 +7,12 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o out -r linux-x64
 
 # Build runtime image
 FROM microsoft/dotnet:aspnetcore-runtime
 WORKDIR /app
 COPY --from=build-env /app/out .
+# Enviroment variable
 ENV COMPlus_EventLogEnabled 1
-ENTRYPOINT ["dotnet", "Blueyonder.Service.dll"]
+ENTRYPOINT ["./Blueyonder.Service"]
