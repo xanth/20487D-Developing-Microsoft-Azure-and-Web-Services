@@ -52,7 +52,7 @@ to perform CRUD operations on the SQL Express database.
     public string Address { get; set; }
     public ICollection<Room> Rooms { get; set; }
     ```
-4. Create a new class and name it **Hotel**, and then add the following properties:
+4. Create a new class and name it **Booking**, and then add the following properties:
     ```cs
     public int BookingId { get; set; }
     public Room Room { get; set; }
