@@ -336,10 +336,13 @@
         }
     }
    ```
-14. Switch to the Command Prompt window.
+14. Switch to the Command Prompt window. To change directory to the **InMemory.Dal.Test** project, at the command prompt, run the following command:
+    ```bash
+    cd InMemory.Dal.Test
+    ```
 15. To run the all the test methods, paste the following command, and then press Enter:
    ```bash
-    dotnet run test
+    dotnet test
    ```
 16. Close all open windows.
 
@@ -376,17 +379,21 @@
                     .UseSqlite(@"Data Source = [Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database\SqliteSchool.db")
                     .Options;
    ```
-9. Switch to the Command Prompt window. To run the all the test methods, paste the following command, and then press Enter:
+9. Switch to the Command Prompt window. To change directory to the **Sqlite.Dal.Test** project, at the command prompt, run the following command:
+    ```bash
+    cd Sqlite.Dal.Test
+    ```
+10. To run the all the test methods, paste the following command, and then press Enter:
    ```bash
     dotnet test
    ```
-10. Open **DB Browser for SQLite**.
-11. On the menu bar, click **File**, and then click **Open Database**.
-12. In the **Choose a database file** window, browse to **[Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database**, and then double-click **SqliteSchool.db**.
-13. In the **Database Structure** tab, expand **Tables**.
-14. Right-click the **Persons** table, and then select **Browse Table**.
-15. In the **Browse Data** tab, verify that the student record **Kari Hensien** is in the database.
-16. Close all open windows.
+11. Open **DB Browser for SQLite**.
+12. On the menu bar, click **File**, and then click **Open Database**.
+13. In the **Choose a database file** window, browse to **[Repository Root]\AllFiles\Mod02\DemoFiles\SQLite\Database**, and then double-click **SqliteSchool.db**.
+14. In the **Database Structure** tab, expand **Tables**.
+15. Right-click the **Persons** table, and then select **Browse Table**.
+16. In the **Browse Data** tab, verify that the student record **Kari Hensien** is in the database.
+17. Close all open windows.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
