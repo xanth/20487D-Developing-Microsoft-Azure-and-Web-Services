@@ -1,37 +1,37 @@
 # Module 2: Extending ASP.NET Core HTTP services
 
-1. Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
- e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [Repository Root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
-2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
-3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
+1. Wherever a path to a file starts at *[Repository Root]*, replace it with the absolute path to the directory in which the 20487 repository resides. 
+ For example, if you cloned or extracted the 20487 repository to **C:\Users\John Doe\Downloads\20487**, change the path: **[Repository Root]\AllFiles\20487D\Mod01** to **C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01**.
+2. Wherever *{YourInitials}* appears, replace it with your actual initials. For example, the initials for **John Doe** will be **jd**.
+3. Before performing the demonstration, you should allow some time for the provisioning of the different Microsoft Azure resources required for the demonstration. You should review the demonstrations before the actual class, identify the resources, and then prepare them beforehand to save classroom time.
 
 
-# Lesson 1: The ASP.NET Core request pipeline
+# Lesson 1: The ASP.NET Core Request Pipeline
 
-### Demonstration: Creating a middleware for custom error handling
+### Demonstration: Creating a Middleware for Custom Error Handling
 
-1. Open **Command Line**.
-2. Change directory to the starter project, run the following command in the **Command Line**:
+1. Open a **Command Prompt** window.
+2. To change the directory to the starter project, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\ErrorHandlingMiddleware\Starter
     ```
-3. Restore all dependencies and tools of a project use the following command in the **Command Line**:
+3. To restore all dependencies and tools of a project, run the following command:
     ```base
     dotnet restore
     ```
-4. Open the project in **VSCode** and paste the following command and press enter:
+4. Open the project in Microsoft Visual Studio Code, and then run the following command:
     ```bash
     code .
     ```
-5. Expand **BlueYonder.Flights.DAL** project and then expand **Repository** folder and select **PassengerRepository** file.
-6. Locate **GetPassenger** method and add the following code before the **return** to throw **KeyNotFoundException** exception.
+5. Expand the **BlueYonder.Flights.DAL** project, expand the **Repository** folder, and then select the **PassengerRepository** file.
+6. To throw the **KeyNotFoundException** exception, locate the **GetPassenger** method, and then add the following code before **return**:
     ```cs
      if (passenger == null)
         throw new KeyNotFoundException();
     ```
-7. Right click on **BlueYonder.Flights.Service** and select **New Folder** and name it **Middleware**.
-8. Right click on **Middleware** folder and select **New File** and name it **ExceptionHandlingMiddleware** then select the new class.
-9. Paste the following **using** to the class.
+7. Right-click **BlueYonder.Flights.Service**, select **New Folder**, and then name it **Middleware**.
+8. Right-click the **Middleware** folder, select **New File**, name it **ExceptionHandlingMiddleware**, and then select the new class.
+9. Add the following **using** statements to the class:
     ```cs
     using System;
     using System.Collections.Generic;
@@ -42,21 +42,21 @@
     using Microsoft.AspNetCore.Http;
     using Newtonsoft.Json;
     ```
-10. Paste the following code to add namespace.
+10. To add a namespace, enter the following code:
     ```cs
     namespace BlueYonder.Flights.Service.Middleware
     {
 
     }
     ```
-11. Paste the following code in namespace brackets to class declaration:
+11. To add a class declaration, enter the following code inside namespace brackets:
     ```cs
     public class ExceptionHandlingMiddleware
     {
 
     }
     ```
-12. Paste the following code inside the class brackets to add a constructor:
+12. To add a constructor, enter the following code inside class brackets:
     ```cs
     private readonly RequestDelegate _next;
 
@@ -65,7 +65,7 @@
         _next = next;
     }
     ```
-13. Paste the following code to add **Invoke** method that **catch** all the exceptions:
+13. To add an **Invoke** method to catch all the exceptions, enter the following code:
     ```cs
     public async Task Invoke(HttpContext httpContext)
     {
@@ -78,7 +78,7 @@
         }
     }
     ```
-14. Paste the following code to headle the exception and to add **Status Code**:
+14. To handle the exception and add **Status Code**, enter the following code:
     ```cs
     private Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
@@ -90,7 +90,7 @@
         return context.Response.WriteAsync(result);
     }
     ```
-15. Paste the following code outside the class brackets but inside namespace brackets to add **extension method** for **IApplicationBuilder**:
+15. To add **extension method** for **IApplicationBuilder**, enter the following code outside class brackets but inside namespace brackets:
     ```cs
     public static class ExceptionHandlingMiddlewareExtensions
     {
@@ -100,49 +100,48 @@
         }
     }
     ```
-16. Inside **BlueYonder.Flights.Service** project, locate and click on **Startup** file:
-17. Paste the following **using**:
+16. In the **BlueYonder.Flights.Service** project, click the **Startup** file:
+17. Add the following **using** statement:
     ```cs
     using BlueYonder.Flights.Service.Middleware;
     ```
-18. Locate **Configure** method and paste the following code to use **Exception Handling Middleware**:
+18. To use **Exception Handling Middleware**, locate the **Configure** method and enter the following code:
     ```cs
     app.UseExceptionHandlingMiddleware();
     ```
-19. Switch to **Command Line**.
-20. Run the following command to run the server:
+19. Switch to the **Command Prompt** window.
+20. To run the server, run the following command:
     ```bash
     dotnet run
     ```
-21. Open **Microsoft Edge** browser.
-22. Open **Develpper Tools** by click on the three dot on the top bar and then select **Develpper Tools** or by pressing **F12**.
-23. In the **Develpper Tools** navigate to **Network**.
-24. Navigate to the following url:
+21. Open Microsoft Edge.
+22. In the title bar, click **Settings and more**, and then select **Developer Tools**.
+23. In **Developer Tools**, click **Network**.
+24.In the **Network** tab, locate the following URL:
     ```url
     https://localhost:5001/api/passenger/5
     ```
-25. In **Network** tab locate the url and check the result column that you get **404**
+25. Click the URL, and then verify that that the result column shows **404**.
 
+# Lesson 2: Customizing Controllers and Actions
 
-# Lesson 2: Customizing controllers and actions
+### Demonstration: Creating Asynchronous Actions
 
-### Demonstration: Creating asynchronous actions
-
-1. Open **Command Line**.
-2. Change directory to the starter project, run the following command in the **Command Line**:
+1. Open the **Command Prompt** window.
+2. To change the directory to the starter project, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter
     ```
-3. Restore all dependencies and tools of a project use the following command in the **Command Line**:
+3. To restore all the dependencies and tools of a project, run the following command:
     ```base
     dotnet restore
     ```
-4. Open the project in **VSCode** and paste the following command and press enter:
+4. Open the project in Visual Studio Code, and then run the following command:
     ```bash
     code .
     ```
-5. Expand **BlueYonder.Flights.Service** project, expand **Controllers** folder and click on **PassengerController** file.
-6. Paste the following code inside the class to add asynchronous actions get photo as paramter:
+5. Expand the **BlueYonder.Flights.Service** project, expand the **Controllers** folder, and then click the **PassengerController** file.
+6. To add the *asynchronous actions get photo as* parameter, inside the class, enter the following code:
     ```cs
     [HttpPut("UpdatePhoto")]
     public async Task<IActionResult> UpdatePhoto(IFormFile file)
@@ -160,41 +159,41 @@
         return Ok();
     }
     ```
-    This method get photo as a paramter and save it in **Image** folder inside **wwwroot** folder.
-7. Switch to **Command Line**.
-8. Run the following command to change directory to **BlueYonder.Flights.Service**:
+    This method gets the photo as a paramter and saves it in the **Image** folder inside **wwwroot** folder.
+7. Switch to the **Command Prompt** window.
+8. To change the directory to **BlueYonder.Flights.Service**, run the following command:
    ```bash
    cd BlueYonder.Flights.Service
    ```
-9. Run the following command to run the service:
+9. To run the service, run the following command:
    ```cd
    dotnet run
    ```
-10. Open new **Command Line**.
-11. Change directory to the **BlueYonder.Flights.Client** project, run the following command in the **Command Line**:
+10. Open a new **Command Prompt** window.
+11. To change the directory to **BlueYonder.Flights.Client**, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Client
     ```
-12. Run the following command to run the client application:
+12. To run the client application, run the following command:
    ```cd
    dotnet run
    ```
-13. In the console verified the status code is **OK**.
-14. Check the following path that you have image inside:
+13. In the console, verify that the status code is **OK**.
+14. Verify that you have placed the image at the following path:
     ```bash
     [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Server\wwwroot\Image
     ```
 
-### Creating custom filters and formatters
+### Creating Custom Filters and Formatters
 
-1. Open **Command Line**.
-2. Change directory to the starter project, run the following command in the **Command Line**:
+1. Open a **Command Prompt** window.
+2. To change the directory to the starter project, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\CustomFiltersAndFormatters\Starter\CustomFiltersAndFormatters
     ```
-3. Right click on  **CustomFiltersAndFormatters** project, select **New Folder** and name it **Formatter**.
-4. Right click on **Formatter** folder, select **New File** and name it **ImageFormatter.cs**.
-5. Paste the following code:
+3. Right-click **CustomFiltersAndFormatters**, select **New Folder**, and then name it **Formatter**.
+4. Right-click the **Formatter** folder, select **New File**, and then name it **ImageFormatter.cs**.
+5. To **ImageFormatter.cs**, add the following code:
     ```cs
     using CustomFiltersAndFormatters.Models;
     using Microsoft.AspNetCore.Http;
@@ -221,8 +220,8 @@
         }
     }
     ```
-    In **WriteResponseBodyAsync** method get **Value** class and take path of the photo and send the photo it salf to the client.
-6. Click on **Startup** class and locate the **ConfigureServices** and replace it with the following code:
+    In the **WriteResponseBodyAsync** method, get the **Value** class, copy the path of the image, and then send the image to the client.
+6. To add the new **ImageFormatter** to **OutputFormatters**, click the **Startup** class, locate **ConfigureServices**, and then replace it with the following code:
     ```cs
     public void ConfigureServices(IServiceCollection services)
     {
@@ -232,40 +231,39 @@
         }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
     }
     ```
-    This code add the new **ImageFormatter** to the **OutputFormatters**.
-7. Expand the **Controllers**, select **PassengerController** and veiw the class
-    >**Note:** see **GetPhoto** method return **Value** class but the client will get the photo via the **ImageFormatter**.
-8. Switch to **Command Line**.
-9. Run the following command to run the server:
+  
+7. Expand **Controllers**, click **PassengerController**, and then view the class.
+    >**Note**: The **GetPhoto** method returns the **Value** class but the client will get the photo through **ImageFormatter**.
+8. Switch to the **Command Prompt** window.
+9. To run the server, run the following command:
     ```cd
     dotnet run
     ```
-10. Open to **Microsoft Edge** browser.
-11. Navigate to the following url:
+10. Open Microsoft Edge, and then go to the following URL:
     ```url
     https://localhost:5001/api/passenger/photo/2
     ```
-12. In the browser you should see an image.
+11. In Microsoft Edge, you should see an image.
 
 #Lesson 3: Injecting Dependencies into Controllers
 
-### Demonstration: Using dependency injection with controllers
+### Demonstration: Using Dependency Injection with Controllers
 
-1. Open **Command Line**.
-2. Change directory to the starter project, run the following command in the **Command Line**:
+1. Open a **Command Prompt** window.
+2. To change the directory to the starter project, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\DependencyInjection\Starter
     ```
-3. Restore all dependencies and tools of a project use the following command in the **Command Line**:
+3. To restore all dependencies and tools of a project, run the following command:
     ```base
     dotnet restore
     ```
-4. Open the project in **VSCode** and paste the following command and press enter:
+4. Open the project in Visual Studio Code, and then enter the following command:
     ```bash
     code .
     ```
-5. Expand **BlueYonder.Flights.DAL** project and then right click on **Repository** folder and select **New File** and name it **IPassengerRepository**.
-6. Paste the following code to implement **IPassengerRepository**:
+5. Expand the **BlueYonder.Flights.DAL** project, right-click **Repository**, select **New File**, and then name it **IPassengerRepository**.
+6. To implement **IPassengerRepository**, enter the following code:
     ```cs
     using BlueYonder.Flights.DAL.Models;
     using System;
@@ -285,40 +283,45 @@
         }
     }
     ```
-7. In the **Repository** folder click on **PassengerRepository** file.
-8. Locate class declaration and replace it with the following code to use **IPassengerRepository** interface.
+7. In the **Repository** folder, click the **PassengerRepository** file.
+8. To use the **IPassengerRepository** interface, locate the class declaration and replace it with the following code:
     ```cs
     public class PassengerRepository : IPassengerRepository
     ```
-9. Expand the **BlueYonder.Flights.Service** folder and double-click on **Startup.cs** file.
-10. Locate **ConfigureServices** method and add the following code to register the repository.
+9. Expand the **BlueYonder.Flights.Service** folder, and then double-click the **Startup.cs** file.
+10. To register the repository, locate the **ConfigureServices** method, and then add the following code:
     ```cs
     services.AddTransient<IPassengerRepository, PassengerRepository>();
     ```
-11. In the **BlueYonderHotels.Service** project and expand **Controllers** folder and double-click on **PassengerController** file.
-12. Locate **_passengerRepository** field and replce it with the following code to use **IPassengerRepository**:
+11. In the **BlueYonderHotels.Service** project, expand the **Controllers** folder, and then double-click the **PassengerController** file.
+12. To use **IPassengerRepository**, locate the **_passengerRepository** field, and then replace it with the following code:
     ```cs
     private readonly IPassengerRepository _passengerRepository;
     ```
-13. Locate class constructor and replace it with the following code to get **IHotelBookingRepository** interface as paramter.
+13. To get the **IHotelBookingRepository** interface as parameter, locate the class constructor and replace it with the following code:
     ```cs
     public PassengerController(IPassengerRepository passengerRepository)
     {
         _passengerRepository = passengerRepository;
     }
     ```
-14. Switch to **Command Line**.
-15. Run the following command to change directory to **BlueYonder.Flights.Service**:
+14. Switch to the **Command Prompt** window.
+15. To change the directory to **BlueYonder.Flights.Service**, run the following command:
    ```bash
    cd BlueYonder.Flights.Service
    ```
-16. Run the following command to run the service:
+16. To run the service, run the following command:
    ```cd
    dotnet run
    ```
-17. Open **Microsoft Edge** browser.
-18. Navigate to the following url:
+17. Open Microsoft Edge, and then go to the following URL.
     ```url
     https://localhost:5001/api/passenger
     ```
-19. Check that you get all the data from the server.
+18. Verify that you get all the data from the server.
+
+©2018 Microsoft Corporation. All rights reserved.
+
+The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
+
+This document is provided &quot;as-is.&quot; Information and views expressed in this document, including URL and other Internet Web site references, may change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred. Microsoft makes no warranties, express or implied, with respect to the information provided here.
