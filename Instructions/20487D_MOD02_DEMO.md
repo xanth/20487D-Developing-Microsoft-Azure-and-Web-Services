@@ -339,7 +339,7 @@
 14. Switch to the Command Prompt window.
 15. To run the all the test methods, paste the following command, and then press Enter:
    ```bash
-    dotnet test
+    dotnet run test
    ```
 16. Close all open windows.
 
