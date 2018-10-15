@@ -1,69 +1,68 @@
 # Module 5: Hosting Services On-Premises and in Azure
 
-1. Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
- e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [Repository Root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
-2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
-3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
+1. Wherever a path to a file starts at *[Repository Root]*, replace it with the absolute path to the directory in which the 20487 repository resides. For example, if you cloned or extracted the 20487 repository to **C:\Users\John Doe\Downloads\20487**, change the path: *[Repository Root]***\AllFiles\20487D\Mod01 to C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01**.
+2. Wherever *{YourInitials}* appears, replace it with your actual initials. For example, the initials for **John Doe** will be **jd**.
+3. Before performing the demonstration, you should allow some time for the provisioning of the different Microsoft Azure resources required for the demonstration. You should review the demonstrations before the actual class, identify the resources, and then prepare them beforehand to save classroom time.
 
 
-# Lesson 1: Hosting Services on-premises
+# Lesson 1: Hosting Services On-Premises
 
-### Demonstration: Hosting Services on-premises by using Windows Services with Kestrel (RunAsService)
+### Demonstration: Hosting Services On-Premises by using Windows Services with Kestrel (RunAsService)
 
 #### Demonstration Steps
 
-1. Open **Command Line** as an administrator.
-2. Paste the following command and then press **Enter**:
-   ```bash
-      cd [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindows Service
-   ```
-3. Paste the following command in order to publish your **ASP .NET Core** project into a folder and then press **Enter**:
-   ```bash
-      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindows Service
-   ```
-4. Paste the following command in order to create your **Windows Service** and then press **Enter**:
-   ```bash
+1. Open the Command Prompt window as an administrator.
+2. At the command prompt, paste the following command, and then press Enter:
+    ```bash
+       cd *[Repository Root]*\Allfiles\Mod05\DemoFiles\HostInWindows Service
+    ```
+3. To publish the **ASP .NET Core** project into a folder, paste the following command, and then press Enter:
+    ```bash
+      dotnet publish --configuration Release --output *[Repository Root]*\Allfiles\Mod05\DemoFiles\HostInWindows Service
+    ```
+4. To create the **Windows** service, paste the following command, and then press Enter:
+    ```bash
       sc create HotelsService binPath= "[Repository Root]\Allfiles\Mod05\DemoFiles\Host In Windows Service\BlueYonder.Hotels.Service.exe"
-   ```
-5. Paste the following command in order to start your **Windows Service** and then press **Enter**:
-   ```bash
+    ```
+5. To start the **Windows** service, paste the following command, and then press Enter:
+    ```bash
       sc start HotelsService
-   ```
-6. Verify that the service is working by open a browser and browse to **http://localhost:5000/api/values**.
-7. Paste the following command in order to stop your **Windows Service** and then press **Enter**:
-   ```bash
+    ```
+6. To verify that the service is working, open the browser and go to **http://localhost:5000/api/values**. 
+7. To stop the **Windows** service, paste the following command, and then press Enter:
+    ```bash
       sc stop HotelsService
-   ```
-8. Close **Command Line**.
+    ```
+8. Close the **Command Prompt** window.
 
 
 
 
-### Demonstration: Hosting ASP.NET Core services in IIS
+### Demonstration: Hosting ASP.NET Core Services in IIS
 
 #### Demonstration Steps
 
 1. In the **Start** menu, open **Internet Information Services(IIS) Manager**.
-2. Right-click on the **Sites** folder in the left menu and click **Add Website..**.
-3. In the **Add Website** dialog box, type **HotelsSite** in the **Site name** box.
-4. In the **Content Directory** section, in the **Physical path** box, type **[Repository Root]\Allfiles\Mod05\DemoFiles\Host in IIS**.
-5. In the **Binding** section, change the **Port** to be **8080** instead of **80**.
-6. Click **OK** to create your new website.
-7. Click on **Application Pools** in the left menu and then double-click on your website that you just created.
-8. In the **.NET CLR version** combo-box, choose **No Managed Code** and then press **OK**.
+2.  In the menu on the left side, right-click the **Sites** folder, and then select **Add Website..**.
+3. In the **Add Website** dialog box, in the **Site name** box, type **HotelsSite**.
+4. In the **Content Directory** section, in the **Physical path** box, type *[Repository Root]***\Allfiles\Mod05\DemoFiles\Host in IIS**.
+5. In the **Binding** section, change the value in **Port** from **80** to **8080**.
+6. To create your new website, click **OK**.
+7. In the menu on the left side, click **Application Pools**, and then double-click the website that you just created.
+8. In the **.NET CLR version** list, select **No Managed Code**, and then click **OK**.
 9. Close **Internet Information Services(IIS) Manager**.
-10. Open **Visual Studio 2017** as an administrator.
-11. In **Visual Studio**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
-12. In the **Open Project** dialog box, browse to **[Repository Root]\Allfiles\Mod05\DemoFiles\Host in IIS**, click **BlueYonder.Hotels.Service.sln**, and then click **Open**.
-13. Right-click on **BlueYonder.Hotels.Service** and then click **Publish**.
-14. In the **Publish** blade, choose **IIS, FTP, etc** and then click **Create Profile**.
-15. In the **Publish** window, type **localhost** in the **Server** box.
-16. Type **HotelsSite** in the **Site name** box and then press **Next**.
-17. In the **Settings** pane, choose **Self-Contained** in the **Deployment Mode** combo-box.
-18. Choose **win-x64** in the **Target Runtime** combo-bx and then click **Save**.
-19. In the **Publish** blade , click **Publish**.
-20. Wait until the process will finish.
-21. Open the browser and browse to **localhost:8080/api/Values**. Check that you are getting a good response like the following:
+10. Open Microsoft Visual Studio 2017 as an administrator.
+11. In Visual Studio, on the **File** menu, point to **Open**, and then click **Project/Solution**.
+12. In the **Open Project** dialog box, browse to *[Repository Root]***\Allfiles\Mod05\DemoFiles\Host in IIS**, click **BlueYonder.Hotels.Service.sln**, and then click **Open**.
+13. Right-click **BlueYonder.Hotels.Service**, and then select **Publish**.
+14. In the **Publish** blade, select **IIS, FTP, etc**, and then click **Create Profile**.
+15. In the **Publish** window, in the **Server** box, type **localhost**.
+16. In the **Site name** box, type **HotelsSite**, and then click **Next**.
+17. In the **Settings** pane, in the **Deployment Mode** list, select **Self-Contained**.
+18. In the **Target Runtime** list, select **win-x64**, and then click **Save**.
+19. In the **Publish** blade, click **Publish**.
+20. Wait until the process is complete.
+21. Open the browser and browse to **localhost:8080/api/Values**. Check that you are getting the expected response such as the following:
 	```json
 		["value1", "value2"]
 	```
@@ -71,41 +70,41 @@
 
 
 
-# Lesson 2: Hosting Services in Azure Web Apps
+# Lesson 2: Hosting Services in Web Apps Feature of Azure App Service
 
-### Demonstration: Hosting ASP.NET Core Web APIs in Azure Web Apps
+### Demonstration: Hosting ASP.NET Core Web APIs in Web Apps
 
-1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
-2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+1. Open Microsoft Azure Portal.
+2. If a page appears asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
 
-    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+    >**Note**: During the sign-in process, if a page appears asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
 
-3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+3. If the **Windows Azure Tour** dialog box appears, to close it, click **X**.
 4. In the navigation blade, click **App Services**. 
-5. In the top menu, click **Add** in order to create a new **App Service**.
-6. Choose **Web App** from the **Web Apps** section inside the **Web** blade, and then click **Create**.
-7. In the **App name** text box, enter a unique name.
+5. To create a new app service, in the menu at the top, click **Add**.
+6. In the **Web** blade, in the **Web Apps** section, select **Web App**, and then click **Create**.
+7. In the **App name** box, enter a unique name.
 8. Copy the **App name** value to any code editor.
 9. Click **App service plan/Location**, and then click **Create new**.
-10. From the **Location** drop-down list, select the region that is closest to your location.
-11. In the **App Service plan** input, enter **MyAppService**, and then click **OK**.
+10. From the **Location** list, select the region that is closest to your location.
+11. In the **App Service plan** box, type **MyAppService**, and then click **OK**.
 12. Click **Create**. Wait for the web app to be created. Click the newly created web app.
 13. In the newly created web app blade, in the **Deployment** section, click **Deployment Credentials**.
-14. In the **FTP/deployment username** type a globally unique name.
-15. In the **Password** and **Confirm password** inputs, type a new password.
+14. In the **FTP/deployment username**, enter a unique name.
+15. In the **Password** and **Confirm password** inputs, enter a new password.
 
-    >**NOTE:** You will need the credentials for the next steps. Copy them to any code editor.
+    >**Note**: You will need these credentials for the next steps. Copy them to any code editor.
     
-16. Click on the **Overview** button in your newly created web app.
-17. Open a **Command Line**.
-18. Paste the following command in order to create a new **Web App** and then press **Enter**:
-   ```bash
+16. In the newly created web app, click **Overview**.
+17. Open the Command Prompt window.
+18. At the command prompt, paste the following command to create a new web app and then press Enter:
+    ```bash
       dotnet new webapi --name BlueYonder.Hotels.Service -output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure"
-   ```
-19. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure**.
-20. In the **Properties** folder, create a new folder called **PublishProfiles**.
-21. In the **PublishProfiles** create a new file called **Azure** with an extension of **.pubxml**..
-22. Open the file with any code editor and paste the following **XML** content in order to define the publish settings:
+    ```
+19. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\HostInAzure**.
+20. In the **Properties** folder, create a new folder **PublishProfiles**.
+21. In the **PublishProfiles** folder, create a new file called **Azure** with the extension **.pubxml**.
+22. Open the file in any code editor and paste the following XML content to define the publish settings:
 
     ```xml
     <Project>
@@ -119,19 +118,18 @@
     ```
 23. Replace the **PublishSiteName**, **UserName** and **Password** values with the values that you have copied earlier.
 24. Save the file.
-25. In the **Command Line**, paste the following command to point to your newly web app folder:
+25. To point to your new web app folder, at the command prompt, paste the following command:
     ```bash
-        cd [RepostiroryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure
+        cd *[RepostiroryRoot]*\Allfiles\Mod05\DemoFiles\HostInAzure
     ```
-26. Paste the following command in order to host your web app in the **App Service** that you have created in **Azure**:
-
+26. To host your web app in an app service that you created in Azure, paste the following command:
     ```bash
         dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
 27. Open a browser and browse to **https://{Your App Name}.azurewebsites.net/api/values**.
 
-    >**NOTE:** Replace **{Your App Name}** with your actual app name that you have copied earlier.
-28. Check that you are getting a good response like the following:
+   >**Note**: Replace *{Your App Name}* with your actual app name that you have copied earlier.
+28. Check whether you are getting the expected response such as the following:
 	```json
 		["value1", "value2"]
 	```
@@ -142,33 +140,33 @@
 
 
 
-# Lesson 3: Packaging services in containers
+# Lesson 3: Packaging Services in Containers
 
 
 ### Demonstration: Creating an empty ASP.NET Core Docker container
 
-1. Open a **Coomand Line**.
-2. Paste the following command in order to launch a default **ASP.NET Core** container, which listens on a default port:
+1. Open the Command Prompt window.
+2. To launch a default **ASP.NET Core** container that listens on a default port, at the command prompt, paste the following command:
 
-```bash
+    ```bash
     docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
-```
-1. Open a browser and nevigate to **localhost:8000**.
-2. Verify that you are getting the default **ASP.NET Core** starter page.
+    ```
+3. Open a browser and navigate to **localhost:8000**.
+4. Verify that you are getting the default **ASP.NET Core** starter page.
 
 
 
-### Demonstration: Publishing into a container
+### Demonstration: Publishing into a Container
 
 
-1. Open a **Command Line**.
-2. Paste the following command in order to create a new **Web App** and then press **Enter**:
-   ```bash
+1. Open the Command Prompt window.
+2. To create a new Web App, at the command prompt, paste the following command, and then press Enter:
+    ```bash
       dotnet new webapi --name BlueYonder.Hotels.Service --output [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
-   ```
-3. Open **File Explorer** and browse to **[RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker**.
-4. Add a new file called **DockerFile** (without extension) in **Host_In_Docker** folder.
-5. Open the newly **DockerFile** with any code editor and paste the following docker commands in order to download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project. Then - save the file:
+    ```
+3. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\Host_In_Docker**.
+4. In the **Host_In_Docker** folder, add a new file called **DockerFile** (without extension).
+5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** in any code editor, paste the following docker commands, and then save the file.
     ```
         FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
         WORKDIR /app
@@ -192,166 +190,166 @@
         COPY --from=publish /app .
         ENTRYPOINT ["dotnet", "BlueYonder.Hotels.Service.dll"]
     ```
-6. Paste the following command in the **Command Line** to locate your parent project folder and then press **Enter**:
+6. To locate the parent folder for your project, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\
+        cd *[RepositoryRoot]*\Allfiles\Mod05\DemoFiles\
     ```
-7. Paste the following command to build your project using the **DockerFile** that you have created earlier and then press **Enter**:
+7. To build your project by using **DockerFile** that you created earlier, paste the following command, and then press Enter:
     ```bash
         docker build -t hotels_service -f Host_In_Docker\DockerFile .
     ```
-8. Paste the following command in order to run the docker container which listening on a default port and then press **Enter**:
+8. To run the docker container which is listening on a default port, paste the following command, and then press Enter:
     ```bash
         docker run --rm -it -p 8080:80 hotels_service
     ```
-9. Open a browser and nevigate to **localhost:8080/api/values**.
-10. Check that you are getting a good response like the following:
+9. Open a browser and navigate to **localhost:8080/api/values**.
+10. Check that you are getting the expected response such as the following:
 	```json
 		["value1", "value2"]
 	```
-11. Run **Docker Client** on your machine and login using your **Docker Hub** credentials.
-12. Paste the following command in order to login to **Docker Hub** using a command line:
+11. Run **Docker Client** on your machine and sign in by using your Docker Hub credentials.
+12. To sign in to Docker Hub by using the command line, paste the following command:
     ```bash
         docker login
     ```
-    >**NOTE :** Enter your **Docker Hub** user name and password and then press **Enter**.
+    >**Note**: Enter your Docker Hub username and password, and then press Enter.
 
-13. Paste the following into a command line in order to create a tag name for your docker image in **Docker Hub** and then press **Enter**:
-     >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+13. To create a tag name for your docker image in Docker Hub, paste the following command, and then press Enter:
+     >**Note**: Replace the *{Your Docker Hub Username}* variable with your actual Docker Hub username.
     ```bash
-        docker tag hotels_service {Your Docker Hub Username}/hotels_service
+        docker tag hotels_service *{Your Docker Hub Username}*/hotels_service
     ```
-14. Paste the following command in order to push your container image into **Docker Hub** and then press **Enter**:
+14. To push your container image into Docker Hub, paste the following command, and then press Enter:
 
-    >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+    >**Note**: Replace the *{Your Docker Hub Username}* variable with your actual Docker Hub username.
     ```bash
         docker push {Your Docker Hub Username}/hotels_service
     ```
-15. Open a browser and nevigate to **https://hub.docker.com**. Then **Sign In** with your credentials.
-16. On the **Repositories** page, verify that you are seeing the last push as **{Your Docker Hub UserName}/hotels_service**.
-17. Paste the following command in order to pull your docker image from **Docker Hub** and then press **Enter**:
+15. Open a browser, navigate to **https://hub.docker.com**, and then sign in with your credentials.
+16. On the **Repositories** page, verify that you are seeing the last push as *{Your Docker Hub UserName}***/hotels_service**.
+17. To pull your docker image from Docker Hub, paste the following command, and then press Enter:
 
-    >**NOTE**: Replace the **{Your Docker Hub Username}** variable with your actual **Docker Hub** user name.
+    >**Note**: Replace the *{Your Docker Hub Username}* variable with your actual Docker Hub username.
     ```bash
         docker pull {Your Docker Hub Username}/hotels_service
     ```
-18. Paste the following command in order to see all your local and remote images which exists on your machine and then press **Enter**:
+18. To see all the local and remote images that exist on your machine, paste the following command, and then press Enter:
     ```bash
         docker images
     ```
-19. Verify that you are seeing both locally and remotely **hotels_service** images.
-20. Paste the following command in order to run the remotely docker image on your machine and then press **Enter**:
+19. Verify that you are seeing both local and remote **hotels_service** images.
+20. To run the remote docker image on your machine, paste the following command, and then press Enter:
     ```bash
         docker run -p 4000:80 {Your Docker Hub Username}/hotels_service        
     ```
-21. Open a browser and nevigate to **localhost:4000/api/values**.
-22. Check that you are getting a good response like the following:
+21. Open a browser and navigate to **localhost:4000/api/values**.
+22. Check that you are getting the expected response such as the following:
 	```json
 		["value1", "value2"]
 	```    
 
 
-# Lesson 4: Implementing serverless services
+# Lesson 4: Implementing Serverless Services
 
 ### Demonstration: HTTP-triggered Azure Function
 
-1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
-2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+1. Open the Microsoft Azure Portal.
+2. If a page appears asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
 
-    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+    >**Note**: During the sign-in process, if a page appears asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
 
-3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+3. If the **Windows Azure Tour** dialog box appears, to close it, click **X**.
 4. In the navigation blade, click **Create a resource**. 
-5. In the **New** window, select **Compute** and then choose **Function App**.
-6. In the **Function App - Create** blade, enter a globally unique name in the **App name** box.
-7. From the **Location** drop-down list, select the region that is closest to your location.
-8. On the **Application Insights** buttons, choose **Off**.
-9. Click **Create**. Wait for the function app to be created. Click the newly created **Function App**.
-10. In the newly created **Function App** blade, click on the **+** sign near the **Functions** section.
-11. In the new function blade, verify that **Webhook + API** is selected for the scenario and **CSharp** is selected for the language.
-12. Click **Create this function** button.
-13. In your new function blade, click **</> Get function URL** at the top right, select **default (Function key)**, and then click **Copy**.
-14. Paste the function URL into your browser's address bar and add the following query string value to the end of this URL and press the Enter to execute the request:
+5. In the **New** window, select **Compute**, and then select **Function App**.
+6. In the **Function App - Create** blade, in the **App name** box, enter a globally unique name.
+7. From the **Location** list, select the region that is closest to your location.
+8. Set **Application Insights** to **Off**.
+9. Click **Create**. Wait for the Function app to be created. Click the newly created Function app.
+10. In the newly created Function app blade, click the **+** sign near the **Functions** section.
+11. In the new **function** blade, verify that **Webhook + API** is selected as the scenario and **CSharp** is selected as the language.
+12. Click **Create this function**.
+13. In your new **function** blade, at the top right, click **</> Get function URL**, select **default (Function key)**, and then click **Copy**.
+14. Paste the function URL in your browser's address bar and add the following query string value to the end of this URL, and then press Enter to run the request:
     ```cs
         &name=<yourname>
     ```
-    >**NOTE:** Replace **<yourname>** variable with your actual name.
- 15. Check that you are getting a good response like the following:
+    >**Note**: Replace *<yourname>* variable with your actual name.
+ 15. Check that you are getting the expected response such as the following:
 	 ```cs
         "Hello {Your Name}"
      ```
 
-     >**NOTE:** This is the response from **Microsoft Edge**. Other browsers may include displayed XML.
+     >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.
 16. To see the trace output from the previous execution, return to your function in the portal and click the arrow at the bottom of the screen to expand the **Logs**.
 
 
 
-### Demonstration: Developing, testing, and publishing an Azure Function from CLI
+### Demonstration: Developing, Testing, and Publishing an Azure Function from CLI
 
-1. Open a browser and navigate to Azure Portal at **portal.azure.com**.
-2. If a page appears, asking for your email address, type your email address, and then click Continue. Wait for the sign-in page to appear, enter your email address and password, and then click Sign In.
+1. Open the Azure Portal.
+2. If a page appears asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
 
-    >**Note:** During the sign-in process, if a page appears, asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
+    >**Note**: During the sign-in process, if a page appears asking you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
 
-3. If the **Windows Azure Tour** dialog box appears, click close (the **X** button).
+3. If the **Windows Azure Tour** dialog box appears, to close it, click **X**.
 4. In the navigation blade, click **Create a resource**. 
-5. In the **New** window, select **Compute** and then choose **Function App**.
-6. In the **Function App - Create** blade, enter a globally unique name in the **App name** box.
-    >**NOTE:** Save the **App name** in any code editor. You will need it when publishing a new **Azure Function** to **Azure**.
-7. From the **Location** drop-down list, select the region that is closest to your location.
-8. On the **Application Insights** buttons, choose **Off**.
-9. Click **Create**. Wait for the function app to be created.
-10. Open a **Command Line**.
-11. Change directory in the command line by pasting the following command and then press **Enter**:
+5. In the **New** window, select **Compute**, and then select **Function App**.
+6. In the **Function App - Create** blade, in the **App name** box, enter a globally unique name.
+    >**Note**: Save the App name in any code editor. You will need it when publishing a new **Azure Function** to **Azure**.
+7. From the **Location** list, select the region that is closest to your location.
+8. Set **Application Insights** to **Off**.
+9. Click **Create**. Wait for the Microsoft Azure Functions app to be created.
+10. Open the Command Prompt window.
+11. To change the directory, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd [RepositoryRoot]\AllFiles\Mod05\DemoFiles\Azure Functions
+        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\Azure Functions
     ```
-12. Paste the following command in order to create a **local Functions Project**:
+12. To create a local Functions project, paste the following command:
     ```bash
         func init MyAzureFunctionProj -n --worker-runtime dotnet
     ```
-13. Change directory to the newly created function project folder by pasting the following command and then press **Enter**:
+13. To change the directory to the new Functions project folder, paste the following command, and then press Enter:
     ```bash
         cd MyAzureFunctionProj
     ```
-14. Paste the following command in order to create a new **Azure Function** for your newly **Function** project and then press **Enter**:
+14. To create a new Azure function for your new Functions project, paste the following command, and then press Enter:
     ```bash
         func new --language C# --template "HttpTrigger" --name MyAzureFunc
     ```
-15. Paste the following command in order to test the newly **Azure Function** locally and then press **Enter**:
+15. To test the new Azure function locally, paste the following command, and then press Enter:
     ```bash
         func host start -- build
     ```
-16. Open a browser and nevigate to **http://localhost:7071/api/MyAzureFunc**.
-17. Add the following query string value to the end of this URL and press the Enter to execute the request:
+16. Open a browser and navigate to **http://localhost:7071/api/MyAzureFunc**.
+17. Add the following query string value to the end of this URL, and then press Enter to execute the request:
     ```cs
         ?name=<yourname>
     ```
-    >**NOTE:** Replace **<yourname>** variable with your actual name.
-18. Check that you are getting a good response like the following:
+    >**Note**: Replace *<yourname>* variable with your actual name.
+18. Check that you are getting the expected response such as the following:
 	 ```cs
         "Hello {Your Name}"
      ```
 
-     >**NOTE:** This is the respnse from **Microsoft Edge**. Other browsers may include displayed XML.       
-19. Paste the following command in order to login to **Azure** with your credentials before publishing the newly **Azure Function** to **Azure** and then press **Enter**:
+     >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.       
+19. To sign in to Azure with your credentials before publishing the new Azure function to Azure, paste the following command, and then press Enter:
     ```bash
         func azure login
     ```
-    >**NOTE:** You will get the following message: "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code **{some code}** to authenticate​". Follow the instructions to login with your user name and password.
-20. Paste the following command in order to publish your new **Azure Function** into **Azure** and then press **Enter**:
+    >**Note**: You will get the following message: **To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code** *{some code}* **to authenticate**. Follow the instructions to sign in with your username and password.
+20. To publish your new Azure function to Azure, paste the following command, and then press Enter:
     ```bash
         func azure functionapp publish {Your App name}
     ```            
-    >**NOTE:** Replace **{Your App name}** with your actual app name in azure that you wrote in point number 6.
-21. Open a browser and nevigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}**.
-    >**NOTE:** Replace **{Your App name}** with your actual app name and replace **{Your Name}** variable with your actual name.
-22. Check that you are getting a good response like the following:
+    >**Note**: Replace *{Your App name}* with your actual app name that you noted in step 6.
+21. Open a browser and navigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}**.
+    >**Note**: Replace *{Your App name}* with your actual app name and replace *{Your Name}* with your actual name.
+22. Check that you are getting the expected response such as the following:
 	 ```cs
         "Hello {Your Name}"
      ```
 
-     >**NOTE:** This is the response from **Microsoft Edge**. Other browsers may include displayed XML.  
+     >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.  
 
 
      
