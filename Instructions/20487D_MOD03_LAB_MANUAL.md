@@ -57,8 +57,8 @@ After completing this lab, you will be able to:
 5. Inside the **HttpClient** bracket, create a **HotelBooking GET** request, and pass **id=1** to it.
 6. To read the content of the response as a string, under **HttpResponseMessage**, use **ReadAsStringAsync**, and print the result to the console.
 7. Read the content of the response as a **Booking** entity.
-8. Modify the entity from the server, **booking.Paid** to **false**.
-9. Create a **PUT** request, and then pass **id=1** to it, and a **Booking** entity.
+8. CHange the **Paid** property of the response to **false**.
+9. Create a **PUT** request, and then pass the **id=1** to it, and the response a **Booking** entity.
 10. Read the content of the **PUT** response as a string, and print the result to the console.
 11. Run the **BlueYonder.Hotels.Service** project.
 12. Run the **BlueYonder.Hotels.Client** project.
