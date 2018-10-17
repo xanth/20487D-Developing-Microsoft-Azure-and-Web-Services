@@ -170,7 +170,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 1. Open the Azure command prompt (Azure CLI) to sign in to your Azure account.
 2. Write the code that you have got from the command line in the **https://microsoft.com/devicelogin** URL.
-3. Create a new **Resource Group** called **blueyounder-hotels**.
+3. Create a new **Resource Group** called **blueyonder-hotels**.
    
 
 #### Task 2: Create an Azure Container Instance from the container image
