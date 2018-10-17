@@ -24,7 +24,7 @@
     dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version=2.1.1
     dotnet restore
    ```
-5. Open the project in Microsoft Visual Studio Code, paste the following command, and then press Enter:
+5. To Open the project in Microsoft Visual Studio Code, paste the following command, and then press Enter:
    ```bash
     code .
    ```
@@ -109,7 +109,10 @@
         Console.WriteLine("Database created");
     }
    ```
-19. To run the application, press F5.
+19. To run the application, in command prompt, run the following command:
+   ```bash
+   dotnet run
+   ```
 20. Open **SQL Operations Studio**.
 21. Click **New Connection**. The **Connection** window will appear.
 22. In the **Server** box, type **.\SQLEXPRESS**, and then click **Connect**.
@@ -136,7 +139,7 @@
    ```base
     dotnet restore
    ```
-4. Open the project in VS Code, paste the following command, and then press Enter:
+4. To open the project in VS Code, paste the following command, and then press Enter:
    ```bash
     code .
    ```
@@ -169,11 +172,13 @@
     }
     Console.ReadLine();
    ```
-10. To save the changes, press Ctrl+S.
-11. To run the application, press F5.
-12. In the console window, review the course and student lists printed to the console window.
-13. To stop the debugger, press Shift+F5.
-14. Close all open windows.
+10. To run the application, in command prompt, run the following command:
+   ```bash
+   dotnet run
+   ```
+11. In the console window, review the course and student lists printed to the console window.
+12. To stop the application, in the command prompt press Ctrl+C.
+13. Close all open windows.
 
 ### Demonstration 2: Running Stored Procedures with Entity Framework
 
@@ -188,7 +193,7 @@
    ```base
     dotnet restore
    ```
-4. Open the project in VS Code, paste the following command, and then press Enter:
+4. To open the project in VS Code, paste the following command, and then press Enter:
    ```bash
     code .
    ```
@@ -196,8 +201,12 @@
 6. Navigate to the **Main** method, and notice that a **SchoolContext** instance is created to establish a connection to the database.
 7. Review the query that is being assigned to the *averageGradeInCourse* variable. Notice that the average grade of the **ASP.NET Core** course is calculated, and then printed to the console.
 8. The **ExecuteSqlCommand** statement calls the **spUpdateGrades** stored procedure with two parameters, **CourseName** and **GradeChange**.
-9. To run the console application, press Ctrl+F5. Notice that the updated average grade is printed to the console before and after the change.
-10. To stop the debugger, press Shift+F5.
+9. To run the application, in command prompt, run the following command:
+   ```bash
+   dotnet run
+   ```
+   >**Note**: Notice that the updated average grade is printed to the console before and after the change.
+10. To stop the application, in the command prompt press Ctrl+C.
 11. Close all open windows.
 
 # Lesson 4: Manipulating Data
@@ -215,7 +224,7 @@
    ```base
     dotnet restore
    ```
-4. Open the project in VS Code, paste the following command, and then press Enter:
+4. To open the project in VS Code, paste the following command, and then press Enter:
    ```bash
     code .
    ```
@@ -255,12 +264,14 @@
     Console.WriteLine(ASPCourse);
     Console.ReadLine();
    ```
-13. To save the changes, press Ctrl+S.
-14. To run the application, press F5.
-15. After a few seconds, the list of students appears in the console window. Notice that there are two new student records at the bottom of the list, and Student 1 is missing from the list. Also notice that the salary of the teacher is now **$101,000**.
-16. Notice the Structured Query Language (SQL) update, and delete and insert statements that correspond to the salary update, student record deletion, and the addition of the two new student records.
-17. To stop the debugger, press Shift+F5.
-18. Close all open windows.
+13. To run the application, in command prompt, run the following command:
+   ```bash
+   dotnet run
+   ```
+14. After a few seconds, the list of students appears in the console window. Notice that there are two new student records at the bottom of the list, and Student 1 is missing from the list. Also notice that the salary of the teacher is now **$101,000**.
+15. Notice the Structured Query Language (SQL) update, and delete and insert statements that correspond to the salary update, student record deletion, and the addition of the two new student records.
+16. To stop the application, in the command prompt press Ctrl+C.
+17. Close all open windows.
 
 ### Demonstration: Using Entity Framework with In-Memory Database
 
@@ -283,7 +294,7 @@
    ```bash
    cd ..
    ```
-6. Open the solution in VS Code, paste the following command, and then press Enter:
+6. To open the solution in VS Code, paste the following command, and then press Enter:
    ```bash
     code .
    ```
@@ -302,14 +313,14 @@
    {
    }
    ```
-10. To locate the **OnConfiguring** method, add the following code:
+10. Locate the **OnConfiguring** method and add the following code:
    ```cs
-    if(!optionsBuilder.IsConfigured)
-    {
-        optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
-    }
+   if(!optionsBuilder.IsConfigured)
+   {
+       optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDB;Trusted_Connection=True;");
+   }
    ```
-    >**Note**: In your tests, you are going to externally configure the context to use the **InMemory** provider. If you are configuring a database provider by overriding **OnConfiguring** in your context, then you need to add some conditional code to ensure that you configure the database provider only if it has not already been configured.    
+   >**Note**: In your tests, you are going to externally configure the context to use the **InMemory** provider. If you are configuring a database provider by overriding **OnConfiguring** in your context, then you need to add some conditional code to ensure that you configure the database provider only if it has not already been configured.    
 
 11. Expand **InMemory.Dal.Test**, and then click **DBInMemoryTest**.
 12. Add the following property to the class:
@@ -371,7 +382,7 @@
    ```bash
     code .
    ```
-7. Expand **Sqlite.Dal.Test**, and then click **SqliteTest**.
+7. Expand **Sqlite.Dal.Test**, and then click **DBSqliteTest**.
 8. Add the following property to the class:
    ```cs
      private DbContextOptions<SchoolContext> _options =
