@@ -95,7 +95,11 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 4: Configure IIS logs
 
-1. Add a unique name to **FTP/deployment username** under **Deployment Credentials**, and **Password**.
+1. Inside **Deployment Credentials**: 
+
+   - Set the **FTP/deployment username** with unique name.
+   - Set the **Password**.
+   
 2. Inside **MONITORING** menu:
 
    - Set the **Application Logging (Filesystem)** option to **On**.
