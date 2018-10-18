@@ -42,7 +42,6 @@ namespace Blueyonder.Service
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -14,5 +14,6 @@ FROM microsoft/dotnet:aspnetcore-runtime
 WORKDIR /app
 COPY --from=build-env /app/out .
 # Enviroment variable
-ENV COMPlus_EventLogEnabled 1
+ENV COMPlus_PerfMapEnabled 1
+ENV COMPlus_EnableEventLog 1
 ENTRYPOINT ["./Blueyonder.Service"]
