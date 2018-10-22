@@ -161,9 +161,9 @@
     ```bash
     dotnet run
     ```
-12. To change the directory to the **Client** folder, run the following command:
+12. Open a new Command Prompt window and to change the directory to the **Client** folder, run the following command:
     ```bash
-    cd ..\HttpClientApplication.Client
+    cd  [Repository Root]\Allfiles\Mod03\DemoFiles\HttpClientApplication\Starter\HttpClientApplication.Client
     ```
 13. To run the **Client** application, run the following command:
     ```bash
