@@ -292,9 +292,9 @@
     ```bash
     dotnet run
     ```
-5. To change the directory to the **AutoRest.Sdk** project, run the following command:
+5. Open a Command Prompt window and change the directory to the **AutoRest.Sdk** project, run the following command:
     ```bash
-    cd ..\AutoRest.Sdk
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\AutoRest\Starter\AutoRest.Sdk
     ```
 6. To **Generate** the **swagger** code, run the following command:
     ```bash
