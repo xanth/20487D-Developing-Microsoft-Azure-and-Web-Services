@@ -308,7 +308,7 @@
     ```bash
     code .
     ```
-9. On the **Explorer** blade, under **STARTER**, double-click **Program.cs**.
+9. On the **Explorer** blade double-click **Program.cs**.
 10. Enter the following **using** statements:
     ```cs
     using AutoRest.Sdk;
