@@ -20,14 +20,14 @@ namespace BlueYonder.Hotels.Service.Controllers
         [HttpPost]
         public ActionResult<string> Post(string someData)
         {
-            return "Post request succeded";
+            return "Post request Succeeded";
         }
 
         // PUT api/HotelBooking
         [HttpPut]
         public ActionResult<string> Put(string someData)
         {
-            return "Put request succeded";
+            return "Put request Succeeded";
         }
     }
 }
