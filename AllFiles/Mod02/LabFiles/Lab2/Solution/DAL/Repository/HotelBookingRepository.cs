@@ -12,7 +12,14 @@ namespace DAL.Repository
     {
         private DbContextOptions<MyDbContext> _options;
 
-        public HotelBookingRepository(DbContextOptions<MyDbContext> options = null)
+        public HotelBookingRepository()
+        {
+            _options = new DbContextOptionsBuilder<MyDbContext>()
+                .UseSqlServer(@"Server=.\SQLEXPRESS;Database=Mod2Lab2DB;Trusted_Connection=True;")
+                .Options;
+        }
+
+        public HotelBookingRepository(DbContextOptions<MyDbContext> options)
         {
             _options = options;
         }
@@ -46,12 +53,12 @@ namespace DAL.Repository
             }
         }
 
-        public async  Task<Booking> Update(Booking bookingToUpdate)
+        public async Task<Booking> Update(Booking bookingToUpdate)
         {
             using (MyDbContext context = new MyDbContext(_options))
             {
                 Booking booking = context.Bookings.Update(bookingToUpdate)?.Entity;
-                await  context.SaveChangesAsync();
+                await context.SaveChangesAsync();
                 return booking;
             }
         }

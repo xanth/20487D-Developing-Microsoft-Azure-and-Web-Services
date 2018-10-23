@@ -161,9 +161,9 @@
     ```bash
     dotnet run
     ```
-12. To change the directory to the **Client** folder, run the following command:
+12. Open a new Command Prompt window and to change the directory to the **Client** folder, run the following command:
     ```bash
-    cd ..\HttpClientApplication.Client
+    cd  [Repository Root]\Allfiles\Mod03\DemoFiles\HttpClientApplication\Starter\HttpClientApplication.Client
     ```
 13. To run the **Client** application, run the following command:
     ```bash
@@ -292,9 +292,9 @@
     ```bash
     dotnet run
     ```
-5. To change the directory to the **AutoRest.Sdk** project, run the following command:
+5. Open a Command Prompt window and change the directory to the **AutoRest.Sdk** project, run the following command:
     ```bash
-    cd ..\AutoRest.Sdk
+    cd [Repository Root]\Allfiles\Mod03\DemoFiles\AutoRest\Starter\AutoRest.Sdk
     ```
 6. To **Generate** the **swagger** code, run the following command:
     ```bash
@@ -308,7 +308,7 @@
     ```bash
     code .
     ```
-9. On the **Explorer** blade, under **STARTER**, double-click **Program.cs**.
+9. On the **Explorer** blade double-click **Program.cs**.
 10. Enter the following **using** statements:
     ```cs
     using AutoRest.Sdk;
