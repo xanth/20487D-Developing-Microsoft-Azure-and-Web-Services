@@ -72,8 +72,7 @@ After completing this lab, you will be able to:
    }
    ```
 
-   check **proxy_pass** this is the path of the reverse proxy
-   and the **test** is what needs to be added for using **proxy_pass**
+**Note**: Check **proxy_pass**. This is the path of the reverse proxy and **test** is what should be added for using **proxy_pass**.
 
 5. To the **nginx** folder, add a new **dockerfile** file.
 6. Copy the **nginx** image and change the **conf** file with the following code:
