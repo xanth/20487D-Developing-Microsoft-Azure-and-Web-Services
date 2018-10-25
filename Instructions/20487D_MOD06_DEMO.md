@@ -52,7 +52,7 @@
 27. Verify that the response is in the format: **["***value1***","***value2***"]**.
 28. Close all open windows.
 
-# Lesson 3: Web Deployment on Linux
+# Lesson 2: Web Deployment on Linux
 
 ### Demonstration: Deploying an ASP.NET Core Web Service with Nginx
 
@@ -117,7 +117,7 @@
 26. Open a new command prompt instance.
 27. To change the directory to the published folder, paste the following command:
     ```bash
-    *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
     ```
 28. To publish the package to the virtual machine, paste the following command:
     ```bash
