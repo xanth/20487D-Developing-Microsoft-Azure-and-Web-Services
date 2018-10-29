@@ -143,8 +143,9 @@
     ```bash
     code .
     ```
-5. Expand the **BlueYonder.Flights.Service** project, expand the **Controllers** folder, and then click the **PassengerController** file.
-6. To add the *asynchronous actions get photo as* parameter, inside the class, enter the following code:
+5. Expand the **BlueYonder.Flights.Service** project and verify whether a folder named **wwwroot** exists within the project. If the folder exists, continue to the next step. If the folder does not exist, right-click **BlueYonder.Flights.Service** and then click **New Folder** to create the folder. Name the folder **wwwroot**.
+6. In the **BlueYonder.Flights.Service** project, expand the **Controllers** folder, and then click the **PassengerController** file.
+7. To add the *asynchronous actions get photo as* parameter, inside the class, enter the following code:
     ```cs
     [HttpPut("UpdatePhoto")]
     public async Task<IActionResult> UpdatePhoto(IFormFile file)
@@ -163,26 +164,26 @@
     }
     ```
     This method gets the photo as a paramter and saves it in the **Image** folder inside **wwwroot** folder.
-7. Switch to the **Command Prompt** window.
-8. To change the directory to **BlueYonder.Flights.Service**, run the following command:
+8. Switch to the **Command Prompt** window.
+9. To change the directory to **BlueYonder.Flights.Service**, run the following command:
    ```bash
    cd BlueYonder.Flights.Service
    ```
-9. To run the service, run the following command:
+10. To run the service, run the following command:
    ```cd
    dotnet run
    ```
-10. Open a new **Command Prompt** window.
-11. To change the directory to **BlueYonder.Flights.Client**, run the following command:
+11. Open a new **Command Prompt** window.
+12. To change the directory to **BlueYonder.Flights.Client**, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Client
     ```
-12. To run the client application, run the following command:
+13. To run the client application, run the following command:
    ```cd
    dotnet run
    ```
-13. In the console, verify that the status code is **OK**.
-14. Verify that you have placed the image at the following path:
+14. In the console, verify that the status code is **OK**.
+15. Verify that you have placed the image at the following path:
     ```bash
     [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Server\wwwroot\Image
     ```
