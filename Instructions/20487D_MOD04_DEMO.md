@@ -105,7 +105,7 @@
     ```cs
     using BlueYonder.Flights.Service.Middleware;
     ```
-18. To use **Exception Handling Middleware**, locate the **Configure** method and enter the following code:
+18. To use **Exception Handling Middleware**, locate the **Configure** method and enter the following code before **app.UseHttpsRedirection();**:
     ```cs
     app.UseExceptionHandlingMiddleware();
     ```
@@ -114,10 +114,13 @@
     ```bash
     dotnet run
     ```
-21. Open Microsoft Edge.
+21. Open Microsoft Edge, and then go to the following URL:
+    ```url
+    https://localhost:5001/api/passenger/5
+    ```
 22. In the title bar, click **Settings and more**, and then select **Developer Tools**.
 23. In **Developer Tools**, click **Network**.
-24.In the **Network** tab, locate the following URL:
+24. In the **Network** tab, locate the following URL:
     ```url
     https://localhost:5001/api/passenger/5
     ```
