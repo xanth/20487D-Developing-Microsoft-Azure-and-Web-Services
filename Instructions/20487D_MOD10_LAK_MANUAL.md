@@ -2,127 +2,134 @@
 
 # Lab: Load Balancing Azure Web Apps
 
-### Exercise 1: Prepare the application for load-balancing
+### Exercise 1: Prepare the Application for Load Balancing
 
 #### Task 1: Add code to print out the server name
 
-1. Create **WebApp** in **http://portal.azure.com**.
-2. Open **[Repository Root]\AllFiles\Mod10\Labfiles\Lab1\Starter** project in **VSCode**
-3. Add **Middleware** folder, and inside it, new file **ExceptionHandlingMiddleware.cs**.
-4. Add **RequestDelegate** instance to **ExceptionHandlingMiddleware.cs**, and init it is the **constructor**.
-5. Add **Invoke** method that add **X-BlueYonder-Server** header with the **MachineName** as value.
-6. Add **extension method** for **IApplicationBuilder**.
-7. Use **Exception Handling Middleware** in the **Configure** method, inside **Startup** class.
+1. In the Microsoft Azure portal, create an Azure web app.
+2. In Microsoft Visual Studio Code, Open the *[Repository Root]***\AllFiles\Mod10\Labfiles\Lab1\Starter**.
+3. Create a new folder and name it **Middleware**. In this folder, create a new file, and name it **ExceptionHandlingMiddleware.cs**.
+4. In the **ExceptionHandlingMiddleware.cs** file, add a **RequestDelegate** instance, and initiate it as the constructor.
+5. To add the **X-BlueYonder-Server** header with **MachineName** as the value, add the **Invoke** method.
+6. In **IApplicationBuilder**, add an extension method.
+7. In the **Configure** method, inside the **Startup** class, add **Exception Handling Middleware**.
 
-#### Task 2: Deploy the application to an Azure Web App
+#### Task 2: Deploy the application to an Azure web app
 
-1. Publish the **blueyonder{YourInitials}** service
-2. Open **Azure Portal** and click the **blueyonder{YourInitials}** service.
-3. Click on **Scale up (App Service plan)** in **Settings** section
-4. Under **Dev/Test** tab, Change the **Recommended pricing tiers** to **B1**.
+1. Publish the **blueyonder***{YourInitials}* service.
+2. Open the Azure portal, and then click the **blueyonder***{YourInitials}* service.
+3. In the **Settings** section, click **Scale up (App Service plan)**.
+4. On the **Dev/Test** tab, in the **Recommended pricing tiers** box, enter **B1**.
 
-#### Task 3: Configure the Web App for multiple instances
+#### Task 3: Configure the web app for multiple instances
 
-1. Click on **Scale out (App Service plan)** in **Settings** section.
-2. Under **Configure** tab, increase the **Override condition** scale to **2**.
+1. In the **Settings** section, click **Scale out (App Service plan)**.
+2. On the **Configure** tab, increase the **Override condition** scale to **2**.
 
-### Exercise 2: Test the load balancing with instance affinity
+### Exercise 2: Test the Load Balancing with Instance Affinity
 
 #### Task 1: Browse the website multiple times
 
-1. Open **Microsoft Edge** browser and navigate to:
+1. Open Microsoft Edge, and then browse to the following URL:
    ```url
-   https://blueyonder{YourInitials}.azurewebsites.net/api/destinations
+   https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
    ```
-2. Vertify that the respone have list of destinations in **JSON**.
+2. Verify that the response has a list of destinations in JSON.
 
-#### Task 2: Verify you reached the same server each time
+#### Task 2: Verify that you reach the same server each time
 
-1. Open **Develpper Tools** and navigate to **Network** in the **Microsoft Edge** browser.
-2. Navigate to the following url:
+1. In Microsoft Edge, open **Developer Tools**, and then click the **Network** tab.
+2. Browse to the following URL:
    ```url
-   https://blueyonder{YourInitials}.azurewebsites.net/api/destinations.
+   https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
    ```
-3. View the respone with all the destinations as the task above.
-4. In **Network** tab locate the url and check the following info:
-   - Locate the **X-BlueYonder-Server** in **Response Headers** section and verified that the **Status** is **200**.
-     > **Note:** You should always get the same **machine name** value in **X-BlueYonder-Server** header.
+3. Verify that the response has a list of destinations in JSON.
+4. In the **Network** tab, locate the following URL:
+   ```url
+    https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
+   ```
+ 5. In the **Response Headers** section, locate the **X-BlueYonder-Server**, and then verify that the **Status** is **200**.
 
-### Exercise 3: Test the load balancing without affinity
+### Exercise 3: Test the Load Balancing Without Affinity
 
 #### Task 1: Update the application to not use affinity
 
-1. Click **blueyonder{YourInitials}** web app, in the **Azure Portal**.
-2. Click on **Application settings** inside **Settings** section, click **General settings**.
-3. Switch the **ARR Affinity** to **Off**, in the **General settings**.
+1. In the Azure portal, click the **blueyonder***{YourInitials}* web app.
+2. Click **Application settings**. In the **Settings** section, click **General settings**.
+3. In **General settings**, switch **ARR Affinity** to **Off**.
 
-#### Task 2: Retest and verify you reached more than one instance
+#### Task 2: Retest and verify that you reached more than one instance
 
-1. Refresh the page couple of times, in **Microsoft Edge** browser.
-2. View the respone with all the destinations as the previous exercise.
-3. View the **X-BlueYonder-Server** in the **Network** tab.
-   > **Note:** Now there is 2 server instances, in **X-BlueYonder-Server**
-   > can get 2 defferant value of **machine name**.
+1. In Microsoft Edge, refresh the page a couple of times.
+2. View the response with all the destinations as the previous exercise.
+3. In the **Network** tab,  view **X-BlueYonder-Server**.
+   > **Note**: Now there are two server instances in **X-BlueYonder-Server**, because of which you can get two different values for **machine name**.
 
 # Lab 2: Load Balancing with Azure Traffic Manager
 
-### Exercise 1: Deploy an Azure Web App to multiple regions
+### Exercise 1: Deploy an Azure Web App to Multiple Regions
 
-#### Task 1: Deploy an Azure Web App to the West Europe region
+#### Task 1: Deploy an Azure web app to the West Europe region
 
-1. Open **PowerShell** as **Administrator**.
-2. Run the following command from the **[repository root]\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory:
+1. Open Windows PowerShell as Administrator.
+2. From the *[repository root]***\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory, run the following command:
    ```batch
     .\createAzureServicesWestEurope.ps1
    ```
 3. Sign in with your **Subscription ID** and follow the on-screen instructions.
-p
-#### Task 2: Deploy an Azure Web App to the West US region
 
-1.  1. Open **PowerShell** as **Administrator**.
-2.  Run the following command from the **[repository root]\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory:
+#### Task 2: Deploy an Azure web app to the West US region
+
+1.  Open PowerShell as Administrator.
+2.  From the *[repository root]***\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory, run the following command:
     ```batch
      .\createAzureServicesWestUS.ps1
     ```
 3.  Sign in with your **Subscription ID** and follow the on-screen instructions.
 
-### Exercise 2: Create an Azure Traffic Manager profile
+### Exercise 2: Create an Azure Traffic Manager Profile
 
-#### Task 1: Create an Azure Traffic Manager profile in the Azure Portal
+#### Task 1: Create an Azure Traffic Manager profile in the Azure portal
 
-1. Create **Traffic Manager profile** with **Routing method** of **Priority** routing method.
+Create a Traffic Manager profile with the **Priority** routing method.
 
-#### Task 2: Configure the profile to point to the two Azure Web Apps
+#### Task 2: Configure the profile to point to the two Azure web apps
 
-1.  Create primary end point, in **Traffic Manager profile**:
-    - In **Type**, choose **Azure endpoint**.
-    - In **Target resource type**, choose **App Service**.
-    - In **Priority**, type **1**.
-2. Create secondary end point, in **Traffic Managerprofile**:
-    - In **Type**, choose **Azure endpoint**.
-    - In **Target resource type**, choose **App Service**.
-    - In **Priority**, type **2**.
+1. In the Traffic Manager profile, create the primary end point.
+2. In **Type**, select **Azure endpoint**.
+3. In **Target resource type**, select **App Service**.
+4. In the **Priority** box, enter **1**.
+5. In the Traffic Manager profile, create the primary end point.
+6. In **Type**, select **Azure endpoint**.
+7. In **Target resource type**, select **App Service**.
+8. In the **Priority** box, enter **2**.
 
-#### Task 3: Test the Azure Traffic Manager DNS resolver by seeing which instance of the app was reached
+#### Task 3: Test the Azure Traffic Manager DNS resolver by checking which instance of the app was reached
 
-1. Navigate to:
+1. Browse to the following URL:
     ```url
     http://blueyondermod10lab2TM.trafficmanager.net/api/destinations
     ```
-    > Note: All requests are routed to the primary endpoint that is set to Priority 1.
-2. Run the following command to find our trafficmanager:
+   >**Note**: All requests are routed to the primary end point that is set to Priority 1.
+2. To find our trafficmanager, run the following command:
     ```bash
     nslookup blueyondermod10lab2TM.trafficmanager.net
     ```
-3. You should see the primary endpoint, **blueyondermod10lab2t1** service.
-4. Change the **Status** to **Disabled**, of the **mySecondaryEndpoint**, in the **Settings** section of the **Azure Traffic Manager**.
-5. Navigate to:
+3. Verify that the primary end point is the **blueyondermod10lab2t1** service.
+4. In Azure Traffic Manager, in the **Settings** section, in **mySecondaryEndpoint**, change the **Status** to **Disabled**.
+5. Browse to the following URL:
     ```url
     http://blueyondermod10lab2TM.trafficmanager.net/api/destinations
     ```
-    > Note: All requests are routed to the secondary endpoint that is set to Priority 2.
-6. Run the following command to find our trafficmanager:
+   > **Note**: All requests are routed to the secondary end point that is set to Priority 2.
+6. To find our trafficmanager, run the following command:
     ```bash
     nslookup blueyondermod10lab2TM.trafficmanager.net
     ```
-7. You should see the secondary endpoint, **blueyondermod10lab2t2** service.
+7. Verify that the secondary endpoint is the **blueyondermod10lab2t2** service.
+
+  ©2018 Microsoft Corporation. All rights reserved.
+
+The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
+
+This document is provided &quot;as-is.&quot; Information and views expressed in this document, including URL and other Internet Web site references, may change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred. Microsoft makes no warranties, express or implied, with respect to the information provided here.
