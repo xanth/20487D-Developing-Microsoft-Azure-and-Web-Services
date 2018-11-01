@@ -218,7 +218,7 @@
 24. In **CDN profile**, in **Name**, type **MyCDNProfile***{YourInitials}*.
 25. In **Resource group**, select **Use existing**, and then select **Mod7Demo5ResourceGroup**.
 26. In **Pricing tier**, select **Premium Verizon**.
-27. Check in **Create a new CDN endpoint now**.
+27. Select **Create a new CDN endpoint now**.
 28. In **CDN endpoint name**, type **mod7demo5endpoint***{YourInitials}*.
 29. In **Origin type**, select **Custom origin**.
 30. In **Origin hostname**, paste the primary endpoint value that was copied earlier. It will have the following format: *account-name.zone-name.web.core.windows.net*.
