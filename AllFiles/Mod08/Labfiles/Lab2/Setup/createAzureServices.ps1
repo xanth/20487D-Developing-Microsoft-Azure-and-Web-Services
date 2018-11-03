@@ -13,7 +13,7 @@ $yourName = Read-Host
 
 $yourName = $yourName.ToLower()
 $websiteName = "blueyondermod08lab2" + $yourName
-$resourcesGroupName = "Mod08Lab2-RG"
+$resourcesGroupName = "Mod08Lab2"
 
 Function GetLocation {
 $Title = "Please choose customer location"
