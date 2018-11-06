@@ -175,18 +175,18 @@
    cd BlueYonder.Flights.Service
    ```
 10. To run the service, run the following command:
-   ```cd
-   dotnet run
-   ```
+    ```cd
+    dotnet run
+    ```
 11. Open a new **Command Prompt** window.
 12. To change the directory to **BlueYonder.Flights.Client**, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Client
     ```
 13. To run the client application, run the following command:
-   ```cd
-   dotnet run
-   ```
+    ```cd
+    dotnet run
+    ```
 14. In the console, verify that the status code is **OK**.
 15. Verify that you have placed the image at the following path:
     ```bash
