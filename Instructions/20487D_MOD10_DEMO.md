@@ -74,7 +74,7 @@
 9. Click **Enable autoscale**.
 10. In **Autoscale setting name**, enter a name for the automatic scaling setting.
 11. To add a rule, under **Rules**, click **+ Add a rule**. In **Threshold**, enter **80**. In **Duration**, enter **5**, click **Add**, and then wait until all the changes are saved.
-12. To add another rule, under **Rules**, click **+ Add a rule**. In **Operator**, select **Less than**. In **Threshold**, enter **20**. In **Duration**, enter **5**, click **Add**, and then wait until all the changes are saved.
+12. To add another rule, under **Rules**, click **+ Add a rule**. In **Operator**, select **Less than**. In **Threshold**, enter **20**. In **Duration**, enter **5**, under **Action** header in **Operation** select **Decrease count by**, click **Add**, and then wait until all the changes are saved.
 13. In **Instance limits**, in **Maximum**, enter **2**.
 14. Click **Save**, and wait until all the changes are saved.
 15. Open the command prompt.
