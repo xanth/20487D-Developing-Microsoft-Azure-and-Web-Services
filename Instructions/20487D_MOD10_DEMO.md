@@ -131,21 +131,22 @@
 18. In the left menu, click **All resources**, and then, in the **resources** list, click **myVNet**.
 19. Click **Subnets**, and then click **+ Subnet**.
 20. Name the subnet as **myBackendSubnet**, and then click **OK**.
-21. Switch to PowerShell.
-22. To change the directory to the **Setup** folder, run the following command:
+21. Click on **All resources** on the left pane, click on **myAGPublicIPAddress** and them copy **IP address** value.
+22. Switch to PowerShell.
+23. To change the directory to the **Setup** folder, run the following command:
     ```bash
     cd *[Repository Root]*\AllFiles\Mod10\DemoFiles\Setup3
     ```
-23. Run the following command:
+24. Run the following command:
     ```batch
      .\addAzureServiceToGateway.ps1
     ```
-24. To add a new reservation, run the following command:
+25. To add a new reservation, run the following command:
     ```batch
-    Invoke-WebRequest -Uri http://13.80.47.113/api/reservation/sign -Method Post -ContentType 'application/json' -Body '{"ReservationId":215697,"Room":{"RoomId":689331,"Number":476,"Price":2588.0},"DateCreated":"2018-08-30T08:32:55.3930115Z","CheckIn":"2019-03-09T08:32:55.3909954Z","CheckOut":"2019-04-02T08:32:55.3909954Z","Guests":2,"Traveler":{"TravelerId":102583,"Name":"Donovan","Email":"donovan+877@hotmail.com"}}'
+    Invoke-WebRequest -Uri http://[IP address]/api/reservation/sign -Method Post -ContentType 'application/json' -Body '{"ReservationId":215697,"Room":{"RoomId":689331,"Number":476,"Price":2588.0},"DateCreated":"2018-08-30T08:32:55.3930115Z","CheckIn":"2019-03-09T08:32:55.3909954Z","CheckOut":"2019-04-02T08:32:55.3909954Z","Guests":2,"Traveler":{"TravelerId":102583,"Name":"Donovan","Email":"donovan+877@hotmail.com"}}'
     ```
-   > **Note**: To add a new reservation, invoke the **POST** web request.
-25. In the response, verify that the **StatusCode** box displays **200**, and the **StatusDescription** box displays **OK**.
+   > **Note**: Replace **IP address** with the value from point 21.
+26. In the response, verify that the **StatusCode** box displays **200**, and the **StatusDescription** box displays **OK**.
 
 ### Demonstration: Using Traffic Manager With an Azure Web App in Multiple Regions
 
