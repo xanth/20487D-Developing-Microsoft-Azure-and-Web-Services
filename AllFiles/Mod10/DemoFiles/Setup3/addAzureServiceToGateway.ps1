@@ -14,7 +14,7 @@ $gw = Get-AzureRmApplicationGateway -Name myAppGateway -ResourceGroupName $rg.Re
 $match=New-AzureRmApplicationGatewayProbeHealthResponseMatch -StatusCode 200-399
 
 # Add a new probe to the application gateway
-Add-AzureRmApplicationGatewayProbeConfig -name webappprobe2 -ApplicationGateway $gw -Protocol Http -Path /api/values -Interval 30 -Timeout 120 -UnhealthyThreshold 3 -PickHostNameFromBackendHttpSettings -Match $match
+Add-AzureRmApplicationGatewayProbeConfig -name webappprobe2 -ApplicationGateway $gw -Protocol Http -Path /api/reservation -Interval 30 -Timeout 120 -UnhealthyThreshold 3 -PickHostNameFromBackendHttpSettings -Match $match
 
 # Retrieve the newly added probe
 $probe = Get-AzureRmApplicationGatewayProbeConfig -name webappprobe2 -ApplicationGateway $gw

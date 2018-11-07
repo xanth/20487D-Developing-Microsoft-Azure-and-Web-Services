@@ -11,6 +11,12 @@ namespace BlueYonder.Hotels.Service.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
+        [HttpGet]
+        public string Get()
+        {
+            return "success";
+        }
+
         [HttpPost("sign")]
         public string Sign([FromBody]Reservation value)
         {
