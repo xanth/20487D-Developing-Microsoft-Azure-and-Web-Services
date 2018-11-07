@@ -211,7 +211,7 @@
 
 38. Open Microsoft Edge, and then browse to the following URL:
     ```url
-    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/destinations
+    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/reservation
     ```
     > **Note**: All requests are routed to the primary end point, which is set to Priority 1.
 40. Open the command prompt.
@@ -229,7 +229,7 @@
 48. Click **Save**, and then wait until all the changes are saved.
 49. Browse to the following URL:
     ```url
-    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/destinations
+    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/reservation
     ```
     > **Note**: All requests are routed to the secondary end point, which is set to Priority 2.
 50. Switch to the command prompt.
