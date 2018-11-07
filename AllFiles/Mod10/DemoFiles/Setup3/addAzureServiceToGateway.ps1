@@ -2,7 +2,9 @@
 
 # FQDN of the web app
 
-$webappFQDN = "blueyondermod10demo4gwshelly.azurewebsites.net"
+$mywebApp = Get-AzureRmWebApp -ResourceGroupName "Mod10Demo3GW-RG"
+
+$webappFQDN = $mywebApp.DefaultHostName
 
 # Retrieve existing resource group
 $rg = Get-AzureRmResourceGroup -Name "myResourceGroupAG"
