@@ -1,4 +1,4 @@
-# Module 2: Extending ASP.NET Core HTTP services
+# Module 4: Extending ASP.NET Core HTTP services
 
 1. Wherever a path to a file starts at *[Repository Root]*, replace it with the absolute path to the directory in which the 20487 repository resides. 
  For example, if you cloned or extracted the 20487 repository to **C:\Users\John Doe\Downloads\20487**, change the path: **[Repository Root]\AllFiles\20487D\Mod01** to **C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01**.
@@ -30,7 +30,7 @@
         throw new KeyNotFoundException();
     ```
 7. Right-click **BlueYonder.Flights.Service**, select **New Folder**, and then name it **Middleware**.
-8. Right-click the **Middleware** folder, select **New File**, name it **ExceptionHandlingMiddleware**, and then select the new class.
+8. Right-click the **Middleware** folder, select **New File**, name it **ExceptionHandlingMiddleware.cs**, and then select the new class.
 9. Add the following **using** statements to the class:
     ```cs
     using System;
@@ -110,21 +110,26 @@
     app.UseExceptionHandlingMiddleware();
     ```
 19. Switch to the **Command Prompt** window.
-20. To run the server, run the following command:
+20. To change the directory to **BlueYonder.Flights.Service**, run the following command:
+    ```bash
+    cd BlueYonder.Flights.Service  
+    ```
+21. To run the server, run the following command:
     ```bash
     dotnet run
     ```
-21. Open Microsoft Edge, and then go to the following URL:
+22. Open Microsoft Edge, and then go to the following URL:
     ```url
     https://localhost:5001/api/passenger/5
     ```
-22. In the title bar, click **Settings and more**, and then select **Developer Tools**.
-23. In **Developer Tools**, click **Network**.
-24. In the **Network** tab, locate the following URL:
+23. In the title bar, click **Settings and more**, and then select **Developer Tools**.
+24. In **Developer Tools**, click **Network**.
+25. In the **Network** tab, locate the following URL:
     ```url
     https://localhost:5001/api/passenger/5
     ```
-25. Click the URL, and then verify that that the result column shows **404**.
+26. Click the URL, and then verify that that the result column shows **404**.
+27. Close all open windows.
 
 # Lesson 2: Customizing Controllers and Actions
 
@@ -139,7 +144,7 @@
     ```base
     dotnet restore
     ```
-4. Open the project in Visual Studio Code, and then run the following command:
+4. To open the project in Visual Studio Code, run the following command:
     ```bash
     code .
     ```
@@ -170,22 +175,22 @@
    cd BlueYonder.Flights.Service
    ```
 10. To run the service, run the following command:
-   ```cd
-   dotnet run
-   ```
+    ```cd
+    dotnet run
+    ```
 11. Open a new **Command Prompt** window.
 12. To change the directory to **BlueYonder.Flights.Client**, run the following command:
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Client
     ```
 13. To run the client application, run the following command:
-   ```cd
-   dotnet run
-   ```
+    ```cd
+    dotnet run
+    ```
 14. In the console, verify that the status code is **OK**.
 15. Verify that you have placed the image at the following path:
     ```bash
-    [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Server\wwwroot\Image
+    [Repository Root]\Allfiles\Mod04\DemoFiles\AsynchronousActions\Starter\BlueYonder.Flights.Service\wwwroot\Image
     ```
 
 ### Creating Custom Filters and Formatters
@@ -195,9 +200,13 @@
     ```bash
     cd [Repository Root]\Allfiles\Mod04\DemoFiles\CustomFiltersAndFormatters\Starter\CustomFiltersAndFormatters
     ```
-3. Right-click **CustomFiltersAndFormatters**, select **New Folder**, and then name it **Formatter**.
-4. Right-click the **Formatter** folder, select **New File**, and then name it **ImageFormatter.cs**.
-5. To **ImageFormatter.cs**, add the following code:
+3. To open the project in Visual Studio Code, run the following command:
+    ```bash
+    code .
+    ```
+4. Beside **CustomFiltersAndFormatters**, select **New Folder**, and then name it **Formatter**.
+5. Right-click the **Formatter** folder, select **New File**, and then name it **ImageFormatter.cs**.
+6. To **ImageFormatter.cs**, add the following code:
     ```cs
     using CustomFiltersAndFormatters.Models;
     using Microsoft.AspNetCore.Http;
@@ -225,7 +234,7 @@
     }
     ```
     In the **WriteResponseBodyAsync** method, get the **Value** class, copy the path of the image, and then send the image to the client.
-6. To add the new **ImageFormatter** to **OutputFormatters**, click the **Startup** class, locate **ConfigureServices**, and then replace it with the following code:
+7. To add the new **ImageFormatter** to **OutputFormatters**, click the **Startup** class, locate **ConfigureServices**, and then replace it with the following code:
     ```cs
     public void ConfigureServices(IServiceCollection services)
     {
@@ -236,20 +245,21 @@
     }
     ```
   
-7. Expand **Controllers**, click **PassengerController**, and then view the class.
+8. Expand **Controllers**, click **PassengerController**, and then view the class.
     >**Note**: The **GetPhoto** method returns the **Value** class but the client will get the photo through **ImageFormatter**.
-8. Switch to the **Command Prompt** window.
-9. To run the server, run the following command:
+9. Switch to the **Command Prompt** window.
+10. To run the server, run the following command:
     ```cd
     dotnet run
     ```
-10. Open Microsoft Edge, and then go to the following URL:
+11. Open Microsoft Edge, and then go to the following URL:
     ```url
     https://localhost:5001/api/passenger/photo/2
     ```
-11. In Microsoft Edge, you should see an image.
+12. In Microsoft Edge, you should see an image.
+13. Close all open windows.
 
-#Lesson 3: Injecting Dependencies into Controllers
+# Lesson 3: Injecting Dependencies into Controllers
 
 ### Demonstration: Using Dependency Injection with Controllers
 
@@ -266,7 +276,7 @@
     ```bash
     code .
     ```
-5. Expand the **BlueYonder.Flights.DAL** project, right-click **Repository**, select **New File**, and then name it **IPassengerRepository**.
+5. Expand the **BlueYonder.Flights.DAL** project, right-click **Repository**, select **New File**, and then name it **IPassengerRepository.cs**.
 6. To implement **IPassengerRepository**, enter the following code:
     ```cs
     using BlueYonder.Flights.DAL.Models;
@@ -297,7 +307,7 @@
     ```cs
     services.AddTransient<IPassengerRepository, PassengerRepository>();
     ```
-11. In the **BlueYonderHotels.Service** project, expand the **Controllers** folder, and then double-click the **PassengerController** file.
+11. In the **BlueYonder.Flights.Service** project, expand the **Controllers** folder, and then double-click the **PassengerController** file.
 12. To use **IPassengerRepository**, locate the **_passengerRepository** field, and then replace it with the following code:
     ```cs
     private readonly IPassengerRepository _passengerRepository;
@@ -311,18 +321,19 @@
     ```
 14. Switch to the **Command Prompt** window.
 15. To change the directory to **BlueYonder.Flights.Service**, run the following command:
-   ```bash
-   cd BlueYonder.Flights.Service
-   ```
+    ```bash
+    cd BlueYonder.Flights.Service
+    ```
 16. To run the service, run the following command:
-   ```cd
-   dotnet run
-   ```
+    ```cd
+    dotnet run
+    ```
 17. Open Microsoft Edge, and then go to the following URL.
     ```url
     https://localhost:5001/api/passenger
     ```
 18. Verify that you get all the data from the server.
+19. Close all open windows
 
 ©2018 Microsoft Corporation. All rights reserved.
 
