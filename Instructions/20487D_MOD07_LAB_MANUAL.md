@@ -33,7 +33,7 @@ To upload the **france.jpg** file to the **aircraft-images** blob container, at 
 
 #### Task 3: Run a script to upload multiple aircraft images
 
-1. Open Azure PowerShell, and then, in the **Assets** folder, run the following **uploadPhotos** script.
+1. Open Azure PowerShell, and then, in the **Assets** folder, run the **uploadPhotos** script.
 2. To run the script, a key is required from the storage account.
    >**Note**: The script is to upload the images from the **Assets** folder to the **aircraft-images** blob container.
 
