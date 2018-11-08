@@ -16,9 +16,9 @@ namespace BlueYonder.Flights.Service.Controllers
         private string _baseUrl = "https://blueyonder{YourInitials}.blob.core.windows.net/aircraft-images/";
         
         [HttpGet("Image/{photoName}")]
-        public string GetImage(string photoName)
+        public ActionResult<string> GetImage(string photoName)
         {
-            return  Url = _baseUrl + photoName + ".jpg";
+            return Content(_baseUrl + photoName + ".jpg");
         }
     }
 }
