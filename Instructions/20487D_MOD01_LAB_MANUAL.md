@@ -23,11 +23,11 @@ In this exercise, you will create a Web API through ASP.NET Core by using the co
 
 #### Task 1: Create a new ASP.NET Core project
 
-To create a new Web API Core project, at the command prompt, run the **dotnet** tool.
+To create a ASP.NET Core Web API core project, at the command prompt, run the **dotnet** tool.
 
    >**Results**: After completing this exercise, you should have a basic Web API ASP.NET Core project.
 
-### Exercise 2: Create a Simple Entity Framework Model
+### Exercise 2: Creating a Simple Entity Framework Model
 
 #### Scenario
 
@@ -44,11 +44,17 @@ The main tasks for this exercise are:
 2. Install the **Microsoft.EntityFrameworkCore.SqlServer** with the **dotnet** tool.
 3. Create a new **Flight** class, and then add the following properties:
     ```cs
-    public int Id { get; set; }
-    public string Origin { get; set; }
-    public string Destination { get; set; }
-    public string FlightNumber { get; set; }
-    public DateTime DepartureTime { get; set; }
+    namespace BlueYonder.Flights.Models
+    {
+        public class Flight
+        {
+            public int Id { get ;set; }
+            public string Origin { get; set; }
+            public string Destination { get; set; }
+            public string FlightNumber { get; set; }
+            public DateTime DepartureTime { get; set; }
+        }
+    }
     ```
 
 #### Task 2: Create a new DbContext class
@@ -62,7 +68,7 @@ The main tasks for this exercise are:
 
    >**Results**: After completing this exercise, you should have created entity framework wrappers for the **BlueYonder** database.
 
-### Exercise 3: Create a Web API class
+### Exercise 3: Creating a Web API class
 
 #### Scenario
 
@@ -70,7 +76,7 @@ Implement the flight service by using ASP.NET Core Web API. Start by creating a 
 
 #### Task 1: Create a new class for the web API
 
-1. Change the name of the **ValuesController.cs** file to **FlightsController.cs**.
+1. Expand the **Controllers** folder Change the name of the **ValuesController.cs** file to **FlightsController.cs**.
 2. In **FlightsController.cs**, change the class name to **FlightsController**.
 3. Add a new field and and name it **FlightContext**.
 4. Add a constructor to the **FlightsController** class, with the **FlightContext** parameter type, and the **_context** parameter.
@@ -83,14 +89,14 @@ Implement the flight service by using ASP.NET Core Web API. Start by creating a 
   - Inside the method, modify the **return** value to return all the flights from the database.
 2. To modify the **POST** method, perform the following steps:
   - Replace the **string** type parameter with **Flight**.
-  - Change the method signature, **void** to **IActionResault**.
+  - Change the method signature, **void** to **IActionResult**.
   - Add the **Flight** parameter to the context and save the changes.
   - Return **CreatedAtAction** with the **flight** id.
   >**Note**: **CreatedAtResult** returns 201 status code along with a URI to the created resource.
 
   >**Results**: After completing this exercise, you should have created a web app that exposes the Web API.
 
-### Exercise 4: Deploy the Web Application to Azure
+### Exercise 4: Deploying the Web Application to Azure
 
 #### Scenario
 
@@ -103,7 +109,7 @@ The main tasks for this exercise are:
 - Test the Web API using Windows PowerShell.
 - View the results in the database.
 
-#### Task 1: Create an Azure web app and a SQL database
+#### Task 1: Create an Azure web app and an SQL database
 
 1. Go to the Azure portal at **https://portal.azure.com**.
 2. In the left pane, click **App Services**, click **Add**, and then select **Web App + SQL**.
@@ -167,7 +173,7 @@ The main tasks for this exercise are:
     
 5. Verify that you got the expected result.
 
-#### Task 4: View results in the database
+#### Task 4: View result in the database
 
 1. Switch to **Azure Protal**.
 2. Browse to your database, and then in **Query editor**, enter the following script to verify that the flight was added to the database:
