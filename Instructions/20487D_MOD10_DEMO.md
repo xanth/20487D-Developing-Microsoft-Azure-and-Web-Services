@@ -34,7 +34,7 @@
 1. Open the command prompt.
 2. To change the directory to the starter project, run the following command:
    ```bash
-    cd *[Repository Root]*\AllFiles\Mod10\DemoFiles\Code\BlueYonder.Hotels.Service\RunCPU
+    cd [Repository Root]\AllFiles\Mod10\DemoFiles\Code\BlueYonder.Hotels.Service\RunCPU
    ```
 3. To run the project, run the following command:
    ```base
@@ -43,7 +43,7 @@
 4. Wait for five minutes, and then write down the time it took to sign 180,000 reservations.
 5. Open Microsoft Edge and go to **http://portal.azure.com**.
 6. To display all the Microsoft Azure App Services, on the left menu panel, click**App Services**.
-7. Click the **blueyonderMod10Demo1***{YourInitials}* service.
+7. Click the **blueyonderMod10Demo1**{YourInitials} service.
 8. In the **Settings** section, click **Scale out (App Service plan)**.
 9. Click the **Configure** tab.
 10. To increase the instances, locate the **Override condition** scale, and increase it to **2**.
@@ -65,22 +65,22 @@
 
 1. To deploy the Azure web app, repeat the preparation steps.
 2. Open Microsoft Edge and go to **http://portal.azure.com**.
-3. Click the **blueyonderMod10Demo***{YourInitials}* service.
+3. Click the **blueyonderMod10Demo**{YourInitials} service.
 4. In the **Settings** section, click **Application Insights**.
-5. Select **Create new resource**.
-6. In **Runtime/Framework**, select **ASP.Core**.
-7. Click **OK**, and wait until all the changes are saved.
+5. Click **Setup Application Insights**, Select **Create new resource**.
+6. In **Runtime/Framework**, select **ASP.NET Core**.
+7. Click **OK** and then click **OK**, and wait until all the changes are saved.
 8. In the **Settings** section, click **Scale out (App Service plan)**.
 9. Click **Enable autoscale**.
 10. In **Autoscale setting name**, enter a name for the automatic scaling setting.
-11. To add a rule, under **Rules**, click **+ Add a rule**. In **Threshold**, enter **80**. In **Duration**, enter **5**, click **Add**, and then wait until all the changes are saved.
-12. To add another rule, under **Rules**, click **+ Add a rule**. In **Operator**, select **Less than**. In **Threshold**, enter **20**. In **Duration**, enter **5**, under **Action** header in **Operation** select **Decrease count by**, click **Add**, and then wait until all the changes are saved.
+11. To add a rule, under **Rules**, click **+ Add a rule**. In **Threshold**, enter **80**. In **Duration**, enter **5**, click **Add** and then click **Save** and wait until all the changes are saved.
+12. To add another rule, under **Rules**, click **+ Add a rule**. In **Operator**, select **Less than**. In **Threshold**, enter **20**. In **Duration**, enter **5**, under **Action** header in **Operation** select **Decrease count by**, click **Add** and then click **Save** and wait until all the changes are saved.
 13. In **Instance limits**, in **Maximum**, enter **2**.
 14. Click **Save**, and wait until all the changes are saved.
 15. Open the command prompt.
 16. To change the directory to the **RunCPU** project, run the following command:
     ```bash
-    cd *[Repository Root]*\AllFiles\Mod10\DemoFiles\Code\BlueYonder.Hotels.Service\RunCPU
+    cd [Repository Root]\AllFiles\Mod10\DemoFiles\Code\BlueYonder.Hotels.Service\RunCPU
     ```
 17. To run the project, run the following command:
     ```base
@@ -90,7 +90,7 @@
 19. Click the **Run history** tab.
 20. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale up completed**.
 21. Wait for another five minutes.
-22. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale out completed**.
+22. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale down completed**.
 
 # Lesson 3: Azure Application Gateway and Traffic Manager
 
@@ -101,7 +101,7 @@
 1. Open PowerShell.
 2. To change the directory to the **Setup** folder, run the following command:
     ```bash
-    cd *[Repository Root]*\AllFiles\Mod10\DemoFiles\Setup3
+    cd [Repository Root]\AllFiles\Mod10\DemoFiles\Setup3
     ```
 3. Run the following command:
     ```batch
@@ -122,7 +122,7 @@
 	- **myAGSubnet** - for the subnet name.
 	- **10.0.0.0/24** - for the subnet address space.
 12. To create the virtual network and subnet, click **OK**.
-13. Click **Choose a public IP address**, select **Create new**, and then type **myAGPublicIPAddress** as the name of the public IP address.
+13. Under **IP address type** select **Public**, under**Public IP address**, select **Create new**, and then type **myAGPublicIPAddress** as the name of the public address.
 14. Accept the default values for the other settings, and then click **OK**.
 15. Accept the default values for the listener configuration, leave the web application firewall disabled, and then click **OK**.
 16. To create the virtual network, the public IP address, and the application gateway, click **OK**.
@@ -135,18 +135,21 @@
 22. Switch to PowerShell.
 23. To change the directory to the **Setup** folder, run the following command:
     ```bash
-    cd *[Repository Root]*\AllFiles\Mod10\DemoFiles\Setup3
+    cd [Repository Root]\AllFiles\Mod10\DemoFiles\Setup3
     ```
 24. Run the following command:
     ```batch
      .\addAzureServiceToGateway.ps1
     ```
-25. To add a new reservation, run the following command:
+    > **Note**: If prompted for Security warning to allow the script, Type **R** and then press **Enter**.
+25. In the **Sign in** window that appears, enter your details, and then **sign in**.
+26. To add a new reservation, run the following command:
     ```batch
     Invoke-WebRequest -Uri http://[IP address]/api/reservation/sign -Method Post -ContentType 'application/json' -Body '{"ReservationId":215697,"Room":{"RoomId":689331,"Number":476,"Price":2588.0},"DateCreated":"2018-08-30T08:32:55.3930115Z","CheckIn":"2019-03-09T08:32:55.3909954Z","CheckOut":"2019-04-02T08:32:55.3909954Z","Guests":2,"Traveler":{"TravelerId":102583,"Name":"Donovan","Email":"donovan+877@hotmail.com"}}'
     ```
    > **Note**: Replace **IP address** with the value from point 21.
-26. In the response, verify that the **StatusCode** box displays **200**, and the **StatusDescription** box displays **OK**.
+27. In the response, verify that the **StatusCode** box displays **200**, and the **StatusDescription** box displays **OK**.
+28. Close all open windows.
 
 ### Demonstration: Using Traffic Manager With an Azure Web App in Multiple Regions
 
@@ -156,14 +159,16 @@
 1. Open PowerShell as Administrator.
 2. In the **User Account Control** modal, click **Yes**.
 3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+   > **Note**: If prompted for you trust this repository Type **A** and then press **Enter**.
 4. To change the directory to the **Setup** folder, run the following command:
     ```bash
-    cd *[repository root]*\AllFiles\Mod10\DemoFiles\Setup4
+    cd [repository root]\AllFiles\Mod10\DemoFiles\Setup4
     ```
 5. To create a web app in the **West Europe** region, run the following command:
     ```batch
      .\createAzureServicesWestEurope.ps1
     ```
+    > **Note**: If prompted for you trust this repository Type **R** and then press **Enter**.
 6. In the **Sign in** window that appears, enter your details, and then sign in.
 7. You need to enter a **Subscription ID**, which you can get by performing the following steps:
    1. Open Microsoft edge and go to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
@@ -172,33 +177,33 @@
    4. Under **My subscriptions**, you should have at least one subscription. Select the subscription that you want to use.
    5. Copy the value from **Subscription ID**, and then, at the PowerShell command line, paste the copied value. 
 8. In the **Administrator: Windows PowerShell** window, follow the on-screen instructions. Wait for the deployment to complete successfully.
-9. Write down the name of the Azure App Service that is created.
+9.  Write down the name of the Azure App Service that is created.
 10. To change the directory to the **Setup** folder, run the following command:
     ```bash
-    cd *[repository root]*\AllFiles\Mod10\DemoFiles\Setup4
+    cd [repository root]\AllFiles\Mod10\DemoFiles\Setup4
     ```
 11. To create a web app in the **West US** region, run the following command:
     ```batch
      .\createAzureServicesWestUS.ps1
     ```
 12. Sign in with your **Subscription ID** and follow the on-screen instructions.
-13. Redo Task 1 steps 6-10.
+13. repeat steps 6 to 9.
 14. Close the **PowerShell** window.
 15. Open Microsoft Edge and go to **http://portal.azure.com**.
 16. In the left pane, click **All resources**.
 17. Click **+Add**, and then search for **Traffic Manager profile**.
 18. In the **Traffic Manager profile** blade, click the **Create** button.
-19. In the **Name** box, type **blueyondermod10demoTM***{YourInitials}*.
-20. In **Routing method**, select the **Priority routing** method. 
+19. In the **Name** box, type **blueyondermod10demoTM**{YourInitials}.
+20. In **Routing method**, select the **Priority** routing method. 
 21. In **Resource group**, select **Use existing**, and then select **Mod10demo4Europe-RG**.
 22. Click **Create**, and wait until the traffic manager is created successfully.
-23. In **All resources**, click **blueyondermod10demoTM***{YourInitials}*.
+23. In **All resources**, click **blueyondermod10demoTM**{YourInitials}.
 24. In the **Settings** section, click **Endpoints**.
 25. To create the primary end point, click **+ Add**.
 26. In **Type**, select **Azure endpoint**.
 27. In **Name**, type **myPrimaryEndpoint**.
 28. In **Target resource type**, select **App Service**.
-29. In **Target resource**, select **blueyondermod10demo4Europe**.
+29. In **Target resource**, select **blueyondermod10demo4Europe**{YourInitials}.
 30. In **Priority**, enter **1**.
 31. Click **Ok**, and wait until the primary end point is created successfully.
 32. To create a secondary end point, click **+ Add**.
@@ -209,33 +214,33 @@
 37. In **Priority**, enter **2**.
 38. Click **Ok**, and wait until the secondary end point is created successfully.
 
-38. Open Microsoft Edge, and then browse to the following URL:
+39. Open Microsoft Edge, and then browse to the following URL:
     ```url
-    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/reservation
+    http://blueyondermod10demoTM{YourInitials}.trafficmanager.net/api/reservation
     ```
     > **Note**: All requests are routed to the primary end point, which is set to Priority 1.
 40. Open the command prompt.
 41. To find our trafficmanager, run the following command:
     ```bash
-    nslookup blueyondermod10demoTM*{YourInitials}*.trafficmanager.net
+    nslookup blueyondermod10demoTM{YourInitials}.trafficmanager.net
     ```
 42. In the result, locate the **Aliases:** property.
 43. Verify that the **Aliases:** property uses the **blueyondermod10demo4Europe** service.
    > **Note**: **blueyondermod10demo4Europe** is the primary end point.
 44. Switch to the **Azure** portal.
-45. In **All resources**, click **blueyondermod10demoTM***{YourInitials}*.
+45. In **All resources**, click **blueyondermod10demoTM**{YourInitials}.
 46. In the **Settings** section, click **Endpoints**.
 47. Click **myPrimaryEndpoint**, and then change the status to **Disabled**.
 48. Click **Save**, and then wait until all the changes are saved.
 49. Browse to the following URL:
     ```url
-    http://blueyondermod10demoTM*{YourInitials}*.trafficmanager.net/api/reservation
+    http://blueyondermod10demoTM{YourInitials}.trafficmanager.net/api/reservation
     ```
     > **Note**: All requests are routed to the secondary end point, which is set to Priority 2.
 50. Switch to the command prompt.
 51. To find our trafficmanager, run the following command:
     ```bash
-    nslookup blueyondermod10demoTM*{YourInitials}*.trafficmanager.net
+    nslookup blueyondermod10demoTM{YourInitials}.trafficmanager.net
     ```
 52. In the result, locate the **Aliases:** property.
 53. Verify that the **Aliases:** property uses **blueyondermod10demo4US** service.
