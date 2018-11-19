@@ -178,7 +178,7 @@
 	WORKDIR /app
 	COPY --from=build-env /app/out .
     # Enviroment variable
-	ENV COMPlus_EventLogEnabled 1
+	ENV COMPlus_EnableEventLog 1
 	ENTRYPOINT ["dotnet", "MonitorLTTng.dll"]
     ```
 8. Switch to **Command Line**.
