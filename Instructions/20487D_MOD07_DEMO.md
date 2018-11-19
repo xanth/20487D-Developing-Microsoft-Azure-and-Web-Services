@@ -12,54 +12,56 @@
 #### Demonstration Steps
 
 1. Open the Microsoft Azure portal.
-2. In the left pane, click **Storage account**.
-3. In the **Storage account** blade, click **Add**.
-4. In the **Name** box, type **blueyonder***{YourInitials}*.
-5. In the **Account kind** list, select **StorageV2 (general purpose v2)**.
-6. In the **Replication** list, select **Locally-redundant storage (LRS)**.
-7. In the **Resource group** section, select **Create new**, and then type **Mod7Demo1**.
-8. Click **Create**.
-9. Click **blueyonder***{YourInitials}*.
-10. In the left pane, in **BLOB SERVICE**, click **Blobs**.
-11. To create a new container, on the top bar, click **Container**.
-12. In the **Name** box, type **vouchers**.
-13. In the **Public access level** list, select **Private (no anonymous access)**.
-14. Click **OK**.
-15. In the left pane, in the **SETTINGS** section, click **Access keys**.
-16. Copy the **Connection string** value.
-17. Open the command prompt.
-18. To change the directory to the **BlueYonder.Hotels.Service** project, run the following command:
+2. Go to https://portal.azure.com and sign in with your credentials.
+   >**Note**: If the Stay signed in? dialog box appears, click **Yes**.
+3. In the left pane, click **Storage accounts**.
+4. In the **Storage accounts** blade, click **Add**.
+5. In the **Storage Account Name** box, type **blueyonder**{YourInitials}.
+6. In the **Account kind** list, select **StorageV2 (general purpose v2)**.
+7. In the **Replication** list, select **Locally-redundant storage (LRS)**.
+8. In the **Resource group** section, select **Create new**, type **Mod7Demo1** and then click **OK**.
+9.  Click **Review + Create**.
+10. Click **blueyonder***{YourInitials}*.
+11. In the left pane, in **BLOB SERVICE**, click **Blobs**.
+12. To create a new container, on the top bar, click **Container**.
+13. In the **Name** box, type **vouchers**.
+14. In the **Public access level** list, select **Private (no anonymous access)**.
+15. Click **OK**.
+16. In the left pane, in the **SETTINGS** section, click **Access keys**.
+17. Copy the **Key1** Connection string value.
+18. Open the command prompt.
+19. To change the directory, run the following command:
    ```bash
     cd *[Repository Root]*\Allfiles\Mod07\Demofiles\Mod7Demo1Blob
    ```
-19. To open the project in Microsoft Visual Studio Code, run the following command:
+20. To open the project in Microsoft Visual Studio Code, run the following command:
    ```bash
     code .
    ```
-20. Click the **appsettings** file, and then replace the **connection string**.
-21. Expand **Controllers**, click **ReservationController**, and then explore the following method:
+21. Click the **appsettings.json** file, and then replace the **connection string**.
+22. Expand **Controllers**, click **ReservationController.cs**, and then explore the following method:
     - Explore the constructor connected to **blob container**.
     - Explore the **CreateVoucher** method that creates and uploads the **voucher** file to the storage.
     - Explore the **GetVoucher** method that gets the file by id from the storage.
    >**Note**: Connection to storage is through the **WindowsAzure.Storage** NuGet.
-22. To run the application, switch to the command prompt, and then run the following command:
+23. To run the application, switch to the command prompt, and then run the following command:
    ```bash
     dotnet run
    ```
-23. Open PowerShell.
-24. To invoke the **CreateVoucher** action, run the following command:
+24. Open PowerShell.
+25. To invoke the **CreateVoucher** action, run the following command:
    ```bash
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
     Invoke-WebRequest -Uri https://localhost:5001/api/reservation/createvoucher -ContentType "application/json" -Method POST -Body "'{Your Name}'"
    ```
-25. From content, copy the **Guid** key.
-26. Switch to the Azure portal, locate the **vouchers** container, and then verify that a new file was added.
-27. To invoke the **GetVoucher** action and receive the new file from the blob container, switch to PowerShell, and then run the following command:
+26. From content, copy the **Guid** key.
+27. Switch to the Azure portal, locate the **vouchers** container, and then verify that a new file was added.
+28. To invoke the **GetVoucher** action and receive the new file from the blob container, switch to PowerShell, and then run the following command:
    ```bash
     $request = Invoke-WebRequest -Uri https://localhost:5001/api/reservation/Voucher/{Guid voucher}  -Method Get
     $request.Content
    ```
-28. From the blob container, view the content in the **voucher** file. 
+29. From the blob container, view the content in the **vouchers** file. 
 
 
 # Lesson 3: Working with Structured Data in Azure
@@ -72,16 +74,16 @@
 2. Go to **https://portal.azure.com** and sign in with your credentials.
 3. In the left pane, click **Storage accounts**.
 4. On the top bar, click **Add**.
-5. In the **Name** box, type **mod7demo2***{YourInitials}*.
-6. In **Resource group**, select **Create new**, and then type **Mod7demo2ResourceGroup**.
-7. Click **Create**.
+5. In the **Storage account name** box, type **mod7demo2**{YourInitials}.
+6. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7demo2ResourceGroup** and then click **OK**.
+7. Click **Review + Create** and the click **Create**.
 8. After the new storage account is created, on the top bar, click **Refresh**.
 9. Click the **mod7demo2***{YourInitials}* storage account.
 10. In the left pane, under the **BLOB SERVICE** section, click **Blobs**.
 11. Click **+ Container**, type **bacpaccontainer**, and then click **OK**.
 12. Click **bacpaccontainer**.
 13. Click **Upload**.
-14. Browse to *[Repository Root]***\Allfiles\Mod07\Demofiles\Mod7Demo2bacpac**, and then select the **Mod7Demo2DB.bacpac** file.
+14. Browse to *[Repository Root]***\Allfiles\Mod07\Demofiles\Mod7Demo2bacpac**, click folder, select the **Mod7Demo2DB.bacpac** file and then click **Open**.
 15. Click **Upload**.
 16. In the left pane, click **Create a resource**.
 17. In the **search** box, type **SQL server**. 
@@ -91,24 +93,25 @@
 21. In the **Server admin login** box, type **MyAdmin**.
 22. In the **Password** and **Confirm Password** boxes, type **Password123!**.
 23. In **Resource group**, select **Use existing**, and then select the **Mod7demo2ResourceGroup** resource group.
-24. Click **Create**.
+24. Click **OK**.
 25. Click **All resources**, and then click **mod7demo2sqlserver***{YourInitials}*.
 26. In the **mod7demo2sqlserver***{YourInitials}* pane, on the top bar, click **Import database**.
-27. In the **Import database** pane, click **Storage**, and then click **mod7demo2***{YourInitials}*.
-28. In the **Containers** pane, click **bacpaccontainer**, click the **Mod7Demo2DB.bapac** file, and then click **Select**.
+27. In the **Import database** pane, click **Storage(Premium not supported)**, and then click **mod7demo2**{YourInitials}.
+28. In the **Containers** pane, click **bacpaccontainer**, click the **Mod7Demo2DB.bacpac** file, and then click **Select**.
 29. In the **Password** box, type **Password123!**.
 30. Click **Create**.
 31. After the database is created, in the left pane, click **SQL databases**.
 32. Click **Mod7Demo2DB**.
 33. Click **Set server firewall**.
 34. Click **Add client IP**, and then click **Save**.
-35. Open SQL Operations Studio.
-36. In **Connection type**, select **Microsoft SQL Server**.
-37. In the **Server** box, type **mod7demo2sqlserver***{YourInitials}***.database.windows.net**.
-38. In the **User name** box, type **MyAdmin**.
-39. In the **Password** box, type **Password123!**.
-40. Click **Connect**.
-41. Now you can query the database locally.
+35. In success window click **OK**.
+36. Open SQL Operations Studio.
+37. In **Connection type**, select **Microsoft SQL Server**.
+38. In the **Server** box, type **mod7demo2sqlserver***{YourInitials}***.database.windows.net**.
+39. In the **User name** box, type **MyAdmin**.
+40. In the **Password** box, type **Password123!**.
+41. Click **Connect**.
+42. Now you can query the database locally.
 
 ### Demonstration: Using Microsoft Azure Cosmos DB with the MongoDB API
 
@@ -118,10 +121,10 @@
 2. Go to **https://portal.azure.com** and sign in with your credentials.
 3. In the left pane, click **Azure Cosmos DB**.
 4. On the top bar, click **Add**.
-5. In the **Azure Cosmos DB** pane, in the **ID** box, type **mod7demo3***{YourInitials}*.
+5. In the **Azure Cosmos DB Account** pane, in the **Account name** box, type **mod7demo3**{YourInitials}.
 6. In **API**, select **MongoDB**.
-7. In **Resource group**, select **Create new**, and then type **Mod7Demo3ResourceGroup**.
-8. Click **Create**.
+7. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7Demo3ResourceGroup** and then click **OK**.
+8. Click **Review + Create** and then click **Create**.
 9. Wait for the database to be created.
 10. In the left pane, click **Azure Cosmos DB**, and then click **mod7demo3***{YourInitials}*.
 11. In **mod7demo3***{YourInitials}*, in the left pane, click **Data Explorer**.
@@ -145,11 +148,11 @@
     {}
    ```
 28. To get all the orders at a price greater than $20, paste the following query, and then click **Execute Query**.
-   ```json
+   ```query
     { price: {$gt: 20} }
    ```
 29. To get all the orders of customer 1, paste the following query, and then click **Execute Query**.
-   ```json
+   ```query
     { customerId: "1" }
    ```
 30. Close all windows.
@@ -162,10 +165,10 @@
 2. Go to **https://portal.azure.com** and sign in with your credentials.
 3. In the left pane, click **Azure Cosmos DB**.
 4. On the top bar, click **Add**.
-5. In **Azure Cosmos DB**, in the **ID** box, type **mod7demo4***{YourInitials}*.
+5. In **Azure Cosmos DB Account**, in the **Account name** box, type **mod7demo4**{YourInitials}.
 6. In **API**, select **Gremlin (graph)**.
-7. In **Resource group**, select **Create new**, and then type **Mod7Demo4ResourceGroup**.
-8. Click **Create**.
+7. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7Demo4ResourceGroup**, and then click **OK**.
+8. Click **Review + Create** and then click **Create**.
 9. Wait for the database to be created.
 10. In the left pane, click **Azure Cosmos DB**, and then click **mod7demo4***{YourInitials}*.
 11. On the top bar, click **+ Add Graph**.
@@ -173,7 +176,7 @@
 13. In **Graph Id**, type **taskManager**, and then click **OK**.
 14. Expand **mygraphdb** and click **taskManager**. 
 15. To upload all the data with the JSON file, on the top bar, click **Upload**.
-16. In *[Repository Root]***\Allfiles\Mod07\DemoFiles\Mod7Demo4Assets**, click **folder**, and then select the **GraphData.json** file.
+16. In *[Repository Root]***\Allfiles\Mod07\DemoFiles\Mod7Demo4Assets**, click **folder**, select the **GraphData.json** file, and then click **Open**.
 17. Click **Upload**.
 18. Expand **taskManager**, and then click **Graph**.
 19. To get all the vertices in the graph, click **Execute Gremlin Query**.
@@ -193,15 +196,16 @@
 
 1. Open Microsoft Edge.
 2. Go to **https://portal.azure.com** and sign in with your credentials.
+   >**Note**: If the Stay signed in? dialog box appears, click **Yes**.
 3. In the left pane, click **Storage accounts**.
 4. On the top bar, click **Add**.
-5. In **Create storage account**, in the **Name** box, type **mod7demo5***{YourInitials}*.
+5. In **Create storage account** page, in the **Storage account name** box, type **mod7demo5**{YourInitials}.
 6. In **Account kind**, select **StorageV2(general purpose v2)**.
-7. In **Resource group**, select **Create new**, and then type **Mod7Demo5ResourceGroup**.
-8. Click **Create**.
-9. Wait for the storage account to be created.
+7. In **Resource group** section, select **Create new**, in the **Nane** box type **Mod7Demo5ResourceGroup** and then click **OK**.
+8. Click **Review + Create** and then click **Create**.
+9.  Wait for the storage account to be created.
 10. In the left pane, click **Storage accounts**, and then click **mod7demo5***{YourInitials}*.
-11. In the left pane, under **SETTINGS**, in **mod7demo5***{YourInitials}*, click **Static website**.
+11. In **mod7demo5**{YourInitials} pane, under **SETTINGS**, click **Static website(Preview)**.
 12. Click **Enabled**.
 13. On the top bar, click **Save**.
 14. Click the **$web** container that was created by enabling the static website.
@@ -247,7 +251,7 @@
 4. In **DNS name**, type **mod7demo6redis***{YourInitials}*.
 5. In **Resource Group**, select **Create new**, and then type **Mod07Demo6ResourceGroup**.
 6. Click **Create**, and then wait until the service is created.
-7. To display all resources, in the left pane, click **All resource**.
+7. To display all resources, in the left pane, click **All resources**.
 8. Click **mod7demo6redis***{YourInitials}*.
 9. Under the **SETTINGS** section, click **Access keys**.
 10. Copy **StackExchange.Redis**, which is the primary connection string, for later use.
@@ -261,7 +265,7 @@
     code .
    ```
 14. Click the **appsettings.json** file, and paste the primary connection string you copied earlier.
-15. From the **Controllers** folder, open the **HotelsController** file, and then explore the following: 
+15. From the **Controllers** folder, open the **HotelsController.cs** file, and then explore the following: 
     - Constructor injection of the Azure Redis Cache connection.
     - The **Get** method, which gets data from the cache as long as it's available. If the data is not available in the cache, the method gets the data from the repository and caches it for one minute.
     - The **Post** method, which adds new hotels to the repository.  
@@ -285,6 +289,7 @@
    ```
 23. Refresh the browser page again and check if the new hotel was added to the list.
    >**Note**: The cache expires after one minute.
+24. Close all open windows.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
