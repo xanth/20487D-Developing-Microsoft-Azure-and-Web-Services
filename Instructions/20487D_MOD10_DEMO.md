@@ -10,6 +10,7 @@
 1. Open Windows PowerShell as Administrator.
 2. In the **User Account Control** modal, click **Yes**.
 3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+   >**Note**: If prompted for you trust this repository Type **A** and then press **Enter**.
 4. Browse to *[Repository Root]***\AllFiles\Mod10\DemoFiles\Setup1**.
 5. Run the following command:
    ```batch
@@ -18,12 +19,12 @@
 6. You will be asked to supply a **Subscription ID**, which you can get by performing the following steps:
    1. Open Microsoft Edge and go to **http://portal.azure.com**. If a box appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
    2. On the top bar, in the **search** box, type **Cost**, and then, in **results**, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window should open.
-   3. Under **BILLING ACCOUNT**, click **Subscriptions**.
+   3. Under **Individual billing**, click **Subscriptions**.
    4. Under **My subscriptions**, you should have at least one subscription. Click the subscription that you want to use.
    5. Copy the value from **Subscription ID**, and then at the PowerShell command line, paste the copied value.
-7. In the **Sign in** window that appears, enter your details, and then sign in.
-8. In the **Administrator: Windows PowerShell** window, follow the on-screen instructions. Wait for the deployment to complete successfully.
-9. Write down the name of the Azure App Service that is created.
+7. In the **Administrator: Windows PowerShell** window, follow the on-screen instructions. Wait for the deployment to complete successfully.
+8.  Write down the name of the Azure App Service that is created.
+9.  Close the **Administrator: PowerShell Window**.
 
 # Lesson 1: Introduction to Scalability
 
@@ -54,7 +55,8 @@
    ```base
     dotnet run
    ```
-15. Wait for five minutes, and then write down the time taken to sign 180,000 reservations.
+15. When Prompted for Enter service **uri** ,Enter the Azure app service uri copied eralier and then press **Enter**.
+16. Wait for five minutes, and then write down the time taken to sign 180,000 reservations.
    > **Note**: Now the time taken is less. We have two instances because of the scaling out.
 
 # Lesson 2: Automatic Scaling
@@ -86,11 +88,12 @@
     ```base
     dotnet run
     ```
-18. Wait for five minutes, and then switch to the Azure portal.
-19. Click the **Run history** tab.
-20. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale up completed**.
-21. Wait for another five minutes.
-22. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale down completed**.
+18. When Prompted for Enter service **uri** ,Enter the Azure app service uri copied eralier and then press **Enter**.
+19. Wait for five minutes, and then switch to the Azure portal.
+20. Click the **Run history** tab.
+21. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale up completed**.
+22. Wait for another five minutes.
+23. In the **scaling** table, under **OPERATION NAME**, verify that the value is **Autoscale scale down completed**.
 
 # Lesson 3: Azure Application Gateway and Traffic Manager
 
@@ -111,10 +114,10 @@
 5. Open Microsoft Edge and go to **http://portal.azure.com**.
 6. Sign in to the Azure portal.
 7. On the Azure portal, click **Create a resource**.
-8. In the **Featured** list, select **Networking**, and then select **Application Gateway**.
+8. Under **Azure Marketplace**, select **Networking**, and then select **Application Gateway**.
 9. For the new application gateway, enter the following values:
     - **myAppGateway** - for the name of the application gateway.
-    - **myResourceGroupAG** - for the new resource group.
+    - In resource group section click **Create new**, in the **Name** box Type **myResourceGroupAG** an then click **OK**.
 10. Accept the default values for the other settings, and then click **OK**.
 11. Click **Choose a virtual network**, select **Create new**, and then, for the virtual network, enter the following values:
 	- **myVNet** - for the name of the virtual network.
@@ -210,7 +213,7 @@
 33. In **Type**, select **Azure endpoint**.
 34. In **Name**, type **mySecondaryEndpoint**.
 35. In **Target resource type**, select **App Service**.
-36. In **Target resource**, select **blueyondermod10demo4US**.
+36. In **Target resource**, select **blueyondermod10demo4US**{YourInitials}.
 37. In **Priority**, enter **2**.
 38. Click **Ok**, and wait until the secondary end point is created successfully.
 
@@ -225,7 +228,7 @@
     nslookup blueyondermod10demoTM{YourInitials}.trafficmanager.net
     ```
 42. In the result, locate the **Aliases:** property.
-43. Verify that the **Aliases:** property uses the **blueyondermod10demo4Europe** service.
+43. Verify that the **Aliases:** property uses the **blueyondermod10demo4Europe**{YourInitials} service.
    > **Note**: **blueyondermod10demo4Europe** is the primary end point.
 44. Switch to the **Azure** portal.
 45. In **All resources**, click **blueyondermod10demoTM**{YourInitials}.
@@ -243,8 +246,9 @@
     nslookup blueyondermod10demoTM{YourInitials}.trafficmanager.net
     ```
 52. In the result, locate the **Aliases:** property.
-53. Verify that the **Aliases:** property uses **blueyondermod10demo4US** service.
-     > **Note**: **blueyondermod10demo4US** is the secondary end point.
+53. Verify that the **Aliases:** property uses **blueyondermod10demo4US**{YourInitials} service.
+     > **Note**: **blueyondermod10demo4US**{YourInitials} is the secondary end point.
+54. Close all open wondows.
 	 
 ©2018 Microsoft Corporation. All rights reserved.
 
