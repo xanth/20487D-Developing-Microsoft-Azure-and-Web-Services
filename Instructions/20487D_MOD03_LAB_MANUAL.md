@@ -64,63 +64,6 @@ After completing this lab, you will be able to:
 12. Run the **BlueYonder.Hotels.Client** project.
 13. At the command prompt, verify that the bookings from the **GET** and the **PUT** requests appear. 
 
-# Lab: Self-Hosting an ASP.NET Core Web API  
-
-#### Scenario
-
-In this exercise, you will self-host an ASP.NET Core Web API with HttpSys and Kestrel.
-
-#### Objectives
-
-After completing this lab, you will be able to:
-
-- Use **HttpSys** and **Kestrel** to host the Web API project.
-- Use command line arguments to invoke the hosting environment.
-
-### Exercise 1: Use HttpSys
-
-#### Task 1: Add a new HttpSys option to the list of commands
-
-1. Open a **Command Prompt** window, and then browse to **Repository Root]\Allfiles\Mod03\LabFiles\Lab2\Starter**.
-2. Open the project in Visual Studio Code.
-3. To get arguments from the command prompt, in the **BlueYonder.Hotels.Service** folder, locate **Program.cs**, and then paste the following code inside the **Main** method:
-    ```cs
-     IConfigurationRoot config = new ConfigurationBuilder()
-                                        .AddCommandLine(args)
-                                        .Build();
-
-    string userServicePreference = config["mode"];
-    ```
-4. Create **WebHostBuilder**, and then check if the argument has the **HttpSys** mode.
-5. Add a default mode by using Internet Information Server (IIS) express.
-6. Run the **Builder** with:
-   ```cs
-    builder.Build().Run();
-   ```
-
-#### Task 2: Run the project by using HttpSys and retest with a browser
-
-1. At the command prompt, open **BlueYonder.Hotels.Service**.
-2. To run the project with the **HttpSys** mode, run the following command:
-   ```bash
-    dotnet run --mode=HttpSys
-   ```
-3. In the browser, on port **5000**, browse to **Hotel api**, and then verify that it has **[Hotel1,Hotel2]**.
-
-### Exercise 2: Use Kestrel
-
-#### Task 1: Add a new Kestrel option to the list of commands
-
-1. Switch to Visual Studio Code.
-2. In **BlueYonder.Hotels.Service**, in **Program.cs**, between **if** and **else**, add a new **Kestrel mode** hosting .
-
-#### Task 2: Run the project by using Kestrel and retest with the .NET console client
-
-1. From the command prompt, browse to **Repository Root]\Allfiles\Mod03\LabFiles\Lab2\Starter\BlueYonder.Hotels**.
-2. Run the project in the **Kestrel** mode.
-3.  From the command prompt, browse to **Repository Root]\Allfiles\Mod03\LabFiles\Lab2\Starter\BlueYonder.Client**, and then run the project.
-4. From the command prompt, verify that the **POST** and **PUT** requests succeeded.
-
 ©2018 Microsoft Corporation. All rights reserved.
 
 The text in this document is available under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode), additional terms may apply. All other content contained in this document (including, without limitation, trademarks, logos, images, etc.) are **not** included within the Creative Commons license grant. This document does not provide you with any legal rights to any intellectual property in any Microsoft product. You may copy and use this document for your internal, reference purposes.
