@@ -151,7 +151,7 @@ After completing this lab, you will be able to:
 3. Create the new **Web App** by entering details in the following fields:
    - In the **App Name** box, enter the following web app name: **blueyonder-flights**-*{YourInitials}*
    - In the **Resource Group** box, select **Create new** and then type **Mod6Resource**.
-   - **Create new** **App Service plan/Location**, then open the **New App Service Plan** blade, and enter the following information:
+   - Select **App Service plan/Location** click **Create new**, in the **New App Service Plan** blade enter the following information:
      - In the **App Service plan** box, type **Mod6Lab2ServicePlan**.
      - Click **Pricing tier**.
        - Select the **Production** tab.
