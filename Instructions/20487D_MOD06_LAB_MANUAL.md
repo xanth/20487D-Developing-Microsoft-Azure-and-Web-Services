@@ -10,7 +10,14 @@ In this exercise, you will deploy an ASP.NET Core web service on Linux
 
 After completing this lab, you will be able to:
 
-- C
+- Deploy an ASP.NET Core Web API service to a Linux Nginx web server.
+- Configure Nginx wbe server as reverse proxy 
+-	Create a new slot in Azure Web Apps
+-	Publish new version to the staging slot
+-	Swap between production and staging slot
+-	Create an API Management in Azure Portal
+-	Configure the API Management for your service
+-	Test the API with cache rules
 
 ### Exercise 1: Publishing the ASP.NET Core Web Service for Linux
 
