@@ -81,7 +81,20 @@
 #### Preparation Steps
 
 1. Open **Azure Portal**.
-2. Click on **Azure Active Directory** on the left menu.
+2. In the left pane, click **+ Create a resource**
+3. In the search box, type **Azure Active Directory B2C**,  from the search results select **Azure Active Directory B2C** and then click **Create**.
+4. Select **Create a new Azure AD B2C Tenant**.
+5. Fill the **Organization name** and **Initial domain name**, and click **Create**
+6. After the tenat was created, click **Directory and subscription filter** and select your tenant.
+7. Choose All services in the top-left corner of the Azure portal, search for and select Azure AD B2C.
+8. From the blade select **Applications**, and click **Add**.
+9. Fill the name of the application.
+10. Under Web **App / Web API** select **Yse**
+11. Under **Reply URL** add the **https://jwt.ms** and click **Create**
+12. From the blade select **User flows**, and click **New user flow** and select **Sign-up and sign in**.
+13. Enter a policy Name for your application to reference.
+14. Select Identity providers and check Email signup. Optionally, you can also select social identity providers, if already configured. Click OK.
+15. Select Sign-up attributes. Choose attributes you want to collect from the consumer during sign-up. For example, check Country/Region, Display Name, and Postal Code. Click Create.
 
 #### Demonstration Steps
 
