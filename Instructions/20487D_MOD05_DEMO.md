@@ -318,7 +318,7 @@
     ```
 15. To test the new Azure function locally, paste the following command, and then press Enter:
     ```bash
-        func host start -- build
+        func host start --build
     ```
 16. Open a browser and navigate to **http://localhost:7071/api/MyAzureFunc**.
 17. Add the following query string value to the end of this URL, and then press Enter to execute the request:
