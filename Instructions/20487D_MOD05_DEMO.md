@@ -334,7 +334,7 @@
      >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.       
 19. To sign in to Azure with your credentials before publishing the new Azure function to Azure, paste the following command, and then press Enter:
     ```bash
-        func azure login
+        az login
     ```
     >**Note**: You will get the following message: **To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code** *{some code}* **to authenticate**. Follow the instructions to sign in with your username and password.
 20. To publish your new Azure function to Azure, paste the following command, and then press Enter:
