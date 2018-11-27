@@ -302,7 +302,7 @@
 10. Open the Command Prompt window.
 11. To change the directory, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\Azure Functions
+        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\AzureFunctions
     ```
 12. To create a local Functions project, paste the following command:
     ```bash
