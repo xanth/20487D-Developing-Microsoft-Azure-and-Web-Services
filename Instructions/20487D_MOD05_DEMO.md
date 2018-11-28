@@ -164,9 +164,16 @@
     ```bash
       dotnet new webapi --name BlueYonder.Hotels.Service --output [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
     ```
-3. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\Host_In_Docker**.
-4. In the **Host_In_Docker** folder, add a new file called **DockerFile** (without extension).
-5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** in any code editor, paste the following docker commands, and then save the file.
+3. To change the directory to the **Host_In_Docker** folder, at the command prompt, run the following command:
+    ```bash
+    cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
+    ```
+4. To open the project in Microsoft Visual Studio Code, run the following command: 
+    ```bash
+    code .
+    ```
+4. Right-click **BlueYonder.Hotels.Service**, select **New File**, and then name it **Dockerfile**
+5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** and, paste the following docker commands:
     ```
         FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
         WORKDIR /app
