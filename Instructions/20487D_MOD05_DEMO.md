@@ -172,7 +172,7 @@
     ```bash
     code .
     ```
-4. Right-click **BlueYonder.Hotels.Service**, select **New File**, and then name it **Dockerfile**
+4. In the **EXPLORER** panel, right-click the **Host_In_Docker** area, select **New File**, and then name it **Dockerfile**
 5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** and, paste the following docker commands:
     ```
         FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
