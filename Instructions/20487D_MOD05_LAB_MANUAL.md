@@ -1,4 +1,4 @@
-# Module 1: Hosting Services
+# Module 5: Hosting Services
 
 # Lab: Host an ASP.NET Core Service in a Windows Service
 
@@ -16,13 +16,13 @@ After completing this lab, you will be able to:
 - Register a new Windows service.
 - Host a web application in a Windows service.
 
-### Exercise 1: Creating a new ASP.NET Core Project
+### Exercise 1: Creating a new ASP.NET Core Application
 
 #### Scenario
 
 In this exercise, you will create a new Web API via ASP.NET Core by using the command prompt.
 
-#### Task 1: Create a new ASP.NET Core project
+#### Task 1: Create a new ASP.NET Core Application project
 
 Create a new Web API Core project by using the command prompt with the **dotnet** tool.
     > **Results**: After completing this exercise, you should have a basic Web API ASP.NET Core project.
@@ -65,6 +65,8 @@ In this exercise, you will create a new Windows service, start and stop it by us
 3. Use the sc command line to stop the service.
 4. Navigate to the same address to see that you are not getting the expected response.
     > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a \*\*Windows service.
+
+# Lab: Host an ASP.NET Core Web API in Web Apps Feature of Microsoft Azure App Service
 
 ### Exercise 1: Creating a Web App in the Azure Portal
 
@@ -152,7 +154,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 4. Run the docker container which is listening on a default port.
 5. Open a browser and navigate to **localhost:8080/api/hotels**, and check that you are getting the expected response in the JSON format.
 
-#### Task 2: Publish the application into a local container using Microsoft Visual Studio
+#### Task 2: Publish the application into a local container using Visual Studio
 
 1. In Microsoft Visual Studio 2017, open *[Repository Root]***\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.sln** .
 2. Add **Docker Support** and in the **Docker Support Options** window, select **Linux**.
