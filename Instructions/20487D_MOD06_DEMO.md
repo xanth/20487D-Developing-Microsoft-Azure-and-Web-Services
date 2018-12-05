@@ -301,8 +301,8 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```bash
     git push
     ```
-34. Return to Visual Studio Team Services and click **Build and Release**.
-35. Locate the pipeline that was created, and then click **build id** (starts with hash tag).
+34. Return to **Azure DevOps**, click on **Pipelines** and then click on **Builds**.
+35. Locate **my first commit**, click on it and verify that all **succeded**.
     > **Note**: Wait until the build is complete. 
 36. Navigate to the web app URL that was created in Azure:
     ```url
