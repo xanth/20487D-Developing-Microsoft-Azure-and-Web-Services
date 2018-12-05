@@ -220,95 +220,99 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - Select the app service template, in the **App Services** blade, click **Add**. 
     - In the **Web** blade, click **Web App**. You see an overview of the template. Click **Create**.
 6. To create  a new web app, enter details in the following fields:
-    - In the **App Name** box, type the following web app name **mod6demo3***{YourInitials}*.
+    - In the **App Name** box, type the following web app name **mod6demo3** **{YourInitials}**.
         >**Note**: The new web app name will be part of the URL.
     - In the **Resource Group** list, select **Create new**, and then type **mod6demo3**.
     - Click **App Service plan/Location**, and click **Create new**, and then open the **New App Service Plan** blade to enter the following information:
         - In the **App Service plan** box, enter **Mod6Demo3ServicePlan**.
         - Click **OK**.
     - Click **Create** and wait until the app service is created.
-7. Open a new tab in the browser and navigate to **https://www.visualstudio.com/team-services/**, and then click **Get started for free**.
+7. Open a new tab in the browser and navigate to **https://www.visualstudio.com/team-services/**, and then click **Get Azure DevOps free**.
 8. On the **Sign in** page, enter your **Microsoft account** email address, and then click **Next**.
     >**Note**: If instead of a **Sign in** page, you see a **Pick an account** page, pick your account and click **Next**.
     - On the **Enter password** page, enter your password, and then click **Sign in**.
     >**Note**: If this is the first time you logged in with your account to Visual Studio Team Services, follow the next steps, else skip to step 11.
-9.  In the **Host my projects at** page, enter a unique name. (We will refer to that unique name as _youraccount_ from now on.)
-10. Under **Manage code using**, select **Team Foundation Version Control**, and then click **Continue**.
-    >**Note**: Wait until the account creation is done. You will be redirected to the **MyFirstProject** page.
-11. If you already have projects in your account, click **New Project**, else skip to the next step.
-12. In the **Create new project** page, enter the following details:
+9. If you already have projects in your account, click **New Project**, else skip to the next step.
+10. In the **Create new project** page, enter the following details:
     - Project name: **MyApp**
-    - Version control: **Git**
+    - Visibility: **Private**
+    - Advance:
+        - Version control: **Git**
     - Click **Create**. 
     > **Note**: Wait for the project to be created.
-13. In the **MyApp** page, click **Generate Git credentials**, and then enter the following details:
-    - Alias: **mod6demo3**
+11. In the **MyApp** page, click **Repos** on the left blade then click **Generate Git credentials**, and then enter the following details:
+    - Alias: **mod6demo3{YourInitials}**
     - Password: **Password123**
     - Confirm Password: **Password123**
     - Click **Save Git Credentials**.
-14. In the top blade, click **Build and release**.
-15. Click **New pipeline**.
-16. In **Select a source**, choose **VSTS Git**, and then click **Continue**.
-17. Select **Azure Web App for ASP.NET**, and then click **Apply**.
-18. In **Azure subscription**, enter the following details:
+12. In the left blade, click **Pipelines**.
+13. Click **New pipeline**.
+14. In **Where is your code**, choose **Use the visual designer**.
+15. In **Select a source**, choose **Azure Repos Git**.
+16. In **Repository** select **MyApp**.
+17. Then click **cuntinue**.
+18. In **select a tamplate**, choose **Azure Web App for ASP.NET** and click **Apply**.
+19. In **Azure subscription**, enter the following details:
     - Select your Azure subscription.
     - Click **Authorize**.
     - In the pop-up window, sign in with your Microsoft Azure credentials.
-19. In **App service name**, select **mod6demo3***{YourInitials}*.
-20. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
-21. Click the **Save $ queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
-22. Open the command prompt.
-23. At the command prompt, to switch the directory, run the following command:
+20. In **App service name**, select **mod6demo3***{YourInitials}*.
+21. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
+    >**Note:** if **Branch filters** already exist skip this step.
+22. Click the **Save $ queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
+23. Open the command prompt.
+24. At the command prompt, to switch the directory, run the following command:
     ```bash
     cd *[Repository Root]*\Allfiles\Mod06\Demofiles
     ```
-24. To clone the repository to a local repository, run the following command:
+25. To clone the repository to a local repository, run the following command:
     ```bash
-    git clone  https://_youraccount_.visualstudio.com/MyApp/_git/MyApp
+    git clone  https://dev.azure.com/{_youraccount_}/MyApp/_git/MyApp
     ```
-    > **Note**: Replace *_youraccount_* with the name that was provided in point 5.
-    - UserName: **mod6demo3**
+    > **Note**: Replace *_youraccount_* with your user name.
+26. Then enter your user name and password.
+    - UserName: **{_youraccount_}**
     - Password: **Password123**
-25. To switch the directory to **MyApp**, run the following command:
+27. To switch the directory to **MyApp**, run the following command:
     ```bash
     cd *[Repository Root]*\Allfiles\Mod06\Demofiles\MyApp
     ```
-26. To create a new WebApi project, run the following command:
+28. To create a new WebApi project, run the following command:
     ```bash
     dotnet new webapi -n MyProject
     ```
-27. to create a new solution, run the following command:
+29. to create a new solution, run the following command:
     ```bash
     dotnet new sln -n Mod6Demo3
     ```
-28. To add the **MyApp** project to then**Mod6Demo3** solution, run the following command:
+30. To add the **MyApp** project to the **Mod6Demo3** solution, run the following command:
     ```bash
     dotnet sln Mod6Demo3.sln add MyProject\MyProject.csproj
     ```
-29. To add the new files for the next commit, run the following command:
+31. To add the new files for the next commit, run the following command:
     ```bash
     git add .
     ``` 
-30. To commit the changes, run the following command:
+32. To commit the changes, run the following command:
     ```bash
     git commit -m "my first commit"
     ```
-31. To push the changes to our repository, run the following command:
+33. To push the changes to our repository, run the following command:
     ```bash
     git push
     ```
-32. Return to Visual Studio Team Services and click **Build and Release**.
-33. Locate the pipeline that was created, and then click **build id** (starts with hash tag).
+34. Return to Visual Studio Team Services and click **Build and Release**.
+35. Locate the pipeline that was created, and then click **build id** (starts with hash tag).
     > **Note**: Wait until the build is complete. 
-34. Navigate to the web app URL that was created in Azure:
+36. Navigate to the web app URL that was created in Azure:
     ```url
     https://Mod6Demo3{YourInitials}.azurewebsites.net/api/values
     ```
-35. The response should be a JSON with the following values:
+37. The response should be a JSON with the following values:
     ```json
     ["value1", "value2"]
     ```
-36. Close all windows.
+38. Close all windows.
 
 
 # Lesson 4: Deploying to Staging and Production Environments 
