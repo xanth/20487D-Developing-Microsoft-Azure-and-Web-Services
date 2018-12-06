@@ -164,7 +164,7 @@ The main tasks for this exercise are:
         'destination': 'France',
         'flightNumber': 'GF7625',
         'departureTime': '0001-01-01T00:00:00'}"
-    Invoke-WebRequest -Uri https://flightsmod1lab{YourInitials}.azurewebsites.net/api/flights -ContentType "application/json" -Method POST -Body $postParams
+    Invoke-WebRequest -Uri http://flightsmod1lab{YourInitials}.azurewebsites.net/api/flights -ContentType "application/json" -Method POST -Body $postParams
     ```
 3. Open Microsoft Edge.
 4. Go to the following URL:
