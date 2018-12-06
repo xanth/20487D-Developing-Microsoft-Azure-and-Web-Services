@@ -45,7 +45,7 @@
 1. In the **Start** menu, open **Internet Information Services(IIS) Manager**.
 2.  In the menu on the left side, right-click the **Sites** folder, and then select **Add Website..**.
 3. In the **Add Website** dialog box, in the **Site name** box, type **HotelsSite**.
-4. In the **Content Directory** section, in the **Physical path** box, type *[Repository Root]***\Allfiles\Mod05\DemoFiles\Host in IIS**.
+4. In the **Content Directory** section, in the **Physical path** box, type [Repository Root]**\Allfiles\Mod05\DemoFiles\Host in IIS**.
 5. In the **Binding** section, change the value in **Port** from **80** to **8080**.
 6. To create your new website, click **OK**.
 7. In the menu on the left side, click **Application Pools**, and then double-click the website that you just created.
