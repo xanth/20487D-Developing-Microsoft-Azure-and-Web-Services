@@ -20,8 +20,8 @@
 6. In the **Account kind** list, select **StorageV2 (general purpose v2)**.
 7. In the **Replication** list, select **Locally-redundant storage (LRS)**.
 8. In the **Resource group** section, select **Create new**, type **Mod7Demo1** and then click **OK**.
-9.  Click **Review + Create**.
-10. Click **blueyonder***{YourInitials}*.
+9.  Click **Review + Create** and then click **Create**.
+10. Click **blueyonder**{YourInitials}.
 11. In the left pane, in **BLOB SERVICE**, click **Blobs**.
 12. To create a new container, on the top bar, click **Container**.
 13. In the **Name** box, type **vouchers**.
