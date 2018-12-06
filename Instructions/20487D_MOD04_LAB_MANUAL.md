@@ -104,7 +104,7 @@ In **HotelBookingController**, above the **GetAvailability** method, add the **C
     ```
 6. To get the available rooms on the current date, run the following command:
    ```bash
-   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/*[year]-[month]-[day]*  
+   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/[year]-[month]-[day]
    ```
    >**Note:** Replace the last section of the URL with the current date.
 7. To remove the reservation, run the following command:

@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 
 1. Open the command prompt in Microsoft Visual Studio Code and go to the following directory:
    ```bash
-   cd *[Repository Root]*\Allfiles\Mod06\Labfiles\Exercise1\Starter
+   cd [Repository Root]\Allfiles\Mod06\Labfiles\Exercise1\Starter
    ```
 2. To the **BlueYonder.Flights.Service** project, add a new **.dockerignore** file.
 3. To the **BlueYonder.Flights.Service** project, add a new **Dockerfile** file.
@@ -173,7 +173,7 @@ After completing this lab, you will be able to:
 #### Task 3: Deploy an ASP.NET Core application to the production slot
 
 1. In the **DEPLOYMENT** section, click **Deployment credentials**, and enter the following information:
-   - In **FTP/deployment username**, type **FTPMod6Lab2***{YourInitials}*.
+   - In **FTP/deployment username**, type **FTPMod6Lab2**{YourInitials}.
    - In the **Password** and **Confirm password** boxes, type **Password99**.
 2. In Visual Studio Code, open the **Starter** project.
 3. In the **Middleware** folder, click the **TenantMiddleware** file.
@@ -207,7 +207,7 @@ After completing this lab, you will be able to:
 2. In **Developer Tools**, navigate to the **Network** tab.
 3. Navigate to the following URL:
    ```url
-   https://blueyonder-flights-{*YourInitials*}.azurewebsites.net/api/destinations
+   https://blueyonder-flights-{YourInitials}.azurewebsites.net/api/destinations
    ```
 4. In the **Network** tab, locate the URL and check the following information:
    - In the **Response Headers** section, locate **X-Tenant-ID** and verify that the value is **Production**.
@@ -262,7 +262,7 @@ After completing this lab, you will be able to:
 2. In the **Developer Tools**, navigate to the **Network** tab.
 3. Navigate to the following URL:
    ```url
-   https://blueyonder-flights-*{YourInitials}*-staging.azurewebsites.net/api/destinations
+   https://blueyonder-flights-{YourInitials}-staging.azurewebsites.net/api/destinations
    ```
 4. View the response with all the destinations, including Milan and Rome.
 5. In the **Network** tab, locate the URL and check the following information:
@@ -371,7 +371,7 @@ After completing this lab, you will be able to:
 2. In the **API MANAGEMENT** section, under **APIs**, enter the following details in **Blank API**:
     - In **Display name**, type **BlueYonder**.
     - In **Name**, type **blueyonder**.
-    - In **Web service URL**, type **https://blueyonder***{YourInitials}***.azurewebsites.net/api**.
+    - In **Web service URL**, type **https://blueyonder**{YourInitials}**.azurewebsites.net/api**.
     - In **Api URL suffix**, type **api**.
     - In **Products**, select **blueyonder**.
 3. To create the **GET Destinations** operation, click **+ Add operation** and enter the following details:

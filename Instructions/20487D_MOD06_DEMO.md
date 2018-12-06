@@ -47,7 +47,7 @@
     >**Note**: Visual Studio publishes the application according to the settings that are provided in the profile file. After deployment completes, Visual Studio opens Internet Explorer and displays the web app. The deployment process is quick because the process only copies the content of the application to an existing virtual machine and does not need to wait for a new virtual machine to be created.
 26. In the browser, navigate to the following URL:
     ```url
-    http://mod6demo1*[YourInitials]*.azurewebsites.net/api/values
+    http://mod6demo1[YourInitials].azurewebsites.net/api/values
     ```
 27. Verify that the response is in the format: **["***value1***","***value2***"]**.
 28. Close all open windows.
@@ -79,7 +79,7 @@
 9.  Open the command prompt.
 10. At the command prompt, to change the directory to **Demo2Project**, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project
     ```
 11. To open the project in Microsoft Visual Studio Code, run the following command:
     ```bash
@@ -117,13 +117,14 @@
 26. Open a new command prompt instance.
 27. To change the directory to the published folder, paste the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
     ```
+
 28. To publish the package to the virtual machine, paste the following command:
     ```bash
-    scp -r .\ubuntu.16.10-x64\ myadmin@*<server_IP_address>*:/var/demo
+    scp -r .\ubuntu.16.10-x64\ myadmin@<server_IP_address>:/var/demo
     ```
-    >**Note**: Change *\<server_IP_address\>* with the IP address of your virtual machine.
+    >**Note**: Change \<server_IP_address\> with the IP address of your virtual machine.
 29. Type the following password **Password123!** and press Enter.
 30. Switch to the command prompt that connected to the virtual machine.
 31. To switch the directory to the **Root** folder, run the following command:
@@ -146,7 +147,7 @@
     ```
 36. Verify that the browser displays the default landing page for **Nginx**. The landing page is:
     ```url
-    http://*<server_IP_address>*/index.nginx-debian.html
+    http://<server_IP_address>/index.nginx-debian.html
     ```
 37. To change the directory to the **Nginx** configuration folder, run the following command:
     ```bash
@@ -256,14 +257,14 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - Select your Azure subscription.
     - Click **Authorize**.
     - In the pop-up window, sign in with your Microsoft Azure credentials.
-20. In **App service name**, select **mod6demo3***{YourInitials}*.
+20. In **App service name**, select **mod6demo3**{YourInitials}.
 21. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
     >**Note:** if **Branch filters** already exist skip this step.
 22. Click the **Save $ queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
 23. Open the command prompt.
 24. At the command prompt, to switch the directory, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles
+    cd [Repository Root]\Allfiles\Mod06\Demofiles
     ```
 25. To clone the repository to a local repository, run the following command:
     ```bash
@@ -275,7 +276,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - Password: **Password123**
 27. To switch the directory to **MyApp**, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\MyApp
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
     ```
 28. To create a new WebApi project, run the following command:
     ```bash
@@ -330,7 +331,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - To select the app service template, in the **App Services** blade, click **Add**.
     - In the **Web** blade, click **Web App**. An overview of the template will be shown. Click **Create**.
 6. To create a new web app, provide the following details:
-    - In the **App Name** box, type the following web app name **mod6demo4***{YourInitials}*.
+    - In the **App Name** box, type the following web app name **mod6demo4**{YourInitials}.
         >**Note**: The new web app name will be part of the URL.
     - In **Resource Group**,  select **Create new** and type **mod6demo4**.
     - Click **App Service plan/Location**,  click **Create new**, and then open the **New App Service Plan** blade to provide the following information:
@@ -342,20 +343,20 @@ To present this demonstration, you must have a Microsoft account. If you have no
         - Click **OK**.
     - Click **Create** and wait until the app service is created.
 7. To display all the app services, on the left menu panel, click **App Services**.
-8. Click **mod6demo4***{YourInitials}* app service. 
+8. Click **mod6demo4** {YourInitials} app service. 
 9. To add credentials to the app service, under the **DEPLOYMENT** section, click **Deployment credentials**, and then enter the following information:
-    - In **FTP/deployment username**, type **FTPMod6Demo4***{YourInitials}*.
+    - In **FTP/deployment username**, type **FTPMod6Demo4** {YourInitials}.
     - In the **Password** and **Confirm password** boxes, type **Password99**.
     - Click **Save**.
 10. On the left blade menu, under the **DEPLOYMENT** section, click **Deployment slots**.
     - Click **Add Slot** and provide the following information:
         - In **Name**, type **Staging**.
-        - In **Configuration Source**, select **mod6demo4***{YourInitials}*.
+        - In **Configuration Source**, select **mod6demo4** {YourInitials}.
         - Click **OK**.
 11. Open the command prompt.
 12. At the command prompt, to change the directory to the starter project, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
     ```
 13. Open the project in Visual Studio Code and paste the following command and press Enter:
     ```bash
@@ -369,11 +370,11 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
-    > **Note**: If there was an error in the publishing process, restart the **mod6demo4***{YourInitials}* app services.
+    > **Note**: If there was an error in the publishing process, restart the **mod6demo4**{YourInitials} app services.
 19. Open Microsoft Edge. 
 20. Navigate to the following URL:
     ```url
-    https://Mod6Demo4*{YourInitials}*.azurewebsites.net/api/values
+    https://Mod6Demo4{YourInitials}.azurewebsites.net/api/values
     ```
 21. The response should be a JSON with the following values:
     ```json
@@ -387,11 +388,11 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```bash
     dotnet publish /p:PublishProfile=Staging /p:Configuration=Release
     ```
-    > **Note**: If there was an error in the publishing process, restart the  **Mod6Demo4-***{YourInitials}***-staging** app services.
+    > **Note**: If there was an error in the publishing process, restart the  **Mod6Demo4-**{YourInitials}**-staging** app services.
 27. Open a new Microsoft Edge instance. 
 28. Navigate to the following URL:
     ```url
-    https://mod6demo4-*{YourInitials}*-staging.azurewebsites.net/api/values
+    https://mod6demo4-{YourInitials}-staging.azurewebsites.net/api/values
     ```
 29. The response should be a JSON with the following values:
     ```json
@@ -399,7 +400,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```
 30. Switch to the Azure Portal.
 31. To display all the app services, on the left menu panel, click **App Services**.
-32. Click the **mod6demo4***{YourInitials}* app service.
+32. Click the **mod6demo4**{YourInitials} app service.
 33. In the **Overview** blade, on the menu at the top, click **Swap**.
 34. In the **Swap** blade, do the following:
     - In **Swap type**, select **Swap**.
@@ -427,7 +428,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
 5. On the menu in the panel on the left side, click **Create a resource**.
 6. In the **Search** box, type **API management**, click **Enter**, and then click **Create**.
 7. In the **API Management service** page, enter the following details:
-   - Name: **Mod6demo5***{YourInitials}*
+   - Name: **Mod6demo5**{YourInitials}
    - Resource Group:
         - Select **Create new**.
         - Type **Mod6Demo5ResourceGroup**.

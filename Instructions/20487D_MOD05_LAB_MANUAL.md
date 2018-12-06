@@ -64,7 +64,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 2. Navigate to your API by using port **5000**, and make sure you are getting the expected response.
 3. Use the sc command line to stop the service.
 4. Navigate to the same address to see that you are not getting the expected response.
-    > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a \*\*Windows service.
+    > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a Windows service.
 
 # Lab: Host an ASP.NET Core Web API in Web Apps Feature of Microsoft Azure App Service
 
@@ -195,7 +195,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 1. At the command prompt, change the directory by pasting the following command, and then press Enter:
     ```bash
-    cd *[RepositoryRoot]*\AllFiles\Mod05\Labfiles\Exercise4
+    cd [RepositoryRoot]\AllFiles\Mod05\Labfiles\Exercise4
     ```
 2.  Create a **local Functions Project** named **BlueYonder.Flights.GroupProxy**.
 3.  Open the project in Visual Studio Code and add a new **Traveler.cs** file with the following code:  
@@ -263,7 +263,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 3. Check that you are getting the expected response.
 4. To check whether the travelers were actually booked to flight number 1, open a browser and go to the following address:<br/>
 
-   **http://blueyonder-flights-***{Your Initials}***.azurewebsites.net/api/flights**
+   **http://blueyonder-flights-****{Your Initials}****.azurewebsites.net/api/flights**
 
     >**Note**: Replace *{Your Initials}* with your actual initials.
 
@@ -284,10 +284,10 @@ In this exercise, you will create a new Windows service, start and stop it by us
     
 #### Task 2: Test the Function App on Azure in a browser 
 
-1. Open a browser and navigate to **https://bookflightfunctionapp-***{Your Initials}***.azurewebsites.net/api/navigateBookFlightFunc?flightId=1**.
+1. Open a browser and navigate to **https://bookflightfunctionapp-****{Your Initials}****.azurewebsites.net/api/navigateBookFlightFunc?flightId=1**.
     >**Note**: Replace *{Your Initials}* with your actual initials.
 2. Check whether you are getting the expected response.
-3. To check whether the travelers were actually booked to flight number 1, open a browser and navigate to **http://blueyonder-flights-***{Your Initials}***.azurewebsites.net/api/flights**.
+3. To check whether the travelers were actually booked to flight number 1, open a browser and navigate to **http://blueyonder-flights-****{Your Initials}****.azurewebsites.net/api/flights**.
 
     >**Note**: Replace *{Your Initials}* with your actual initials.
 

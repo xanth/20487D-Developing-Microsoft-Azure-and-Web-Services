@@ -235,7 +235,7 @@ Add a new method that gets the **Booking** class as a parameter and updates the 
 
 Add a new method that gets the **BookingId** int as a parameter and deletes the database, and name it **Delete**.
 
-    >**Results** You created a repository with the **Add**, **Update**, **Delete** methods.
+>**Results** You created a repository with the **Add**, **Update**, **Delete** methods.
 
 #### Exercise 2: Test the model using SQL Server and SQLite
 

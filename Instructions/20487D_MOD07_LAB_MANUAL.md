@@ -22,7 +22,7 @@ After completing this lab, you will be able to:
 #### Task 1: Store publicly accessible files in Blob Storage
 
 1. Open the Azure portal.
-2. Create a storage account, and name it **blueyonder***{YourInitials}*.
+2. Create a storage account, and name it **blueyonder**{YourInitials}.
 3. Create a new blob container, name it **aircraft-images**, and then set its public access level as **Container (anonymous read access for containers and blobs)**.
 
 #### Task 2: Upload a file to Azure Blob Storage from the Microsoft Azure CLI
@@ -93,8 +93,8 @@ Create a new container, name it **manifests**, and assign it **Private** accessi
 #### Task 1: Create a new Azure Cosmos DB graph database in the Azure portal
 
 1. Open the Azure portal.
-2. To create an Azure Cosmos DB graph database, in **ID**, type **blueyonder-destinations***{YourInitials}*, and then, in **API**, select **Gremlin (graph)**. 
-3. Click **blueyonder-destinations***{YourInitials}*, and then type **Azure Cosmos DB account**.
+2. To create an Azure Cosmos DB graph database, in **ID**, type **blueyonder-destinations**{YourInitials}, and then, in **API**, select **Gremlin (graph)**. 
+3. Click **blueyonder-destinations**{YourInitials}, and then type **Azure Cosmos DB account**.
 4. To add a graph, in **Database id**, select **Create new**, type **blueyonder**, and then, in **Graph Id**, type **traveler**.
 
 #### Task 2: Run a script to import itinerary data (flights and destinations) to the database
@@ -165,7 +165,7 @@ Create a new container, name it **manifests**, and assign it **Private** accessi
 #### Task 1: Create the Azure Redis Cache service
 
 1. Go to the Azure portal.
-2. To create an Azure Redis Cache, in **DNS name**, type **blueyonder-cache***{YourInitials}*.
+2. To create an Azure Redis Cache, in **DNS name**, type **blueyonder-cache**{YourInitials}.
 
 #### Task 2: Locate the service key
 
@@ -195,7 +195,7 @@ In the **Starter** folder, to the **BlueYonder.Flights.Service** project, add th
 #### Task 4: Configure the web application to disable instance affinity
 
 1. Switch to the Azure portal.
-2. In **App Services**, click **blueyondermod07lab03***{YourInitials}*.
+2. In **App Services**, click **blueyondermod07lab03**{YourInitials}.
 3. In the **SETTING** section, click **Scale up (App Service plan)**.
 4. In the **Dev/Test** tab, select **B1**.
 5. In the **SETTING** section, click **Scale out (App Service plan)**.
