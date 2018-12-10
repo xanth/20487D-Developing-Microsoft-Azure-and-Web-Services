@@ -66,7 +66,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 4. Navigate to the same address to see that you are not getting the expected response.
     > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a \*\*Windows service.
 
-# Lab: Host an ASP.NET Core Web API in Web Apps Feature of Microsoft Azure App Service
+# Lab: Host an ASP.NET Core Web API in an Azure Web App
 
 ### Exercise 1: Creating a Web App in the Azure Portal
 
