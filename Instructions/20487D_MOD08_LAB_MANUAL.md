@@ -5,9 +5,13 @@
 
 #### Scenario
 
+In this lab, you will use ETW on Windows and LTTng on Linux to monitor exception and GC events in an ASP.NET Core application.
 
 #### Objectives
 
+After you complete this lab, you will be able to:
+-	Collect and analyze ETW events with PerfView for ASP.NET Core application on windows.
+-	Collect and analyze LTTng events for ASP.NET Core application on Linux Docker container.
 
 ### Exercise 1: Publish the ASP.NET Core web service for Linux
  
@@ -70,8 +74,14 @@
 
 #### Scenario
 
+In this lab, you will use Application Insights to monitor and diagnose a web service running in Azure Web Apps.
+
 #### Objectives
 
+After you complete this lab, you will be able to:
+- Add Application Insights to your application.
+- Load test your service using Azure.
+- Analyze performance using Application Insights.
 
 ### Exercise 1: Add the Application Insights SDK
 
