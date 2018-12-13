@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Identity.Controllers
 {
@@ -11,6 +12,7 @@ namespace Identity.Controllers
     public class ValuesController : ControllerBase
     {
         // GET api/values
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
