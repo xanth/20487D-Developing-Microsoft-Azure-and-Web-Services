@@ -1,137 +1,136 @@
-# Module 6: Deploying and managing services
+# Module 6: Deploying and Managing Services
 
- 1. Wherever you see a path to file starting at [Repository Root], replace it with the absolute path to the directory in which the 20487 repository resides. 
- e.g. - you cloned or extracted the 20487 repository to C:\Users\John Doe\Downloads\20487, then the following path: [Repository Root]\AllFiles\20487D\Mod01 will become C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01
-2. Wherever you see **{YourInitials}**, replace it with your actual initials.(for example, the initials for John Do will be jd).
-3. Before performing the demonstration, you should allow some time for the provisioning of the different Azure resources required for the demonstration. It is recommended to review the demonstrations before the actual class and identify the resources and then prepare them beforehand to save classroom time.
+1. Wherever a path to a file starts at *[Repository Root]*, replace it with the absolute path to the directory in which the 20487 repository resides. For example, if you cloned or extracted the 20487 repository to **C:\Users\John Doe\Downloads\20487**, change the path: *[Repository Root]***\AllFiles\20487D\Mod01** to **C:\Users\John Doe\Downloads\20487\AllFiles\20487D\Mod01**.
+2. Wherever *{YourInitials}* appears, replace it with your actual initials. For example, the initials for **John Doe** will be **jd**.
+3. Before performing the demonstration, you should allow some time for the provisioning of the different Microsoft Azure resources required for the demonstration. You should review the demonstrations before the actual class, identify the resources, and then prepare them beforehand to save classroom time.
 
 
-# Lesson 1: Web Deployment with Visual Studio
+# Lesson 1: Web Deployment with Microsoft Visual Studio
 
-### Demonstration: Deploying a web application with Visual Studio
+### Demonstration: Deploying a Web Application with Visual Studio
 
 #### Demonstration Steps
 
-1.  Click **Start**, type **Visual Studio**. From the search results, right-click **Visual Studio 2017**, and then select **Run as administrator**, In User **Control dialog** box  click **Yes**.
+1.  Click **Start**, type **Visual Studio**. From the search results, right-click **Visual Studio 2017**, and then select **Run as administrator**. In the **User Control** dialog box,  click **Yes**.
 2.  On the **File** menu, point to **New**, and then click **Project**.
 3.  In the **New Project** dialog box, on the navigation pane, expand the  **Installed** node, expand the **Visual C\#** node, click the **Web** node, and then in the list of templates, click **ASP.NET Core Web Application**.
-4.  In the **Name** text box, type **MyWebSite**.
-5.  In the **Location** text box, type **[repository root]\Allfiles\20487C\Mod06\DemoFiles\DeployWebApp**.
+4.  In the **Name** box, type **MyWebSite**.
+5.  In the **Location** box, enter *[repository root]***\Allfiles\20487C\Mod06\DemoFiles\DeployWebApp**.
 6.  Clear the **Create directory for solution** check box, and then click **OK**.
 7.  In the **New ASP.NET Web Application** dialog box, select **API**, and then click **OK**.
-8.	Open **Microsoft Edge** and go to **https://portal.azure.com**.
-9.	If a page appears asking for your email address, enter your email address, and then click **Next**. Wait for the sign in page to appear, enter your email address and password, and then click **Sign In**.
+8.	Open Microsoft Edge and go to **https://portal.azure.com**.
+9.	If a page appears asking for your email address, enter your email address, and then click **Next**. Wait for the **Sign In** page to appear, enter your email address and password, and then click **Sign In**.
 
-	>**Note :** If during sign in, a page appears asking you to choose from a list of previously used accounts, select the account you previously used, and then enter your credentials.
+	>**Note**: If during sign in, a page appears asking you to choose from a list of previously used accounts, select the account you previously used, and then enter your credentials.
 
 10.	In the left menu of the portal, click **App Services**.
-11. In the action bar, click **Add**, select **Web App**, and then at the bottom of the third screen, click **Create** .
-12.	In the **App name** box, type the name **mod6demo1***YourInitials* (YourInitials contains your initials). This is a unique value, which when combined with the **.azurewebsites.net** suffix is used as the URL to your web app.
-13. In the **Resource Group** section, select **Create new**, and then change the name of the Resource Group to **BlueYonder.Demo.06**.
-12.	Click **App Service Plan/Location** and then click **Create new**.
-13. In the **App Service Plan** box, type **BlueYonderDemo06**.
-14.	In the **Location** drop-down list, select the region closest to your location.
-15. In the **Pricing tier** section, select **D1 Shared**, and then click **OK**.
-16. Click **Create** . The site is added to the Web Apps table and its status is set to **Creating**. 
-17.	After the status changes to **Running**, in Visual Studio, on the **View** menu, click **Server Explorer**.
-18.	In **Server Explorer**, right-click the **Azure** pane, and then click **Connect To Microsoft Azure Subscription**.
-19.	On the login screen, if a page appears asking you to choose from a list of previously used accounts, select the account you previously used, enter your credentials, and then click **Sign in**.
+11. In the action bar, click **Add**, select **Web App**, and then at the bottom of the third screen, click **Create**.
+12.	In the **App name** box, enter the name **mod6demo1***YourInitials* (Replace *YourInitials* with your initials). This is a unique value, which when combined with the **.azurewebsites.net** suffix is used as the URL to your web app.
+13. In the **Resource Group** section, select **Create new**, and then change the name of the resource group to **BlueYonder.Demo.06**.
+14.	Click **App Service Plan/Location**, and then click **Create new**.
+15. In the **App Service Plan** box, type **BlueYonderDemo06**.
+16.	In the **Location** list, select the region closest to your location.
+17. In the **Pricing tier** section, select **D1 Shared**, and then click **OK**.
+18. Click **Create**. The site is added to the **Web Apps** table and its status is set to **Creating**. 
+19.	After the status changes to **Running**, in Visual Studio, on the **View** menu, click **Server Explorer**.
+20.	In **Server Explorer**, right-click the **Azure** pane and select **Connect To Microsoft Azure Subscription**.
+21.	On the **Sign In** page, if a page appears asking you to choose from a list of previously used accounts, select the account you previously used, enter your credentials, and then click **Sign in**.
 
-    >**NOTE :**	Wait until the login process completes.
-        You only need to perform this step once, to import your Microsoft Azure account settings to Visual Studio.
-        Now **Visual Studio 2017** can display the list of Web Apps and Cloud Services to which you can deploy applications.
+    >**Note**:	Wait until the sign-in process completes.
+        You only need to perform this step once to import your Microsoft Azure account settings to Visual Studio.
+        Now Visual Studio 2017 can display the list of Web Apps and Azure Cloud Services to which you can deploy the applications.
 
-20.	In Visual Studio, in **Solution Explorer**, right-click **MyWebSite** project, and then click **Publish**.
-21.	In the **Pick a publish target** dialog box, choose **App Service**, then in the **Azure App Service** view, select the **Select Existing** option, and then click **Create Profile**.
-22.	In the **App Service** dialog box, expand **BlueYonder.Demo.06** folder, select **mod6demo1[YourInitials]**, and then click **OK**.
-23. Click **Publish**.
-    >**Note:** Visual Studio publishes the application according to the settings that are provided in the profile file. After deployment finishes, Visual Studio opens Internet Explorer and displays the web app. The deployment process is quick, because the process only copies the content of the application to an existing virtual machine and does not need to wait for a new virtual machine to be created.
-24. In the browser navigate to the following **URL**:
+22.	In Visual Studio, in **Solution Explorer**, right-click **MyWebSite** project, and then select **Publish**.
+23.	In the **Pick a publish target** dialog box, select **App Service**, then in the **Azure App Service** view, select the **Select Existing** option, and then click **Create Profile**.
+24.	In the **App Service** dialog box, expand the **BlueYonder.Demo.06** folder, select **mod6demo1[YourInitials]**, and then click **OK**.
+25. Click **Publish**.
+    >**Note**: Visual Studio publishes the application according to the settings that are provided in the profile file. After deployment completes, Visual Studio opens Internet Explorer and displays the web app. The deployment process is quick because the process only copies the content of the application to an existing virtual machine and does not need to wait for a new virtual machine to be created.
+26. In the browser, navigate to the following URL:
     ```url
-    http://mod6demo1[YourInitials].azurewebsites.net/api/values
+    http://mod6demo1*[YourInitials]*.azurewebsites.net/api/values
     ```
-25. Verify that the response is: **["value1","value2"]**.
-26. Close all open windows.
+27. Verify that the response is in the format: **["***value1***","***value2***"]**.
+28. Close all open windows.
 
-# Lesson 3: Web Deployment on Linux
+# Lesson 2: Web Deployment on Linux
 
-### Demonstration: Deploying an ASP.NET Core web service with Nginx
+### Demonstration: Deploying an ASP.NET Core Web Service with Nginx
 
 #### Demonstration Steps
 
-1. Open **Microsoft Edge** browser.
+1. Open Microsoft Edge.
 2. Navigate to **https://portal.azure.com**.
-3. Click **Virtual machines** on the left menu panel.
-4. Click on **Add**, choose **Ubuntu Server**, select the latest version and then click on **Create**.
-5. Fill in the following details for creating **Virtual Machine** in **Basics** view:
-   - In **Name** type: **myvm**
-   - In **VM disk type** select **Standard HDD**
-   - In **Username** type: **myadmin**
-   - In **Authentication type** select **Password** then enter **Password123!** in **Password** and **Confirm Password**
-   - In **Resource group** type: **Mod6Demo2ResourceGroup**
-   - Click **OK**
-6. Fill in the following details in **Size** view:
-   - Select **D2s_v3** 
-   - Click **Select**
-7. Fill in the following details in **Settings** view:
-    - In **Select public inbound ports** select the following: **HTTP**, **HTTPS**, **SSH**
-    - Click **OK**
-8.  In **Summary** view click on **Create**.
-9.  Open **Command Line**.
-10. Run the following command to change directory to **Demo2Project**:
+3. On the left menu panel, click **Virtual machines**.
+4. Click **Add**, choose **Ubuntu Server**, select the latest version, and then click **Create**.
+5. To create a new virtual machine, in the **Basics** view, provide the following details:
+   - In the **Name** box, type **myvm**.
+   - From the **VM disk type** list, select **Standard HDD**.
+   - In the **Username** box, type **myadmin**.
+   - In the **Authentication type** list, select **Password**, and then  in the **Password** and **Confirm Password** boxes, type **Password123!**.
+   - In the **Resource group** box, type **Mod6Demo2ResourceGroup**.
+   - Click **OK**.
+6. In the **Size** view, provide the following details:
+   - Select **D2s_v3**.
+   - Click **Select**.
+7. In the **Settings** view, provide the following details:
+    - In **Select public inbound ports**, select the following: **HTTP**, **HTTPS**, and **SSH**.
+    - Click **OK**.
+8.  In the **Summary** view, click **Create**.
+9.  Open the command prompt.
+10. At the command prompt, to change the directory to **Demo2Project**, run the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project
     ```
-11. Run the following command to open the Project in **VSCode**:
+11. To open the project in Microsoft Visual Studio Code, run the following command:
     ```bash
     code .
     ```
-12. In **VSCode** on the left menu double-click on **Demo2Project.csproj** file.
-13. In **Demo2Project.csproj** file locate **\<PropertyGroup\>** element and paste inside the following code:
+12. In Visual Studio Code, on the left menu, double-click **Demo2Project.csproj**.
+13. In the **Demo2Project.csproj** file, locate the **\<PropertyGroup\>** element, and inside it, paste the following code:
     ```xml
     <RuntimeIdentifiers>win10-x64;osx.10.11-x64;ubuntu.16.10-x64</RuntimeIdentifiers>
     ```
-14. Switch to **Command Line**.
-15. Run the following command to publish the app as **Self-contained**:
+14. Switch to the command prompt.
+15. At the command prompt, to publish the app as **Self-contained**, run the following command:
     ```bash
     dotnet publish -c release -r ubuntu.16.10-x64
     ```
-16. Switch back to the **Azure Portal**.
-17. Click on **Virtual machines** and select **myvm**.
-18. Click on **Connect** in the top panel and copy **Login using VM local account** value.
-19. Switch to **Command Line**.
-20. Paste the **Login using VM local account** value and Press **Enter**.
-21. Type **yes** in the **Command Line**.
-22. Type the Password: **Password123!**.
-23. Paste the following command to switch directory to **var** folder:
+16. Switch to Azure Portal.
+17. Click **Virtual machines**, and then select **myvm**.
+18. In the top panel, click **Connect** and copy the **Login using VM local account** value.
+19. Switch to the command prompt.
+20. Paste the **Login using VM local account** value and press Enter.
+21. At the command prompt, enter **yes**.
+22. Type the password **Password123!**.
+23. To switch the directory to **var** folder, paste the following command:
     ```bash
     cd /var
     ```
-24. Paste the following command to create a new folder named **demo**:
+24. To create a new folder named **demo**, paste the following command:
     ```bash
     sudo mkdir demo
     ```
-25. Paste the following command to change ownership in the directory:
+25. To change ownership of the directory, paste the following command:
     ```bash
     sudo chown myadmin demo
     ```
-26. Open new **Command Line** instance.
-27. Paste the following command to change directory to the published folder:
+26. Open a new command prompt instance.
+27. To change the directory to the published folder, paste the following command:
     ```bash
-    [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
     ```
-28. Paste the following command to publish the package to the **VM**:
+28. To publish the package to the virtual machine, paste the following command:
     ```bash
-    scp -r .\ubuntu.16.10-x64\ myadmin@<server_IP_address>:/var/demo
+    scp -r .\ubuntu.16.10-x64\ myadmin@*<server_IP_address>*:/var/demo
     ```
-    >**Note:** Change **\<server_IP_address\>** with your **VM** ip.
-29. Enter **Password**: **Password123!** and press **Enter**.
-30. Switch to the **Command Line** that connected to the **VM**.
-31. Run the following command to switch directory to **Root** folder:
+    >**Note**: Change *\<server_IP_address\>* with the IP address of your virtual machine.
+29. Type the following password **Password123!** and press Enter.
+30. Switch to the command prompt that connected to the virtual machine.
+31. To switch the directory to the **Root** folder, run the following command:
     ```bash
     cd /
     ```
-32. Run the following commands to install **Nginx**:
+32. To install **Nginx**, run the following commands:
     ```bash
     sudo -s
     nginx=stable
@@ -139,25 +138,25 @@
     apt-get update
     apt-get install nginx
     ```
-33. When finished press **Enter** again.
-34. When there is question: **Do you want to continue?** type **y** and press **Enter**.
-35. Run the following command to start the **Nginx** service:
+33. When finished, press Enter again.
+34. When the question: **Do you want to continue?** appears, type **y**, and then press Enter.
+35. To start the **Nginx** service, run the following command:
     ```bash
     sudo service nginx start
     ```
-36. Verify that the browser displays the default landing page for **Nginx**. The landing page is reachable at:
+36. Verify that the browser displays the default landing page for **Nginx**. The landing page is:
     ```url
-    http://<server_IP_address>/index.nginx-debian.html
+    http://*<server_IP_address>*/index.nginx-debian.html
     ```
-37. Run the following command to change directory to **Nginx** configuration folder:
+37. To change the directory to the **Nginx** configuration folder, run the following command:
     ```bash
     cd /etc/nginx/sites-available/
     ```
-38. Run the following command to open the configuration file in **Vim** text editor:
+38. To open the configuration file in the **Vim** text editor, run the following command:
     ```bash
     vi default
     ```
-39. Press on **ESC** + **I** to change to edit mode.
+39. To change to edit mode, press ESC + I.
 40. Replace the **Location** content with the following code:
     ```bash
         proxy_pass         http://localhost:5000;
@@ -169,29 +168,29 @@
         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Proto $scheme;
     ``` 
-41. Press on **ESC** + **:** + **x** + **Enter** to save the file and exit.
-42. Run the following command to verify the syntax of the configuration file is correct:
+41. To save the file and exit, press **ESC** + **:** + **x** + **Enter**.
+42. To verify that the syntax of the configuration file is correct, run the following command:
     ```bash
     sudo nginx -t
     ```
-43. Run the following command to force **Nginx** to pick up the the changes:
+43. To force Nginx to pick up the the changes, run the following command:
     ```bash
     sudo nginx -s reload
     ```
-44. Run the following command to switch directory to the publish folder:
+44. To switch the directory to the publish folder, run the following command:
     ```bash
     cd /var/demo/ubuntu.16.10-x64/publish/
     ```  
-45. Run the following command to execute premissions to the binary:
+45. To execute the premissions to binary, run the following command:
     ```bash
     chmod a+x ./Demo2Project
     ```
-46. Run the following command to run the app:
+46. To run the app, run the following command:
     ```bash
     ./Demo2Project
     ```
-47. Open **Microsoft Edge** browser.
-48. Navigate to the following **URL**:
+47. Open Microsoft Edge.
+48. Navigate to the following URL:
     ```url
     <server_IP_address>/api/values
     ```
@@ -200,270 +199,272 @@
     ["value1","value2"]
     ```
 
-# Lesson 3: Continuous Delivery with Visual Studio Team Services
+# Lesson 3: Continuous Delivery with Microsoft Visual Studio Team Services
 
-### Demonstration: Continuous delivery to websites with Git and VSTS
+### Demonstration: Continuous Delivery to Websites with Git and Visual Studio Team Services
 
 #### Preparation Steps
   
-To present this demonstration, you must have a **Microsoft account**. If you have not created a Microsoft account before, create one before you start the demonstration.
+To present this demonstration, you must have a Microsoft account. If you have not created a Microsoft account before, create one before you start the demonstration.
 
-> **Important!** Make sure you are connected to your Microsoft account in Visual Studio 2017 before starting this demonstration!
+> **Important**! Make sure you are connected to your Microsoft account in Visual Studio 2017 before starting this demonstration.
 
 #### Demonstration Steps
 
-1. Open **Microsoft Edge** browser.
+1. Open Microsoft Edge.
 2. Navigate to **https://portal.azure.com**.
-3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
-4. If the **Stay signed in?** dialog appears, click **Yes**.
+3. If a page appears asking for your email address, enter your email address, and then click **Next**, and enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog box appears, click **Yes**.
    >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
-5. Click **App Services** on the left menu panel, to display all the **App Services**.
-    - Click on **Add** in the **App Services** blade, letting you select app service template.
-    - Click on **Web App** in the **Web** blade, overview of the template will be shown.
-    - Click on **Create** button in the **Web App** blade.
-6. To create the **Web App** fill-in the following fields:
-    - In the **App Name** text box, type the following web app name: **mod6demo3**{YourInitials}.
-        >**Note:** The **App Name** will be part of the URL.
-    - In the **Resource Group**  select **Create new**, and type in the text box below **mod6demo3**.
-    - Click on **App Service plan/Location** and then click on **Create new**, then open **New App Service Plan** blade, fill-in the following information:
-        - In the **App Service plan** text box type: **Mod6Demo3ServicePlan**.
-        - Click on **OK**.
-    - Click on **Create** and wait that **App Services** is created.
-7. Open new tab in the browser and navigate to **https://www.visualstudio.com/team-services/** and click **Get started for free**.
-8. On the **Sign in** page, enter your **Microsoft account** email address,and then click **Next**.
-    >**Note:** If instead of a **Sign in** page, you see a **Pick an account** page, pick your account and click **Next**.
+5. To display all the Microsoft Azure App Services, on the left menu panel, click **App Services**.
+    - Select the app service template, in the **App Services** blade, click **Add**. 
+    - In the **Web** blade, click **Web App**. You see an overview of the template. Click **Create**.
+6. To create  a new web app, enter details in the following fields:
+    - In the **App Name** box, type the following web app name **mod6demo3** **{YourInitials}**.
+        >**Note**: The new web app name will be part of the URL.
+    - In the **Resource Group** list, select **Create new**, and then type **mod6demo3**.
+    - Click **App Service plan/Location**, and click **Create new**, and then open the **New App Service Plan** blade to enter the following information:
+        - In the **App Service plan** box, enter **Mod6Demo3ServicePlan**.
+        - Click **OK**.
+    - Click **Create** and wait until the app service is created.
+7. Open a new tab in the browser and navigate to **https://www.visualstudio.com/team-services/**, and then click **Get Azure DevOps free**.
+8. On the **Sign in** page, enter your **Microsoft account** email address, and then click **Next**.
+    >**Note**: If instead of a **Sign in** page, you see a **Pick an account** page, pick your account and click **Next**.
     - On the **Enter password** page, enter your password, and then click **Sign in**.
-    >**Note:** If this is the first time you logged in with your account to VSTS, follow the next steps, else skip to step 11.
-9.  In the **Host my projects at** page, enter a unique name. (We will relate to that unique name as _youraccount_ from now on.)
-10. Under **Manage code using**, select **Team Foundation Version Control** then click on **Continue**.
-    >**Note:** Wait until the account creation is done and you will redirect to the **MyFirstProject** page.
-11. If you already have projects in your account, click **New Project**, else skip to the next step.
-12. In the **Create new project** page, enter the following details:
+    >**Note**: If this is the first time you logged in with your account to Visual Studio Team Services, follow the next steps, else skip to step 11.
+9. If you already have projects in your account, click **New Project**, else skip to the next step.
+10. In the **Create new project** page, enter the following details:
     - Project name: **MyApp**
-    - Version control: **Git**
-    - Click on **Create**. 
-    > **Note:** Wait for the project to be created.
-13. In **MyApp** page, click on **Generate Git credentials** and enter the following details:
-    - Alias: **mod6demo3**
+    - Visibility: **Private**
+    - Advance:
+        - Version control: **Git**
+    - Click **Create**. 
+    > **Note**: Wait for the project to be created.
+11. In the **MyApp** page, click **Repos** on the left blade then click **Generate Git credentials**, and then enter the following details:
+    - Alias: **mod6demo3{YourInitials}**
     - Password: **Password123**
     - Confirm Password: **Password123**
-    - Click on **Save Git Credentials**
-14. Click on **Build and release** on the top blade.
-15. Click on **New pipeline**.
-16. In **Select a source** choose **VSTS Git**, then click on **Continue**.
-17. Select **Azure Web App for ASP.NET**, then click on **Apply**.
-18. In **Azure subscription**, enter the following details:
-    - Select your azure subscription.
-    - Click on **Authorize**.
-    - In the popup window login with your azure credentials.
-19. In **App service name** select **mod6demo3**{YourInitials}.
-20. Click on **Triggers** tab, then click on **Add** under **Branch filters**.
-21. Click on **Save $ queue** tab and select **Save**, then click **Save** again in the popup window. 
-22. Open **Command Line**.
-23. Run the following command to Switch directory:
+    - Click **Save Git Credentials**.
+12. In the left blade, click **Pipelines**.
+13. Click **New pipeline**.
+14. In **Where is your code**, choose **Use the visual designer**.
+15. In **Select a source**, choose **Azure Repos Git**.
+16. In **Repository** select **MyApp**.
+17. Then click **cuntinue**.
+18. In **select a tamplate**, choose **Azure Web App for ASP.NET** and click **Apply**.
+19. In **Azure subscription**, enter the following details:
+    - Select your Azure subscription.
+    - Click **Authorize**.
+    - In the pop-up window, sign in with your Microsoft Azure credentials.
+20. In **App service name**, select **mod6demo3***{YourInitials}*.
+21. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
+    >**Note:** if **Branch filters** already exist skip this step.
+22. Click the **Save $ queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
+23. Open the command prompt.
+24. At the command prompt, to switch the directory, run the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod06\Demofiles
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles
     ```
-24. Run the following command to clone repository to local repository:
+25. To clone the repository to a local repository, run the following command:
     ```bash
-    git clone  https://_youraccount_.visualstudio.com/MyApp/_git/MyApp
+    git clone  https://dev.azure.com/{_youraccount_}/MyApp/_git/MyApp
     ```
-    > **Note:** Replace **_youraccount_** with the name that was provided in point 5.
-    - Enter UserName: **mod6demo3**
-    - Enter Password: **Password123**
-25. Run the following command to switch directory to **MyApp**:
+    > **Note**: Replace *_youraccount_* with your user name.
+26. Then enter your user name and password.
+    - UserName: **{_youraccount_}**
+    - Password: **Password123**
+27. To switch the directory to **MyApp**, run the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\MyApp
     ```
-26. Run the following command to create a new **WebApi** project:
+28. To create a new WebApi project, run the following command:
     ```bash
     dotnet new webapi -n MyProject
     ```
-27. Run the following command to create a new **Solution**:
+29. to create a new solution, run the following command:
     ```bash
     dotnet new sln -n Mod6Demo3
     ```
-28. Run the following command to add **MyApp** project to **Mod6Demo3** solution:
+30. To add the **MyApp** project to the **Mod6Demo3** solution, run the following command:
     ```bash
     dotnet sln Mod6Demo3.sln add MyProject\MyProject.csproj
     ```
-29. Run the following command to add the new files for the next commit:
+31. To add the new files for the next commit, run the following command:
     ```bash
     git add .
     ``` 
-30. Run the following command to **commit** the changes:
+32. To commit the changes, run the following command:
     ```bash
     git commit -m "my first commit"
     ```
-31. Run the following command to **push** the changes to our repository:
+33. To push the changes to our repository, run the following command:
     ```bash
     git push
     ```
-32. Return to **Visual studio team services** and click on **Build and Release**, 
-33. Locate the pipeline that was created and then click on the **build id** (starts with hash tag).
-    > **Note:** Wait until the build is finished. 
-34. Navigate to the **Web App** url that was created in azure:
+34. Return to **Azure DevOps**, click on **Pipelines** and then click on **Builds**.
+35. Locate **my first commit**, click on it and verify that all **succeded**.
+    > **Note**: Wait until the build is complete. 
+36. Navigate to the web app URL that was created in Azure:
     ```url
     https://Mod6Demo3{YourInitials}.azurewebsites.net/api/values
     ```
-35. The response shoulde be a **JSON** with the following values:
+37. The response should be a JSON with the following values:
     ```json
     ["value1", "value2"]
     ```
-36. Close all windows.
+38. Close all windows.
 
 
 # Lesson 4: Deploying to Staging and Production Environments 
 
-### Demonstration: Using deployment slots with Azure Web Apps
+### Demonstration: Using Deployment Slots with Web Apps
 
 #### Demonstration Steps
 
-1. Open **Microsoft Edge** browser.
+1. Open Microsoft Edge.
 2. Navigate to **https://portal.azure.com**.
 3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
-4. If the **Stay signed in?** dialog appears, click **Yes**.
+4. If the **Stay signed in?** dialog box appears, click **Yes**.
    >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
-5. Click **App Services** on the left menu panel, to display all the **App Services**.
-    - Click on **Add** in the **App Services** blade, letting you select app service template.
-    - Click on **Web App** in the **Web** blade, overview of the template will be shown.
-    - Click on **Create** button in the **Web App** blade.
-6. To create the **Web App** fill-in the following fields:
-    - In the **App Name** text box, type the following web app name: **mod6demo4**{YourInitials}.
-        >**Note:** The **App Name** will be part of the URL.
-    - In the **Resource Group**  select **Create new**, and type in the text box below **mod6demo4**.
-    - Click on **App Service plan/Location** and then click on **Create new**, then open **New App Service Plan** blade, fill-in the following information:
-        - In the **App Service plan** text box type: **Mod6Demo4ServicePlan**.
-        - Click on **Pricing tier**.
-            - Select **Production** tab.
-            - In **Recommended pricing tiers** select **S1**.
-            - Click on **Apply**. 
-        - Click on **OK**.
-    - Click on **Create** and wait that **App Services** is created.
-7. Click on **App Services** on the left menu panel, to display all the **App Services**.
-8. Click on **mod6demo4**{YourInitials} app service. 
-9. Click on **Deployment credentials** under **DEPLOYMENT** section, to add credentials to our app service, and fill-in the following information:
-    - In the **FTP/deployment username** type **FTPMod6Demo4**{YourInitials}.
-    - In the **Password** and **Confirm password** text box type: **Password99**.
-    - Click on **Save**.
-10. Click on **Deployment slots** on the left blade menu under **DEPLOYMENT** section.
-    - Click on **Add Slot**:
-        - In **Name** type **Staging**
-        - In **Configuration Source** select **mod6demo4**{YourInitials}.
-        - Click on **OK**.
-11. Open **Command Line**.
-12. Change directory to the starter project, run the following command in the **Command Line**:
+5. To display all the app services, on the left menu panel, click **App Services**.
+    - To select the app service template, in the **App Services** blade, click **Add**.
+    - In the **Web** blade, click **Web App**. An overview of the template will be shown. Click **Create**.
+6. To create a new web app, provide the following details:
+    - In the **App Name** box, type the following web app name **mod6demo4***{YourInitials}*.
+        >**Note**: The new web app name will be part of the URL.
+    - In **Resource Group**,  select **Create new** and type **mod6demo4**.
+    - Click **App Service plan/Location**,  click **Create new**, and then open the **New App Service Plan** blade to provide the following information:
+        - In the **App Service plan** box, type **Mod6Demo4ServicePlan**.
+        - Click **Pricing tier**.
+            - Go to the **Production** tab.
+            - In **Recommended pricing tiers**, select **S1**.
+            - Click **Apply**. 
+        - Click **OK**.
+    - Click **Create** and wait until the app service is created.
+7. To display all the app services, on the left menu panel, click **App Services**.
+8. Click **mod6demo4***{YourInitials}* app service. 
+9. To add credentials to the app service, under the **DEPLOYMENT** section, click **Deployment credentials**, and then enter the following information:
+    - In **FTP/deployment username**, type **FTPMod6Demo4***{YourInitials}*.
+    - In the **Password** and **Confirm password** boxes, type **Password99**.
+    - Click **Save**.
+10. On the left blade menu, under the **DEPLOYMENT** section, click **Deployment slots**.
+    - Click **Add Slot** and provide the following information:
+        - In **Name**, type **Staging**.
+        - In **Configuration Source**, select **mod6demo4***{YourInitials}*.
+        - Click **OK**.
+11. Open the command prompt.
+12. At the command prompt, to change the directory to the starter project, run the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
+    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
     ```
-13. Open the project in **VSCode** and paste the following command and press enter:
+13. Open the project in Visual Studio Code and paste the following command and press Enter:
     ```bash
     code .
     ```
-14. Expand **Properties** folder then **PublishProfiles** folder and double-click on **Azure.pubxml**.
-15. Replace {YourInitials} with your initials from the **Azure web App**.
-16. In **PublishProfiles** double-click on **Staging.pubxml**.
-17. Replace {YourInitials} with your initials from the **Azure web App**.
-18. Switch to **Command Line**, and paste the following command:
+14. Expand the **Properties** folder, expand the **PublishProfiles** folder,  and then double-click **Azure.pubxml**.
+15. Replace *{YourInitials}* with your initials from the **Azure web App**.
+16. In **PublishProfiles**, double-click **Staging.pubxml**.
+17. Replace *{YourInitials}* with your initials from the **Azure web App**.
+18. Switch to the command prompt, and paste the following command:
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
-    > **Note :** If the there was an error in the publish process, restart the **mod6demo4**{YourInitials} app services.
-19. Open **Microsoft Edge** browser. 
-20. Navigate to the following url:
+    > **Note**: If there was an error in the publishing process, restart the **mod6demo4***{YourInitials}* app services.
+19. Open Microsoft Edge. 
+20. Navigate to the following URL:
     ```url
-    https://Mod6Demo4{YourInitials}.azurewebsites.net/api/values
+    https://Mod6Demo4*{YourInitials}*.azurewebsites.net/api/values
     ```
-21. The response shoulde be a **JSON** with the following values:
+21. The response should be a JSON with the following values:
     ```json
     ["value1", "value2"]
     ```
-22. Switch to **VSCode**.
-23. Expand **Controllers** and double click on **ValuesController**.
-24. Locate **Get** method and add to the array **value3**.
-25. Switch to **Command Line**.
-26. Paste the following command to publish in the staging slot:
+22. Switch to Visual Studio Code.
+23. Expand **Controllers** and double-click **ValuesController**.
+24. Locate the **Get** method and add to the array **value3**.
+25. Switch to the command prompt.
+26. To publish in the staging slot, at the command prompt, paste the following command:
     ```bash
     dotnet publish /p:PublishProfile=Staging /p:Configuration=Release
     ```
-    > **Note :** If the there was an error in the publish process, restart the  Mod6Demo4-{YourInitials}-staging app services.
-27. Open new **Microsoft Edge**  browser. 
-28. Navigate to the following url:
+    > **Note**: If there was an error in the publishing process, restart the  **Mod6Demo4-***{YourInitials}***-staging** app services.
+27. Open a new Microsoft Edge instance. 
+28. Navigate to the following URL:
     ```url
-    https://mod6demo4-{YourInitials}-staging.azurewebsites.net/api/values
+    https://mod6demo4-*{YourInitials}*-staging.azurewebsites.net/api/values
     ```
-29. The response shoulde be a **JSON** with the following values:
+29. The response should be a JSON with the following values:
     ```json
     ["value1", "value2", "value3"]
     ```
-30. Switch to **Azure Portal**.
-31. Click on **App Services** on the left menu panel, to display all the **App Services**.
-32. Click on **mod6demo4**{YourInitials} app service.
-33. In **Overview** blade click on **Swap** on the top bar.
-34. In **Swap** blade added the following steps:
-    - In **Swap type** select **Swap**.
-    - In **Source** select **production**.
-    - In **Destination** select **Staging**.
+30. Switch to the Azure Portal.
+31. To display all the app services, on the left menu panel, click **App Services**.
+32. Click the **mod6demo4***{YourInitials}* app service.
+33. In the **Overview** blade, on the menu at the top, click **Swap**.
+34. In the **Swap** blade, do the following:
+    - In **Swap type**, select **Swap**.
+    - In **Source**, select **production**.
+    - In **Destination**, select **Staging**.
     - Click **OK**. 
-35. Switch to **Microsoft Edge** browser with the production url.
-36. Refresh the page (prass **F5**).
-37. The response shoulde be a **JSON** with the following values:
+35. Switch to Microsoft Edge with the production URL.
+36. To refresh the page, press F5.
+37. The response should be a JSON with the following values:
     ```json
     ["value1", "value2", "value3"]
     ```
 
 # Lesson 5: Defining Service Interfaces with Azure API Management 
 
-### Demonstration: Importing and testing an OpenAPI specification
+### Demonstration: Importing and Testing an OpenAPI Specification
 
 #### Demonstration Steps
 
-1. Open **Microsoft Edge** browser.
+1. Open Microsoft Edge.
 2. Navigate to **https://portal.azure.com**.
-3. If a page appears asking for your email address, enter your email address, and then click **Next** and enter your password, and then click **Sign In**.
-4. If the **Stay signed in?** dialog appears, click **Yes**.
+3. If a page appears asking for your email address, enter your email address, click **Next**, enter your password, and then click **Sign In**.
+4. If the **Stay signed in?** dialog box appears, click **Yes**.
    >**Note**: During the sign-in process, if a page appears prompting you to choose from a list of previously used accounts, select the account that you previously used, and then continue to provide your credentials.
-5. Click on **Create a resource** on the left menu panel.
-6. In the **Search** textbox type **API management** and click **Enter**, then click on **Create**.
+5. On the menu in the panel on the left side, click **Create a resource**.
+6. In the **Search** box, type **API management**, click **Enter**, and then click **Create**.
 7. In the **API Management service** page, enter the following details:
-   - Name: **Mod6demo5**{YourInitials}
-   - Resorce group:
-        - Select **Create new**
-        - Type in the textbox **Mod6Demo5ResourceGroup**
-   - Organization name: Your organization
-   - Click on **Create**
-8. Wait until the **API Management** creation is done.
-9. Click on **All resources** and then click on the new **API Management** that was created.
-10. Click on **APIs** under **API MANAGEMENT** section.
-11. Click on **OpenAPI Specification**, then enter the following details:
-    - In OpenAPI specification text box paste the following url: **http://conferenceapi.azurewebsites.net/?format=json**
-    > **Note:** The following URL is a **Swagger JSON API** that provided by Microsoft and hosted on Azure.
-    - In Products select **Unlimited**.
-    - Click on **Create**.
-12. Click on **Demo Conference API** under **All APIs** section.
-13. Click on **Test** tab, then click on **GetSessions**.
-14. Click on **Send**, and check that the response is **200** with collection of sessions.
-15. Click on **GetSession**, then inside **value** textbox type **100**;
-16. Click on **Send**, and check that the response is **200** with session data.
-    >**Note:** The next demo will continue from this point.
+   - Name: **Mod6demo5***{YourInitials}*
+   - Resource Group:
+        - Select **Create new**.
+        - Type **Mod6Demo5ResourceGroup**.
+   - Organization name: Enter the name of your organization
+   - Click **Create**
+8. Wait until the API Management instance is created.
+9. Click **All resources**, and then click on the new **API Management** section that was created.
+10. Under the **API MANAGEMENT** section, click **APIs**.
+11. Click **OpenAPI Specification**, and then enter the following details:
+    - In **OpenAPI Specification** box, paste the following URL: **http://conferenceapi.azurewebsites.net/?format=json**
+    > **Note**: The following URL is a Swagger JSON API that was provided by Microsoft and hosted on Microsoft Azure.
+    - In **Products**, select **Unlimited**.
+    - Click **Create**.
+12. In the **All APIs** section, click **Demo Conference API**.
+13. Click the **Test** tab, then click **GetSessions**.
+14. Click **Send**, and check that the response is **200** with a collection of sessions.
+15. Click **GetSession**, then inside the **value** box, type **100**;
+16. Click **Send**, and check that the response is **200** with session data.
+    >**Note**: The next demo will continue from this point.
 
 # Lesson 5: Defining Service Interfaces with Azure API Management 
 
-### Demonstration: Limiting call rates using API Management
+### Demonstration: Limiting Call Rates Using API Management
 
 #### Preparation Steps
 
-This demo we will continue the steps from previous demo.
+This demo continues from the previous demo.
 
 #### Demonstration Steps
 
-1. Click on **All resources** and then click on the **API Management service** from the previous demo.
-2. Click on **APIs** under **API MANAGEMENT** section.
-3. Click on **Demo Conference API** under **All APIs** section.
+1. Click **All resources** and then click **API Management service** from the previous demo.
+2. In the **API MANAGEMENT** section, click **APIs**.
+3. In the **All APIs** section, click **Demo Conference API**.
 4. Select **All operations**.
-5. In the Inbound processing window, click the triangle (next to the pencil) and select **Code editor**.
+5. In the **Inbound processing** window, click the triangle (next to the pencil) and select **Code editor**.
 6. Position the cursor inside the **\<inbound\>** element.
-7. In the right window, under **Access restriction policies**, click **+ Limit call rate per key**.
+7. In the window on the right side, under **Access restriction policies**, click **+ Limit call rate per key**.
 8. Modify your **rate-limit-by-key** code (in the **\<inbound\>** element) to the following code:
    ```xml
     <rate-limit-by-key calls="2" renewal-period="60" counter-key="@(context.Subscription.Id)" />
@@ -472,9 +473,9 @@ This demo we will continue the steps from previous demo.
 10. Select **Demo Conference API**.
 11. Click the **GetSessions** operation.
 12. Select the **Test** tab.
-13. Press **Send** two times in a row.
-14. After sending the request 2 times, you get **429 Too many requests** response.
-15. Wait 60 seconds and press **Send** again. This time you should get a **200 OK** response.
+13. Click **Send** two times in a row.
+14. After sending the request two times, you get a **429 Too many requests** response.
+15. Wait for 60 seconds and then click **Send** again. This time you should get a **200 OK** response.
 16. Close all windows.
 
 

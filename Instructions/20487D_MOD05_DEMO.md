@@ -45,7 +45,7 @@
 1. In the **Start** menu, open **Internet Information Services(IIS) Manager**.
 2.  In the menu on the left side, right-click the **Sites** folder, and then select **Add Website..**.
 3. In the **Add Website** dialog box, in the **Site name** box, type **HotelsSite**.
-4. In the **Content Directory** section, in the **Physical path** box, type *[Repository Root]***\Allfiles\Mod05\DemoFiles\Host in IIS**.
+4. In the **Content Directory** section, in the **Physical path** box, type [Repository Root]**\Allfiles\Mod05\DemoFiles\Host in IIS**.
 5. In the **Binding** section, change the value in **Port** from **80** to **8080**.
 6. To create your new website, click **OK**.
 7. In the menu on the left side, click **Application Pools**, and then double-click the website that you just created.
@@ -164,9 +164,16 @@
     ```bash
       dotnet new webapi --name BlueYonder.Hotels.Service --output [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
     ```
-3. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\Host_In_Docker**.
-4. In the **Host_In_Docker** folder, add a new file called **DockerFile** (without extension).
-5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** in any code editor, paste the following docker commands, and then save the file.
+3. To change the directory to the **Host_In_Docker** folder, at the command prompt, run the following command:
+    ```bash
+    cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\Host_In_Docker
+    ```
+4. To open the project in Microsoft Visual Studio Code, run the following command: 
+    ```bash
+    code .
+    ```
+4. In the **EXPLORER** panel, right-click the **Host_In_Docker** area, select **New File**, and then name it **Dockerfile**
+5. To download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project, open the new **DockerFile** and, paste the following docker commands:
     ```
         FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
         WORKDIR /app
@@ -302,7 +309,7 @@
 10. Open the Command Prompt window.
 11. To change the directory, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\Azure Functions
+        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\AzureFunctions
     ```
 12. To create a local Functions project, paste the following command:
     ```bash
@@ -318,7 +325,7 @@
     ```
 15. To test the new Azure function locally, paste the following command, and then press Enter:
     ```bash
-        func host start -- build
+        func host start --build
     ```
 16. Open a browser and navigate to **http://localhost:7071/api/MyAzureFunc**.
 17. Add the following query string value to the end of this URL, and then press Enter to execute the request:
@@ -334,7 +341,7 @@
      >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.       
 19. To sign in to Azure with your credentials before publishing the new Azure function to Azure, paste the following command, and then press Enter:
     ```bash
-        func azure login
+        az login
     ```
     >**Note**: You will get the following message: **To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code** *{some code}* **to authenticate**. Follow the instructions to sign in with your username and password.
 20. To publish your new Azure function to Azure, paste the following command, and then press Enter:

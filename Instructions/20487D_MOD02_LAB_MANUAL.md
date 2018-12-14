@@ -29,11 +29,11 @@ to perform CRUD operations on the SQL Express database.
 4. Open the project with Microsoft Visual Studio Code.
 5. Add a new folder to the project and name it **Models**.
 
-#### Task 2: Create data model entities using code-first approach
+#### Task 2: Create data model entities using the code-first approach
 
-1. Create a new class and name it **User**, and then add the following properties:
+1. Create a new class and name it **Traveler**, and then add the following properties:
     ```cs
-    public int UserId { get; set; }
+    public int TravelerId { get; set; }
     public string Name { get; set; }
     public string Email {get; set; }
     ```
@@ -62,7 +62,7 @@ to perform CRUD operations on the SQL Express database.
     public int Guests { get; set; }
     public decimal TotalFee { get; set; }
     public bool Paid { get; set; }
-    public User User { get; set; }
+    public Traveler Traveler { get; set; }
     ```
 
 #### Task 3: Create a DbContext
@@ -107,12 +107,12 @@ to display all the data from the database.
     ```cs
     private static void Seed(MyDbContext context)
     {
-        // Create list with dummy users 
-        List<User> userList = new List<User>
+        // Create list with dummy travelers 
+        List<Travelr> travelerList = new List<Traveler>
         {
-            new User(){ Name = "Jon Due", Email = "jond@outlook.com"},
-            new User(){ Name = "Jon Due2", Email = "jond2@outlook.com"},
-            new User(){ Name = "Jon Due3", Email = "jond3@outlook.com"}
+            new Traveler(){ Name = "Jon Due", Email = "jond@outlook.com"},
+            new Traveler(){ Name = "Jon Due2", Email = "jond2@outlook.com"},
+            new Traveler(){ Name = "Jon Due3", Email = "jond3@outlook.com"}
         }   
         // Create list with dummy bookings 
         List<Booking> bookingList = new List<Booking>
@@ -124,7 +124,7 @@ to display all the data from the database.
                 CheckOut = DateTime.Now.AddDays(2),
                 Guests = 2, 
                 Paid = true, 
-                User = userList[0]
+                Traveler = travelerList[0]
             },
             new Booking()
             { 
@@ -132,7 +132,7 @@ to display all the data from the database.
                 CheckIn = DateTime.Now.AddDays,
                 CheckOut = DateTime.Now.AddDays(8), 
                 Guests = 3, Paid = true, 
-                User = userList[1]
+                Traveler = travelerList[1]
             },
             new Booking()  
             { 
@@ -140,7 +140,7 @@ to display all the data from the database.
                 CheckIn = DateTime.Now.AddDays( CheckOut = DateTime.Now.AddDays(11),
                 Guests = 1, 
                 Paid = false, 
-                User = userList[2]
+                Traveler = travelerList[2]
             }
         };
         // Create list with dummy rooms
@@ -161,7 +161,7 @@ to display all the data from the database.
             Rooms = roomList
         };
         // Insert the dummy data to the database
-        context.Users.AddRange(userList);
+        context.Travelers.AddRange(travelerList);
         context.Bookings.AddRange(bookingList);
         context.Rooms.AddRange(roomList);
         context.Hotels.Add(hotel)   
@@ -249,18 +249,18 @@ and you will create, test and run them on SQL Lite and SQL Server.
 1. Open a command prompt.
 2. To change the directory to the **Starter** folder, run the following command:
    ```bash
-    cd [Repository Root]\Allfiles\Mod02\LabFiles\Lab1\Starter
+    cd [Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Starter
    ```
 3. Create a new **Unit Test Project** and name it **DAL.Test**.
 4. Add the new testing project to the **solution**.
 5. From the command prompt, open Visual Studio Code.
 6. From the **DAL** project, add a reference to **DAL.Test**.
 7. Locate the **UnitTest1.cs** file and rename it **BookingRepositoryTests**.
-8. Change **public void TestMethod1()** to **public async void AddTwoBookingsTest()**.
+8. Change **public void TestMethod1()** to **public async Task AddTwoBookingsTest()**.
 9. To test the **Transaction Scope** with two bookings, paste the following code in the **AddTwoBookingsTest** method:
     ```cs
     Booking fristBooking;
-    Booking secondBooking
+    Booking secondBooking;
     using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required,
             new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }, TransactionScopeAsyncFlowOption.Enabled))
     {
@@ -278,7 +278,7 @@ and you will create, test and run them on SQL Lite and SQL Server.
     }
     ```
 
-#### Task 2: Test code against a local SQL Server database
+#### Task 2: Test code against a local Microsoft SQL Server database
 
 1. Switch to the command prompt.
 2. Change the directory to the **DAL.Test** folder. 
@@ -290,7 +290,7 @@ and you will create, test and run them on SQL Lite and SQL Server.
     - Check whether the **Mod2Lab2DB** database was created.
     - Check whether there are two bookings saved in the database.
 
-#### Task 3: Replace SQL Server provider with SQLite
+#### Task 3: Replace the SQL Server provider with SQLite
 
 1. From the command prompt, navigate to **DAL** folder.
 2. Install the **Entity Framework Core Sqlite** package version 2.1.1.
@@ -311,7 +311,7 @@ and you will create, test and run them on SQL Lite and SQL Server.
 2. Check whether the **SqliteHotel.db** file was created in the **[Repository Root]\Allfiles\Mod02\LabFiles\Lab2\Database** folder.
 3. Open **DB Browser for SQLite**. 
 4. Verify that the two bookings exist in the database. 
-
+5. Close all open windows.
     >**Results** You finished testing your database with SQL Lite and SQL Server.
 
 ©2018 Microsoft Corporation. All rights reserved.

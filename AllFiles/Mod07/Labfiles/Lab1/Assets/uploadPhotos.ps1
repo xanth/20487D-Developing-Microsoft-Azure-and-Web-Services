@@ -1,5 +1,5 @@
 
-Write-Host "Please enter your name" -NoNewline
+Write-Host "Please enter your initials" -NoNewline
 Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
 $yourName = Read-Host
 $yourName = $yourName.ToLower()
