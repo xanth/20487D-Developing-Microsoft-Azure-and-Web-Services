@@ -335,7 +335,7 @@
 20. Close the **Live Metrics Stream** blade.
 21. Under **INVESTIGATE**, click **Performance**.
 22. To view all the requests to the service, under **Select operation**, click **Load more**.
-23. Click **GET Values/Get** then click **Samples** to view all request to action get in values controller.
+23. Click **GET Values/Get** then click **Samples** to view all the requests to the **Get** method of **ValuesController** class.
 24. Select one of the samples and view all the details of the request. 
 
 ### Demonstration: Viewing application dependencies and request timelines
@@ -380,7 +380,7 @@
         return "Success";
     }
     ```
-10. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pand, double-click the **Program.cs** class.
+10. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pane, double-click the **Program.cs** class.
 11. Locate the **CreateWebHostBuilder** method, and replace it with the following code:
     ```cs
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -388,7 +388,7 @@
               .UseApplicationInsights()
               .UseStartup<Startup>();
     ```
-12. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pand, double-click the **Properties** folder.
+12. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pane, double-click the **Properties** folder.
 13. Double-click the **Properties** folder, and add a new folder named **PublishProfiles**.
 14. Add a new file named **Azure.pubxml** and paste the following code:
     ```cs
