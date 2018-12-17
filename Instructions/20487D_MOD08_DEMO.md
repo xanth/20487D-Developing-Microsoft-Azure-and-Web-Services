@@ -288,9 +288,8 @@
 3. In the left pane, in the **SETTINGS** section, click **Application Insights** .
 4. Click **Setup Application Insights**, and then add the following information:
     - Select **Create new resource**.
-    - In **Runtime/Framework**, select **ASP.NET Core**.
-    - Click **OK**.
-    - In the **Apply monitoring settings** dialog box, click **Continue**.
+    - Click **Apply**.
+    - In the **Apply monitoring settings** dialog box, click **Ok**.
 5. In the **Application Insights** blade, click **View more in Application Insights**.
 6. On the top bar, copy **Instrumentation Key**.
 7. Open the command prompt.
