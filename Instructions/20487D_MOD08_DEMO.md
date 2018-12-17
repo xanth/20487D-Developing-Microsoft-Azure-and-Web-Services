@@ -289,7 +289,7 @@
 4. Click **Setup Application Insights**, and then add the following information:
     - Select **Create new resource**.
     - Click **Apply**.
-    - In the **Apply monitoring settings** dialog box, click **Ok**.
+    - In the **Apply monitoring settings** dialog box, click **Yes**.
 5. In the **Application Insights** blade, click **View more in Application Insights**.
 6. On the top bar, copy **Instrumentation Key**.
 7. Open the command prompt.
