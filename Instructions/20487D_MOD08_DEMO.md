@@ -335,7 +335,7 @@
 20. Close the **Live Metrics Stream** blade.
 21. Under **INVESTIGATE**, click **Performance**.
 22. To view all the requests to the service, under **Select operation**, click **Load more**.
-23. Click **GET Values/Get** then click **Samples** to view all the requests to the **Get** method of **ValuesController** class.
+23. Click **GET Values/Get** then click **Samples** to view all the requests to the **Get** method of the **ValuesController** class.
 24. Select one of the samples and view all the details of the request. 
 
 ### Demonstration: Viewing application dependencies and request timelines
