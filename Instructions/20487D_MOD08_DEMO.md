@@ -363,16 +363,15 @@
     ```bash
     code .
     ```
-6. Close the command prompt.
-7. Expand the **Controllers** folder and double-click the **ValuesController.cs** file.
-8. Paste the following code to add **using** to the **class**:
+6. Expand the **Controllers** folder and double-click the **ValuesController.cs** file.
+7. Paste the following code to add **using** to the **class**:
     ```cs
     using System.Net.Http;
     ```
-9. Inside the **ValuesController.cs** class brackets, add the following method:
+8.  Inside the **ValuesController.cs** class brackets, add the following method:
     ```cs
     // GET api/values
-    [HttpGet]
+    [HttpGet("sendRequest")]
     public async Task<string> SendRequest()
     {
         var client = new HttpClient();
@@ -380,17 +379,17 @@
         return "Success";
     }
     ```
-10. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pane, double-click the **Program.cs** class.
-11. Locate the **CreateWebHostBuilder** method, and replace it with the following code:
+9.  In the **Explorer** blade, under the **BlueYonder.Flights.Service** pane, double-click the **Program.cs** class.
+10. Locate the **CreateWebHostBuilder** method, and replace it with the following code:
     ```cs
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
        WebHost.CreateDefaultBuilder(args)
               .UseApplicationInsights()
               .UseStartup<Startup>();
     ```
-12. In the **Explorer** blade, under the **BlueYonder.Flights.Service** pane, double-click the **Properties** folder.
-13. Double-click the **Properties** folder, and add a new folder named **PublishProfiles**.
-14. Add a new file named **Azure.pubxml** and paste the following code:
+11. Right-click the **Properties** folder, select **New Folder**, and then name the folder **PublishProfiles**.
+12. In **PublishProfiles**, add the file **Azure.pubxml** and double-click it.
+13. In **Azure.pubxml** paste the following code:
     ```cs
     <Project>
         <PropertyGroup>
@@ -401,7 +400,7 @@
         </PropertyGroup>
     </Project>
     ``` 
-15. Add a new file named **Azureprofile.xml** and paste the following code:
+14. In **PublishProfiles** Add a new file named **Azureprofile.xml** and paste the following code:
     ```cs
     <?xml version="1.0" encoding="utf-8"?>
     <publishData>
@@ -413,18 +412,18 @@
       </publishProfile>
     </publishData>
     ``` 
-16. Click **Start**, search for and right-click **PowerShell**, and then click **Run as Administrator**.
-17. In the **User Account Control** modal, click **Yes**.
-18. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
-19. In PowerShell, to change directory, type the following command, and then press Enter:
+15. Click **Start**, search for **PowerShell** and right-click and select **Run as Administrator**.
+16. In the **User Account Control** modal, click **Yes**.
+17. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+18. In PowerShell, to change directory, type the following command, and then press Enter:
     ```bash
       cd [Repository Root]\AllFiles\Mod08\DemoFiles\Mod8Demo6\Setup
     ```
-20. Run the following command:
+19. Run the following command:
     ```bash
       .\createAzureServices.ps1
     ```        
-21. You will be asked to supply a subscription ID, which you can get by performing the following steps:
+20. You will be asked to supply a subscription ID, which you can get by performing the following steps:
     1. Open a browser and navigate to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the **Sign-in** page to appear, enter your email address and password, and then click **Sign In**.
     2. In the top bar, in the search box, type **Cost**, and then in the results, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window opens.
     3. Under **BILLING ACCOUNT**, click **Subscriptions**.
@@ -433,42 +432,43 @@
     6. In the **Sign in** window that appears, enter your details, and then sign in.
     7. In the **Administrator: Windows PowerShell** window, enter your initials when prompted.    
 
-22. Open Microsoft Edge.
-23. Navigate to **https://portal.azure.com** and login with your credentials.
-24. In the left menu panel, click **App Services**.
-25. Click **blueyonderMod8Demo6***{yourinitials}*.
-26. In the left menu panel, under **Setting**, click **Application Insights**.
-27. Click **Setup Application Insights**.
+21. Open Microsoft Edge.
+22. Navigate to **https://portal.azure.com** and login with your credentials.
+23. In the left menu panel, click **App Services**.
+24. Click **blueyonderMod8Demo6***{yourinitials}*.
+25. In the left menu panel, under **Setting**, click **Application Insights**.
+26. Click **Turn on site extension**.
     - Select **Create new resource**.
     - Select **blueyonderMod8Demo6***{yourinitials}*.
-28. In **Runtime/Framework**, under **Instrument your application**, select **ASP.NET Core**.
-29. Click **OK**, and then click **Continue**.
-30. Wait until all changes are saved.
-31. Click **View more in Application Insights**.
-32. In the right panel, copy the **Instrumentation Key**.
-33. Switch to Visual Studio Code.
-34. In **BlueYonder.Flights.Service**, locate **appsettings.json** and add the following code:
+27. Under **Instrument your application**, select **.NET Core**.
+28. Click **Apply**, and then click **Yes**.
+29. Wait until all changes are saved.
+30. Scroll to the top on the page and click **View Application Insights data**.
+31. In the right panel, copy the **Instrumentation Key**.
+32. Switch to Visual Studio Code.
+33. In **BlueYonder.Flights.Service**, locate **appsettings.json** and add the following code:
     ```cs 
     "ApplicationInsights": {
-                    "InstrumentationKey": "{Your Instrumentation Key}"
-                    }
+            "InstrumentationKey": "{Your Instrumentation Key}"
+        }
     ```
-35. In *{Your Instrumentation Key}*, paste the **Instrumentation Key** value you copied in step 32.
-36. Switch to the command prompt.
+34. In *{Your Instrumentation Key}*, paste the **Instrumentation Key** value you copied in step 32.
+35. Switch to the command prompt.
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
-37. Open Microsoft Edge.
-38. Navigate to the following URL:
+36. Open Microsoft Edge.
+37. Navigate to the following URL:
     ```url
-    https://localhost:5001/api/Values/SendRequest
+    https://blueyondermod8demo6{yourinitials}/api/values/sendrequest
     ```
-39. To refresh the page, press F5 a couple of times.
-40. Switch to Azure portal.
-41. Click the **blueyonderMod8Demo6***{YourInitial}* App Service.
-42. Under **Development Tools**, click **Performance test**.
-43. Click **Dependencies**, click **Load more**, and then locate the **Values\GET** request.
-44. Make sure the result is from the **http://httpbin.org/get** URL.
+38. To refresh the page, press F5 a couple of times.
+39. Switch to Azure portal.
+40. On the left panel click **All resources**.
+41. Click the **blueyonderMod8Demo6***{YourInitial}* Application Insights.
+42. Under **Investigate**, click **Performance**.
+43. Click **Dependencies** and then locate the **HTTP: GET httpbin.org/get** request.
+44. Close all open windows.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
