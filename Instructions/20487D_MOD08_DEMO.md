@@ -459,7 +459,7 @@
 36. Open Microsoft Edge.
 37. Navigate to the following URL:
     ```url
-    https://blueyondermod8demo6{yourinitials}/api/values/sendrequest
+    https://blueyondermod8demo6{YourIntials}.azurewebsites.net/api/values/sendrequest
     ```
 38. To refresh the page, press F5 a couple of times.
 39. Switch to Azure portal.
