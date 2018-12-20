@@ -212,7 +212,7 @@
     ```
 16. To install the main **LTTng** packages, run the following command:
     ```bash
-    apt-get install lttng-tools lttng-modules-dkms liblttng-ust0
+    apt-get install lttng-tools lttng-modules-dkms liblttng-ust-dev
     ```
 17. To create a new **LTTng** session, run the following command:
     ```bash
