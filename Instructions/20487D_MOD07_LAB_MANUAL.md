@@ -17,7 +17,7 @@ After completing this lab, you will be able to:
 
 # Lab: Storing Files in Azure Storage
 
-### Exercise 1: Store Publicly Accessible Files in Blob Storage
+### Exercise 1: Store publicly accessible files in Microsoft Azure Blob Storage
 
 #### Task 1: Store publicly accessible files in Blob Storage
 
@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 2. Create a storage account, and name it **blueyonder***{YourInitials}*.
 3. Create a new blob container, name it **aircraft-images**, and then set its public access level as **Container (anonymous read access for containers and blobs)**.
 
-#### Task 2: Upload a file to Azure Blob Storage from the Microsoft Azure CLI
+#### Task 2: Upload a file to the Blob Storage container from the Azure CLI
 To upload the **france.jpg** file to the **aircraft-images** blob container, at the Azure CLI, enter the following path:
    ```url
    [Repository Root]\AllFiles\Mod07\Labfiles\Lab1\Assets\france.jpg
@@ -33,14 +33,14 @@ To upload the **france.jpg** file to the **aircraft-images** blob container, at 
 
 #### Task 3: Run a script to upload multiple aircraft images
 
-1. Open Azure PowerShell, and then, in the **Assets** folder, run the **uploadPhotos** script.
+1. Open PowerShell, and then, in the **Assets** folder, run the **uploadPhotos** script.
 2. To run the script, a key is required from the storage account.
    >**Note**: The script is to upload the images from the **Assets** folder to the **aircraft-images** blob container.
 
 #### Task 4: Modify the flight reservations service to return aircraft images from the container
 
 1. Open the **Starter** project.
-2. In **AircraftController**, locate the **\_baseUrl** box, and then replace *YourInitials* with your actual initials.
+2. In **AircraftController.cs**, locate the **_baseUrl** box, and then replace *YourInitials* with your actual initials.
 
 #### Task 5: Test the service from a browser
 
@@ -54,16 +54,16 @@ To upload the **france.jpg** file to the **aircraft-images** blob container, at 
 5. Verify that the image is shown.
 6. Stop the service.
 
-### Exercise 2: Generate and store private files in Azure Blob Storage
+### Exercise 2:  Generate and Store Private Files in Blob Storage
 
-#### Task 1: Create an Azure Blob Storage container
+#### Task 1: Create a Blob Storage container
 
-Create a new container, name it **manifests**, and assign it **Private** accessibility.
+Create a new container, name it **manifests**, and assign it **Private (no anonymous access)** accessibility.
 
 #### Task 2: Generate a passenger manifest and store it in the container
 
 1. Switch to the **Starter** project.
-2. In **FlightsController**, locate the **FinalizeFlight** method.
+2. In **FlightsController.cs**, locate the **FinalizeFlight** method.
 3. Refactor the method to upload the **manifests.txt** file to the **manifests** container by using the **GeneratedManifests** method. This method creates new manifest files.
    >**Note**: Use the **WindowsAzure.Storage** package.
 
@@ -82,18 +82,18 @@ Create a new container, name it **manifests**, and assign it **Private** accessi
    https://localhost:5001/api/flights/passengermanifest
    ```
 7. Copy the URL from the response. In Microsoft Edge, open a new tab, and then on the address bar, paste the copied URL.
-8. Verify that the image is shown.
+8. Verify that the Passenger manifest list is shown.
 9. To access the storage account with the expired SAS token, wait for one minute, and then refresh the page.
 10. Verify that the response is an error.
 
 # Lab: Querying Graph Data with Azure Cosmos DB
 
-### Exercise 1: Create the Azure Cosmos DB Graph Database
+### Exercise 1: Create the Cosmos DB Graph Database
 
-#### Task 1: Create a new Azure Cosmos DB graph database in the Azure portal
+#### Task 1: Create a new Cosmos DB graph database in the Azure portal
 
 1. Open the Azure portal.
-2. To create an Azure Cosmos DB graph database, in **ID**, type **blueyonder-destinations***{YourInitials}*, and then, in **API**, select **Gremlin (graph)**. 
+2. To create an Azure Cosmos DB graph database, in **Account Name** box type **blueyonder-destinations{YourInitials}**, and then, in **API**, select **Gremlin (graph)**. 
 3. Click **blueyonder-destinations***{YourInitials}*, and then type **Azure Cosmos DB account**.
 4. To add a graph, in **Database id**, select **Create new**, type **blueyonder**, and then, in **Graph Id**, type **traveler**.
 
@@ -108,7 +108,7 @@ Create a new container, name it **manifests**, and assign it **Private** accessi
 2. Write a Gremlin query to view the **Moscow** vertex data.
 3. Write a Gremlin query to get all the flights from **Moscow**.
 
-### Exercise 2: Query the Azure Cosmos DB Database
+### Exercise 2: Query the Cosmos DB Database
 
 #### Task 1: Add a query to return related attractions from the itinerary service
 
@@ -140,11 +140,11 @@ Create a new container, name it **manifests**, and assign it **Private** accessi
    ```
 5. Go to the following URL and verify that the JSON response includes only the flights from Paris:
    ```url
-   https://localhost:44355/api/Destination/StopOvers/Moscow/New York/14
+   https://localhost:5001/api/Destination/StopOvers/Moscow/New York/14
    ```
 6. Go to the following URL and verify that the JSON response includes only the flights from Paris and Rome:
    ```url
-   https://localhost:44355/api/Destination/StopOvers/Moscow/New York/20
+   https://localhost:5001/api/Destination/StopOvers/Moscow/New York/20
    ```
 
 # Lab: Caching Out-of-Process with Azure Redis cache
@@ -184,8 +184,8 @@ In the **Starter** folder, to the **BlueYonder.Flights.Service** project, add th
 
 #### Task 3: Add code to use the cache service
 
-1. In the **Startup** file, register the **IConnectionMultiplexer** interface as a singleton.
-2. In the **FlightsController** constructor class, inject **IConnectionMultiplexer**.
+1. In the **Startup.cs** file, register the **IConnectionMultiplexer** interface as a singleton.
+2. In the **FlightsController.cs** constructor class, inject **IConnectionMultiplexer**.
 3. To verify whether the data is cached, refactor the **Get** action.
     - If the data is cached, return the cache object and add a header that says the data is cached.
     - If the data is not cached, use **FlightsRepository** to get the data, and then add the new data to the Azure Redis Cache.
@@ -206,6 +206,9 @@ In the **Starter** folder, to the **BlueYonder.Flights.Service** project, add th
 #### Task 5: Deploy the application to a scaled web app
 
 Publish the service.
+   ```cs
+   dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
+   ```
 
 ### Exercise 3: Test the Application
 
