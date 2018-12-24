@@ -94,8 +94,8 @@
 11. Under **Reply URL**, add **https://jwt.ms**, and then click **Create**.
 12. From the blade, select **User flows**, click **New user flow**, and then select **Sign-up and sign in**.
 13. Enter a policy name for your application to reference.
-14. Select identity providers and select **Email signup**. Optionally, you can also select social identity providers, if already configured. Click **OK**.
-15. Select sign-up attributes. Choose attributes you want to collect from the consumer during sign-up. For example, you can select Country/Region, Display Name, and Postal Code. Click **Create**.
+14. Under the identity providers select **Email signup**. Optionally, you can also select social identity providers, if already configured. Click **OK**.
+15. Under the **User attributes and claims**, choose return claim check box for **Given name**.
 
 #### Demonstration Steps
 
