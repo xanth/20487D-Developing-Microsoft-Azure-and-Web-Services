@@ -36,7 +36,7 @@
         logging.AddEventSourceLogger();
     })
    ```
-7. Expand the **Controllers** folder, and then select the **ValuesController** file.
+7. Expand the **Controllers** folder, and then select the **ValuesController.cs** file.
 8. Add the following **using** statements:
    ```cs
     using Microsoft.Extensions.Logging;
@@ -114,11 +114,11 @@
    ```bash
     code .
    ``` 
-10. To use **Serilog**, add the following **using** statement:
+10. In Visual Studio Code, **Explorer** pane click **Program.cs**, to use **Serilog**, add the following **using** statement:
     ```cs
     using Serilog;
     ```
-10. To use **Serilog** and write the logs to the console, click **Program.cs**, and then after **UseStartup<Startup>()**, paste the following code in the **CreateWebHostBuilder** method :
+11. To use **Serilog** and write the logs to the console, click **Program.cs**, and then after **UseStartup<Startup>()**, paste the following code in the **CreateWebHostBuilder** method:
     ```cs
     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
 	    .ReadFrom.Configuration(hostingContext.Configuration)
@@ -271,8 +271,10 @@
 1. Open Windows PowerShell as Administrator.
 2. In the **User Account Control** modal, click **Yes**.
 3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+   >**Note**: If prompted for trust this repository , Type A and then press Enter.
 4. Browse to *[repository root]***\AllFiles\Mod08\DemoFiles\ApplicationInsights\Setup**.
 5. Run the following command:
+   >**Note**: If prompted for Run only scripts that you trusted, type R and then press Enter.
     ```batch
      .\createAzureServices.ps1
     ```
@@ -282,16 +284,16 @@
 1. Open the Microsoft Azure portal.
 2. Click **All resources**, and  then click **blueyondermod08demo5***{YourInitials}*.
 3. In the left pane, in the **SETTINGS** section, click **Application Insights** .
-4. Click **Setup Application Insights**, and then add the following information:
+4. Click **Turn on site Extension**, and then add the following information:
     - Select **Create new resource**.
     - Click **Apply**.
     - In the **Apply monitoring settings** dialog box, click **Yes**.
-5. In the **Application Insights** blade, click **View more in Application Insights**.
+5. In the **Application Insights** blade, click **View Application Insights data**.
 6. On the top bar, copy **Instrumentation Key**.
 7. Open the command prompt.
 8. To change the directory to the **Starter** folder, run the following command:
     ```bash
-    cd [Repository Root]\Allfiles\Mod08\DemoFiles\Lab2\ApplicationInsights\Starter
+    cd [Repository Root]\Allfiles\Mod08\DemoFiles\ApplicationInsights\Starter
     ```
 9. To install the **ApplicationInsights** package, run the following command:
     ```base
@@ -330,6 +332,7 @@
 20. Close the **Live Metrics Stream** blade.
 21. Under **INVESTIGATE**, click **Performance**.
 22. To view all the requests to the service, under **Select operation**, click **Load more**.
+    >**Note**: If we didn't see any values under select operation wait couple of minutes and then refresh the above URL.
 23. Click **GET Values/Get** then click **Samples** to view all the requests to the **Get** method of the **ValuesController** class.
 24. Select one of the samples and view all the details of the request. 
 
@@ -338,6 +341,7 @@
 #### Demonstration Steps
 
 1. Open the command prompt as an administrator.
+   >**Note:** In User Account Control dialogue box click Yes.
 2. To create a new ASP.NET Core Web API project, paste the following command at the command prompt, and then press Enter:
     ```bash
     dotnet new webapi --name BlueYonder.Flights.Service --output [Repository Root]\Allfiles\Mod08\DemoFiles\Mod8Demo6\Starter\Code\BlueYonder.Flights.Service 
@@ -410,6 +414,7 @@
 15. Click **Start**, search for **PowerShell** and right-click and select **Run as Administrator**.
 16. In the **User Account Control** modal, click **Yes**.
 17. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+    >**Note:** If prompted for trust this repository type A and then press Enter.
 18. In PowerShell, to change directory, type the following command, and then press Enter:
     ```bash
       cd [Repository Root]\AllFiles\Mod08\DemoFiles\Mod8Demo6\Setup
@@ -421,7 +426,7 @@
 20. You will be asked to supply a subscription ID, which you can get by performing the following steps:
     1. Open a browser and navigate to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the **Sign-in** page to appear, enter your email address and password, and then click **Sign In**.
     2. In the top bar, in the search box, type **Cost**, and then in the results, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window opens.
-    3. Under **BILLING ACCOUNT**, click **Subscriptions**.
+    3. Under **Individual billing**, click **Subscriptions**.
     4. Under **My subscriptions**, you should have at least one subscription. Click the subscription that you want to use.
     5. Copy the value from **Subscription ID**, and then paste it at the PowerShell prompt. 
     6. In the **Sign in** window that appears, enter your details, and then sign in.
@@ -431,7 +436,7 @@
 22. Navigate to **https://portal.azure.com** and login with your credentials.
 23. In the left menu panel, click **App Services**.
 24. Click **blueyonderMod8Demo6***{yourinitials}*.
-25. In the left menu panel, under **Setting**, click **Application Insights**.
+25. In the left menu panel, under **Settings**, click **Application Insights**.
 26. Click **Turn on site extension**.
     - Select **Create new resource**.
     - Select **blueyonderMod8Demo6***{yourinitials}*.
