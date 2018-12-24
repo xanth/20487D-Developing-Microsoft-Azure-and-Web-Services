@@ -43,7 +43,7 @@
             context.Users.AddRange(userList);
             context.SaveChanges();
         }
-    ``
+    ```
 
 #### Task 3: Register ASP.NET Core Identity in the startup file
 
@@ -78,7 +78,7 @@
         });
     ```
 4. And then add the authentication middleware.
-5.Paste the following configuration to the **appsettings.json** file.
+5. Paste the following configuration to the **appsettings.json** file.
    ```json
     "ConnectionStrings": {
     "DefaultConnection": "DataSource=app.db"
