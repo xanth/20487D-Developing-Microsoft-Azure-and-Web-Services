@@ -9,7 +9,7 @@
 1. In the Microsoft Azure portal, create an Azure web app.
 2. In Microsoft Visual Studio Code, Open the *[Repository Root]***\AllFiles\Mod10\Labfiles\Lab1\Starter**.
 3. Create a new folder and name it **Middleware**. In this folder, create a new file, and name it **ExceptionHandlingMiddleware.cs**.
-4. In the **ExceptionHandlingMiddleware.cs** file, add a **RequestDelegate** instance, and initiate it as the constructor.
+4. In the **MachineNameMiddleware.cs** file, add a **RequestDelegate** instance, and initiate it as the constructor.
 5. To add the **X-BlueYonder-Server** header with **MachineName** as the value, add the **Invoke** method.
 6. In **IApplicationBuilder**, add an extension method.
 7. In the **Configure** method, inside the **Startup** class, add **Exception Handling Middleware**.
@@ -72,7 +72,7 @@
 #### Task 1: Deploy an Azure web app to the West Europe region
 
 1. Open Windows PowerShell as Administrator.
-2. From the *[repository root]***\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory, run the following command:
+2. From the **[repository root]\AllFiles\Mod10\Labfiles\Lab2\Setup** directory, run the following command:
    ```batch
     .\createAzureServicesWestEurope.ps1
    ```
@@ -81,7 +81,7 @@
 #### Task 2: Deploy an Azure web app to the West US region
 
 1.  Open PowerShell as Administrator.
-2.  From the *[repository root]***\AllFiles\Mod10\Labfiles\Lab2\Starter\Setup** directory, run the following command:
+2.  From the **[repository root]\AllFiles\Mod10\Labfiles\Lab2\Setup** directory, run the following command:
     ```batch
      .\createAzureServicesWestUS.ps1
     ```
@@ -108,25 +108,26 @@ Create a Traffic Manager profile with the **Priority** routing method.
 
 1. Browse to the following URL:
     ```url
-    http://blueyondermod10lab2TM.trafficmanager.net/api/destinations
+    http://blueyondermod10lab2TM{YourInitials}.trafficmanager.net/api/destinations
     ```
    >**Note**: All requests are routed to the primary end point that is set to Priority 1.
 2. To find our trafficmanager, run the following command:
     ```bash
-    nslookup blueyondermod10lab2TM.trafficmanager.net
+    nslookup blueyondermod10lab2TM{YourInitials}.trafficmanager.net
     ```
-3. Verify that the primary end point is the **blueyondermod10lab2t1** service.
-4. In Azure Traffic Manager, in the **Settings** section, in **mySecondaryEndpoint**, change the **Status** to **Disabled**.
+3. Verify that the primary end point is the **blueyondermod10lab2t1{YourInitials}** service.
+4. In Azure Traffic Manager, in the **Settings** section, in **myPrimaryEndpoint**, change the **Status** to **Disabled**.
 5. Browse to the following URL:
     ```url
-    http://blueyondermod10lab2TM.trafficmanager.net/api/destinations
+    http://blueyondermod10lab2TM{YourInitials}.trafficmanager.net/api/destinations
     ```
    > **Note**: All requests are routed to the secondary end point that is set to Priority 2.
 6. To find our trafficmanager, run the following command:
     ```bash
-    nslookup blueyondermod10lab2TM.trafficmanager.net
+    nslookup blueyondermod10lab2TM{YourInitials}.trafficmanager.net
     ```
-7. Verify that the secondary endpoint is the **blueyondermod10lab2t2** service.
+7. Verify that the secondary endpoint is the **blueyondermod10lab2t2{YourInitials}** service.
+8. Close all open windows.
 
   ©2018 Microsoft Corporation. All rights reserved.
 
