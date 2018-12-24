@@ -48,7 +48,7 @@
 2. On the left-hand side menu, click **Azure Active Directory**.
 3. In the **Azure Active Directory** blade, click **App registrations**, and then click **New application registration**.
    - In the **Name** box, enter **Mod10OpenIdConnect**.
-   - In the **Url** box, enter **https://localhost:5001/signin-oidc**.
+   - In the **Sign-on URL** box, enter **https://localhost:5001/signin-oidc**.
    - Click **Create**.
 4. Copy the **Application ID**. This is the Client ID.
 5. Close the registered app window.
@@ -59,7 +59,7 @@
 1. Open the command prompt.
 2. To change the current directory to **DemoFiles**, run the following command:
    ```bash
-    cd [Repository Root]\Allfiles\Mod09\Demofiles\OpenIDConnectAAD
+    cd [Repository Root]\Allfiles\Mod09\Demofiles\OpenIDConnectAAD\OpenIDConnectAAD
    ```
 3. To open the project in Microsoft Visual Studio Code, run the following command:
    ```bash
@@ -76,6 +76,7 @@
     https://localhost:5001/api/values
     ```
 8. You will see your username as part of the result.
+9. Close all open windows.
 
 ### Demonstration: Using AAD B2C with ASP.NET Core
 
@@ -92,7 +93,7 @@
 9. Fill the name of the application.
 10. Under **Web App / Web API**, select **Yes**.
 11. Under **Reply URL**, add **https://jwt.ms**, and then click **Create**.
-12. From the blade, select **User flows**, click **New user flow**, and then select **Sign-up and sign in**.
+12. From the blade, select **User flows (policies)**, click **New user flow**, and then select **Sign-up and sign in**.
 13. Enter a policy name for your application to reference.
 14. Under the identity providers select **Email signup**. Optionally, you can also select social identity providers, if already configured. Click **OK**.
 15. Under the **User attributes and claims**, choose return claim check box for **Given name**.
@@ -116,15 +117,19 @@
     ```
 7. Open a browser and navigate to the following URL:
     ```url
-    https://[TenantName].b2clogin.com/[TenantName].onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_My&client_id=[ClientId]&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login
+    https://[TenantName].b2clogin.com/[TenantName].onmicrosoft.com/oauth2/v2.0/authorize?p=[Policy name]&client_id=[ClientId]&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid&response_type=id_token&prompt=login
     ```
 8. Copy the token from the box
-9. Switch to the command prompt.
-10. To run the project, run the following command:
+9. Open the new  Command prompt.
+10. To change the current directory to DemoFiles, run the following command:
     ```bash
-    curl https://localhost:44362/api/values -i --header "Authorization: Bearer [Token]"    
+    cd [Repository Root]\Allfiles\Mod09\Demofiles\AADB2C
     ```
-11. You will see your username as part of the result.
+11. To run the project, run the following command:
+    ```bash
+    curl https://localhost:5001/api/values -i --header "Authorization: Bearer [Token]"    
+    ```
+12. You will see your username as part of the result.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
