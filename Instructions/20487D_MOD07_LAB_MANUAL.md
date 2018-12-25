@@ -112,6 +112,7 @@ Create a new container, name it **manifests**, and assign it **Private (no anony
 
 #### Task 1: Add a query to return related attractions from the itinerary service
 
+1. In **Settings** section , click **Keys** and then copy the **PRIMARY KEY** value.
 1. Open the **Starter** project.
 2. Install the **Gremlin.Net** package.
 3. In the **appsettings.json** file, update **HostName** and **Authkey**.

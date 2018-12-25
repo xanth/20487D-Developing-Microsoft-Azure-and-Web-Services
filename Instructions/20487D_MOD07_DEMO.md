@@ -54,6 +54,7 @@
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
     Invoke-WebRequest -Uri https://localhost:5001/api/reservation/createvoucher -ContentType "application/json" -Method POST -Body "'{Your Name}'"
    ```
+   >**Note**: Replace **{Your Name}** with Your name.
 26. From content, copy the **Guid** key.
 27. Switch to the Azure portal, locate the **vouchers** container, and then verify that a new file was added.
 28. To invoke the **GetVoucher** action and receive the new file from the blob container, switch to PowerShell, and then run the following command:
@@ -61,6 +62,7 @@
     $request = Invoke-WebRequest -Uri https://localhost:5001/api/reservation/Voucher/{Guid voucher}  -Method Get
     $request.Content
    ```
+   >**Note**: Replace **{Guid voucher}** with Guid value you have noted in point 26.
 29. From the blob container, view the content in the **vouchers** file. 
 
 
@@ -76,14 +78,14 @@
 4. On the top bar, click **Add**.
 5. In the **Storage account name** box, type **mod7demo2**{YourInitials}.
 6. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7demo2ResourceGroup** and then click **OK**.
-7. Click **Review + Create** and the click **Create**.
+7. Click **Review + Create** and then click **Create**.
 8. After the new storage account is created, on the top bar, click **Refresh**.
 9. Click the **mod7demo2***{YourInitials}* storage account.
 10. In the left pane, under the **BLOB SERVICE** section, click **Blobs**.
 11. Click **+ Container**, type **bacpaccontainer**, and then click **OK**.
 12. Click **bacpaccontainer**.
 13. Click **Upload**.
-14. Browse to *[Repository Root]***\Allfiles\Mod07\Demofiles\Mod7Demo2bacpac**, click folder, select the **Mod7Demo2DB.bacpac** file and then click **Open**.
+14. Click folder, browse to *[Repository Root]***\Allfiles\Mod07\Demofiles\Mod7Demo2bacpac**, select the **Mod7Demo2DB.bacpac** file and then click **Open**.
 15. Click **Upload**.
 16. In the left pane, click **Create a resource**.
 17. In the **search** box, type **SQL server**. 
@@ -93,13 +95,13 @@
 21. In the **Server admin login** box, type **MyAdmin**.
 22. In the **Password** and **Confirm Password** boxes, type **Password123!**.
 23. In **Resource group**, select **Use existing**, and then select the **Mod7demo2ResourceGroup** resource group.
-24. Click **OK**.
+24. Click **Create**.
 25. Click **All resources**, and then click **mod7demo2sqlserver***{YourInitials}*.
 26. In the **mod7demo2sqlserver***{YourInitials}* pane, on the top bar, click **Import database**.
 27. In the **Import database** pane, click **Storage(Premium not supported)**, and then click **mod7demo2**{YourInitials}.
 28. In the **Containers** pane, click **bacpaccontainer**, click the **Mod7Demo2DB.bacpac** file, and then click **Select**.
 29. In the **Password** box, type **Password123!**.
-30. Click **Create**.
+30. Click **OK**.
 31. After the database is created, in the left pane, click **SQL databases**.
 32. Click **Mod7Demo2DB**.
 33. Click **Set server firewall**.
@@ -121,7 +123,7 @@
 2. Go to **https://portal.azure.com** and sign in with your credentials.
 3. In the left pane, click **Azure Cosmos DB**.
 4. On the top bar, click **Add**.
-5. In the **Azure Cosmos DB Account** pane, in the **Account name** box, type **mod7demo3**{YourInitials}.
+5. In the **Create Azure Cosmos DB Account** pane, in the **Account name** box, type **mod7demo3**{YourInitials}.
 6. In **API**, select **MongoDB**.
 7. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7Demo3ResourceGroup** and then click **OK**.
 8. Click **Review + Create** and then click **Create**.
@@ -165,7 +167,7 @@
 2. Go to **https://portal.azure.com** and sign in with your credentials.
 3. In the left pane, click **Azure Cosmos DB**.
 4. On the top bar, click **Add**.
-5. In **Azure Cosmos DB Account**, in the **Account name** box, type **mod7demo4**{YourInitials}.
+5. In **Create Azure Cosmos DB Account**, in the **Account name** box, type **mod7demo4**{YourInitials}.
 6. In **API**, select **Gremlin (graph)**.
 7. In **Resource group** section, select **Create new**, in the **Name** box type **Mod7Demo4ResourceGroup**, and then click **OK**.
 8. Click **Review + Create** and then click **Create**.
@@ -176,7 +178,7 @@
 13. In **Graph Id**, type **taskManager**, and then click **OK**.
 14. Expand **mygraphdb** and click **taskManager**. 
 15. To upload all the data with the JSON file, on the top bar, click **Upload**.
-16. In *[Repository Root]***\Allfiles\Mod07\DemoFiles\Mod7Demo4Assets**, click **folder**, select the **GraphData.json** file, and then click **Open**.
+16. click **folder**, in *[Repository Root]***\Allfiles\Mod07\DemoFiles\Mod7Demo4Assets**, select the **GraphData.json** file, and then click **Open**.
 17. Click **Upload**.
 18. Expand **taskManager**, and then click **Graph**.
 19. To get all the vertices in the graph, click **Execute Gremlin Query**.
@@ -249,7 +251,7 @@
 2. In the left pane, click **+ Create a resource**.
 3. In the **search** box, type **Redis Cache**, and then click **Create**.
 4. In **DNS name**, type **mod7demo6redis***{YourInitials}*.
-5. In **Resource Group**, select **Create new**, and then type **Mod07Demo6ResourceGroup**.
+5. In **Resource Group**, select **Create new**, in the **Name** box type **Mod07Demo6ResourceGroup** ad then click **OK**.
 6. Click **Create**, and then wait until the service is created.
 7. To display all resources, in the left pane, click **All resources**.
 8. Click **mod7demo6redis***{YourInitials}*.
