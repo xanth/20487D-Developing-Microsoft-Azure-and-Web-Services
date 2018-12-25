@@ -17,7 +17,7 @@
 4.  In the **Name** box, type **MyWebSite**.
 5.  In the **Location** box, enter *[repository root]***\Allfiles\20487C\Mod06\DemoFiles\DeployWebApp**.
 6.  Clear the **Create directory for solution** check box, and then click **OK**.
-7.  In the **New ASP.NET Web Application** dialog box, select **API**, and then click **OK**.
+7.  In the **New ASP.NET Core Web Application - MyWebSite** dialog box, select **API**, and then click **OK**.
 8.	Open Microsoft Edge and go to **https://portal.azure.com**.
 9.	If a page appears asking for your email address, enter your email address, and then click **Next**. Wait for the **Sign In** page to appear, enter your email address and password, and then click **Sign In**.
 
@@ -32,7 +32,7 @@
 16.	In the **Location** list, select the region closest to your location.
 17. In the **Pricing tier** section, select **D1 Shared**, and then click **OK**.
 18. Click **Create**. The site is added to the **Web Apps** table and its status is set to **Creating**. 
-19.	After the status changes to **Running**, in Visual Studio, on the **View** menu, click **Server Explorer**.
+19.	After the status changes to **Running**, in **MyWebSite - Microsoft Visual Studio(Administrator)**, on the **View** menu, click **Server Explorer**.
 20.	In **Server Explorer**, right-click the **Azure** pane and select **Connect To Microsoft Azure Subscription**.
 21.	On the **Sign In** page, if a page appears asking you to choose from a list of previously used accounts, select the account you previously used, enter your credentials, and then click **Sign in**.
 
@@ -40,7 +40,7 @@
         You only need to perform this step once to import your Microsoft Azure account settings to Visual Studio.
         Now Visual Studio 2017 can display the list of Web Apps and Azure Cloud Services to which you can deploy the applications.
 
-22.	In Visual Studio, in **Solution Explorer**, right-click **MyWebSite** project, and then select **Publish**.
+22.	In **MyWebSite - Microsoft Visual Studio(Administrator)**, in **Solution Explorer**, right-click **MyWebSite** project, and then select **Publish**.
 23.	In the **Pick a publish target** dialog box, select **App Service**, then in the **Azure App Service** view, select the **Select Existing** option, and then click **Create Profile**.
 24.	In the **App Service** dialog box, expand the **BlueYonder.Demo.06** folder, select **mod6demo1[YourInitials]**, and then click **OK**.
 25. Click **Publish**.
@@ -61,21 +61,21 @@
 1. Open Microsoft Edge.
 2. Navigate to **https://portal.azure.com**.
 3. On the left menu panel, click **Virtual machines**.
-4. Click **Add**, choose **Ubuntu Server**, select the latest version, and then click **Create**.
+4. On **Virtual Machines** blade, click **Create virtual machine**. On next page make sure it selects the latest version of **Ubuntu Server** in image column.
 5. To create a new virtual machine, in the **Basics** view, provide the following details:
-   - In the **Name** box, type **myvm**.
-   - From the **VM disk type** list, select **Standard HDD**.
+   - In the **Virtual Machine Name** box, type **myvm**.
+   - Click **Disks** and from the **OS disk type list** select **Standard HDD**.
    - In the **Username** box, type **myadmin**.
    - In the **Authentication type** list, select **Password**, and then  in the **Password** and **Confirm Password** boxes, type **Password123!**.
-   - In the **Resource group** box, type **Mod6Demo2ResourceGroup**.
+   - In the **Resource group** section click **Create new** and type **Mod6Demo2ResourceGroup** and then click OK.
    - Click **OK**.
-6. In the **Size** view, provide the following details:
+6. In the **Size** section click **change size** and provide the following details:
    - Select **D2s_v3**.
    - Click **Select**.
-7. In the **Settings** view, provide the following details:
-    - In **Select public inbound ports**, select the following: **HTTP**, **HTTPS**, and **SSH**.
+7. In the **Inbound Port Rules** section , select **Allow selected ports** and provide the following details:
+    - In **Select public inbound ports**, select the following: **HTTP(80)**, **HTTPS(443)**, and **SSH(22)**.
     - Click **OK**.
-8.  In the **Summary** view, click **Create**.
+8.  In the **Summary** view, click **Review + Create** and then click **Create**.
 9.  Open the command prompt.
 10. At the command prompt, to change the directory to **Demo2Project**, run the following command:
     ```bash
@@ -85,7 +85,7 @@
     ```bash
     code .
     ```
-12. In Visual Studio Code, on the left menu, double-click **Demo2Project.csproj**.
+12. In Demo2Project - Visual Studio Code, on the left menu, double-click **Demo2Project.csproj**.
 13. In the **Demo2Project.csproj** file, locate the **\<PropertyGroup\>** element, and inside it, paste the following code:
     ```xml
     <RuntimeIdentifiers>win10-x64;osx.10.11-x64;ubuntu.16.10-x64</RuntimeIdentifiers>
@@ -250,7 +250,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
 14. In **Where is your code**, choose **Use the visual designer**.
 15. In **Select a source**, choose **Azure Repos Git**.
 16. In **Repository** select **MyApp**.
-17. Then click **cuntinue**.
+17. Then click **continue**.
 18. In **select a tamplate**, choose **Azure Web App for ASP.NET** and click **Apply**.
 19. In **Azure subscription**, enter the following details:
     - Select your Azure subscription.
@@ -259,7 +259,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
 20. In **App service name**, select **mod6demo3***{YourInitials}*.
 21. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
     >**Note:** if **Branch filters** already exist skip this step.
-22. Click the **Save $ queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
+22. Click the **Save & queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
 23. Open the command prompt.
 24. At the command prompt, to switch the directory, run the following command:
     ```bash
@@ -330,7 +330,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - To select the app service template, in the **App Services** blade, click **Add**.
     - In the **Web** blade, click **Web App**. An overview of the template will be shown. Click **Create**.
 6. To create a new web app, provide the following details:
-    - In the **App Name** box, type the following web app name **mod6demo4***{YourInitials}*.
+    - In the **App Name** box, type the following web app name **mod6demo4**{YourInitials}.
         >**Note**: The new web app name will be part of the URL.
     - In **Resource Group**,  select **Create new** and type **mod6demo4**.
     - Click **App Service plan/Location**,  click **Create new**, and then open the **New App Service Plan** blade to provide the following information:
@@ -342,20 +342,20 @@ To present this demonstration, you must have a Microsoft account. If you have no
         - Click **OK**.
     - Click **Create** and wait until the app service is created.
 7. To display all the app services, on the left menu panel, click **App Services**.
-8. Click **mod6demo4***{YourInitials}* app service. 
-9. To add credentials to the app service, under the **DEPLOYMENT** section, click **Deployment credentials**, and then enter the following information:
-    - In **FTP/deployment username**, type **FTPMod6Demo4***{YourInitials}*.
+8. Click **mod6demo4**{YourInitials} app service. 
+9. To add credentials to the app service, under the **DEPLOYMENT** section, click **Deployment center**, in the open page select **FTP**, click **Dashboard** and then enter the following information:
+    - In **FTP** Pane click **User Credentials**, in the **username** box type **FTPMod6Demo4**{YourInitials}.
     - In the **Password** and **Confirm password** boxes, type **Password99**.
-    - Click **Save**.
+    - Click **Save Credentials**.
 10. On the left blade menu, under the **DEPLOYMENT** section, click **Deployment slots**.
     - Click **Add Slot** and provide the following information:
         - In **Name**, type **Staging**.
-        - In **Configuration Source**, select **mod6demo4***{YourInitials}*.
+        - In **Configuration Source**, select **mod6demo4**{YourInitials}.
         - Click **OK**.
 11. Open the command prompt.
 12. At the command prompt, to change the directory to the starter project, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\SimpleServiceForDeploymentSlots
     ```
 13. Open the project in Visual Studio Code and paste the following command and press Enter:
     ```bash
@@ -373,25 +373,25 @@ To present this demonstration, you must have a Microsoft account. If you have no
 19. Open Microsoft Edge. 
 20. Navigate to the following URL:
     ```url
-    https://Mod6Demo4*{YourInitials}*.azurewebsites.net/api/values
+    https://Mod6Demo4{YourInitials}.azurewebsites.net/api/values
     ```
 21. The response should be a JSON with the following values:
     ```json
     ["value1", "value2"]
     ```
 22. Switch to Visual Studio Code.
-23. Expand **Controllers** and double-click **ValuesController**.
+23. Expand **Controllers** and double-click **ValuesController.cs**.
 24. Locate the **Get** method and add to the array **value3**.
 25. Switch to the command prompt.
 26. To publish in the staging slot, at the command prompt, paste the following command:
     ```bash
     dotnet publish /p:PublishProfile=Staging /p:Configuration=Release
     ```
-    > **Note**: If there was an error in the publishing process, restart the  **Mod6Demo4-***{YourInitials}***-staging** app services.
+    > **Note**: If there was an error in the publishing process, restart the **Mod6Demo4{YourInitials}-staging** app services.
 27. Open a new Microsoft Edge instance. 
 28. Navigate to the following URL:
     ```url
-    https://mod6demo4-*{YourInitials}*-staging.azurewebsites.net/api/values
+    https://mod6demo4-{YourInitials}-staging.azurewebsites.net/api/values
     ```
 29. The response should be a JSON with the following values:
     ```json
@@ -412,6 +412,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```json
     ["value1", "value2", "value3"]
     ```
+38. Close all open windows.
 
 # Lesson 5: Defining Service Interfaces with Azure API Management 
 
