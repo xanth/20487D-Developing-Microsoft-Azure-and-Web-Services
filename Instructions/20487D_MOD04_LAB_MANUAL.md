@@ -20,7 +20,7 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create an interface for the repository 
 
-1.  Open a **Command Prompt** window, and then browse to **Repository Root]\Allfiles\Mod04\LabFiles\Lab1\Starter**.
+1.  Open a **Command Prompt** window, and then browse to **[Repository Root]\Allfiles\Mod04\LabFiles\Lab1\Starter\BlueYonder.Hotels**.
 2.  Open the project in Microsoft Visual Studio Code.
 3.  In **BlueYonder.Hotels.DAL**, under the **Repository** folder, add a new interface, and then name it **IHotelBookingRepository.cs**.
 4.  To **IHotelBookingRepository.cs**, add the following method signatures:
@@ -32,7 +32,7 @@ After completing this lab, you will be able to:
 
 #### Task 2: Implement the interface on the repository
 
-In the **BlueYonder.Hotels.DAL** project, in **HotelBookingRepository**, implement the **IHotelBookingRepository** interface .
+In the **BlueYonder.Hotels.DAL** project, in **HotelBookingRepository** class, implement the **IHotelBookingRepository** interface.
 
 #### Task 3: Register the repository object in the ASP.NET Core Dependency Injection mechanism
 
@@ -91,7 +91,7 @@ In **HotelBookingController**, above the **GetAvailability** method, add the **C
 2. Open Windows Powershell.
 3. To get the reservations from the server, run the following command:
     ```bash
-    $getReservations = Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Reservation
+    $getReservations = Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Reservation -UseBasicparsing
     ```
     >**Note:** If you get the **The underlying connection was closed: An unexpected error occurred on a send** error message, run the  **[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12** command, and then redo the step.
 4. To display the http result, run the following command:
@@ -104,14 +104,14 @@ In **HotelBookingController**, above the **GetAvailability** method, add the **C
     ```
 6. To get the available rooms on the current date, run the following command:
    ```bash
-   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/*[year]-[month]-[day]*  
+   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/*[year]-[month]-[day]* -UseBasicparsing
    ```
    >**Note:** Replace the last section of the URL with the current date.
 7. To remove the reservation, run the following command:
     ```bash
-    Invoke-WebRequest -Uri https://localhost:5001/api/HotelBooking/Reservation/1 -Method DELETE
-
-8. Repeat step 7, verify that the room list didn't change, wait for one more minute, repeat step 7 again, and then verify that available rooms are appearing in the room list.
+    Invoke-WebRequest -Uri https://localhost:5001/api/HotelBooking/Reservation/1 -Method DELETE -UseBasicparsing
+    ```
+8. Repeat step 6, verify that the room list didn't change, wait for one more minute, repeat step 7 again, and then verify that available rooms are appearing in the room list.
 
 ### Exercise 3: Create a Debugging Middleware
 
@@ -140,7 +140,7 @@ In **HotelBookingController**, above the **GetAvailability** method, add the **C
         return Task.CompletedTask;
     }, context);
     ```
-3. To continue to the next middleware, enter the following code:
+3. To continue to the next middleware, under **X-Request-ExecutionTime** enter the following code:
    ```cs
     await next();
    ```
@@ -160,6 +160,7 @@ Create a static extension method for **IApplicationBuilder** with the **IApplica
 2. Open **Developer Tools**, click **Network**, and then select **Reservation**.
 3. Expand **Response Header**.
 4. Verify that you received **x-os-version**, **x-server-name**, and **x-request-execution-time** from the server.
+5. Close all open windows.
 
 ©2018 Microsoft Corporation. All rights reserved.
 
