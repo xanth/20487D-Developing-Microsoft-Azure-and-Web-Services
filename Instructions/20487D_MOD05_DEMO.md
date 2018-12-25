@@ -12,9 +12,10 @@
 #### Demonstration Steps
 
 1. Open the Command Prompt window as an administrator.
+   > **Note**: In the User Account control dialog box, click **Yes**.
 2. At the command prompt, paste the following command, and then press Enter:
     ```bash
-       cd *[Repository Root]*\Allfiles\Mod05\DemoFiles\HostInWindows Service
+       cd [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindowsService
     ```
 3. To publish the **ASP .NET Core** project into a folder, paste the following command, and then press Enter:
     ```bash
@@ -33,17 +34,14 @@
     ```bash
       sc stop HotelsService
     ```
-8. Close the **Command Prompt** window.
-
-
-
+8. Close the **Administrator: Command Prompt** window.
 
 ### Demonstration: Hosting ASP.NET Core Services in IIS
 
 #### Demonstration Steps
 
-1. In the **Start** menu, open **Internet Information Services(IIS) Manager**.
-2.  In the menu on the left side, right-click the **Sites** folder, and then select **Add Website..**.
+1. Click **Start** menu, in the search box type **IIS** and from the search results select **Internet Information Services(IIS) Manager**.
+2. In the menu on the left side, expand the **Desktop**, right-click the **Sites** folder, and then select **Add Website..**.
 3. In the **Add Website** dialog box, in the **Site name** box, type **HotelsSite**.
 4. In the **Content Directory** section, in the **Physical path** box, type [Repository Root]**\Allfiles\Mod05\DemoFiles\Host in IIS**.
 5. In the **Binding** section, change the value in **Port** from **80** to **8080**.
@@ -52,10 +50,12 @@
 8. In the **.NET CLR version** list, select **No Managed Code**, and then click **OK**.
 9. Close **Internet Information Services(IIS) Manager**.
 10. Open Microsoft Visual Studio 2017 as an administrator.
-11. In Visual Studio, on the **File** menu, point to **Open**, and then click **Project/Solution**.
-12. In the **Open Project** dialog box, browse to *[Repository Root]***\Allfiles\Mod05\DemoFiles\Host in IIS**, click **BlueYonder.Hotels.Service.sln**, and then click **Open**.
+    > **Note**: In the User Account control dialog box, click **Yes**.
+11. In **Microsoft Visual Studio(Administrator)**, on the **File** menu, point to **Open**, and then click **Project/Solution**.
+12. In the **Open Project** dialog box, browse to [Repository Root]**\Allfiles\Mod05\DemoFiles\Host in IIS**, click **BlueYonder.Hotels.Service.sln**, and then click **Open**.
+    > **Note**: If Security Warning for BlueYonder.Hotels.Service dialog box appears clear Ask me for every project in this solution check box and then click **OK**.
 13. Right-click **BlueYonder.Hotels.Service**, and then select **Publish**.
-14. In the **Publish** blade, select **IIS, FTP, etc**, and then click **Create Profile**.
+14. In the **Publish** blade, select **IIS, FTP, etc**, in right pane from the **Publish** drop down list select **Create Profile**.
 15. In the **Publish** window, in the **Server** box, type **localhost**.
 16. In the **Site name** box, type **HotelsSite**, and then click **Next**.
 17. In the **Settings** pane, in the **Deployment Mode** list, select **Self-Contained**.
@@ -66,9 +66,6 @@
 	```json
 		["value1", "value2"]
 	```
-
-
-
 
 # Lesson 2: Hosting Services in Web Apps Feature of Azure App Service
 
@@ -89,22 +86,26 @@
 10. From the **Location** list, select the region that is closest to your location.
 11. In the **App Service plan** box, type **MyAppService**, and then click **OK**.
 12. Click **Create**. Wait for the web app to be created. Click the newly created web app.
-13. In the newly created web app blade, in the **Deployment** section, click **Deployment Credentials**.
-14. In the **FTP/deployment username**, enter a unique name.
+13. In the newly created web app blade, in the **Deployment** section, click **Deployment Center**, select **FTP** and then Click **Dashboard**.
+14. In the **FTP** pane, click **User Credentials**, in the **username** box enter a unique name.
 15. In the **Password** and **Confirm password** inputs, enter a new password.
 
     >**Note**: You will need these credentials for the next steps. Copy them to any code editor.
     
 16. In the newly created web app, click **Overview**.
 17. Open the Command Prompt window.
-18. At the command prompt, paste the following command to create a new web app and then press Enter:
+18. To change directory to **HostInAzure** folder, run the following command:
     ```bash
-      dotnet new webapi --name BlueYonder.Hotels.Service -output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure"
+    cd [Repository Root]\Allfiles\Mod05\DemoFiles\HostInAzure
     ```
-19. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\HostInAzure**.
-20. In the **Properties** folder, create a new folder **PublishProfiles**.
-21. In the **PublishProfiles** folder, create a new file called **Azure** with the extension **.pubxml**.
-22. Open the file in any code editor and paste the following XML content to define the publish settings:
+19. At the command prompt, paste the following command to create a new web app and then press Enter:
+    ```bash
+      dotnet new webapi --name BlueYonder.Hotels.Service --output "[RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure"
+    ```
+20. Open File Explorer and browse to *[RepositoryRoot]***\Allfiles\Mod05\DemoFiles\HostInAzure**.
+21. In the **Properties** folder, create a new folder **PublishProfiles**.
+22. In the **PublishProfiles** folder, create a new file called **Azure** with the extension **.pubxml**.
+23. Open the file in any code editor and paste the following XML content to define the publish settings:
 
     ```xml
     <Project>
@@ -116,17 +117,17 @@
         </PropertyGroup>
     </Project>
     ```
-23. Replace the **PublishSiteName**, **UserName** and **Password** values with the values that you have copied earlier.
-24. Save the file.
-25. To point to your new web app folder, at the command prompt, paste the following command:
+24. Replace the **PublishSiteName**, **UserName** and **Password** values with the values that you have copied earlier.
+25. Save the file.
+26. To point to your new web app folder, at the command prompt, paste the following command:
     ```bash
         cd *[RepostiroryRoot]*\Allfiles\Mod05\DemoFiles\HostInAzure
     ```
-26. To host your web app in an app service that you created in Azure, paste the following command:
+27. To host your web app in an app service that you created in Azure, paste the following command:
     ```bash
         dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
-27. Open a browser and browse to **https://{Your App Name}.azurewebsites.net/api/values**.
+28. Open a browser and browse to **https://{Your App Name}.azurewebsites.net/api/values**.
 
    >**Note**: Replace *{Your App Name}* with your actual app name that you have copied earlier.
 28. Check whether you are getting the expected response such as the following:
@@ -134,30 +135,20 @@
 		["value1", "value2"]
 	```
 
-
-
-
-
-
-
 # Lesson 3: Packaging Services in Containers
-
 
 ### Demonstration: Creating an empty ASP.NET Core Docker container
 
 1. Open the Command Prompt window.
 2. To launch a default **ASP.NET Core** container that listens on a default port, at the command prompt, paste the following command:
-
     ```bash
     docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
     ```
 3. Open a browser and navigate to **localhost:8000**.
 4. Verify that you are getting the default **ASP.NET Core** starter page.
-
-
+5. Close all open windows.
 
 ### Demonstration: Publishing into a Container
-
 
 1. Open the Command Prompt window.
 2. To create a new Web App, at the command prompt, paste the following command, and then press Enter:
@@ -254,6 +245,7 @@
 	```json
 		["value1", "value2"]
 	```    
+23. Close all open windows.
 
 
 # Lesson 4: Implementing Serverless Services
@@ -268,7 +260,7 @@
 3. If the **Windows Azure Tour** dialog box appears, to close it, click **X**.
 4. In the navigation blade, click **Create a resource**. 
 5. In the **New** window, select **Compute**, and then select **Function App**.
-6. In the **Function App - Create** blade, in the **App name** box, enter a globally unique name.
+6. In the **Function App** blade, in the **App name** box, enter a globally unique name.
 7. From the **Location** list, select the region that is closest to your location.
 8. Set **Application Insights** to **Off**.
 9. Click **Create**. Wait for the Function app to be created. Click the newly created Function app.
@@ -281,15 +273,13 @@
         &name=<yourname>
     ```
     >**Note**: Replace *<yourname>* variable with your actual name.
- 15. Check that you are getting the expected response such as the following:
+ 1.  Check that you are getting the expected response such as the following:
 	 ```cs
         "Hello {Your Name}"
      ```
 
      >**Note**: This is the response from Microsoft Edge. Other browsers may include displayed XML.
 16. To see the trace output from the previous execution, return to your function in the portal and click the arrow at the bottom of the screen to expand the **Logs**.
-
-
 
 ### Demonstration: Developing, Testing, and Publishing an Azure Function from CLI
 
@@ -301,7 +291,7 @@
 3. If the **Windows Azure Tour** dialog box appears, to close it, click **X**.
 4. In the navigation blade, click **Create a resource**. 
 5. In the **New** window, select **Compute**, and then select **Function App**.
-6. In the **Function App - Create** blade, in the **App name** box, enter a globally unique name.
+6. In the **Function App** blade, in the **App name** box, enter a globally unique name.
     >**Note**: Save the App name in any code editor. You will need it when publishing a new **Azure Function** to **Azure**.
 7. From the **Location** list, select the region that is closest to your location.
 8. Set **Application Insights** to **Off**.
@@ -327,6 +317,7 @@
     ```bash
         func host start --build
     ```
+    > **Note**: If windows Security Alert dialog box appears click **Allow access**.
 16. Open a browser and navigate to **http://localhost:7071/api/MyAzureFunc**.
 17. Add the following query string value to the end of this URL, and then press Enter to execute the request:
     ```cs
@@ -349,7 +340,8 @@
         func azure functionapp publish {Your App name}
     ```            
     >**Note**: Replace *{Your App name}* with your actual app name that you noted in step 6.
-21. Open a browser and navigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}**.
+21. Go back to azure portal and open the azure function, click on **Manage** then under **Function keys**, click on **Click to show** and copy the **default key** value.
+21. Open a browser and navigate to **https://{Your App name}.azurewebsites.net/api/MyAzureFunc?name={Your Name}&&code={YourFunctionKey}**.
     >**Note**: Replace *{Your App name}* with your actual app name and replace *{Your Name}* with your actual name.
 22. Check that you are getting the expected response such as the following:
 	 ```cs
