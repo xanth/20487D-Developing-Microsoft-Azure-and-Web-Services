@@ -24,11 +24,11 @@
     ```base
     dotnet restore
     ```
-5. Open the project in **VSCode**, and then run the following command:
+5. To Open the project in **VSCode**, and then run the following command:
     ```bash
     code .
     ```
-6. On the **Explorer** blade, under **STARTER**, expand **Controllers**, and then double-click **ValuesController**.
+6. On the **Explorer** blade, under **STARTER**, expand **Controllers**, and then double-click **ValuesController.cs**.
 7. Locate the **Get** method and review the return content of the method.
 8. To run the application, run the following command:
     ```bash
@@ -63,7 +63,7 @@
     ```base
     dotnet restore
     ```
-4. Open the project in **VSCode**, and then run the following command:
+4. To Open the project in **VSCode**, and then run the following command:
     ```bash
     code .
     ```
@@ -190,7 +190,7 @@
     ```bash
     code .
     ```
-4. On the **Explorer** blade, under **STARTER**, expand **Controllers**, and then double-click **DestinationsController**.
+4. On the **Explorer** blade, under **STARTER**, expand **Controllers**, and then double-click **DestinationsController.cs**.
 5. To return **destination** by **id**, enter the following code:
     ```cs
      // GET api/destinations/id
@@ -344,7 +344,9 @@
 1. Open Microsoft Visual Studio 2017 as an administrator.
 2. In Visual Studio, on the **File** menu, point to **Open**, and then click **Project/Solution**.
 3. In the **Open Project** dialog box, browse to **[Repository Root]\Allfiles\Mod03\DemoFiles\HostingISSAndISSExpress**, click **HostingISSAndISSExpress.sln**, and then click **Open**.
+   > **Note**: If a Security Warning for HostingISSAndISSExpress.Host dilaog box appears, then clear the selection for Ask me for every project in this solution and then Click **OK**.
 4. To run the application with **IIS Express**, click **Debug**, and then click **Start Without Debugging**, or press Ctrl + F5.
+   > **Note**: If a warning regarding SSL certificate appears, Click **Yes**.
 5. A new browser window will open. Verify that you are getting the following response:
 	```json
 		["value1", "value2"]
