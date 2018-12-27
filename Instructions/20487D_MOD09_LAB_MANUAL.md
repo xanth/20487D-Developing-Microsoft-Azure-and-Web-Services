@@ -187,7 +187,7 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
 4. Select **Create a new Azure AD B2C Tenant**.
 5. Enter the values for **Organization name** and **Initial domain name**, and then click **Create**.
 6. After creating the tenant, click **Directory and subscription filter** and select your tenant.
-7. In the top left-hand corner of the Azure portal, select **All services**, and then search for and select **Azure AD B2C**.
+7. In the top left-hand corner of the Azure portal, select **All services**, search for **Azure AD B2C**, and then from the results, click **Azure AD B2C**.
 8. From the blade, select **Applications**, and click **Add**.
 9. Enter the name of the application.
 10. Under **Web App / Web API**, select **Yes**.
