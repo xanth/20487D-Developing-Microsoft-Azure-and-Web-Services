@@ -118,7 +118,7 @@
     ```cs
     using Serilog;
     ```
-11. To use **Serilog** and write the logs to the console, click **Program.cs**, and then after **UseStartup<Startup>()**, paste the following code in the **CreateWebHostBuilder** method:
+11. To use **Serilog** and write the logs to the console, click **Program.cs**, and then after **UseStartup\<Startup\>()**, paste the following code in the **CreateWebHostBuilder** method:
     ```cs
     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
 	    .ReadFrom.Configuration(hostingContext.Configuration)
