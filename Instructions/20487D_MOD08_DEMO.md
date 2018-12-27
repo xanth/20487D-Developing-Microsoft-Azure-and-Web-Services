@@ -278,6 +278,7 @@
     ```batch
      .\createAzureServices.ps1
     ```
+    >**Note**: If prompted for Run only scripts that you trusted, type **R** and then press **Enter**.
 
 #### Demonstration Steps
 
@@ -417,7 +418,7 @@
     >**Note:** If prompted for trust this repository type A and then press Enter.
 18. In PowerShell, to change directory, type the following command, and then press Enter:
     ```bash
-      cd [Repository Root]\AllFiles\Mod08\DemoFiles\Mod8Demo6\Setup
+      cd [Repository Root]\AllFiles\Mod08\DemoFiles\Mod8Demo6\Starter\Setup
     ```
 19. Run the following command:
     ```bash

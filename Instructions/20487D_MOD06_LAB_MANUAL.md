@@ -23,9 +23,9 @@ After completing this lab, you will be able to:
 
 #### Task 1: Use a Docker container to build a self-contained ASP.NET Core web service
 
-1. Open the command prompt in Microsoft Visual Studio Code and go to the following directory:
+1. Open the command prompt and go to the following directory:
    ```bash
-   cd *[Repository Root]*\Allfiles\Mod06\Labfiles\Exercise1\Starter
+   cd [Repository Root]\Allfiles\Mod06\Labfiles\Exercise1\Starter
    ```
 2. To the **BlueYonder.Flights.Service** project, add a new **.dockerignore** file.
 3. To the **BlueYonder.Flights.Service** project, add a new **Dockerfile** file.
@@ -172,11 +172,11 @@ After completing this lab, you will be able to:
 
 #### Task 3: Deploy an ASP.NET Core application to the production slot
 
-1. In the **DEPLOYMENT** section, click **Deployment credentials**, and enter the following information:
-   - In **FTP/deployment username**, type **FTPMod6Lab2***{YourInitials}*.
+1. To add credentials to the app service, under the **DEPLOYMENT** section, click **Deployment Center**, Select **FTP**, click **Dashboard** and then provide the following information:
+   - In **FTP** pane click **User Credentials** , in **username** box type **FTPMod6Lab2**{YourInitials}.
    - In the **Password** and **Confirm password** boxes, type **Password99**.
 2. In Visual Studio Code, open the **Starter** project.
-3. In the **Middleware** folder, click the **TenantMiddleware** file.
+3. In the **Middleware** folder, click the **TenantMiddleware.cs** file.
 4. To add the **X-Tenant-ID** header, locate the **Invoke** method and paste the following code:
    ```cs
    string tenant = _configuration["BLUEYONDER_TENANT"] ?? "Localhost";
@@ -207,7 +207,7 @@ After completing this lab, you will be able to:
 2. In **Developer Tools**, navigate to the **Network** tab.
 3. Navigate to the following URL:
    ```url
-   https://blueyonder-flights-{*YourInitials*}.azurewebsites.net/api/destinations
+   https://blueyonder-flights-{YourInitials}.azurewebsites.net/api/destinations
    ```
 4. In the **Network** tab, locate the URL and check the following information:
    - In the **Response Headers** section, locate **X-Tenant-ID** and verify that the value is **Production**.
@@ -233,7 +233,7 @@ After completing this lab, you will be able to:
 #### Task 3: Deploy a newer version to the staging slot
 
 1. Switch to Visual Studio Code.
-2. In the **Controllers** folder, double-click **DestinationsController**.
+2. In the **Controllers** folder, double-click **DestinationsController.cs**.
 3. Add more destinations.
    ```cs
    _destinations.Add(new Destination { Id = 6, CityName = "Milan", Airport = "Malpensa" });
@@ -262,7 +262,7 @@ After completing this lab, you will be able to:
 2. In the **Developer Tools**, navigate to the **Network** tab.
 3. Navigate to the following URL:
    ```url
-   https://blueyonder-flights-*{YourInitials}*-staging.azurewebsites.net/api/destinations
+   https://blueyonder-flights-{YourInitials}-staging.azurewebsites.net/api/destinations
    ```
 4. View the response with all the destinations, including Milan and Rome.
 5. In the **Network** tab, locate the URL and check the following information:
@@ -331,6 +331,7 @@ After completing this lab, you will be able to:
 8. View the response with all the destinations including Milan and Rome.
 9.  In the **Network** tab, locate the URL and check the following information:
     - In the **Response Headers** section, locate **X-Tenant-ID** and verify that the value is **Production**.
+10. Close all open windows.
 
 
 # Lab: Publishing a Web API with Azure API Management
@@ -338,6 +339,9 @@ After completing this lab, you will be able to:
 ### Preparation Steps
 
 1. In PowerShell as Administrator, run **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+   >**Note**: If prompted for to install NuGet provider type **Y** and then press **Enter**.
+
+   >**Note**: If prompted for trust this repository type **A** and then press **Enter**.
 2. Navigate to *[repository root]***\Mod06\Labfiles\Exercise3\Setup** and run the following command:
     ```batch
      .\createAzureServices.ps1
@@ -403,12 +407,12 @@ After completing this lab, you will be able to:
 
 1. In the **BlueYonder** API, click **Destinations**.
 2. Click the **Design** tab.
-3. In the **Inbound processing** window, click the pencil icon.
-4. Click **Caching**, then enter the following details:
+3. In the **Inbound processing** window, click the **+ Add policy**.
+4. Select the **Cache response**, and then enter the following details:
     - Under **Cache responses**, select **On**.
     - In **Duration**, type **60**.
     - Click **Save**
-5. Click the **Test** tab.
+5. Click the **Test** tab and then click **Destinations**.
 6. Click **Send** and then click the **Trace** tab.
 7. Verify that the **Backend** section exists and that the request was handled.
 8. Click **Send** and then click the **Trace** tab.
@@ -417,7 +421,7 @@ After completing this lab, you will be able to:
 #### Task 3: Configure a request rate limit (throttling) for the flight availability API
 
 1. In the **BlueYonder** API, click **Destinations By ID**, and then click the **Design** tab.
-2. In the **Inbound processing** window, click the triangle and select **Code editor**.
+2. In the **Inbound processing** window, click the **ellipses(...)** and select **Code editor**.
 3. Position the cursor inside the **\<inbound\>** element.
 4. In the right window, under **Access restriction policies**, click **+ Limit call rate per key**.
 5. In the **\<inbound\>** element, modify your **rate-limit-by-key** code to the following code:
@@ -428,7 +432,7 @@ After completing this lab, you will be able to:
 #### Task 4: Test the rate limit
 
 1. In the **BlueYonder** API, click the **Destinations By ID**.
-2. Click the **Test** tab.
+2. Click the **Test** tab and then click **Destinations By ID**.
 3. In the **Template parameters** section, in the **id** parameter, under **VALUE**, enter **1**.  
 4. Press **Send** two times in a row.
 5. After sending the request two times, you get the **429 Too many requests** response.

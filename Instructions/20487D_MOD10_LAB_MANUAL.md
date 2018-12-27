@@ -8,7 +8,7 @@
 
 1. In the Microsoft Azure portal, create an Azure web app.
 2. In Microsoft Visual Studio Code, Open the *[Repository Root]***\AllFiles\Mod10\Labfiles\Lab1\Starter**.
-3. Create a new folder and name it **Middleware**. In this folder, create a new file, and name it **ExceptionHandlingMiddleware.cs**.
+3. Create a new folder and name it **Middleware**. In this folder, create a new file, and name it **MachineNameMiddleware.cs**.
 4. In the **MachineNameMiddleware.cs** file, add a **RequestDelegate** instance, and initiate it as the constructor.
 5. To add the **X-BlueYonder-Server** header with **MachineName** as the value, add the **Invoke** method.
 6. In **IApplicationBuilder**, add an extension method.

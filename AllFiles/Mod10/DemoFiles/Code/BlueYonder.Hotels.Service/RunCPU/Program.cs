@@ -47,7 +47,7 @@ namespace RunCPU
 
             sw.Stop();
 
-            Console.WriteLine($"Signing {GeneratedItems * Times} resarvations takes {sw.Elapsed}");
+            Console.WriteLine($"Signing {GeneratedItems * Times} reservations takes {sw.Elapsed}");
         }
     }
 }

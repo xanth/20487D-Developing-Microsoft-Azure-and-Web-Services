@@ -47,7 +47,7 @@
 1. Open Azure Portal.
 2. On the left-hand side menu, click **Azure Active Directory**.
 3. In the **Azure Active Directory** blade, click **App registrations**, and then click **New application registration**.
-   - In the **Name** box, enter **Mod10OpenIdConnect**.
+   - In the **Name** box, enter **Mod09OpenIdConnect**.
    - In the **Sign-on URL** box, enter **https://localhost:5001/signin-oidc**.
    - Click **Create**.
 4. Copy the **Application ID**. This is the Client ID.

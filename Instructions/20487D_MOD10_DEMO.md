@@ -11,7 +11,10 @@
 2. In the **User Account Control** modal, click **Yes**.
 3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
    >**Note**: If prompted for you trust this repository Type **A** and then press **Enter**.
-4. Browse to *[Repository Root]***\AllFiles\Mod10\DemoFiles\Setup1**.
+4. To change the directory,  run the following command:
+   ```bash
+    cd  [Repository Root]\AllFiles\Mod10\DemoFiles\Setup1
+   ```
 5. Run the following command:
    ```batch
     .\createAzureServices.ps1
@@ -110,7 +113,12 @@
     ```batch
      .\createAzureServices.ps1
     ```
-4. Follow the on-screen instructions. Wait for the deployment to complete successfully.
+4. You will be asked to supply a subscription ID, which you can get by performing the following steps:
+    1. Open a browser and go to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
+    2. On the top bar, in the search box, type **Cost**, and then, in results, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window should open.
+    3. Under **Individual billing**, click **Subscriptions**.
+    4. Under **My subscriptions**, you should have at least one subscription. Select the subscription that you want to use.
+    5. Copy the subscription ID, and then paste it at the PowerShell prompt. 
 5. Open Microsoft Edge and go to **http://portal.azure.com**.
 6. Sign in to the Azure portal.
 7. On the Azure portal, click **Create a resource**.
@@ -123,13 +131,12 @@
 	- **myVNet** - for the name of the virtual network.
 	- **10.0.0.0/16** - for the virtual network address space.
 	- **myAGSubnet** - for the subnet name.
-	- **10.0.0.0/24** - for the subnet address space.
+	- **10.0.0.0/24** - for the subnet address range.
 12. To create the virtual network and subnet, click **OK**.
 13. Under **IP address type** select **Public**, under**Public IP address**, select **Create new**, and then type **myAGPublicIPAddress** as the name of the public address.
-14. Accept the default values for the other settings, and then click **OK**.
-15. Accept the default values for the listener configuration, leave the web application firewall disabled, and then click **OK**.
-16. To create the virtual network, the public IP address, and the application gateway, click **OK**.
-17. Wait until the deployment finishes successfully before moving on to the next section.
+14. Accept the default values for the other settings and listener configuration, leave the web application firewall disabled and then click **OK**.
+15. To create the virtual network, the public IP address, and the application gateway, click **OK**.
+16. Wait until the deployment finishes successfully before moving on to the next section.
    > **Note**: It may take up to 30 minutes for the application gateway to be created.
 18. In the left menu, click **All resources**, and then, in the **resources** list, click **myVNet**.
 19. Click **Subnets**, and then click **+ Subnet**.
@@ -171,12 +178,12 @@
     ```batch
      .\createAzureServicesWestEurope.ps1
     ```
-    > **Note**: If prompted for you trust this repository Type **R** and then press **Enter**.
+    > **Note**: If prompted for you trust this Script, Type **R** and then press **Enter**.
 6. In the **Sign in** window that appears, enter your details, and then sign in.
 7. You need to enter a **Subscription ID**, which you can get by performing the following steps:
    1. Open Microsoft edge and go to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the sign-in page to appear, enter your email address and password, and then click **Sign In**.
    2. On the top bar, in the **search** box, type **Cost**, and then, in **results**, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window should open.
-   3. Under **BILLING ACCOUNT**, click **Subscriptions**.
+   3. Under **Individual billing**, click **Subscriptions**.
    4. Under **My subscriptions**, you should have at least one subscription. Select the subscription that you want to use.
    5. Copy the value from **Subscription ID**, and then, at the PowerShell command line, paste the copied value. 
 8. In the **Administrator: Windows PowerShell** window, follow the on-screen instructions. Wait for the deployment to complete successfully.

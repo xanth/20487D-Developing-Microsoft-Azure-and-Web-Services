@@ -39,6 +39,7 @@ After completing this lab, you will be able to:
 2. Open a browser, and then browse to the **GET** action with **id 1**.
    
    >**Result:** You should see the **Booking** reservation with **Booking Id: 1**.
+3. Close all open windows.
 
 ### Exercise 3: Create a Client
 
