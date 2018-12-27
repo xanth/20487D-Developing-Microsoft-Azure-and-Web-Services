@@ -263,7 +263,6 @@
 
 # Lesson 3: Application Insights
 
-
 ### Demonstration: Integrating and viewing Application Insights
 
 ### Preparation Steps
@@ -271,10 +270,9 @@
 1. Open Windows PowerShell as Administrator.
 2. In the **User Account Control** modal, click **Yes**.
 3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
-   >**Note**: If prompted for trust this repository , Type A and then press Enter.
+   >**Note**: If prompted for trust this repository, Type **A** and then press **Enter**.
 4. Browse to *[repository root]***\AllFiles\Mod08\DemoFiles\ApplicationInsights\Setup**.
 5. Run the following command:
-   >**Note**: If prompted for Run only scripts that you trusted, type R and then press Enter.
     ```batch
      .\createAzureServices.ps1
     ```
