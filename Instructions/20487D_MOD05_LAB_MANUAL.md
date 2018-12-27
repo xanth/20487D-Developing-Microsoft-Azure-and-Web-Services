@@ -1,4 +1,4 @@
-# Module 5: Hosting Services
+# Module 5: Hosting Services On-Premises and in Azure
 
 # Lab: Host an ASP.NET Core Service in a Windows Service
 
@@ -24,12 +24,20 @@ In this exercise, you will create a new Web API via ASP.NET Core by using the co
 
 #### Task 1: Create a new ASP.NET Core Application project
 
-Create a new Web API Core project by using the command prompt with the **dotnet** tool.
+1. Create a new Web API Core project by using the command prompt with the **dotnet** tool.
+2. Open the project in VSCode and create a new **Models** folder.
+3. Open File Explorer navigate to **[Repository Root]\Allfiles\Mod05\LabFiles\Exercise1\Assets**.
+4. From **Assets** folder copy **Flight.cs** file and paste in the **Models** folder.
+5. From **Assets** folder copy **FlightsController.cs** file and paste in the **Controllers** folder.
+6. In **BlueYonder.Flights.Service.csproj** locate the last **\<PropertyGroup\>** section and under **\<TargetFramework\>** tag add:
+   ```xml
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+   ```
     > **Results**: After completing this exercise, you should have a basic Web API ASP.NET Core project.
 
 #### Task 2: Install the Microsoft.AspNetCore.Hosting.WindowsServices NuGet package
 
-Install the **Microsoft.AspNetCore.Hosting.WindowsServices** NuGet package by using the command prompt with the **dotnet** tool.
+1. Install the **Microsoft.AspNetCore.Hosting.WindowsServices** NuGet package by using the command prompt with the **dotnet** tool.
     > **Results**: After completing this exercise, you should have **Microsoft.AspNetCore.Hosting.WindowsServices** NuGet package
    on your ASP .NET Core project that you have created in Task 1 which allows you to run the ASP.NET Core project as a Windows service.
 

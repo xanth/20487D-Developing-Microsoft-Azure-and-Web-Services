@@ -96,7 +96,7 @@
 22. In the **Password** and **Confirm Password** boxes, type **Password123!**.
 23. In **Resource group**, select **Use existing**, and then select the **Mod7demo2ResourceGroup** resource group.
 24. Click **Create**.
-25. Click **All resources**, and then click **mod7demo2sqlserver***{YourInitials}*.
+25. Click **All resources**, and then click **mod7demo2sqlserver**{YourInitials}.
 26. In the **mod7demo2sqlserver***{YourInitials}* pane, on the top bar, click **Import database**.
 27. In the **Import database** pane, click **Storage(Premium not supported)**, and then click **mod7demo2**{YourInitials}.
 28. In the **Containers** pane, click **bacpaccontainer**, click the **Mod7Demo2DB.bacpac** file, and then click **Select**.
@@ -109,11 +109,12 @@
 35. In success window click **OK**.
 36. Open SQL Operations Studio.
 37. In **Connection type**, select **Microsoft SQL Server**.
-38. In the **Server** box, type **mod7demo2sqlserver***{YourInitials}***.database.windows.net**.
-39. In the **User name** box, type **MyAdmin**.
-40. In the **Password** box, type **Password123!**.
-41. Click **Connect**.
-42. Now you can query the database locally.
+38. In the **Server** box, type **mod7demo2sqlserver**{YourInitials}**.database.windows.net**.
+39. From the **Authentication type** drop down list select **SQL Login**.
+40. In the **User name** box, type **MyAdmin**.
+41. In the **Password** box, type **Password123!**.
+42. Click **Connect**.
+43. Now you can query the database locally.
 
 ### Demonstration: Using Microsoft Azure Cosmos DB with the MongoDB API
 
