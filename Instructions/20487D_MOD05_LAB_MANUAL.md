@@ -72,12 +72,15 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 1: Run a setup script to upload a database to Azure
 
-1. At the command prompt, run the command **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1** in PowerShell as an administrator.
-2. Run the following command:
+1. Run the command **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1** in PowerShell as an administrator.
+   >**Note**: If prompted for trust this repository type **A** and then press **Enter**.
+2. Run the following command, and follow the steps to sign in your Azure subscription:
     ```bash
      .\createAzureSQL.ps1
     ```
-   and follow the steps to sign in your Azure subscription.
+    >**Note**: If your getting an error saying that PowersShell files is not digitally signed, Run the following command: **Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass**.
+   
+    >**Note**: If prompted for Do you want to change the execution policy? type **Y** and then press **Enter**.
 
 #### Task 2: Create a free website
 
@@ -97,17 +100,19 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 4: Configure IIS logs
 
-1. Inside **Deployment Credentials**: 
-
-   - Set the **FTP/deployment username** with unique name.
+1. Inside **Deployment center**: 
+   - Select **FTP** and then click **Dashboard**.
+   - In the **FTP** pane, click **User Credentials** in the **username** box, enter a globally unique name.
    - Set the **Password**.
    
 2. Inside **MONITORING** menu:
-
    - Set the **Application Logging (Filesystem)** option to **On**.
-   - Set log level to **Verbose**.
+   - Set the level to **Verbose**.
    - Set **Failed request tracing** to **On**.
    - Select **File System** with **Retention Period (Days)** of **21** days.
+   - Copy the **FTP host name** value to any code editor.
+  
+    >**Note**: You will need it in the next exercise.
 
 ### Exercise 2: Deploying an ASP.NET Core Web API to the Web App
 
@@ -125,6 +130,9 @@ In this exercise, you will create a new Windows service, start and stop it by us
     ```ps
     Invoke-WebRequest https://{Your App Name}.azurewebsites.net/api/flights
     ```
+    >**Note**: Replace **{Your App Name}** with your actual app name that you have copied earlier.
+
+    >**Note**: If there any error regarding invoke web request run the following command then try to run the command again: **[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12**.
 2. Check that you are getting the **"X-Tenant-ID"** header with the value as **Testing**.
 3. Check that you are getting a good JSON response of flights.
 
@@ -156,8 +164,9 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 2: Publish the application into a local container using Visual Studio
 
-1. In Microsoft Visual Studio 2017, open *[Repository Root]***\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.sln** .
-2. Add **Docker Support** and in the **Docker Support Options** window, select **Linux**.
+1. In Microsoft Visual Studio 2017, open [Repository Root]**\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.sln** .
+2. Add **Docker Support** and in the **Docker File Options** window, select **Linux**.
+   >**Note**: If Microsoft Visual studio dialog box appears click **No**.
 3. Build the solution and start debugging.
 4. Check that you are getting the expected response in the JSON format.
 
@@ -215,7 +224,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
        }
     }
     ```
-4.  Create a new Azure function for your new Functions project with the **Http Triger** template.
+4.  Create a new Azure function for your new Functions project with the **HttpTrigger** template.
 
 #### Task 2: Implement an HTTP trigger that invokes the flights booking Azure Web App
 
@@ -258,14 +267,17 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 3: Test the Function App locally in a browser
 
-1.  Test the new Azure function locally.
-2. Open a browser and navigate to **http://localhost:7071/api/BookFlightFunc?flightId=1**.
+1. Test the new Azure function locally.
+2. Open a browser and navigate to:
+   ```url
+    http://localhost:7071/api/BookFlightFunc?flightId=1
+   ``` 
 3. Check that you are getting the expected response.
-4. To check whether the travelers were actually booked to flight number 1, open a browser and go to the following address:<br/>
-
-   **http://blueyonder-flights-***{Your Initials}***.azurewebsites.net/api/flights**
-
-    >**Note**: Replace *{Your Initials}* with your actual initials.
+4. To check whether the travelers were actually booked to flight number 1, open a browser and go to the following address:
+   ```url
+   http://blueyonder-flights-{Your Initials}.azurewebsites.net/api/flights
+   ``` 
+    >**Note**: Replace **{Your Initials}** with your actual initials.
 
 5. Check that you are getting the expected response in the JSON format.
 
@@ -284,14 +296,20 @@ In this exercise, you will create a new Windows service, start and stop it by us
     
 #### Task 2: Test the Function App on Azure in a browser 
 
-1. Open a browser and navigate to **https://bookflightfunctionapp-***{Your Initials}***.azurewebsites.net/api/navigateBookFlightFunc?flightId=1**.
-    >**Note**: Replace *{Your Initials}* with your actual initials.
+1. Open a browser and navigate to:
+   ```url
+    https://bookflightfunctionapp-{Your Initials}.azurewebsites.net/api/navigateBookFlightFunc?flightId=1.
+   ``` 
+    >**Note**: Replace **{Your Initials}** with your actual initials.
 2. Check whether you are getting the expected response.
-3. To check whether the travelers were actually booked to flight number 1, open a browser and navigate to **http://blueyonder-flights-***{Your Initials}***.azurewebsites.net/api/flights**.
-
-    >**Note**: Replace *{Your Initials}* with your actual initials.
+3. To check whether the travelers were actually booked to flight number 1, open a browser and navigate to:
+   ```url
+    http://blueyonder-flights-{Your Initials}.azurewebsites.net/api/flights.
+   ```
+    >**Note**: Replace **{Your Initials}** with your actual initials.
 
 4. Check whether you are getting the expected response.
+5. Close all open windows.
 
 
 ©2018 Microsoft Corporation. All rights reserved.
