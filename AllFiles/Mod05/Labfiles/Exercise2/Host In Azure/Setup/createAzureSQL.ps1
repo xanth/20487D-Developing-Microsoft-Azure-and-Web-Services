@@ -1,76 +1,105 @@
-﻿### Login to the account
-Login-AzureRmAccount
-
-Write-Host "Please enter your subscription id: " -NoNewline
-$SubscriptionId = Read-Host
-
-Select-AzureRmSubscription -SubscriptionId $SubscriptionId
-
-### get the user name for resources naming in the script
-Write-Host "Please enter your name" -NoNewline
-Write-Host " - no more than 10 characters: " -ForegroundColor Yellow -NoNewline
-$yourName = Read-Host
-
-$yourName = $yourName.ToLower()
-$websiteName = "blueyondermod07lab3" + $yourName
-$resourcesGroupName = "Mod07Lab3-RG"
-
-Function GetLocation {
-$Title = "Please choose customer location"
-$Info = "Select location"
-$options = [System.Management.Automation.Host.ChoiceDescription[]] @("&WestEurope", "&WestUS", "&EastUS", "&SoutheastAsia")
-[int]$defaultchoice = 0
-$opt =  $host.UI.PromptForChoice($Title , $Info , $Options,$defaultchoice)
-
-switch($opt)
-    {
-        0 {$location = "WestEurope"}
-        1 {$location = "WestUS"}
-        2 {$location = "EastUS"}
-        3 {$location = "SoutheastAsia"}
+<#
+.SYNOPSIS
+    Deploys a template to Azure
+ 
+.DESCRIPTION
+    Deploys an Azure Resource Manager template
+ 
+.PARAMETER subscriptionId
+    The subscription id where the template will be deployed.
+#>
+ 
+param(
+[Parameter(Mandatory=$True)]
+[string]
+$subscriptionId
+)
+ 
+Function RegisterRP {
+    Param(
+        [string]$ResourceProviderNamespace
+    )
+ 
+    Write-Host "Registering resource provider '$ResourceProviderNamespace'";
+    Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace;
+}
+ 
+$ErrorActionPreference = "Stop"
+$resourceGroupName = "BlueYonder.Lab.05"
+$today = Get-Date -format yyyy-MM-dd;
+ 
+# sign in
+Write-Host "Logging in...";
+Login-AzureRmAccount;
+ 
+# select subscription
+Write-Host "Selecting subscription '$subscriptionId'";
+Select-AzureRmSubscription -SubscriptionID $subscriptionId;
+ 
+# Register RPs
+$resourceProviders = @("microsoft.sql");
+if($resourceProviders.length) {
+    Write-Host "Registering resource providers"
+    foreach($resourceProvider in $resourceProviders) {
+        RegisterRP($resourceProvider);
     }
-
-$location
-} #prompts to choose a location for resources
-
-$location = GetLocation
-### Create Resource group
-$RG = New-AzureRmResourceGroup -Name "$resourcesGroupName" -Location $location 
-
-### Deploy the webapp
-New-AzureRmResourceGroupDeployment -ResourceGroupName $RG.ResourceGroupName -TemplateFile $PSScriptRoot\template.json -TemplateParameterFile $PSScriptRoot\parameters.json -webappname $websiteName -hostingPlanName "plan$websiteName" -location $location -serverFarmResourceGroup $RG.ResourceGroupName -subscriptionId $SubscriptionId
-
-### Deploy the code to the webapp
-$path = (get-item $PSScriptRoot).parent.FullName+"\Starter\BlueYonder.Flights\BlueYonder.Flights.Service"
-Write-Host $path
-cd $path
-$profile = Get-AzureRmWebAppPublishingProfile -ResourceGroupName $RG.ResourceGroupName -Name $websiteName -Format WebDeploy -OutputFile "$path\Properties\PublishProfiles\Azureprofile.xml"
-
-$azureProfilePath = "$path\Properties\PublishProfiles\Azureprofile.xml"
-$publishProfilePath = "$path\Properties\PublishProfiles\Azure.pubxml"
-
-$azureProfileXml = [xml](Get-Content $azureProfilePath)
-$publishProfileXml = [xml](Get-Content $publishProfilePath)
-
-$publishProfileXml.Project.PropertyGroup.PublishSiteName = $websiteName
-$MSDeployPublishProfile = $azureProfileXml.publishData.publishProfile | where {$_.publishMethod -eq 'MSDeploy'}
-$publishProfileXml.Project.PropertyGroup.UserName = $MSDeployPublishProfile.userName
-$publishProfileXml.Project.PropertyGroup.Password = $MSDeployPublishProfile.userPWD
-
-$publishProfileXml.Save($publishProfilePath)
-
-&dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
-
-### Get the webapp site url
-$webapp = Get-AzureRmWebApp -ResourceGroupName $RG.ResourceGroupName -Name $websiteName 
-$urlname = $webapp.DefaultHostName
-$siteurl = "https://$urlname"
-Write-Host "The WebApp URL is: $siteurl"
+}
+ 
+#Create or check for existing resource group
+$resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
+if(!$resourceGroup)
+{  
+     Write-Host "Resource group '$resourceGroupName' does not exist.";
+    $resourceGroupLocation = "eastus"
+    Write-Host "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'";
+    New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
+}
+else{
+    Write-Host "Using existing resource group '$resourceGroupName'";
+    $resourceGroupLocation = $resourceGroup[0].Location;
+}
+ 
+# Get user's initials
+Write-Host "Please enter your name's initials: (e.g. - John Doe = jd)";
+$initials = Read-Host "Initials";
+$serverName = "blueyonder05-$initials";
+$databaseName = "BlueYonder.Flights.Lab05";
+$password = 'Pa$$w0rd';
+ 
+ 
+ 
+# Start the deployment
+# Resource creation
+Write-Host "Starting deployment of Azure SQL...";
+New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile "./azureSql.json" -serverName $serverName -databaseName $databaseName;
+ 
+# post-creation
+$dbConnectionString = "Server=tcp:$serverName.database.windows.net,1433;Initial Catalog=$databaseName;Persist Security Info=False;User ID=BlueYonderAdmin;Password=$password;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=180;"
+ 
+$ipAddress= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+ 
+ # Create a server firewall rule that allows access from the specified IP range
+$serverfirewallrule = New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
+    -ServerName $serverName `
+    -FirewallRuleName "AllowedIPs" -StartIpAddress $ipAddress -EndIpAddress $ipAddress
+ 
+Write-Host $dbConnectionString
+ 
+Write-Host "Initializing database.."
+ 
+$connection = New-Object -TypeName System.Data.SqlClient.SqlConnection($dbConnectionString)
+$query = Get-Content ./sqlScript.sql -Raw
+$command = New-Object -TypeName System.Data.SqlClient.SqlCommand($query, $connection)
+$connection.Open()
+$command.ExecuteNonQuery()
+$connection.Close()
+ 
+Write-Host "Database has initialized successfully"
 # SIG # Begin signature block
 # MIIdkgYJKoZIhvcNAQcCoIIdgzCCHX8CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUC7HKoOZ7PhYPsfIquHZIEURX
-# W0ygghhuMIIE3jCCA8agAwIBAgITMwAAAPlcySJVCsCdxAAAAAAA+TANBgkqhkiG
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUPxqXa90JmoeJ6ubtQF7tMeAj
+# hwqgghhuMIIE3jCCA8agAwIBAgITMwAAAPlcySJVCsCdxAAAAAAA+TANBgkqhkiG
 # 9w0BAQUFADB3MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4G
 # A1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSEw
 # HwYDVQQDExhNaWNyb3NvZnQgVGltZS1TdGFtcCBQQ0EwHhcNMTgwODIzMjAyMDA4
@@ -205,24 +234,24 @@ Write-Host "The WebApp URL is: $siteurl"
 # ChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSgwJgYDVQQDEx9NaWNyb3NvZnQgQ29k
 # ZSBTaWduaW5nIFBDQSAyMDExAhMzAAABA14lHJkfox64AAAAAAEDMAkGBSsOAwIa
 # BQCggaIwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGCNwIBCzEO
-# MAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFBtS5tgkeV4VXf5k2/yGJ8YJ
-# zVThMEIGCisGAQQBgjcCAQwxNDAyoBSAEgBNAGkAYwByAG8AcwBvAGYAdKEagBho
-# dHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20wDQYJKoZIhvcNAQEBBQAEggEAHKiG/FbL
-# OWNoiQIi8LMR+GXYYu5BlLLEHe6zSYKaYm8h5aruCRwGRGbHbg2/9nh7XNYyNwOF
-# 2mcpsYjDE5Povcp9ZvDnBb4QisjXpAjbyW92YWrqrroKUssoFkg+XNZPkuusTrKM
-# vxxnXkNKl+cTe+tZOhENncEdkvaQpeRtf+ljtqXuvVXzRBXsLXgl1sI+GV1mr7Ge
-# eo+sB1CvEZxr7SgBDeXfxBdxh05/O16R85pMpfaDlYO+6ro9x7/bdtnGDli1nEHO
-# qsKuKSJFdMX0fLanz6BMC9GbAn5qSK2U/TuMrJIpEPPKpGUJStu2i/R0n08n4OmW
-# xnvXxrH1P0BQcaGCAigwggIkBgkqhkiG9w0BCQYxggIVMIICEQIBATCBjjB3MQsw
+# MAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFBbKQOUQREtOMq/fqA6F/EXX
+# x9AvMEIGCisGAQQBgjcCAQwxNDAyoBSAEgBNAGkAYwByAG8AcwBvAGYAdKEagBho
+# dHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20wDQYJKoZIhvcNAQEBBQAEggEAjE+EGUfa
+# hz0iGRSv/WRmty82PiNeXUA1Y0s69PiQ6boIIUB9qDwzmKYQxOS29FBxi0Z44aw3
+# 1drX5tW1wVimHTOvLGVDu+UlVYskz/a92jkjtf6TD9pfvfqJghQ400GCcLAJ7XUU
+# EZgOiqcxLZsZjdGs2n9EHUMF5dMc7l9W9K1sAtgpG1HMh6Xx/d9UnsaWXxK1pZEp
+# pfzN89VWMzPeXp1Zafhx27aJHdIGHT+CAc8BBzabkEOiGvYv0Vi72cSLyiS4vYRV
+# 7dpS7l/YYPzCJYeVlHIdmgrufj3vbhPNXzb5Po3yIzjOuOF8AjEKZzIAerTVRqZX
+# Prv9Nv6qrgIpr6GCAigwggIkBgkqhkiG9w0BCQYxggIVMIICEQIBATCBjjB3MQsw
 # CQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVkbW9u
 # ZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMSEwHwYDVQQDExhNaWNy
 # b3NvZnQgVGltZS1TdGFtcCBQQ0ECEzMAAAD5XMkiVQrAncQAAAAAAPkwCQYFKw4D
 # AhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8X
-# DTE4MTIyOTAzNTUxMlowIwYJKoZIhvcNAQkEMRYEFGJOhsCuBkNudUQsUuWL/1fT
-# Ca0cMA0GCSqGSIb3DQEBBQUABIIBAKUFwXJ4og/FPxEyNHJVgqJM0hulbrPA8GIF
-# ZZ3BXCJdrub7IsP/1kda/7eQ7/H5LdlT/aveQRDuI7wSNXDhbjlPWjWM5GxBlEvt
-# iuQ6YxoL4zjaZtIa8Jzr46RVNYwUHFs306ruV27IBlf6n46wy8UzXJQBXxfs8bj5
-# YdEDPoVGp9/6QHjrtB+oW7aUaoPC2smATMBJYL3BxNHipW05JVstV7EuWuXWbCCp
-# A5uMDVK/0sCwirIKJCJCSOVBgap/JFeUmoYpPADkn+lF9N0uL+Y3Jpu9r4l+Jk4G
-# gcoajBxEzIgBVYKyLfFfg7hIoLsk2sWtM0f6/0Bv/kQ6/SI1KXU=
+# DTE4MTIyOTAzNTUxMVowIwYJKoZIhvcNAQkEMRYEFHVqarh28fs2GJyOz3glyWLa
+# nuukMA0GCSqGSIb3DQEBBQUABIIBABoUY2bV+UpErqPCwAAO9gY+/tYzW17O09uU
+# 2H8u998HgqqtIKyOuVm5M3N3K5bQuFgvvyq8DlFGVOdW8FGmKVLgBtxLiKd5lk9H
+# MYAwxAU3L+xN98anjfAST6TNoo6+pSM7ZNdnDfytCNU9ndUCETdld5FsQnFyczjY
+# 2fAv3zh4LMfotHiKhmSYxZkMGwfQJnmnBLGsVJQgfZEomio0nVwPr6cnDAGnu4Af
+# kIvb2woKgN/irXpTg0e7mfEOvlEU0fyhBJb3hPRvJEzu/GDtFSzgpTnnVdYj9gwU
+# W7xirfrwtO2MG7ahqejcQy1EIi9wdsH43+QbftiQUr/xPfQKuzc=
 # SIG # End signature block
