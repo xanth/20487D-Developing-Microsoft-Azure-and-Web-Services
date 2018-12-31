@@ -6,14 +6,16 @@
 
 #### Task 1: Add ASP.NET Core Identity NuGet
 
-1. At the command prompt, create a new ASP.NET Core project. 
-2. To use **Entity Framework Core**, install the **Microsoft.EntityFrameworkCore.Sqlite** NuGet package.
+1. Open command prompt window and then browse to **[Repository Root]\Allfiles\Mod09\LabFiles\Lab1\Starter**.
+2. At the command prompt, create a new **ASP.NET Core** project. 
+3. To use **Entity Framework Core**, install the **Microsoft.EntityFrameworkCore.Sqlite** NuGet package.
 
 #### Task 2: Create a new DbInitializer with seed for users and groups
 
-1. Under **Identity** area, create a new folder, and then name it **Data**.
-2. In the **Data** folder, create a new **ApplicationDbContext** class derived from **IdentityDbContext**.
-3. To add a constructor, paste the following code:
+1. Open the project in Microsoft Visual Code.
+2. Under **Identity** area, create a new folder, and then name it **Data**.
+3. In the **Data** folder, create a new **ApplicationDbContext** class derived from **IdentityDbContext**.
+4. To add a constructor, paste the following code:
     ```cs
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) 
             : base(option)
@@ -21,8 +23,8 @@
             DbInitializer.Initialize(this);
         }
     ```
-4.  In the **Data** folder, create the **DbInitializer** class.
-5.  To add the **Initialize** and **Seed** methods, paste the following code:
+5.  In the **Data** folder, create the **DbInitializer** class.
+6.  To add the **Initialize** and **Seed** methods, paste the following code:
     ```cs
         public static void Initialize(ApplicationDbContext context)
         {
@@ -92,7 +94,7 @@
 
 #### Task 1: Add a user controller
 
-1. Add a new folder, and then name it **Models**.
+1. Under **Identity** Area, Add a new folder, and then name it **Models**.
 2. In the **Models** folder, create a new **LoginDto** class, and then add the following properties:
     ```cs
         [Required]
@@ -130,7 +132,7 @@
         }
     ```
 
-6. To the **UserController** class, add the **GenerateJwtToken** method with the *email* and *user* parameters:
+6. To the **UserController** class, add the **GenerateJwtToken** method with the **email** and **user** parameters.
 7. To create a new token, inside the **GenerateJwtToken** method, paste the following code:
     ```cs
         List<Claim> claims = new List<Claim>
@@ -156,7 +158,7 @@
     ```
 8. Add a **Register** action, and then create a new user by using **_userManager**.
 9. Verify whether the result succeeded and return the token.
-10. To verify the user and password and return the token, add a **Login** action, and then call **PasswordSignInAsync**.
+10. To verify the username and password and return the token, add a **Login** action, and then call **PasswordSignInAsync**.
 
 #### Task 2: Add authorization attributes to the value controller
 
@@ -173,7 +175,8 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
 
 1. Run the **[Repository Root]\Allfiles\Mod09\LabFiles\Lab1\Starter\Identity** project.
 2. Run the **[Repository Root]\Allfiles\Mod09\LabFiles\Lab1\Starter\IdentityClient** project.
-3.  Verify that *[value1, value2]* return back to the command prompt.
+3. Verify that **[value1, value2]** return back to the command prompt.
+4. Close all open windows.
 
 # Lab: Using Azure Active Directory with ASP.NET Core 
 
@@ -186,21 +189,21 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
 3. In the search box, type **Azure Active Directory B2C**,  from the search results, select **Azure Active Directory B2C**, and then click **Create**.
 4. Select **Create a new Azure AD B2C Tenant**.
 5. Enter the values for **Organization name** and **Initial domain name**, and then click **Create**.
-6. After creating the tenant, click **Directory and subscription filter** and select your tenant.
+6. After creating the tenant, click **Directory + subscription filter** and select your tenant.
 7. In the top left-hand corner of the Azure portal, select **All services**, search for **Azure AD B2C**, and then from the results, click **Azure AD B2C**.
 8. From the blade, select **Applications**, and click **Add**.
 9. Enter the name of the application.
 10. Under **Web App / Web API**, select **Yes**.
-11. Under **Reply URL**, add **https://jwt.ms**, and then click **Create**.
-12. From the blade, select **User flows**, click **New user flow**, and then select **Sign-up and sign in**.
+11. Under **Reply URL**, add **https://jwt.ms** and **https://localhost:5001/index.html**, then click **Create**.
+12. From the blade, select **User flows (policies)**, click **New user flow**, and then select **Sign-up and sign in**.
 13. Enter a policy name for your application to reference.
 14. Select the identity providers and select **Email signup**. Optionally, you can also select social identity providers, if already configured. Click **OK**.
-15. Select **Sign-up** attributes. Choose attributes you want to collect from the consumer during sign-up. For example, select **Country/Region**, **Display Name**, and **Postal Code**. Click **Create**.
+15. Under **User attributes and claims**, Choose attributes you want to collect from the consumer during sign-up. For example, select Country/Region, Display Name, and Postal Code. Click **Create**.
 
 #### Task 2: Add Azure B2C Authentication
 
 1. In **[Repository Root]\Allfiles\Mod09\LabFiles\Lab2\Starter**, create a new **ASP.NET Core** project, and then name it **AzureActiveDirectoryB2C**.
-2. To open the project in Microsoft Visual Studio Code, and open **Startup.cs** file.
+2. Open the project in Microsoft Visual Studio Code, and open **Startup.cs** file.
 3. To configure the authentication, paste the following code:
     ```cs
         services.AddAuthentication(options =>
@@ -229,7 +232,7 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
             "TenantName": "[Mod09Lab02-{YourInitials}]",
             "ClientId": "[ClientId]",
             "Policy": "[B2C_1_{YourInitials}]"
-        },
+        }
     ```
 6.  Open the **ValuesController.cs** file and to the **Get()** method, add the **Authorize** attribute.
 
@@ -238,7 +241,7 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
 #### Task 1: Add a simple js client
 
 1. Open the **Startup.cs** file.
-2. To the **Configure** method, before the **app.UseHttpsRedirection();** call, add the following code:
+2. To the **Configure** method, before the **app.UseAuthentication();** call, add the following code:
     ```cs
         app.UseStaticFiles();
     ```
@@ -316,6 +319,7 @@ In the **ValuesController** class, to the  **Get** action, add the **Authorize**
     ```
 3. Click **Login** and sign-in as an Azure Active DIrectory B2C user.
 4. To see the result, click **Request**.
+5. Close all open windows.
 
 
   ©2018 Microsoft Corporation. All rights reserved.

@@ -24,7 +24,7 @@ In this exercise, you will create a new Web API via ASP.NET Core by using the co
 
 #### Task 1: Create a new ASP.NET Core Application project
 
-1. Create a new Web API Core project by using the command prompt with the **dotnet** tool.
+1. Create a new **ASP.NET Core Web API** project by using the command prompt with the **dotnet** tool.
 2. Open the project in VSCode and create a new **Models** folder.
 3. Open File Explorer navigate to **[Repository Root]\Allfiles\Mod05\LabFiles\Exercise1\Assets**.
 4. From **Assets** folder copy **Flight.cs** file and paste in the **Models** folder.
@@ -72,6 +72,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 2. Navigate to your API by using port **5000**, and make sure you are getting the expected response.
 3. Use the sc command line to stop the service.
 4. Navigate to the same address to see that you are not getting the expected response.
+5. Close all open windows.
     > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a \*\*Windows service.
 
 # Lab: Host an ASP.NET Core Web API in an Azure Web App
@@ -80,9 +81,13 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 1: Run a setup script to upload a database to Azure
 
-1. Run the command **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1** in PowerShell as an administrator.
+1. Change the directory in powershell by running the following command, and then press Enter:
+   ```bash
+    cd [Repository Root]\Allfiles\Mod05\Labfiles\Exercise2\HostInAzure\Setup
+   ```
+2. Run the command **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1** in PowerShell as an administrator.
    >**Note**: If prompted for trust this repository type **A** and then press **Enter**.
-2. Run the following command, and follow the steps to sign in your Azure subscription:
+3. Run the following command, and follow the steps to sign in your Azure subscription:
     ```bash
      .\createAzureSQL.ps1
     ```
@@ -113,6 +118,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
    - In the **FTP** pane, click **User Credentials** in the **username** box, enter a globally unique name.
    - Set the **Password**.
    
+   >**Note**: You will need the credentials for the next steps. Copy them to any code editor.
 2. Inside **MONITORING** menu:
    - Set the **Application Logging (Filesystem)** option to **On**.
    - Set the level to **Verbose**.
@@ -143,6 +149,13 @@ In this exercise, you will create a new Windows service, start and stop it by us
     >**Note**: If there any error regarding invoke web request run the following command then try to run the command again: **[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12**.
 2. Check that you are getting the **"X-Tenant-ID"** header with the value as **Testing**.
 3. Check that you are getting a good JSON response of flights.
+    >**Note**: If there any error regarding invoke web request run the following command then try to run the command again:
+    **[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12**
+
+    >**Note**: If you are not seeing all the response content, type the following command:
+    ```ps
+      (Invoke-WebRequest https://{Your App Name}.azurewebsites.net/api/flights).Content
+    ```
 
 #### Task 3: Use FTP deployment server to view the web app and its log files
 
@@ -157,6 +170,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 7. Run a command to see a log in the PowerShell instance.
 8. Run a command to see another log in the other PowerShell instance.
 9. You can see the status code at the end of the log.
+10. Close all open windows.
 
 # Lab: Host an ASP.NET Core Service in Azure Container Instances
 
@@ -164,7 +178,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 1: Create a Dockerfile for the service
 
-1. Open File Explorer and in **[Repository Root]\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service**, navigate to the **Hotels Service** folder.
+1. Open File Explorer and in **[Repository Root]\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service**, navigate to the **BlueYonder.Hotels.Service** folder.
 2. In the **BlueYonder.Hotels.Service** folder, add a new file called **DockerFile** (without extension) and make sure you download a base docker image for **ASP.NET CORE** and define docker settings for your **BlueYonder.Hotels.Service** project.
 3. Build your project by using **DockerFile** that you have created earlier using the command line.
 4. Run the docker container which is listening on a default port.
@@ -172,7 +186,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 2: Publish the application into a local container using Visual Studio
 
-1. In Microsoft Visual Studio 2017, open [Repository Root]**\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.sln** .
+1. In Microsoft Visual Studio 2017, open **[Repository Root]\AllFiles\Mod05\Labfiles\Exercise3\Starter\BlueYonder.Hotels.Service\BlueYonder.Hotels.Service.sln** .
 2. Add **Docker Support** and in the **Docker File Options** window, select **Linux**.
    >**Note**: If Microsoft Visual studio dialog box appears click **No**.
 3. Build the solution and start debugging.
@@ -180,7 +194,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 #### Task 3: Push the container to a public container registry
 
-1. On your computer, run **Docker Client** by using your Docker Hub credentials.
+1. On your computer, run **Docker Client** by using your **Docker Hub** credentials.
 2. Using the command prompt, sign in to Docker Hub.
 3. In Docker Hub, create a tag name for your docker image.
 4. Push your container image into Docker Hub.
@@ -245,13 +259,13 @@ In this exercise, you will create a new Windows service, start and stop it by us
     ```
 3. Replace all the **Run** method implementations with the following code that makes a request to the **Flights booking Azure** Web App that you created in Lab 2:
     ```cs
-    log.Info("C# HTTP trigger function processed a request to the flights booking service.");
+    log.LogInformation("C# HTTP trigger function processed a request to the flights booking service.");
 
     var flightId = req.Query["flightId"];
 
     var flightServiceUrl = $"http://blueyonder-flights-{Your Initials}.azurewebsites.net/api/flights/bookFlight?flightId={flightId}";
 
-    log.Info($"Flights service url:{flightServiceUrl}");
+    log.LogInformation($"Flights service url:{flightServiceUrl}");
 
     var travelers = new List<Traveler>
      {
@@ -306,9 +320,9 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 1. Open a browser and navigate to:
    ```url
-    https://bookflightfunctionapp-{Your Initials}.azurewebsites.net/api/navigateBookFlightFunc?flightId=1.
+    https://{Your App Name}.azurewebsites.net/api/BookFlightFunc?flightId=1
    ``` 
-    >**Note**: Replace **{Your Initials}** with your actual initials.
+    >**Note**: Replace **{Your App Name}** with your actual App name.
 2. Check whether you are getting the expected response.
 3. To check whether the travelers were actually booked to flight number 1, open a browser and navigate to:
    ```url

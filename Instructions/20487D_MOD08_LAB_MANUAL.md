@@ -1,7 +1,7 @@
 
 # Module 8: Diagnostics and Monitoring
 
-# Lab: Collect and view ETW events 
+# Lab: Monitoring ASP.NET Core with ETW and LTTng 
 
 #### Scenario
 
@@ -13,7 +13,7 @@ After you complete this lab, you will be able to:
 -	Collect and analyze ETW events with PerfView for an ASP.NET Core application on Windows.
 -	Collect and analyze LTTng events for an ASP.NET Core application on a Linux Docker container.
 
-### Exercise 1: Publish the ASP.NET Core web service for Linux
+### Exercise 1: Collect and view ETW events
  
 #### Task 1: Run the ASP.NET Core application
 
@@ -24,7 +24,7 @@ After you complete this lab, you will be able to:
 
    Open **PerfView**, and then collect all the events
 
-#### Task 3: Run a script to invoke the service and meck it to throw exceptions
+#### Task 3: Run a script to invoke service and make it to throw exceptions 
 
 1. In PowerShell, from the **assets** folder, run the **requestsToServer** script.
 2. Switch to **PerfView** and stop collecting the events.
@@ -62,15 +62,20 @@ After you complete this lab, you will be able to:
 
 #### Task 4: Open the recording file on Windows with PerfView
 
-1. To archive the **trace** folder, run the following command:
+1. To install **Zip** package, run the following command:
+   ```bash
+   apt-get install zip
+   ```
+2. To archive the **trace** folder, paste the following command, press the **Tab** key, and then press the **Enter** key:
    ```bash
    zip -r /root/lttng-traces/sample-trace sample.trace.zip
    ```
-2. Copy the archive to the local file system.
-3. Remove the **myapp** container.
-4. Open the zip file in PerfView and look at the events.
+3. Copy the archive to the local file system.
+4. Remove the **myapp** container.
+5. Open the zip file in PerfView and look at the events.
+6. Close all open windows.
 
-# Lab: Monitor Azure Web Apps with Microsoft Azure Application Insights
+# Lab: Monitoring Azure Web Apps with Application Insights
 
 #### Scenario
 
@@ -85,11 +90,34 @@ After you complete this lab, you will be able to:
 
 ### Exercise 1: Add the Application Insights SDK
 
+### Preparation Steps
+
+1. Open PowerShell as **Administrator**.
+2. In the **User Account Control** modal, click **Yes**.
+3. Run the following command: **Install-Module azurerm -AllowClobber -MinimumVersion 5.4.1**.
+   >**Note**: If prompted for trust this repository, Type **A** and then press **Enter**.
+4. Navigate to *[repository root]***\AllFiles\Mod08\Labfiles\Lab2\Setup**.
+5. Run the following command:
+    ```batch
+     .\createAzureServices.ps1
+    ```
+6. You will be asked to supply a subscription ID, which you can get by performing the following steps:
+    1. Open a browser and navigate to **http://portal.azure.com**. If a page appears, asking for your email address, enter your email address, and then click **Continue**. Wait for the **Sign-in** page to appear, enter your email address and password, and then click **Sign In**.
+    2. On the top bar, in the search box, type **Cost**, and then in results, click **Cost Management + Billing(Preview)**. The **Cost Management + Billing** window opens.
+    3. Under **BILLING ACCOUNT**, click **Subscriptions**.
+    4. Under **My subscriptions**, you should have at least one subscription. Click on the subscription that you want to use.
+    5. Copy the value from **Subscription ID**, and then paste it at the **PowerShell** prompt. 
+7. In the **Sign in** window that appears, enter your details, and then sign in.
+8. In the **Administrator: Windows PowerShell** window, follow the on-screen instructions. Wait for the deployment to complete successfully.
+9.  Write down the name of the Azure App Service that is created.
+10. Close the **PowerShell** window.
+
 #### Task 1: Add the Application Insights SDK to the web service project
 
 1. Open **Azure Portal**.
-2. Setup **Application Insights** for the new **blueyondermod08lab2***{YourInitials}* app service.
- - In the setup config the **Runtime/Framework** to **ASP.NET Core**.
+2. In **Application Insights** for the new **blueyondermod08lab2***{YourInitials}* app service, click **Turn on site extension**, and then add the following information:
+ - Select **Create new resource**.
+ - Click **Apply** and in the **Apply monitoring settings** dialog box, click **Yes**.
 3. From the new **Application Insights**, copy **Instrumentation Key**.
 4. Open the command prompt, and then navigate to the **[Repository Root]\Allfiles\Mod08\Labfiles\Lab2\Starter** folder.
 5. At the command prompt, install the **Microsoft.ApplicationInsights.AspNetCore** package.
@@ -111,7 +139,7 @@ After you complete this lab, you will be able to:
 #### Task 1: Create a new performance test in the Azure Portal
 
 1. Switch to **Azure Portal**.
-2. Navigate to **Performance test** and configure with the following steps:
+2. Navigate to **Performance testing** and configure with the following steps:
     - Create a new **Organization** and name it **blueyondervsts***{YourInitials}*.
     - In the new **blueyondervsts** resource, navigate to **VSTS**.
     - In **VSTS**, create a new project and name it **Blueyonder**.
@@ -125,6 +153,7 @@ After you complete this lab, you will be able to:
     - In **Name**, type **DestinationsTest**.
     - In **USER LOAD**, type **20**.
     - In **DURATION (MINUTES)**, type **5**.
+    - Click **Run test**.
 
 ### Exercise 3: Analyze the performance results
 

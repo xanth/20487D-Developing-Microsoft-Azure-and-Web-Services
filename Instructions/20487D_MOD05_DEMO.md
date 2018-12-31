@@ -130,7 +130,7 @@
 28. Open a browser and browse to **https://{Your App Name}.azurewebsites.net/api/values**.
 
    >**Note**: Replace *{Your App Name}* with your actual app name that you have copied earlier.
-28. Check whether you are getting the expected response such as the following:
+29. Check whether you are getting the expected response such as the following:
 	```json
 		["value1", "value2"]
 	```

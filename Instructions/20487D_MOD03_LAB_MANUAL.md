@@ -35,11 +35,14 @@ After completing this lab, you will be able to:
 
 #### Task 1: Use a browser to access the GET action
 
-1. Run the **BlueYonder.Hotels.Service** service.
-2. Open a browser, and then browse to the **GET** action with **id 1**.
-   
-   >**Result:** You should see the **Booking** reservation with **Booking Id: 1**.
+1. Run the **BlueYonder.Hotels.Service** project.
+2. Open a browser,  and navigate to the following URL:
+   ```url
+    http://localhost:5000/api/HotelBooking/1
+   ```
+   >**Note**: If there is an error in the Console after running the application, run the following command: **dotnet dev-certs https --trust**.
 3. Close all open windows.
+   >**Result:** You should see the **Booking** reservation with **Booking Id: 1**.
 
 ### Exercise 3: Create a Client
 
