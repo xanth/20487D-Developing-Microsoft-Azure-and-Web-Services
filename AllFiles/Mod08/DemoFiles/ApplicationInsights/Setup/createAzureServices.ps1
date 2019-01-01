@@ -1,4 +1,4 @@
-﻿﻿### Login to the account
+﻿### Login to the account
 Login-AzureRmAccount
 
 Write-Host "Please enter your subscription id: " -NoNewline
