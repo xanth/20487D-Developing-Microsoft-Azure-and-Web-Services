@@ -32,7 +32,7 @@ After completing this lab, you will be able to:
 
 #### Task 2: Implement the interface on the repository
 
-In the **BlueYonder.Hotels.DAL** project, in **HotelBookingRepository** class, implement the **IHotelBookingRepository** interface.
+1. In the **BlueYonder.Hotels.DAL** project, in **HotelBookingRepository** class, implement the **IHotelBookingRepository** interface.
 
 #### Task 3: Register the repository object in the ASP.NET Core Dependency Injection mechanism
 
@@ -41,7 +41,7 @@ In the **BlueYonder.Hotels.DAL** project, in **HotelBookingRepository** class, i
 
 #### Task 4: Change the controller’s constructor to request an injected repository
 
-Browse to **HotelBookingController**, change **HotelBookingRepository** to **IHotelBookingRepository**, and then initialize it by using the constructor.
+1. Browse to **HotelBookingController**, change **HotelBookingRepository** to **IHotelBookingRepository**, and then initialize it by using the constructor.
 
 ### Exercise 2: Create a Cache Filter
 
@@ -83,7 +83,7 @@ Browse to **HotelBookingController**, change **HotelBookingRepository** to **IHo
 
 #### Task 2: Add the cache filter to several actions
 
-In **HotelBookingController**, above the **GetAvailability** method, add the **Cache("X-No-Cache")** attribute.
+1. In **HotelBookingController**, above the **GetAvailability** method, add the **Cache("X-No-Cache")** attribute.
    
 #### Task 3: Test cacheable and non-cacheable actions from a browser
 
@@ -104,7 +104,7 @@ In **HotelBookingController**, above the **GetAvailability** method, add the **C
     ```
 6. To get the available rooms on the current date, run the following command:
    ```bash
-   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/*[year]-[month]-[day]* -UseBasicparsing
+   Invoke-WebRequest -Url https://localhost:5001/api/HotelBooking/Availability/[year]-[month]-[day] -UseBasicparsing
    ```
    >**Note:** Replace the last section of the URL with the current date.
 7. To remove the reservation, run the following command:

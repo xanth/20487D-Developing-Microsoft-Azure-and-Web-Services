@@ -73,7 +73,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 3. Use the sc command line to stop the service.
 4. Navigate to the same address to see that you are not getting the expected response.
 5. Close all open windows.
-    > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a \*\*Windows service.
+    > **Results**: After completing this exercise, you will have a new **ASP .NET Core** project that is hosted by a **Windows service**.
 
 # Lab: Host an ASP.NET Core Web API in an Azure Web App
 

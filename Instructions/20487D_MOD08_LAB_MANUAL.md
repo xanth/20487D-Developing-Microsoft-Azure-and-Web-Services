@@ -22,7 +22,7 @@ After you complete this lab, you will be able to:
 
 #### Task 2: Record .NET ETW events in PerfView
 
-   Open **PerfView**, and then collect all the events
+ 1. Open **PerfView**, and then collect all the events.
 
 #### Task 3: Run a script to invoke service and make it to throw exceptions 
 

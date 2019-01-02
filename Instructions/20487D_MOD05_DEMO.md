@@ -19,7 +19,7 @@
     ```
 3. To publish the **ASP .NET Core** project into a folder, paste the following command, and then press Enter:
     ```bash
-      dotnet publish --configuration Release --output *[Repository Root]*\Allfiles\Mod05\DemoFiles\HostInWindows Service
+      dotnet publish --configuration Release --output [Repository Root]\Allfiles\Mod05\DemoFiles\HostInWindows Service
     ```
 4. To create the **Windows** service, paste the following command, and then press Enter:
     ```bash
@@ -121,7 +121,7 @@
 25. Save the file.
 26. To point to your new web app folder, at the command prompt, paste the following command:
     ```bash
-        cd *[RepostiroryRoot]*\Allfiles\Mod05\DemoFiles\HostInAzure
+        cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\HostInAzure
     ```
 27. To host your web app in an app service that you created in Azure, paste the following command:
     ```bash
@@ -190,7 +190,7 @@
     ```
 6. To locate the parent folder for your project, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd *[RepositoryRoot]*\Allfiles\Mod05\DemoFiles\
+        cd [RepositoryRoot]\Allfiles\Mod05\DemoFiles\
     ```
 7. To build your project by using **DockerFile** that you created earlier, paste the following command, and then press Enter:
     ```bash
@@ -215,7 +215,7 @@
 13. To create a tag name for your docker image in Docker Hub, paste the following command, and then press Enter:
      >**Note**: Replace the *{Your Docker Hub Username}* variable with your actual Docker Hub username.
     ```bash
-        docker tag hotels_service *{Your Docker Hub Username}*/hotels_service
+        docker tag hotels_service {Your Docker Hub Username}/hotels_service
     ```
 14. To push your container image into Docker Hub, paste the following command, and then press Enter:
 
@@ -299,7 +299,7 @@
 10. Open the Command Prompt window.
 11. To change the directory, at the command prompt, paste the following command, and then press Enter:
     ```bash
-        cd *[RepositoryRoot]*\AllFiles\Mod05\DemoFiles\AzureFunctions
+        cd [RepositoryRoot]\AllFiles\Mod05\DemoFiles\AzureFunctions
     ```
 12. To create a local Functions project, paste the following command:
     ```bash

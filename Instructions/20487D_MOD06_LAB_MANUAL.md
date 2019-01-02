@@ -375,7 +375,7 @@ After completing this lab, you will be able to:
 2. In the **API MANAGEMENT** section, under **APIs**, enter the following details in **Blank API**:
     - In **Display name**, type **BlueYonder**.
     - In **Name**, type **blueyonder**.
-    - In **Web service URL**, type **https://blueyonder***{YourInitials}***.azurewebsites.net/api**.
+    - In **Web service URL**, type **https://blueyonder**{YourInitials}**.azurewebsites.net/api**.
     - In **Api URL suffix**, type **api**.
     - In **Products**, select **blueyonder**.
 3. To create the **GET Destinations** operation, click **+ Add operation** and enter the following details:
