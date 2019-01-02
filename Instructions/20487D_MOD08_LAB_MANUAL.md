@@ -149,7 +149,7 @@ After you complete this lab, you will be able to:
 1. Switch to **Azure Portal**.
 2. Create a new **Performance test** with the following conifgration:
     - In **TEST TYPE**, select **Manual Test**.
-    - In **URL**, type **http://blueyondermod08lab2**{YourInitials}**.azurewebsites.net/api/destinations**.
+    - In **URL**, type **http://blueyondermod08lab2{YourInitials}.azurewebsites.net/api/destinations**.
     - In **Name**, type **DestinationsTest**.
     - In **USER LOAD**, type **20**.
     - In **DURATION (MINUTES)**, type **5**.
