@@ -68,7 +68,7 @@ After you complete this lab, you will be able to:
    ```
 2. To archive the **trace** folder, paste the following command, press the **Tab** key, and then press the **Enter** key:
    ```bash
-   zip -r /root/lttng-traces/sample-trace sample.trace.zip
+   zip -r sample.trace.zip /root/lttng-traces/sample-trace
    ```
 3. Copy the archive to the local file system.
 4. Remove the **myapp** container.
