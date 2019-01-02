@@ -16,8 +16,8 @@
 
 #### Task 2: Deploy the application to an Azure web app
 
-1. Publish the **blueyonder***{YourInitials}* service.
-2. Open the Azure portal, and then click the **blueyonder***{YourInitials}* service.
+1. Publish the **blueyonder**{YourInitials} service.
+2. Open the Azure portal, and then click the **blueyonder**{YourInitials} service.
 3. In the **Settings** section, click **Scale up (App Service plan)**.
 4. On the **Dev/Test** tab, in the **Recommended pricing tiers** box, enter **B1**.
 
@@ -32,7 +32,7 @@
 
 1. Open Microsoft Edge, and then browse to the following URL:
    ```url
-   https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
+   https://blueyonder{YourInitials}.azurewebsites.net/api/destinations
    ```
 2. Verify that the response has a list of destinations in JSON.
 
@@ -41,12 +41,12 @@
 1. In Microsoft Edge, open **Developer Tools**, and then click the **Network** tab.
 2. Browse to the following URL:
    ```url
-   https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
+   https://blueyonder{YourInitials}.azurewebsites.net/api/destinations
    ```
 3. Verify that the response has a list of destinations in JSON.
 4. In the **Network** tab, locate the following URL:
    ```url
-    https://blueyonder*{YourInitials}*.azurewebsites.net/api/destinations
+    https://blueyonder{YourInitials}.azurewebsites.net/api/destinations
    ```
  5. In the **Response Headers** section, locate the **X-BlueYonder-Server**, and then verify that the **Status** is **200**.
 
@@ -54,7 +54,7 @@
 
 #### Task 1: Update the application to not use affinity
 
-1. In the Azure portal, click the **blueyonder***{YourInitials}* web app.
+1. In the Azure portal, click the **blueyonder**{YourInitials} web app.
 2. Click **Application settings**. In the **Settings** section, click **General settings**.
 3. In **General settings**, switch **ARR Affinity** to **Off**.
 

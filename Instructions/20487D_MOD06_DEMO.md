@@ -117,11 +117,11 @@
 26. Open a new command prompt instance.
 27. To change the directory to the published folder, paste the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project\bin\release\netcoreapp2.1
     ```
 28. To publish the package to the virtual machine, paste the following command:
     ```bash
-    scp -r .\ubuntu.16.10-x64\ myadmin@*<server_IP_address>*:/var/demo
+    scp -r .\ubuntu.16.10-x64\ myadmin@<server_IP_address>:/var/demo
     ```
     >**Note**: Change *\<server_IP_address\>* with the IP address of your virtual machine.
 29. Type the following password **Password123!** and press Enter.
@@ -146,7 +146,7 @@
     ```
 36. Verify that the browser displays the default landing page for **Nginx**. The landing page is:
     ```url
-    http://*<server_IP_address>*/index.nginx-debian.html
+    http://<server_IP_address>/index.nginx-debian.html
     ```
 37. To change the directory to the **Nginx** configuration folder, run the following command:
     ```bash
@@ -256,14 +256,14 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - Select your Azure subscription.
     - Click **Authorize**.
     - In the pop-up window, sign in with your Microsoft Azure credentials.
-20. In **App service name**, select **mod6demo3***{YourInitials}*.
+20. In **App service name**, select **mod6demo3**{YourInitials}.
 21. Click the **Triggers** tab, and then under **Branch filters**, click **Add**.
     >**Note:** if **Branch filters** already exist skip this step.
 22. Click the **Save & queue** tab, select **Save**, and then click **Save** again in the pop-up window. 
 23. Open the command prompt.
 24. At the command prompt, to switch the directory, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles
+    cd [Repository Root]\Allfiles\Mod06\Demofiles
     ```
 25. To clone the repository to a local repository, run the following command:
     ```bash
@@ -275,7 +275,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     - Password: **Password123**
 27. To switch the directory to **MyApp**, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\MyApp
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\MyApp
     ```
 28. To create a new WebApi project, run the following command:
     ```bash
@@ -369,7 +369,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```bash
     dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
     ```
-    > **Note**: If there was an error in the publishing process, restart the **mod6demo4***{YourInitials}* app services.
+    > **Note**: If there was an error in the publishing process, restart the **mod6demo4**{YourInitials} app services.
 19. Open Microsoft Edge. 
 20. Navigate to the following URL:
     ```url
@@ -399,7 +399,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
     ```
 30. Switch to the Azure Portal.
 31. To display all the app services, on the left menu panel, click **App Services**.
-32. Click the **mod6demo4***{YourInitials}* app service.
+32. Click the **mod6demo4**{YourInitials} app service.
 33. In the **Overview** blade, on the menu at the top, click **Swap**.
 34. In the **Swap** blade, do the following:
     - In **Swap type**, select **Swap**.
@@ -428,7 +428,7 @@ To present this demonstration, you must have a Microsoft account. If you have no
 5. On the menu in the panel on the left side, click **Create a resource**.
 6. In the **Search** box, type **API management**, click **Enter**, and then click **Create**.
 7. In the **API Management service** page, enter the following details:
-   - Name: **Mod6demo5***{YourInitials}*
+   - Name: **Mod6demo5**{YourInitials}
    - Resource Group:
         - Select **Create new**.
         - Type **Mod6Demo5ResourceGroup**.

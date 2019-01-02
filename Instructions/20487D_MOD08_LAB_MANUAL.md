@@ -115,7 +115,7 @@ After you complete this lab, you will be able to:
 #### Task 1: Add the Application Insights SDK to the web service project
 
 1. Open **Azure Portal**.
-2. In **Application Insights** for the new **blueyondermod08lab2***{YourInitials}* app service, click **Turn on site extension**, and then add the following information:
+2. In **Application Insights** for the new **blueyondermod08lab2**{YourInitials} app service, click **Turn on site extension**, and then add the following information:
  - Select **Create new resource**.
  - Click **Apply** and in the **Apply monitoring settings** dialog box, click **Yes**.
 3. From the new **Application Insights**, copy **Instrumentation Key**.
@@ -140,7 +140,7 @@ After you complete this lab, you will be able to:
 
 1. Switch to **Azure Portal**.
 2. Navigate to **Performance testing** and configure with the following steps:
-    - Create a new **Organization** and name it **blueyondervsts***{YourInitials}*.
+    - Create a new **Organization** and name it **blueyondervsts**{YourInitials}.
     - In the new **blueyondervsts** resource, navigate to **VSTS**.
     - In **VSTS**, create a new project and name it **Blueyonder**.
 
@@ -149,7 +149,7 @@ After you complete this lab, you will be able to:
 1. Switch to **Azure Portal**.
 2. Create a new **Performance test** with the following conifgration:
     - In **TEST TYPE**, select **Manual Test**.
-    - In **URL**, type **http://blueyondermod08lab2***{YourInitials}***.azurewebsites.net/api/destinations**.
+    - In **URL**, type **http://blueyondermod08lab2**{YourInitials}**.azurewebsites.net/api/destinations**.
     - In **Name**, type **DestinationsTest**.
     - In **USER LOAD**, type **20**.
     - In **DURATION (MINUTES)**, type **5**.

@@ -281,7 +281,7 @@
 #### Demonstration Steps
 
 1. Open the Microsoft Azure portal.
-2. Click **All resources**, and  then click **blueyondermod08demo5***{YourInitials}*.
+2. Click **All resources**, and  then click **blueyondermod08demo5**{YourInitials}.
 3. In the left pane, in the **SETTINGS** section, click **Application Insights** .
 4. Click **Turn on site Extension**, and then add the following information:
     - Select **Create new resource**.
@@ -434,11 +434,11 @@
 21. Open Microsoft Edge.
 22. Navigate to **https://portal.azure.com** and login with your credentials.
 23. In the left menu panel, click **App Services**.
-24. Click **blueyonderMod8Demo6***{yourinitials}*.
+24. Click **blueyonderMod8Demo6**{yourinitials}.
 25. In the left menu panel, under **Settings**, click **Application Insights**.
 26. Click **Turn on site extension**.
     - Select **Create new resource**.
-    - Select **blueyonderMod8Demo6***{yourinitials}*.
+    - Select **blueyonderMod8Demo6**{yourinitials}.
 27. Under **Instrument your application**, select **.NET Core**.
 28. Click **Apply**, and then click **Yes**.
 29. Wait until all changes are saved.
@@ -464,7 +464,7 @@
 38. To refresh the page, press F5 a couple of times.
 39. Switch to Azure portal.
 40. On the left panel click **All resources**.
-41. Click the **blueyonderMod8Demo6***{YourInitial}* Application Insights.
+41. Click the **blueyonderMod8Demo6**{YourInitial} Application Insights.
 42. Under **Investigate**, click **Performance**.
 43. Click **Dependencies** and then locate the **HTTP: GET httpbin.org/get** request.
 44. Close all open windows.
