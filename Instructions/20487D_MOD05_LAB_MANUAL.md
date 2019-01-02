@@ -226,7 +226,7 @@ In this exercise, you will create a new Windows service, start and stop it by us
 
 1. At the command prompt, change the directory by pasting the following command, and then press Enter:
     ```bash
-    cd *[RepositoryRoot]*\AllFiles\Mod05\Labfiles\Exercise4
+    cd [RepositoryRoot]\AllFiles\Mod05\Labfiles\Exercise4
     ```
 2.  Create a **local Functions Project** named **BlueYonder.Flights.GroupProxy**.
 3.  Open the project in Visual Studio Code and add a new **Traveler.cs** file with the following code:  

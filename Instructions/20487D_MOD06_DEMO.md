@@ -47,7 +47,7 @@
     >**Note**: Visual Studio publishes the application according to the settings that are provided in the profile file. After deployment completes, Visual Studio opens Internet Explorer and displays the web app. The deployment process is quick because the process only copies the content of the application to an existing virtual machine and does not need to wait for a new virtual machine to be created.
 26. In the browser, navigate to the following URL:
     ```url
-    http://mod6demo1*[YourInitials]*.azurewebsites.net/api/values
+    http://mod6demo1{YourInitials}.azurewebsites.net/api/values
     ```
 27. Verify that the response is in the format: **["***value1***","***value2***"]**.
 28. Close all open windows.
@@ -79,7 +79,7 @@
 9.  Open the command prompt.
 10. At the command prompt, to change the directory to **Demo2Project**, run the following command:
     ```bash
-    cd *[Repository Root]*\Allfiles\Mod06\Demofiles\Demo2Project
+    cd [Repository Root]\Allfiles\Mod06\Demofiles\Demo2Project
     ```
 11. To open the project in Microsoft Visual Studio Code, run the following command:
     ```bash
