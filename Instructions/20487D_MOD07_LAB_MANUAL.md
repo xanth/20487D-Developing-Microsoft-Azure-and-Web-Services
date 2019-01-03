@@ -58,7 +58,7 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create a Blob Storage container
 
-Create a new container, name it **manifests**, and assign it **Private (no anonymous access)** accessibility.
+1. Create a new container, name it **manifests**, and assign it **Private (no anonymous access)** accessibility.
 
 #### Task 2: Generate a passenger manifest and store it in the container
 
