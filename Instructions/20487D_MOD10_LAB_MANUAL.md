@@ -65,7 +65,7 @@
 3. In the **Network** tab,  view **X-BlueYonder-Server**.
    > **Note**: Now there are two server instances in **X-BlueYonder-Server**, because of which you can get two different values for **machine name**.
 
-# Lab 2: Load Balancing with Azure Traffic Manager
+# Lab: Load Balancing with Azure Traffic Manager
 
 ### Exercise 1: Deploy an Azure Web App to Multiple Regions
 
