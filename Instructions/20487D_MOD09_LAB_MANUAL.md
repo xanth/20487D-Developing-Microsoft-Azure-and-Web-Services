@@ -162,7 +162,7 @@
 
 #### Task 2: Add authorization attributes to the value controller
 
-In the **ValuesController** class, to the  **Get** action, add the **Authorize** attribute.
+1. In the **ValuesController** class, to the  **Get** action, add the **Authorize** attribute.
 
 ### Exercise 3: Run a client application to test the server
 
