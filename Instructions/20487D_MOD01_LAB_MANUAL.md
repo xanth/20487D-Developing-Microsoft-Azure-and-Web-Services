@@ -23,7 +23,7 @@ In this exercise, you will create a Web API through ASP.NET Core by using the co
 
 #### Task 1: Create a new ASP.NET Core project
 
-To create a ASP.NET Core Web API core project, at the command prompt, run the **dotnet** tool.
+1. To create a ASP.NET Core Web API core project, at the command prompt, run the **dotnet** tool.
 
    >**Results**: After completing this exercise, you should have a basic Web API ASP.NET Core project.
 
