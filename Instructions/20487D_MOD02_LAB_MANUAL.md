@@ -233,7 +233,7 @@ In this exercise, you will create a hotel booking repository.
 
 #### Task 3: Create a method to delete entities
 
-2. Add a new method that gets the **BookingId** int as a parameter and deletes the database, and name it **Delete**.
+1. Add a new method that gets the **BookingId** int as a parameter and deletes the database, and name it **Delete**.
 
     >**Results** You created a repository with the **Add**, **Update**, **Delete** methods.
 
