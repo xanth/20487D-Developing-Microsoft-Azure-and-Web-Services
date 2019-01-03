@@ -147,7 +147,7 @@ After completing this lab, you will be able to:
    
 #### Task 3: Create the IApplicationBuilder helper class
 
-Create a static extension method for **IApplicationBuilder** with the **IApplicationBuilder** parameter and a return **IApplicationBuilder** entity. 
+1. Create a static extension method for **IApplicationBuilder** with the **IApplicationBuilder** parameter and a return **IApplicationBuilder** entity. 
 
 #### Task 4: Register the middleware to the ASP.NET Core pipeline
 
