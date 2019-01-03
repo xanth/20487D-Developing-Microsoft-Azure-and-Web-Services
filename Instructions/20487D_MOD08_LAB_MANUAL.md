@@ -132,7 +132,7 @@ After you complete this lab, you will be able to:
 
 #### Task 2: Publish the service to Azure Web Apps
 
-   At the command prompt, publish the service.
+1. At the command prompt, publish the service.
 
 ### Exercise 2: Load test the web service
 
