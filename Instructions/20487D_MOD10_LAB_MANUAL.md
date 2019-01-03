@@ -91,7 +91,7 @@
 
 #### Task 1: Create an Azure Traffic Manager profile in the Azure portal
 
-Create a Traffic Manager profile with the **Priority** routing method.
+1. Create a Traffic Manager profile with the **Priority** routing method.
 
 #### Task 2: Configure the profile to point to the two Azure web apps
 
