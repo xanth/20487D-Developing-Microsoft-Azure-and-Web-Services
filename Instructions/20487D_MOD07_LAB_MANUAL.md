@@ -26,7 +26,7 @@ After completing this lab, you will be able to:
 3. Create a new blob container, name it **aircraft-images**, and then set its public access level as **Container (anonymous read access for containers and blobs)**.
 
 #### Task 2: Upload a file to the Blob Storage container from the Azure CLI
-To upload the **france.jpg** file to the **aircraft-images** blob container, at the Azure CLI, enter the following path:
+1. To upload the **france.jpg** file to the **aircraft-images** blob container, at the Azure CLI, enter the following path:
    ```url
    [Repository Root]\AllFiles\Mod07\Labfiles\Lab1\Assets\france.jpg
    ```
