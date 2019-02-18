@@ -286,7 +286,7 @@ and you will create, test and run them on SQL Lite and SQL Server.
    ```bash
    dotnet test
    ```
-4. Open **SQL Operations Studio**:
+4. Open **Azure Data Studio**:
     - Check whether the **Mod2Lab2DB** database was created.
     - Check whether there are two bookings saved in the database.
 
