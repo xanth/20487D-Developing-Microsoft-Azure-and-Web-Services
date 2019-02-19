@@ -47,7 +47,7 @@ After completing this lab, you will be able to:
 
 #### Task 1: Create an action filter for cache headers
 
-1. In the **BlueYonderHotels.Service** project, create an **Attirbutes** folder.
+1. In the **BlueYonderHotels.Service** project, create an **Attributes** folder.
 2. Create a new **CacheAttribute** class, and make sure that it is derived from **ActionFilterAttribute**.
 3. Add the following fields:
       ```cs
