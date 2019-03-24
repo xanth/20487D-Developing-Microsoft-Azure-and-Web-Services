@@ -17,15 +17,16 @@ namespace BlueYonder.Hotels.DAL.Repository
             _options = options;
         }
 
-        public IEnumerable<Room> GetAvaliabileByDate(DateTime date)
+        public IEnumerable<Room> GetAvailableByDate(DateTime date)
         {
             using (HotelsContext context = new HotelsContext(_options))
             {
                 var roomsWithoutReservation =
-                    (from reservation in context.Reservations
-                     where date < reservation.CheckIn || date > reservation.CheckOut
-                     select reservation.Room)
-                    .ToList();
+                    (from room in context.Rooms
+                     join reservation in context.Reservations on room equals reservation.Room into result
+                     from reservation in result.DefaultIfEmpty()
+                     where (date < reservation.CheckIn || date > reservation.CheckOut) || room.Reservations.Count==0
+                     select room).ToList();
 
                 return roomsWithoutReservation;
             }
