@@ -25,7 +25,7 @@ namespace BlueYonderHotels.Service.Controllers
         [HttpGet("Availability/{date}")]
         public IEnumerable<Room> GetAvailability(DateTime date)
         {
-            return _hotelBookingRepository.GetAvaliabileByDate(date);
+            return _hotelBookingRepository.GetAvailableByDate(date);
         }
         
         [HttpGet("Reservation")]
