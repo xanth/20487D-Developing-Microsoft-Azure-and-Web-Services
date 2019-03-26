@@ -10,6 +10,6 @@ namespace Exercise1.Models
     {
     }
 
-    public DbSet<Flight> Flight { get; set; }
+    public DbSet<Flight> Flights { get; set; }
     }
 }
