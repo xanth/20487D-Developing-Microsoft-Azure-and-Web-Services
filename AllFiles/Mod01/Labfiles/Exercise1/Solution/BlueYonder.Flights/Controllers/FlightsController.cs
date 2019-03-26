@@ -21,14 +21,14 @@ namespace BlueYonder.Flights.Controllers
         // GET api/flights
         public IEnumerable<Flight> Get()
         {
-            return _context.Flight.ToList();
+            return _context.Flights.ToList();
         }
 
         // POST api/flights
         [HttpPost]
         public IActionResult Post([FromBody]Flight flight)
         {
-            _context.Flight.Add(flight);
+            _context.Flights.Add(flight);
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(Get), flight.Id);
