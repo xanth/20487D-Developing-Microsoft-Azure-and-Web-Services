@@ -216,3 +216,4 @@ nuget.exe
 .idea/*
 
 .vscode
+**/*.pubxml
