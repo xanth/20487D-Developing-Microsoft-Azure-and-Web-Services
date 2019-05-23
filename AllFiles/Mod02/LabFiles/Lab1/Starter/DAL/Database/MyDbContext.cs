@@ -32,7 +32,7 @@ namespace DAL.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Mod2Lab1DB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=.;Database=Mod2Lab1DB;User Id=sa;Password=rightcrowd;");
             }
         }
     }

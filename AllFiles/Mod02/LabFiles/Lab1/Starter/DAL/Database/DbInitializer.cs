@@ -18,17 +18,17 @@ namespace DAL.Database
         private static void Seed(MyDbContext context)
         {
             // Create list with dummy Travelers
-            List<Traveler> travelerList = new List<Traveler>
+            var travelerList = new List<Traveler>
             {
-                new Traveler(){ Name = "Jon Due", Email = "jond@outlook.com"},
-                new Traveler(){ Name = "Jon Due2", Email = "jond2@outlook.com"},
-                new Traveler(){ Name = "Jon Due3", Email = "jond3@outlook.com"}
+                new Traveler { Name = "Jon Due", Email = "jond@outlook.com"},
+                new Traveler { Name = "Jon Due2", Email = "jond2@outlook.com"},
+                new Traveler { Name = "Jon Due3", Email = "jond3@outlook.com"}
             };
 
             // Create list with dummy bookings
-            List<Booking> bookingList = new List<Booking>
+            var bookingList = new List<Booking>
             {
-                new Booking()
+                new Booking
                 {
                     DateCreated = DateTime.Now,
                     CheckIn = DateTime.Now,
@@ -37,7 +37,7 @@ namespace DAL.Database
                     Paid = true,
                     Traveler = travelerList[0]
                 },
-                new Booking()
+                new Booking
                 {
                     DateCreated = DateTime.Now.AddDays(3),
                     CheckIn = DateTime.Now.AddDays(5),
@@ -46,7 +46,7 @@ namespace DAL.Database
                     Paid = true,
                     Traveler = travelerList[1]
                 },
-                new Booking()
+                new Booking
                 {
                     DateCreated = DateTime.Now.AddDays(-10),
                     CheckIn = DateTime.Now.AddDays(10),
@@ -58,18 +58,18 @@ namespace DAL.Database
             };
 
             // Create list with dummy rooms
-            List<Room> roomList = new List<Room>
+            var roomList = new List<Room>
             {
-                new Room(){ Number = 10, Price = 300},
-                new Room(){ Number = 20, Price = 200},
-                new Room(){ Number = 30, Price = 100}
+                new Room { Number = 10, Price = 300},
+                new Room { Number = 20, Price = 200},
+                new Room { Number = 30, Price = 100}
             };
 
             roomList[0].Bookings.Add(bookingList[0]);
             roomList[1].Bookings.Add(bookingList[1]);
             roomList[1].Bookings.Add(bookingList[2]);
 
-            Hotel hotel = new Hotel()
+            var hotel = new Hotel
             {
                 Name = "Azure Hotel",
                 Address = "Cloud",
